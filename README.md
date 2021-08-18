@@ -184,7 +184,7 @@ All social icons change colour and size upon mouse hover
 - [Gitpod](https://www.gitpod.io/) - chosen IDE for this project.
 - [GitHub](https://github.com/) - for storage and sharing of code remotely.
 - [Heroku](https://www.heroku.com/) - Hosting provider for app.
-- Amazon Webhosting Service
+- [Amazon Web Services (AWS)](https://aws.amazon.com/) - for hosting of all image files
 - [allauth](https://django-allauth.readthedocs.io/en/latest/index.html) - for site user login and logout of account
 - [Balsamiq](https://balsamiq.com/) - to create wireframes.
 - [Lucidchart](https://www.lucidchart.com/) - for DB design illustration.
