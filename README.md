@@ -125,7 +125,7 @@ The website is broadly separated into three sections:
 > # **SKELETON**
 
 # Wireframes
-[wireframes_v0.1](assets/readme/boardgame_bazaar_desktop-wireframes_v0.1.pdf)
+[wireframes_v0.1](assets/readme/boardgame-bazaar_desktop-wireframes_v0.1.pdf)
 
 ------
 
