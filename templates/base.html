@@ -8,12 +8,14 @@
 
     {% block corecss %}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link href="{% static 'css/base.css' %}" rel="stylesheet">
     {% endblock %}
 
     {% block extra_css %}
     {% endblock %}
 
     {% block corejs %}
+    <script src="https://kit.fontawesome.com/94bf7b1778.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
@@ -25,7 +27,47 @@
     <title>Boardgame Bazaar {% block extra_title %}{% endblock %}</title>
   </head>
   <body>
-    <header class="container-fluid fixed-top"></header>
+    <header class="container-fluid fixed-top">
+      <!-- top row of the navbar -->
+      <div id="top-topnav" class="row bg-secondary">
+        <div class="col-6">
+          <ul class="list-inline list-unstyled my-1">
+            <li class="list-inline-item"><a class="text-light mx-1" href="#"><i class="fab fa-twitter"></i></a></li>
+            <li class="list-inline-item"><a class="text-light mx-1" href="#"><i class="fab fa-facebook-f"></i></a></li>
+            <li class="list-inline-item"><a class="text-light mx-1" href="#"><i class="fab fa-instagram"></i></a></li>
+            <li class="list-inline-item"><a class="text-light mx-1" href="#"><i class="fab fa-youtube"></i></a></li>
+            <li class="list-inline-item"><a class="text-light mx-1" href="#"><i class="fas fa-envelope"></i></a></li>
+          </ul>
+        </div>
+        <div class="col-5 d-flex justify-content-end">
+          <ul class="list-inline list-unstyled my-1">
+            <li class="list-inline-item"><a class="text-light mx-1" href="{% url 'account_login' %}">Login</a></li>
+            <li class="list-inline-item"><a class="text-light mx-1" href="{% url 'account_signup' %}">Register</a></li>
+          </ul>
+        </div>
+        <div class="col-1 bg-warning d-flex justify-content-center">
+          <a class="{% if item_total %}font-weight-bold{% else %}text-black{% endif %} px-0 py-0" href="">
+            <ul class="list-inline list-unstyled my-1">
+              <li class="list-inline-item"><i class="fas fa-shopping-cart"></i></li>
+              <li class="list-inline-item">
+                <p class="my-0">
+                  {{ item_total }}
+                </p> 
+              </li>
+            </ul>   
+          </a>
+        </div>
+      </div>
+      <!-- bottom row of the navbar -->
+      <div id="bottom-topnav" class="row bg-dark">
+        <div class="col-12 d-flex justify-content-center">
+          <div class="text-center text-light">
+          <h1>Boardgame Bazaar</h1>
+          <h5>Buy, Sell, Play</h5>
+          </div>
+        </div>
+      </div>
+    </header>
     
     {% if messages %}
         <div class="messages-container"></div>
