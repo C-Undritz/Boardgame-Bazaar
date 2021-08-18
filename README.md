@@ -1,104 +1,258 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# Boardgame Bazaar - Readme document
 
-Welcome USER_NAME,
+### Website can be viewed here: 
 
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Gitpod and the extensions we use. The last update to this file was: **July 2, 2021**
+### Project Github site:
 
-## Gitpod Reminders
-
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
-
-`python3 -m http.server`
-
-A blue button should appear to click: _Make Public_,
-
-Another blue button should appear to click: _Open Browser_.
-
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
-
-A blue button should appear to click: _Make Public_,
-
-Another blue button should appear to click: _Open Browser_.
-
-In Gitpod you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
-
-To log into the Heroku toolbelt CLI:
-
-1. Log in to your Heroku account and go to *Account Settings* in the menu under your avatar.
-2. Scroll down to the *API Key* and click *Reveal*
-3. Copy the key
-4. In Gitpod, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
-
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with _Regenerate API Key_.
+### **Disclaimer: This Website is for educational purposes only.**
 
 ------
 
-## Release History
+# Table of Contents
 
-We continually tweak and adjust this template to help give you the best experience. Here is the version history:
-
-**July 19 2021:** Remove `font_fix` script now that the terminal font issue is fixed.
-
-**July 2 2021:** Remove extensions that are not available in Open VSX.
-
-**June 30 2021:** Combined the P4 and P5 templates into one file, added the uptime script. See the FAQ at the end of this file.
-
-**June 10 2021:** Added: `font_fix` script and alias to fix the Terminal font issue
-
-**May 10 2021:** Added `heroku_config` script to allow Heroku API key to be stored as an environment variable.
-
-**April 7 2021:** Upgraded the template for VS Code instead of Theia.
-
-**October 21 2020:** Versions of the HTMLHint, Prettier, Bootstrap4 CDN and Auto Close extensions updated. The Python extension needs to stay the same version for now.
-
-**October 08 2020:** Additional large Gitpod files (`core.mongo*` and `core.python*`) are now hidden in the Explorer, and have been added to the `.gitignore` by default.
-
-**September 22 2020:** Gitpod occasionally creates large `core.Microsoft` files. These are now hidden in the Explorer. A `.gitignore` file has been created to make sure these files will not be committed, along with other common files.
-
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
-
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
-
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
-
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
+- [OVERVIEW](https://github.com/C-Undritz/Community-Treats#overview)
+- [STRATEGY](https://github.com/C-Undritz/Community-Treats#strategy)
+- [SCOPE](https://github.com/C-Undritz/Community-Treats#scope)
+- [STRUCTURE](https://github.com/C-Undritz/Community-Treats#structure)
+- [SKELETON](https://github.com/C-Undritz/Community-Treats#skeleton)
+- [SURFACE](https://github.com/C-Undritz/Community-Treats#surface)
+- [TECHNOLOGIES USED](https://github.com/C-Undritz/Community-Treats#technologies-used)
+- [TESTING](https://github.com/C-Undritz/Community-Treats#testing)
+- [NOTED DESIGN CHANGES](https://github.com/C-Undritz/Community-Treats#noted-design-changes)
+- [FEATURES](https://github.com/C-Undritz/Community-Treats#features)
+- [FURTHER DEVELOPMENT](https://github.com/C-Undritz/Community-Treats#further-development)
+- [DEVELOPMENT AND DEPLOYMENT](https://github.com/C-Undritz/Community-Treats#development-and-deployment)
+- [DOCUMENTATION REFERENCED](https://github.com/C-Undritz/Community-Treats#documentation-referenced)
+- [CREDITS AND THANKS](https://github.com/C-Undritz/Community-Treats#credits-and-thanks)
 
 ------
 
-## FAQ about the uptime script
+> # **OVERVIEW**
 
-**Why have you added this script?**
+The board game industry has seen a resurgence in recent years and it is expected to carry on growing further.  Industry forecasters predict the global board game market will be worth more than £9bn by 2023.
 
-It will help us to calculate how many running workspaces there are at any one time, which greatly helps us with cost and capacity planning. It will help us decide on the future direction of our cloud-based IDE strategy.
+For many gamers, the enjoyment of playing board and card games among friends, family members, and fellow enthusiasts is invaluable. And they are willing to pay for the experience, with the majority of gamers (41%) purchasing five to ten new games or expansions a year.
 
-**How will this affect me?**
+Consequently recent survey data found that 43% of of board gamers may typically have between 26 to 100+ games and so, often, space becomes an issue.  This has led to a large scene for selling on games that are no longer played enough or just did not click with a gamer or gaming group.  You can now find popular and relatively recent releases available on ebay and there is a 2nd hand games facility available on boardgamegeek and many facebook groups where gamers can sell or trade games.
 
-For everyday usage of Gitpod, it doesn’t have any effect at all. The script only captures the following data:
+------
 
-- An ID that is randomly generated each time the workspace is started.
-- The current date and time
-- The workspace status of “started” or “running”, which is sent every 5 minutes.
+> # **STRATEGY**
 
-It is not possible for us or anyone else to trace the random ID back to an individual, and no personal data is being captured. It will not slow down the workspace or affect your work.
+Research has revealed that there is no current dedicated online board game store that will allow users to sell games in exchange for store credit.  Boardgame Bazaar uniquely offers this facility to registered site users and manages the end to end sale process through the users account and admin interface.  This allows users to build up credit to spend in store and will also provide Boardgame Bazaar with quality 2nd hand stock to sell longside new stock of the latest games and well known titles.
 
-**So….?**
+The goal of this project is to produce a MVP of an e-commerce store dedicated to the sale of new and second hand table top board games.  
 
-We want to tell you this so that we are being completely transparent about the data we collect and what we do with it.
+# User Stories
 
-**Can I opt out?**
+| User Story ID | As A        | I want to be able to...                                      | So that I can..                                              |
+| ------------- | ----------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+|               |             |                                                              |                                                              |
+| 01-01         | Customer    | View all of the products available from the store            | Select a product to purchase                                 |
+| 01-02         | Customer    | View a list of products that are on sale, just released and available for preorder | Take advantage of savings, and purchase a new product early  |
+| 01-03         | Customer    | View second hand board games available to buy                | Have the option to buy quality approved second hand board games |
+| 01-04         | Customer    | Select individual products to view                           | Read additional product details to confirm that this is the item I am looking for and add to my shopping cart (nth: view reviews and ratings on the product) |
+| 01-05         | Customer    | Access my shopping cart at any time                          | Check added items and view the purchase total to ensure that I am not spending too much |
+|               |             |                                                              |                                                              |
+| 02-01         | Customer    | View the products available by board game genres             | More easily find games that match my board game preferences  |
+| 02-02         | Customer    | Sort the returned list of board games                        | Easily identify the cheapest/most expensive board games and most highly rated |
+| 02-03         | Customer    | Be able to search for a board game by name or description    | Find a specific board game that I am looking to purchase     |
+| 02-04         | Customer    | Easily view the search results and number of results         | Quickly determine whether the product I want is available    |
+|               |             |                                                              |                                                              |
+| 03-01         | Customer    | Easily select the quantity of a board game I would like to buy | Buy multiples of one product in the same purchase            |
+| 03-02         | Customer    | View the items in the shopping cart that I have selected to purchase | Keep track of what I have added and the total cost           |
+| 03-03         | Customer    | Adjust the quantity of the individual items in my shopping cart and remove them if I wish | Easily make changes to my purchase before checkout           |
+| 03-04         | Customer    | Easily enter delivery and payment information                | Check out quickly and confidently with zero hassle           |
+| 03-05         | Customer    | Feel that my personal and payment information is safe and secure | Confidently provide the needed information to make a purchase |
+| 03-06         | Customer    | View an order after a purchase is made and checkout is complete | Verify that I have not made any mistakes in my order         |
+| 03-07         | Customer    | Receive an email confirmation after checkout is complete     | Have a record of what has been purchased should there be any issues |
+|               |             |                                                              |                                                              |
+| 04-01         | Site User   | Easily register for an account                               | Have a personal account, a profile to view and streamline the checkout |
+| 04-02         | Site User   | Easily log in or log out                                     | Access my personal account and streamline the checkout       |
+| 04-03         | Site User   | Easily recover my password in case I forget it               | Recover access to my account                                 |
+| 04-04         | Site User   | Receive an email confirmation after registering              | Be sure that my account is created and verify that it is myself that set it up |
+| 04-05         | Site User   | Sell board games I no longer want to get store credit        | Use that credit to buy new or used board game and therefore reduce the amount of money I spend |
+| 04-06         | Site User   | Have a personalised account page                             | View order history, save, view and update contact and delivery information and view my current credit and trade progress / history |
+|               |             |                                                              |                                                              |
+| 05-01         | Store Owner | Add a product                                                | Add new items to the store through streamlined interface     |
+| 05-02         | Store Owner | Edit and Update a product details                            | Change product prices, descriptions, images, and other product criteria |
+| 05-03         | Store Owner | Delete a product                                             | Remove items that are no longer available to buy             |
+| 05-04         | Store Owner | Manage customer sale of games to the store                   | Reject sales, make offers, dispatch pickup, and add the games to stock when they arrive |
 
-Yes, you can. Since no personally identifiable information is being captured, we'd appreciate it if you let the script run; however if you are unhappy with the idea, simply run the following commands from the terminal window after creating the workspace, and this will remove the uptime script:
+------
 
-```
-pkill uptime.sh
-rm .vscode/uptime.sh
-```
+> # **SCOPE**
 
-**Anything more?**
+# Content
 
-Yes! We'd strongly encourage you to look at the source code of the `uptime.sh` file so that you know what it's doing. As future software developers, it will be great practice to see how these shell scripts work.
+## The presentation of the site is concerned with:
 
----
+## Functional Requirements
+1. Mobile first; the site is designed to work on mobile and tablet screens first, but responsive design ensures that it scales up and looks good on laptop and desktop screens.
+2. Flexible Navbar and site options to reflect a logged in user and admin user to restrict some functionality of the website.
+3. A contact function/form that will allow the sending of feedback to an existing email.
+4. Clear and obvious links to social media platforms.
+5. Feedback animations to provide players with clear interaction cues.
+6. Nice to have: Interactive functions for user to provide feedback on a recipe and to view feedback provided by others.
 
-Happy coding!
+
+------
+
+> # **STRUCTURE**
+
+The website is broadly separated into three sections:
+
+1. Sections and functions accessible whilst not being logged in:
+
+2. Sections and functions accessible when registered and logged in:
+
+3. Sections and functions accessible when logged in as an admin user:
+
+# Navigation
+
+# Database Schema
+
+![database_schema v0.1](assets/readme/boardgame_bazaar-database_design_v0.1.png)
+
+# Searching
+
+------
+
+# Consistent Features between pages
+
+------
+
+> # **SKELETON**
+
+# Wireframes
+[wireframes_v0.1](assets/readme/boardgame_bazaar_desktop-wireframes_v0.1.pdf)
+
+------
+
+> # **SURFACE**
+
+# Theme
+
+# Colours
+In order to simplify the deployment of the website, bootstrap colours have been used as detailed below:
+
+| Bootstrap colour | #hex code |
+|------------------|-----------|
+| Secondary        | #6C757D   |
+| Danger           | #DC3545   |
+| Warning          | #FFC107   |
+| Light            | #F8F9FA   |
+| Dark             | #212529   |
+
+![Colour Palette](assets/readme/boardgame_bazaar-colour_palette.png)
+
+# Text
+
+## Fonts
+- [Love Ya Like A Sister](https://fonts.google.com/specimen/Love+Ya+Like+A+Sister?preview.text=Boardgame%20Bazaar&preview.text_type=custom&query=Love): Used for the title of the store in the nav bar
+- [Amatic SC](https://fonts.google.com/specimen/Amatic+SC?query=amatic&preview.text=Buy,%20Sell,%20Play&preview.text_type=custom): Used for the store tag line 'Buy, Sell, Play' on the nav bar
+- [Economica](https://fonts.google.com/specimen/Economica?query=economica&preview.text=Boardgame%20Bazaar%20website%20content%20will%20be%20written%20in%20this%20font&preview.text_type=custom): Used for all text througout the site
+
+# User interaction feedback
+
+## Buttons
+All buttons change colour upon mouse hover
+
+## Social icons
+All social icons change colour and size upon mouse hover
+
+------
+
+> # **TECHNOLOGIES USED**
+
+## Languages
+
+- HTML5
+- CSS3
+- JavaScript
+- Python
+
+## Libraries & Frameworks
+
+- [django web application framework](https://www.djangoproject.com/)
+- [Bootstrap v5.1.0](https://getbootstrap.com/)
+- [Font Awesome](https://fontawesome.com/)
+- [Google Fonts](https://fonts.google.com/)
+
+## Tools
+
+- [Gitpod](https://www.gitpod.io/) - chosen IDE for this project.
+- [GitHub](https://github.com/) - for storage and sharing of code remotely.
+- [Heroku](https://www.heroku.com/) - Hosting provider for app.
+- Amazon Webhosting Service
+- [Balsamiq](https://balsamiq.com/) - to create wireframes.
+- [Lucidchart](https://www.lucidchart.com/) - for DB design illustration.
+- [Tables Generator](https://www.tablesgenerator.com)
+- [favicon](https://favicon.io/) - for generating 32x32 favicon.
+- [Am I responsive](http://ami.responsivedesign.is/) - to create the responsive illustrations featured in the TESTING.md.
+
+------
+
+> # **TESTING**
+
+Testing completed is detailed in the [TESTING.md](https://github.com/C-Undritz/Community-Treats/blob/master/TESTING.md) document
+
+------
+
+> # **NOTED DESIGN CHANGES**
+
+# Changes to original design
+
+# New features
+
+
+
+------
+
+> # **FEATURES**
+
+# Security
+
+# Data Management
+
+
+
+------
+
+> # **FURTHER DEVELOPMENT**
+
+
+
+------
+
+> # **DEVELOPMENT AND DEPLOYMENT**
+
+# Deploy to Heroku
+
+
+
+------
+
+> # **DOCUMENTATION REFERENCED**
+
+
+
+------
+
+> # **CREDITS AND THANKS**
+
+# Code
+
+# Images and Content
+
+## Images
+
+
+
+## Content
+
+- Information for Readme Overview section was found in the following websites:
+  - [Board games: Why are they becoming so popular?](https://www.bbc.co.uk/news/av/uk-wales-49859688)
+  - [Board Game Industry Statistics](https://printninja.com/board-game-industry-statistics/)
+
+# Acknowledgments
