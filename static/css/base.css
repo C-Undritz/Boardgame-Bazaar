@@ -38,6 +38,11 @@ body {
     content: none;
 }
 
+.navbar {
+    margin-left: -5px;
+}
+
+
 /* ------------------ Media Queries ------------------- */
 
 /* From Boutique Ado */
@@ -64,7 +69,7 @@ body {
     }
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 576px) {
     #store-logo {
         font-size: 1.70rem;
     }
@@ -73,10 +78,5 @@ body {
         font-size: 1.5rem;
         margin-top: -17px;
         margin-left: 40px;
-    }
-
-    #shop-front-link, 
-    #shop-genre-link {
-        font-size: 1.12rem;
     }
 }
