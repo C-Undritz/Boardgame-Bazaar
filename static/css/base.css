@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC&family=Economica&family=Love+Ya+Like+A+Sister&display=swap');
+
+html {
+    height: 100%;
+}
+
+body {
+    height: calc(100vh - 100px); /* minus the height of the navbar */
+    background-color: #F8F9FA;
+    font-family: 'Economica', sans-serif;
+    font-size: 1.35rem;
+}
+
+.nav-link {
+    padding: 0;
+}
+
+#store-logo {
+    font-family: 'Love Ya Like A Sister', cursive;
+}
+
+#strap-line {
+    font-family: 'Amatic SC', cursive;
+    margin-top: -20px;
+    margin-left: 30px;
+}
+
+#nav-search {
+    width: 75%;
+}
+
+.form-control {
+    font-size: 1.25rem;
+}
+
+/* removes bootstrap dropdown arrow (https://www.geeksforgeeks.org/how-to-remove-arrow-in-dropdown-in-bootstrap/) */
+.dropdown-toggle::after {
+    content: none;
+}
+
+/* ------------------ Media Queries ------------------- */
+
+/* From Boutique Ado */
+/* Increases container size a bit on xl screens */
+@media (min-width: 1200px) {
+    .container {
+        max-width: 80%;
+    }
+}
+
+/* From Boutique Ado */
+/* Fixed top navbar only on medium screens and above  */
+@media (min-width: 992px) {
+    .fixed-top-desktop-only {
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: 0;
+        z-index: 1030;
+    }
+
+    .header-container {
+        padding-top: 164px;
+    }
+}
+
+@media (max-width: 1000px) {
+    #store-logo {
+        font-size: 1.70rem;
+    }
+
+    #strap-line {
+        font-size: 1.5rem;
+        margin-top: -17px;
+        margin-left: 40px;
+    }
+
+    #shop-front-link, 
+    #shop-genre-link {
+        font-size: 1.12rem;
+    }
+}
