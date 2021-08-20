@@ -18,9 +18,6 @@
 
     {% block corejs %}
     <script src="https://kit.fontawesome.com/94bf7b1778.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous">
-    </script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"
         integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp" crossorigin="anonymous">
     </script>
@@ -42,15 +39,30 @@
             <!-- social media and contact icons (only display on large screens)-->
             <div class="col-6 d-none d-lg-flex">
                 <ul class="list-inline list-unstyled my-1">
-                    <li class="list-inline-item"><a class="text-light mx-1" href="#"><i class="fab fa-twitter"></i></a>
+                    <li class="list-inline-item">
+                        <a class="text-light mx-1" href="#">
+                            <i class="fab fa-twitter"></i>
+                        </a>
                     </li>
-                    <li class="list-inline-item"><a class="text-light mx-1" href="#"><i
-                                class="fab fa-facebook-f"></i></a></li>
-                    <li class="list-inline-item"><a class="text-light mx-1" href="#"><i
-                                class="fab fa-instagram"></i></a></li>
-                    <li class="list-inline-item"><a class="text-light mx-1" href="#"><i class="fab fa-youtube"></i></a>
+                    <li class="list-inline-item">
+                        <a class="text-light mx-1" href="#">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
                     </li>
-                    <li class="list-inline-item"><a class="text-light mx-1" href="#"><i class="fas fa-envelope"></i></a>
+                    <li class="list-inline-item">
+                        <a class="text-light mx-1" href="#">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a class="text-light mx-1" href="#">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a class="text-light mx-1" href="#">
+                            <i class="fas fa-envelope"></i>
+                        </a>
                     </li>
                 </ul>
             </div>
@@ -58,19 +70,34 @@
             <div class="col-lg-5 col-md-10 col-9 d-flex justify-content-lg-end justify-content-start">
                 <ul class="list-inline list-unstyled my-1">
                     {% if request.user.is_authenticated %}
-                    <li class="list-inline-item"><a class="text-light mx-1 nav-link"
-                            href="{% url 'account_logout' %}">Log out</a></li>
-                    <li class="list-inline-item"><a class="text-light mx-1 nav-link" href=""><i
-                                class="fas fa-user-alt"></i> My Account</a></li>
-                    {% if request.user.is_superuser %}
-                    <li class="list-inline-item"><a class="text-light mx-1 nav-link" href=""><i
-                                class="fas fa-user-cog"></i> Site Admin</a></li>
-                    {% endif %}
+                        <li class="list-inline-item">
+                            <a class="text-light mx-1 nav-link" href="{% url 'account_logout' %}">Log out</a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a class="text-light mx-1 nav-link" href="">
+                                <i class="fas fa-user-alt"></i> 
+                                My Account
+                            </a>
+                        </li>
+                        {% if request.user.is_superuser %}
+                            <li class="list-inline-item">
+                                <a class="text-light mx-1 nav-link" href="">
+                                    <i class="fas fa-user-cog"></i> 
+                                    Site Admin
+                                </a>
+                            </li>
+                        {% endif %}
                     {% else %}
-                    <li class="list-inline-item"><a class="text-light mx-1 nav-link"
-                            href="{% url 'account_login' %}">Login</a></li>
-                    <li class="list-inline-item"><a class="text-light mx-1 nav-link"
-                            href="{% url 'account_signup' %}">Register</a></li>
+                        <li class="list-inline-item">
+                            <a class="text-light mx-1 nav-link" href="{% url 'account_login' %}">
+                                Login
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a class="text-light mx-1 nav-link" href="{% url 'account_signup' %}">
+                                Register
+                            </a>
+                        </li>
                     {% endif %}
                 </ul>
             </div>
@@ -98,39 +125,39 @@
                     </button>
                     <div class="collapse navbar-collapse" id="navbarToggler">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="{% url 'home' %}"><i class="fas fa-home"></i></a>
+                            <li class="nav-item mt-2">
+                                <a class="nav-link text-light" aria-current="page" href="{% url 'home' %}"><i class="fas fa-home"></i></a>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="frontDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            <li class="nav-item mt-2 dropdown">
+                                <a class="nav-link text-light dropdown-toggle" href="#" id="frontDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     Shop Front
                                 </a>
-                                <ul class="dropdown-menu" aria-labelledby="frontDropdown">
-                                    <li><a class="dropdown-item" href="#">All Products</a></li>
-                                    <li><a class="dropdown-item" href="#">Best Sellers</a></li>
-                                    <li><a class="dropdown-item" href="#">New Releases</a></li>
-                                    <li><a class="dropdown-item" href="#">Pre-order</a></li>
-                                    <li><a class="dropdown-item" href="#">On Sale</a></li>
-                                    <li><a class="dropdown-item" href="#">Used</a></li>
+                                <ul class="dropdown-menu bg-dark fs-5" aria-labelledby="frontDropdown">
+                                    <li><a class="dropdown-item text-light" href="#">All Products</a></li>
+                                    <li><a class="dropdown-item text-light" href="#">Best Sellers</a></li>
+                                    <li><a class="dropdown-item text-light" href="#">New Releases</a></li>
+                                    <li><a class="dropdown-item text-light" href="#">Pre-order</a></li>
+                                    <li><a class="dropdown-item text-light" href="#">On Sale</a></li>
+                                    <li><a class="dropdown-item text-light" href="#">Used</a></li>
                                 </ul>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="genreDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                            <li class="nav-item mt-2 dropdown">
+                                <a class="nav-link text-light dropdown-toggle" href="#" id="genreDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     Shop by Genre
                                 </a>
-                                <ul class="dropdown-menu" aria-labelledby="genreDropdown">
-                                    <li><a class="dropdown-item" href="#">2-player games</a>
-                                    <li><a class="dropdown-item" href="#">Card Games</a>
-                                    <li><a class="dropdown-item" href="#">Childrens</a>
-                                    <li><a class="dropdown-item" href="#">Co-operative</a>
-                                    <li><a class="dropdown-item" href="#">Dice Games</a>
-                                    <li><a class="dropdown-item" href="#">Strategy</a>
-                                    <li><a class="dropdown-item" href="#">Party</a>
-                                    <li><a class="dropdown-item" href="#">Dungeons & Dragons</a>
-                                    <li><a class="dropdown-item" href="#">Euro</a>
-                                    <li><a class="dropdown-item" href="#">Railroad</a>
-                                    <li><a class="dropdown-item" href="#">War</a>
-                                    <li><a class="dropdown-item" href="#">Economic</a>
+                                <ul class="dropdown-menu bg-dark fs-5" aria-labelledby="genreDropdown">
+                                    <li><a class="dropdown-item text-light" href="#">2-player games</a>
+                                    <li><a class="dropdown-item text-light" href="#">Card Games</a>
+                                    <li><a class="dropdown-item text-light" href="#">Childrens</a>
+                                    <li><a class="dropdown-item text-light" href="#">Co-operative</a>
+                                    <li><a class="dropdown-item text-light" href="#">Dice Games</a>
+                                    <li><a class="dropdown-item text-light" href="#">Strategy</a>
+                                    <li><a class="dropdown-item text-light" href="#">Party</a>
+                                    <li><a class="dropdown-item text-light" href="#">Dungeons & Dragons</a>
+                                    <li><a class="dropdown-item text-light" href="#">Euro</a>
+                                    <li><a class="dropdown-item text-light" href="#">Railroad</a>
+                                    <li><a class="dropdown-item text-light" href="#">War</a>
+                                    <li><a class="dropdown-item text-light" href="#">Economic</a>
                                 </ul>
                             </li>
                         </ul>
@@ -138,7 +165,7 @@
                 </nav>
             </div>
             <!-- Store Logo -->
-            <div class="col-8 col-lg-4 my-auto">
+            <div class="col-8 col-lg-4 my-lg-auto">
                 <a href="{% url 'home' %}" class="nav-link">
                     <div class="text-center text-light">
                         <h1 id="store-logo" class="text-light">Boardgame Bazaar</h1>
@@ -147,7 +174,7 @@
                 </a>
             </div>
             <!-- Search Function -->
-            <!-- displays on large screens (992px and above) -->
+            <!--displays on large screens (992px and above) -->
             <div class="col-4 d-flex justify-content-end d-none d-lg-flex">
                 <form method="GET" action="" class="my-auto" id="nav-search">
                     <div class="input-group">
@@ -158,14 +185,17 @@
             </div>
             <!-- displays on tablet and mobile screens (991px and below) -->
             <div class="col-2 d-flex justify-content-end d-block d-lg-none">
-                <a class="text-warning nav-link my-auto border border-warning py-1 px-2 rounded-1 dropdown-toggle" href="#" 
-                    id="mobile-search" data-bs-toggle="dropdown" aria-expanded="false">
-                    <div>
-                        <i class="fas fa-search"></i>
-                    </div>
-                </a>
-                <div class="dropdown-menu" aria-labelledby="mobile-search">
-                    <form class="form" method="GET" action="">
+                <div id="mobile-search-btn">
+                    <a href="#" role="button">
+                        <div class="border border-warning rounded-1 text-warning">
+                            <i class="px-2 py-2 fas fa-search"></i>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="row" id="search-input">
+                <div class="col d-block d-lg-none">
+                    <form method="GET" action="" class="mb-2 ms-3 w-100">
                         <div class="input-group">
                             <input class="form-control border border-warning" type="text" name="q" placeholder="Search for games">
                             <button class="btn btn-outline-warning" type="submit" id="button-addon2"><i class="fas fa-search"></i></button>
@@ -174,6 +204,7 @@
                 </div>
             </div>
         </div>
+        <!-- discount banner -->
         <div id="discount-banner" class="row text-center">
             <div class="col bg-warning text-dark">
                 <h4 class="my-1 fw-bold">
@@ -194,6 +225,24 @@
     {% endblock %}
 
     {% block postloadjs %}
+    <script type="text/Javascript">
+
+    let searchBtn = document.getElementById('mobile-search-btn')
+    let searchInput = document.getElementById('search-input')
+    
+    document.addEventListener("DOMContentLoaded", function () {
+        searchInput.style.display = "none"
+    });
+
+    searchBtn.addEventListener('click', function () {
+        if (searchInput.style.display === "none") {
+            searchInput.style.display = "block";
+        } else {
+            searchInput.style.display = "none"
+        };
+    });
+    
+    </script>
     {% endblock %}
 
 </body>

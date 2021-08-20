@@ -11,6 +11,7 @@ body {
     font-size: 1.35rem;
 }
 
+/* ------------------ Navbar ------------------- */
 .nav-link {
     padding: 0;
 }
@@ -38,10 +39,19 @@ body {
     content: none;
 }
 
+/* overrides the BS default */
+.dropdown-item:hover {
+    background-color: #FFC107;
+    color: #212529 !important;
+}
+
 .navbar {
     margin-left: -5px;
 }
 
+#mobile-search-btn {
+    margin-top: 12px;
+}
 
 /* ------------------ Media Queries ------------------- */
 
