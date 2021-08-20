@@ -16,6 +16,10 @@ body {
     padding: 0;
 }
 
+.nav-link:hover {
+    color: #FFC107 !important;
+}
+
 #store-logo {
     font-family: 'Love Ya Like A Sister', cursive;
 }
