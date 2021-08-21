@@ -189,6 +189,7 @@ All social icons change colour and size upon mouse hover
 - [Balsamiq](https://balsamiq.com/) - to create wireframes.
 - [Lucidchart](https://www.lucidchart.com/) - for DB design illustration.
 - [Tables Generator](https://www.tablesgenerator.com)
+- [jsonformatter.org](https://jsonformatter.org/) - creating json fixture files.
 - [favicon](https://favicon.io/) - for generating 32x32 favicon.
 - [Am I responsive](http://ami.responsivedesign.is/) - to create the responsive illustrations featured in the TESTING.md.
 
