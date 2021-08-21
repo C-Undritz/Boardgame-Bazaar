@@ -5,7 +5,7 @@ html {
 }
 
 body {
-    height: calc(100vh - 100px); /* minus the height of the navbar */
+    height: calc(100vh - 141px); /* minus the height of the navbar */
     background-color: #F8F9FA;
     font-family: 'Economica', sans-serif;
     font-size: 1.35rem;
@@ -79,7 +79,7 @@ body {
     }
 
     .header-container {
-        padding-top: 164px;
+        padding-top: 141px;
     }
 }
 
@@ -92,5 +92,11 @@ body {
         font-size: 1.5rem;
         margin-top: -17px;
         margin-left: 40px;
+    }
+}
+
+@media (max-width: 375px) {
+    #strap-line {
+        display: none;
     }
 }
