@@ -70,18 +70,19 @@ body {
 /* From Boutique Ado */
 /* Fixed top navbar only on medium screens and above  */
 @media (min-width: 992px) {
-    .fixed-top-desktop-only {
-        position: fixed;
-        top: 0;
-        right: 0;
-        left: 0;
-        z-index: 1030;
-    }
-
     .header-container {
-        padding-top: 141px;
+        padding-top: 150px;
     }
 }
+
+@media (max-width: 991px) {
+    .header-container {
+        padding-top: 143px;
+    }
+
+    body {
+        height: calc(100vh - 143px);
+    }
 
 @media (max-width: 576px) {
     #store-logo {
