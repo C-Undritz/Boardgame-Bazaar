@@ -1,6 +1,11 @@
 from django.db import models
 
 
+STATUS_DEFAULT = 'none'
+CONDITION_DEFAULT = 'undetermined'
+GENRE_DEFAULT = 'boardgame'
+
+
 class Genre(models.Model):
     name = models.CharField(max_length=254)
     friendly_name = models.CharField(max_length=254)
@@ -42,8 +47,8 @@ class Product(models.Model):
     genre = models.ManyToManyField(Genre, through="GenreAssignment")
     stock = models.IntegerField(null=False, blank=False, default=0)
     sold = models.IntegerField(null=False, blank=False, default=0)
-    status = models.ForeignKey('Status', null=True, blank=True, on_delete=models.SET_NULL)
-    condition = models.ForeignKey('Condition', null=True, blank=True, on_delete=models.SET_NULL)
+    status = models.ForeignKey('Status', on_delete=models.SET_DEFAULT, default=STATUS_DEFAULT)
+    condition = models.ForeignKey('Condition', on_delete=models.SET_DEFAULT, default=CONDITION_DEFAULT)
     image = models.ImageField(null=True, blank=True)
 
     def __str__(self):
@@ -51,5 +56,5 @@ class Product(models.Model):
 
 
 class GenreAssignment(models.Model):
-    genre = models.ForeignKey('Genre', null=True, blank=True, on_delete=models.SET_NULL)
-    Product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    genre = models.ForeignKey('Genre', on_delete=models.SET_DEFAULT, default=GENRE_DEFAULT)
+    Product = models.ForeignKey('Product', on_delete=models.CASCADE)
