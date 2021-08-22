@@ -75,6 +75,7 @@ body {
     }
 }
 
+/* Fixed top navbar only on medium screens and below  */
 @media (max-width: 991px) {
     .header-container {
         padding-top: 143px;
@@ -83,6 +84,7 @@ body {
     body {
         height: calc(100vh - 143px);
     }
+}
 
 @media (max-width: 576px) {
     #store-logo {

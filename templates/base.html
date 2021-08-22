@@ -71,19 +71,43 @@
                 <ul class="list-inline list-unstyled my-1">
                     {% if request.user.is_authenticated %}
                         <li class="list-inline-item">
-                            <a class="text-light mx-1 nav-link" href="{% url 'account_logout' %}">Log out</a>
+                            <a class="text-light mx-1 nav-link" href="{% url 'account_logout' %}">
+                                <!-- Responsive behaviour - visible on all screens over >575px -->
+                                <div class="d-none d-sm-block">
+                                    <i class="fas fa-sign-out-alt"></i>
+                                    Log out
+                                </div>
+                                <!-- Responsive behaviour - visible on all screens over <575px -->
+                                <div class="d-block d-sm-none">
+                                    <i class="fas fa-sign-out-alt"></i>
+                                </div>
+                            </a>
                         </li>
                         <li class="list-inline-item">
                             <a class="text-light mx-1 nav-link" href="">
-                                <i class="fas fa-user-alt"></i> 
-                                My Account
+                                <!-- Responsive behaviour - visible on all screens over >575px -->
+                                <div class="d-none d-sm-block">
+                                    <i class="fas fa-user-alt"></i> 
+                                    My Account
+                                </div>
+                                <!-- Responsive behaviour - visible on all screens over <575px -->
+                                <div class="d-block d-sm-none">
+                                    <i class="fas fa-user-alt"></i> 
+                                </div>
                             </a>
                         </li>
                         {% if request.user.is_superuser %}
                             <li class="list-inline-item">
                                 <a class="text-light mx-1 nav-link" href="">
-                                    <i class="fas fa-user-cog"></i> 
-                                    Admin
+                                    <!-- Responsive behaviour - visible on all screens over >575px -->
+                                    <div class="d-none d-sm-block">
+                                        <i class="fas fa-user-cog"></i> 
+                                        Admin
+                                    </div>
+                                    <!-- Responsive behaviour - visible on all screens over <575px -->
+                                    <div class="d-block d-sm-none">
+                                        <i class="fas fa-user-cog"></i> 
+                                    </div>
                                 </a>
                             </li>
                         {% endif %}
