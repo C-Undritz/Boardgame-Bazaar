@@ -3,7 +3,6 @@ from django.db import models
 
 STATUS_DEFAULT = 'none'
 CONDITION_DEFAULT = 'undetermined'
-GENRE_DEFAULT = 'boardgame'
 
 
 class Genre(models.Model):
@@ -56,5 +55,5 @@ class Product(models.Model):
 
 
 class GenreAssignment(models.Model):
-    genre = models.ForeignKey('Genre', on_delete=models.SET_DEFAULT, default=GENRE_DEFAULT)
+    genre = models.ForeignKey('Genre', null=True, blank=True, on_delete=models.SET_NULL)
     Product = models.ForeignKey('Product', on_delete=models.CASCADE)
