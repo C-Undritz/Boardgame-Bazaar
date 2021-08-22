@@ -1,8 +1,16 @@
 from django.shortcuts import render
+from products.models import Product
 
 
 def index(request):
     """
-    View to display the home page.
+    Home page of site that shows the best selling products initially and
+    includes sorting a searching queries.
     """
-    return render(request, 'home/index.html')
+    products = Product.objects.all()
+
+    context = {
+        'products': products,
+    }
+
+    return render(request, 'home/index.html', context)
