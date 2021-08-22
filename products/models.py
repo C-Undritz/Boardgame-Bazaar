@@ -17,6 +17,10 @@ class Genre(models.Model):
 
 
 class Status(models.Model):
+
+    class Meta:
+        verbose_name_plural = 'Status'
+
     name = models.CharField(max_length=254)
     friendly_name = models.CharField(max_length=254)
 
