@@ -61,3 +61,6 @@ class Product(models.Model):
 class GenreAssignment(models.Model):
     genre = models.ForeignKey('Genre', null=True, blank=True, on_delete=models.SET_NULL)
     Product = models.ForeignKey('Product', on_delete=models.CASCADE)
+
+    class Meta:
+        unique_together = [['genre', 'Product']]
