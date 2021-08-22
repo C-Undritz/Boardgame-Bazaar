@@ -10,10 +10,52 @@
 {% endblock%}
 
 {% block content %}
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
-            <div class="col">
-                {{ products }}
+            <div class="col text-center mt-3">
+                <h2>Best Sellers</h2>
+                <hr class="w25 mb-1"> 
+            </div>
+        </div>
+        <div class="row">
+            <div class="product-container col-10 offset-1">
+                <div class="row mt-1 mb-2"></div>
+                <div class="row">
+                    {% for product in products %}
+                        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3 my-2">
+                            <div class="card h-100 border border-secondary">
+                                {% if product.image %}
+                                    <a href="">
+                                        <img class="card-img-top img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
+                                    </a>
+                                {% else %}
+                                    <a href="">
+                                        <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
+                                    </a>
+                                {% endif %}
+                                <div class="card-body pb-0 text-center text-uppercase">
+                                    <p class="mb-0"><strong>{{ product.product_name }}</strong></p>
+                                </div>
+                                <div class="card-footer bg-light pt-0 text-center">
+                                    <div class="row">
+                                        <div class="col">
+                                            <p class="mb-0">£{{ product.price }}</p>                                            
+                                        </div>
+                                    </div>
+                                    <div class="row d-flex justify-content-center">
+                                        {% if product.stock > 5 %}
+                                            <p class="mb-0 text-center bg-warning w-50">5+ in stock</p> 
+                                        {% elif product.stock == 0 %}
+                                            <p class="mb-0 text-center w-50">in stock soon</p> 
+                                        {% else %}
+                                            <p class="mb-0 text-center text-light bg-secondary w-50">{{ product.stock }} in stock</p>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
             </div>
         </div>
     </div>  
