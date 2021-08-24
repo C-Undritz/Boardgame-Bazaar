@@ -54,6 +54,12 @@ class Product(models.Model):
     category = models.ForeignKey('Category', on_delete=models.SET_DEFAULT, default=CATEGORY_DEFAULT)
     condition = models.ForeignKey('Condition', on_delete=models.SET_DEFAULT, default=CONDITION_DEFAULT)
     image = models.ImageField(null=True, blank=True)
+    # Category fields rendered as boolean to try out queries
+    used = models.BooleanField(default=False)
+    on_sale = models.BooleanField(default=False)
+    pre_order = models.BooleanField(default=False)
+    best_seller = models.BooleanField(default=False)
+    new_release = models.BooleanField(default=False)
 
     def __str__(self):
         return self.product_name
