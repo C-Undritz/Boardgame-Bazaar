@@ -1,7 +1,7 @@
 from django.db import models
 
 
-STATUS_DEFAULT = 'none'
+CATEGORY_DEFAULT = 'none'
 CONDITION_DEFAULT = 'undetermined'
 
 
@@ -16,10 +16,10 @@ class Genre(models.Model):
         return self.friendly_name
 
 
-class Status(models.Model):
+class Category(models.Model):
 
     class Meta:
-        verbose_name_plural = 'Status'
+        verbose_name_plural = 'Categories'
 
     name = models.CharField(max_length=254)
     friendly_name = models.CharField(max_length=254)
@@ -46,11 +46,12 @@ class Product(models.Model):
     sku = models.CharField(max_length=254, null=True, blank=True)
     product_name = models.CharField(max_length=254)
     description = models.TextField()
+    release_date = models.DateField()
     price = models.DecimalField(max_digits=6, decimal_places=2)
     genre = models.ManyToManyField(Genre, through="GenreAssignment")
     stock = models.IntegerField(null=False, blank=False, default=0)
     sold = models.IntegerField(null=False, blank=False, default=0)
-    status = models.ForeignKey('Status', on_delete=models.SET_DEFAULT, default=STATUS_DEFAULT)
+    category = models.ForeignKey('Category', on_delete=models.SET_DEFAULT, default=CATEGORY_DEFAULT)
     condition = models.ForeignKey('Condition', on_delete=models.SET_DEFAULT, default=CONDITION_DEFAULT)
     image = models.ImageField(null=True, blank=True)
 
