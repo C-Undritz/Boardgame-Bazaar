@@ -157,12 +157,12 @@
                                     Shop Front
                                 </a>
                                 <ul class="dropdown-menu bg-dark fs-5" aria-labelledby="frontDropdown">
-                                    <li><a class="dropdown-item text-light" href="#">All Products</a></li>
-                                    <li><a class="dropdown-item text-light" href="#">Best Sellers</a></li>
-                                    <li><a class="dropdown-item text-light" href="#">New Releases</a></li>
-                                    <li><a class="dropdown-item text-light" href="#">Pre-order</a></li>
-                                    <li><a class="dropdown-item text-light" href="#">On Sale</a></li>
-                                    <li><a class="dropdown-item text-light" href="#">Used</a></li>
+                                    <li><a class="dropdown-item text-light" href="{% url 'home' %}">All Products</a></li>
+                                    <li><a class="dropdown-item text-light" href="{% url 'home' %}?category=bestseller">Best Sellers</a></li>
+                                    <li><a class="dropdown-item text-light" href="">New Releases</a></li>
+                                    <li><a class="dropdown-item text-light" href="{% url 'home' %}?category=preorder">Pre-order</a></li>
+                                    <li><a class="dropdown-item text-light" href="{% url 'home' %}?category=on_sale">On Sale</a></li>
+                                    <li><a class="dropdown-item text-light" href="{% url 'home' %}?category=used">Used</a></li>
                                 </ul>
                             </li>
                             <li class="nav-item mt-2 dropdown">
@@ -200,7 +200,7 @@
             <!-- Search Function -->
             <!--displays on large screens (992px and above) -->
             <div class="col-4 d-flex justify-content-end d-none d-lg-flex">
-                <form method="GET" action="" class="my-auto" id="nav-search">
+                <form method="GET" action="{% url 'home' %}" class="my-auto" id="nav-search">
                     <div class="input-group">
                         <input class="form-control border border-warning" type="text" name="q" placeholder="Search for games">
                         <button class="btn btn-outline-warning" type="submit" id="button-addon2"><i class="fas fa-search"></i></button>
@@ -219,7 +219,7 @@
             </div>
             <div class="row" id="search-input">
                 <div class="col d-block d-lg-none">
-                    <form method="GET" action="" class="mb-2 ms-3 w-100">
+                    <form method="GET" action="{% url 'home' %}" class="mb-2 ms-3 w-100">
                         <div class="input-group">
                             <input class="form-control border border-warning" type="text" name="q" placeholder="Search for games">
                             <button class="btn btn-outline-warning" type="submit" id="button-addon2"><i class="fas fa-search"></i></button>
