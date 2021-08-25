@@ -170,18 +170,21 @@
                                     Shop by Genre
                                 </a>
                                 <ul class="dropdown-menu bg-dark fs-5" aria-labelledby="genreDropdown">
-                                    <li><a class="dropdown-item text-light" href="#">2-player games</a>
-                                    <li><a class="dropdown-item text-light" href="#">Card Games</a>
-                                    <li><a class="dropdown-item text-light" href="#">Childrens</a>
-                                    <li><a class="dropdown-item text-light" href="#">Co-operative</a>
-                                    <li><a class="dropdown-item text-light" href="#">Dice Games</a>
-                                    <li><a class="dropdown-item text-light" href="#">Strategy</a>
-                                    <li><a class="dropdown-item text-light" href="#">Party</a>
-                                    <li><a class="dropdown-item text-light" href="#">Dungeons & Dragons</a>
-                                    <li><a class="dropdown-item text-light" href="#">Euro</a>
-                                    <li><a class="dropdown-item text-light" href="#">Railroad</a>
-                                    <li><a class="dropdown-item text-light" href="#">War</a>
-                                    <li><a class="dropdown-item text-light" href="#">Economic</a>
+                                    <!-- {% for genre in genres %}
+                                        <li><a class="dropdown-item text-light" href="{% url 'home' %}?{{ genre.name }}">{{ genre.friendly_name }}</a>
+                                    {% endfor %} -->
+                                    <li><a class="dropdown-item text-light" href="{% url 'home' %}?2_player">2-player games</a>
+                                    <li><a class="dropdown-item text-light" href="{% url 'home' %}?card_games">Card Games</a>
+                                    <li><a class="dropdown-item text-light" href="{% url 'home' %}?childrens">Childrens</a>
+                                    <li><a class="dropdown-item text-light" href="{% url 'home' %}?cooperative">Co-operative</a>
+                                    <li><a class="dropdown-item text-light" href="{% url 'home' %}?dice_games">Dice Games</a>
+                                    <li><a class="dropdown-item text-light" href="{% url 'home' %}?strategy">Strategy</a>
+                                    <li><a class="dropdown-item text-light" href="{% url 'home' %}?party">Party</a>
+                                    <li><a class="dropdown-item text-light" href="{% url 'home' %}?d_and_d">Dungeons & Dragons</a>
+                                    <li><a class="dropdown-item text-light" href="{% url 'home' %}?euro">Euro</a>
+                                    <li><a class="dropdown-item text-light" href="{% url 'home' %}?railroad">Railroad</a>
+                                    <li><a class="dropdown-item text-light" href="{% url 'home' %}?war">War</a>
+                                    <li><a class="dropdown-item text-light" href="{% url 'home' %}?economic">Economic</a>
                                 </ul>
                             </li>
                         </ul>

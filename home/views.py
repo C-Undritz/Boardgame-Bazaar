@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, reverse
 from django.contrib import messages
 from django.db.models import Q
-from products.models import Product
+from products.models import Product, Genre
 
 import datetime
 
@@ -69,39 +69,91 @@ def index(request):
     includes sorting a searching queries.
     """
     products = Product.objects.all()
+    genres = Genre.objects.all()
     page_heading = "All Boardgames"
     query = None
     category = None
     chart = False
 
+
     if request.GET:
+        # requests from 'shop front' menu drop down:
         if 'used' in request.GET:
-            print('used requested')
             page_heading = 'Used Games'
             products = products.filter(used=True)
 
         if 'on_sale' in request.GET:
-            print('on sale requested')
             page_heading = 'Currently On Sale!'
             products = products.filter(on_sale=True)
 
         if 'new' in request.GET:
             determine_new_releases()
-            print('new releases requested')
             page_heading = 'Latest Releases!'
             products = products.filter(new_release=True)
 
         if 'preorder' in request.GET:
             determine_preorders()
-            print('preorders requested')
             page_heading = 'Available for pre-order'
             products = products.filter(pre_order=True)
 
         if 'bestseller' in request.GET:
-            print('bestsellers requested')
             page_heading = 'Current top 10 bestellers'
             products = products.order_by('-sold')
             chart = True
+
+        # requests from 'shop by genre' menu drop down (https://www.youtube.com/watch?v=PD3YnPSHC-c):
+        if '2_player' in request.GET:
+            products = Product.objects.filter(genre__name="2_player")
+            page_heading = '2-player games'
+
+        if 'card_games' in request.GET:
+            products = Product.objects.filter(genre__name="card_games")
+            page_heading = 'Card Games'
+
+        if 'childrens' in request.GET:
+            products = Product.objects.filter(genre__name="childrens")
+            page_heading = 'Childrens'
+
+        if 'cooperative' in request.GET:
+            products = Product.objects.filter(genre__name="cooperative")
+            page_heading = 'Co-operative'
+
+        if 'dice_games' in request.GET:
+            products = Product.objects.filter(genre__name="dice_games")
+            page_heading = 'Dice Games'
+
+        if 'strategy' in request.GET:
+            products = Product.objects.filter(genre__name="strategy")
+            page_heading = 'Strategy'
+
+        if 'party' in request.GET:
+            products = Product.objects.filter(genre__name="party")
+            page_heading = 'Party'
+
+        if 'd_and_d' in request.GET:
+            products = Product.objects.filter(genre__name="d_and_d")
+            page_heading = 'Dungeons & Dragons'
+
+        if 'euro' in request.GET:
+            products = Product.objects.filter(genre__name="euro")
+            page_heading = 'Euro'
+
+        if 'railroad' in request.GET:
+            products = Product.objects.filter(genre__name="railroad")
+            page_heading = 'Railroad'
+
+        if 'war' in request.GET:
+            products = Product.objects.filter(genre__name="war")
+            page_heading = 'War'
+
+        if 'economic' in request.GET:
+            products = Product.objects.filter(genre__name="economic")
+            page_heading = 'Economic'
+
+        # if 'genre.name' in request.GET:
+        #     print('genre search requested')
+        #     products = Product.objects.filter(genre__name='genre.name')
+        #     page_heading = 'genre.friendly_name'
 
         # Search query function from Boutique Ado walkthrough project
         if 'q' in request.GET:
@@ -115,6 +167,7 @@ def index(request):
 
     context = {
         'products': products,
+        'genres': genres,
         'search_term': query,
         'current_category': category,
         'heading': page_heading,
