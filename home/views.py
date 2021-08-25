@@ -21,6 +21,7 @@ def determine_new_releases():
 
     today = datetime.date.today()
     past_date = determine_past_date(today)
+    print(f'past date is: {past_date}')
 
     for product in products:
         if (product.release_date > past_date) and (product.release_date < today):
@@ -34,8 +35,32 @@ def determine_new_releases():
             this_product.save()
             print("False")
 
+
+def determine_preorders():
+    """
+    Determines whether product is a pre-order item.  Queries whether
+    each products release date is in the future and updates the product
+    new_release boolean value accordingly.
+    """
+    products = Product.objects.all()
+    today = datetime.date.today()
+
+    for product in products:
+        if product.release_date > today:
+            this_product = product
+            this_product.pre_order = True
+            this_product.save()
+            print("true")
+        else:
+            this_product = product
+            this_product.pre_order = False
+            this_product.save()
+            print("False")
+
+
 # functions run when site starts
 determine_new_releases()
+determine_preorders()
 
 
 def index(request):
@@ -44,9 +69,10 @@ def index(request):
     includes sorting a searching queries.
     """
     products = Product.objects.all()
+    page_heading = "All Boardgames"
     query = None
     category = None
-    page_heading = "Best Sellers"
+    chart = False
 
     if request.GET:
         if 'used' in request.GET:
@@ -65,6 +91,18 @@ def index(request):
             page_heading = 'Latest Releases!'
             products = products.filter(new_release=True)
 
+        if 'preorder' in request.GET:
+            determine_preorders()
+            print('preorders requested')
+            page_heading = 'Available for pre-order'
+            products = products.filter(pre_order=True)
+
+        if 'bestseller' in request.GET:
+            print('bestsellers requested')
+            page_heading = 'Current top 10 bestellers'
+            products = products.order_by('-sold')
+            chart = True
+
         # Search query function from Boutique Ado walkthrough project
         if 'q' in request.GET:
             query = request.GET['q']
@@ -80,6 +118,7 @@ def index(request):
         'search_term': query,
         'current_category': category,
         'heading': page_heading,
+        'chart': chart
     }
 
     return render(request, 'home/index.html', context)
