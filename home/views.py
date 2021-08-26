@@ -101,7 +101,7 @@ def index(request):
             products = products.order_by('-sold')
             chart = True
 
-        # requests from 'shop by genre' menu drop down (adpeted from Boutique Ado category query):
+        # requests from 'shop by genre' menu drop down (adapted from Boutique Ado category query):
         if 'genre' in request.GET:
             genre_query = request.GET['genre'].split(',')
             products = products.filter(genre__name__in=genre_query)
