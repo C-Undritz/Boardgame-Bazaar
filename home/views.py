@@ -71,10 +71,10 @@ def index(request):
     products = Product.objects.all()
     genres = Genre.objects.all()
     page_heading = "All Boardgames"
+    genre_query = None
     query = None
-    category = None
+    # category = None
     chart = False
-
 
     if request.GET:
         # requests from 'shop front' menu drop down:
@@ -101,59 +101,12 @@ def index(request):
             products = products.order_by('-sold')
             chart = True
 
-        # requests from 'shop by genre' menu drop down (https://www.youtube.com/watch?v=PD3YnPSHC-c):
-        if '2_player' in request.GET:
-            products = Product.objects.filter(genre__name="2_player")
-            page_heading = '2-player games'
-
-        if 'card_games' in request.GET:
-            products = Product.objects.filter(genre__name="card_games")
-            page_heading = 'Card Games'
-
-        if 'childrens' in request.GET:
-            products = Product.objects.filter(genre__name="childrens")
-            page_heading = 'Childrens'
-
-        if 'cooperative' in request.GET:
-            products = Product.objects.filter(genre__name="cooperative")
-            page_heading = 'Co-operative'
-
-        if 'dice_games' in request.GET:
-            products = Product.objects.filter(genre__name="dice_games")
-            page_heading = 'Dice Games'
-
-        if 'strategy' in request.GET:
-            products = Product.objects.filter(genre__name="strategy")
-            page_heading = 'Strategy'
-
-        if 'party' in request.GET:
-            products = Product.objects.filter(genre__name="party")
-            page_heading = 'Party'
-
-        if 'd_and_d' in request.GET:
-            products = Product.objects.filter(genre__name="d_and_d")
-            page_heading = 'Dungeons & Dragons'
-
-        if 'euro' in request.GET:
-            products = Product.objects.filter(genre__name="euro")
-            page_heading = 'Euro'
-
-        if 'railroad' in request.GET:
-            products = Product.objects.filter(genre__name="railroad")
-            page_heading = 'Railroad'
-
-        if 'war' in request.GET:
-            products = Product.objects.filter(genre__name="war")
-            page_heading = 'War'
-
-        if 'economic' in request.GET:
-            products = Product.objects.filter(genre__name="economic")
-            page_heading = 'Economic'
-
-        # if 'genre.name' in request.GET:
-        #     print('genre search requested')
-        #     products = Product.objects.filter(genre__name='genre.name')
-        #     page_heading = 'genre.friendly_name'
+        # requests from 'shop by genre' menu drop down (adpeted from Boutique Ado category query):
+        if 'genre' in request.GET:
+            genre_query = request.GET['genre'].split(',')
+            products = products.filter(genre__name__in=genre_query)
+            selected_genre = Genre.objects.get(name__in=genre_query)
+            page_heading = (selected_genre.friendly_name)
 
         # Search query function from Boutique Ado walkthrough project
         if 'q' in request.GET:
@@ -169,7 +122,7 @@ def index(request):
         'products': products,
         'genres': genres,
         'search_term': query,
-        'current_category': category,
+        # 'current_category': category,
         'heading': page_heading,
         'chart': chart
     }
