@@ -42,11 +42,11 @@ class ConditionAdmin(admin.ModelAdmin):
 
 class GenreAssignmentAdmin(admin.ModelAdmin):
     list_display = (
-        'Product',
+        'product',
         'genre',
     )
 
-    ordering = ('Product',)
+    ordering = ('product',)
 
 
 admin.site.register(Product, ProductAdmin)
