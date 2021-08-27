@@ -110,6 +110,57 @@ The website is broadly separated into three sections:
 
 # Navigation
 
+## Navbar
+The Navbar is displayed at all resolutions and is a permanet navigation feature.
+
+### Social Icons
+- Social icons link to there respective sites and open the social network site within a new browser tab.  
+- Displayed in navbar on desktop screens only.
+
+### Account Buttons
+- Conditional display of icons and type to login, register, access account, admin functions and logout.  Each navigates to the appropriate page.  
+- Displayed in navbar at all resolutions though type is not shown on mobile screens; only the icons.
+
+### Shopping Cart
+- Shopping cart that opens the cart (bootstrap implemented feature here).  From the (bootstrap implemented feature here) a 'checkout button takes the user to the checkout page.
+- The Shopping cart is displayed at all resolutions.
+
+### Navigation Menu
+- Navigation menu displaying 'home' icon to navigate the user to the landing pages from any page within the site.  
+- Shop Front displays a drop-down menu that displays the available boardgames by 'bestsellers', 'new releases', 'pre-orders', 'on sale' and 'used'.  
+- Shop by Genre displays a drop-down menu that displays the available boardgames by genres that have been assigned to each game.
+- The navigation menu is responsive and so content collapses behind a button on tablet and mobile screens
+
+### Brand Logo
+- Clicking or tapping the brand navigates the user to the landing pages from any page within the site. 
+- The logo is displayed at all resolutions.
+
+### Search Bar
+- The search bar will return any boardgames that contain the user input search parameter in the product title or description.
+- Displayed as a bar at desktop resolutions and as a button at tablet and mobile resolutions.  Button is tapped to display a search bar.
+
+## Products
+
+### Product Display
+- Clicking or tapping on the product image navigates the user to the product detail page for that product
+
+### Product Detail page
+- Genre tags are displayed below the product price which allows the user to see other board games within the same genres assigned to the product they are viewing.
+- Keep shopping button takes the user to the home page.
+
+## Shopping Cart
+
+## Checkout Page
+
+## login & Register
+
+## Account Page
+
+## Admin Page
+
+## Footer
+
+
 # Database Schema
 
 ![database_schema v0.1](assets/readme/boardgame_bazaar-database_design_v0.1.png)
