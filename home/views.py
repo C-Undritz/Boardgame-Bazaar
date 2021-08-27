@@ -13,28 +13,76 @@ def determine_new_releases():
     (determined by the 'new_release_month_period' value) and updates the
     product new_release boolean value accordingly.
     """
-    new_release_month_period = 2
+    # new_release_month_period = 2
+    # products = Product.objects.all()
+
+    # def determine_past_date(value):
+    #     return value.replace(month=value.month - new_release_month_period)
+
+    # today = datetime.date.today()
+    # past_date = determine_past_date(today)
+    # print(f'past date is: {past_date}')
+
+    # for product in products:
+    #     if (product.release_date > past_date) and (product.release_date < today):
+    #         this_product = product
+    #         this_product.new_release = True
+    #         this_product.save()
+    #         print("true")
+    #     else:
+    #         this_product = product
+    #         this_product.new_release = False
+    #         this_product.save()
+    #         print("False")
+
+    new_release_month_period = 6
     products = Product.objects.all()
 
     def determine_past_date(value):
-        return value.replace(month=value.month - new_release_month_period)
+        minus_months = value.replace(month=value.month - new_release_month_period)
+        # past_date = minus_months.replace(day=minus_months.day - 5)
+
+        return minus_months
 
     today = datetime.date.today()
+    print(today)
     past_date = determine_past_date(today)
     print(f'past date is: {past_date}')
 
-    for product in products:
-        if (product.release_date > past_date) and (product.release_date < today):
-            this_product = product
-            this_product.new_release = True
-            this_product.save()
-            print("true")
-        else:
-            this_product = product
-            this_product.new_release = False
-            this_product.save()
-            print("False")
+    ## ----- Code to fix issue -----
+    # new_release_month_period = 2
+    # products = Product.objects.all()
 
+    # try:
+    #     def determine_past_date(value):
+    #         return value.replace(month=value.month - new_release_month_period)
+
+    #     today = datetime.date.today()
+    #     past_date = determine_past_date(today)
+    #     print(f'past date is: {past_date}')
+    ## except ValueError as e:
+    ##     print(f"Invalid data: {e}, please try again.\n")
+    ##     return False
+    # except:
+    #     def determine_past_date(value):
+    #         month_reduction = value.replace(month=value.month - new_release_month_period)
+    #         return = month_reduction.replace(day=month_reduction.day - 5)
+
+    #     today = datetime.date.today()
+    #     past_date = determine_past_date(today)
+    #     print(f'past date is: {past_date}')
+    # finally:
+    #     for product in products:
+    #         if (product.release_date > past_date) and (product.release_date < today):
+    #             this_product = product
+    #             this_product.new_release = True
+    #             this_product.save()
+    #             print("true")
+    #         else:
+    #             this_product = product
+    #             this_product.new_release = False
+    #             this_product.save()
+    #             print("False")
 
 def determine_preorders():
     """
@@ -50,17 +98,23 @@ def determine_preorders():
             this_product = product
             this_product.pre_order = True
             this_product.save()
-            print("true")
+            # print("true")
         else:
             this_product = product
             this_product.pre_order = False
             this_product.save()
-            print("False")
+            # print("False")
 
 
-# functions run when site starts
-determine_new_releases()
-determine_preorders()
+def main():
+    """
+    Functions to be run when site starts
+    """
+    determine_new_releases()
+    determine_preorders()
+
+
+main()
 
 
 def index(request):
@@ -87,7 +141,7 @@ def index(request):
             products = products.filter(on_sale=True)
 
         if 'new' in request.GET:
-            determine_new_releases()
+            # determine_new_releases()
             page_heading = 'Latest Releases!'
             products = products.filter(new_release=True)
 
