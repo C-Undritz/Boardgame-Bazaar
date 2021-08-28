@@ -1,6 +1,7 @@
 from decimal import Decimal
 from django.conf import settings
 
+
 def cart_contents(request):
     """
     Returns the context dictionary and makes it available to all templates
@@ -12,7 +13,7 @@ def cart_contents(request):
     delivery = 4
 
     if product_count >= settings.MULTIBUY_DISCOUNT_ONE:
-        final_total = total-(total*(settings.MULTIBUY_DISCOUNT_ONE/100))
+        final_total = total - Decimal(total*(settings.MULTIBUY_DISCOUNT_ONE / 100))
         discount_count_delta = 0
     else:
         final_total = total
