@@ -73,6 +73,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',  # required by allauth (remove this comment before submission)
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'cart.contexts.cart_contents',  # means we can access cart contents from anywhere in the site (remove this comment before submission)
             ],
         },
     },
