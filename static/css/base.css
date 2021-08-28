@@ -83,6 +83,21 @@ hr {
     margin-top: 45px;
 }
 
+/* ------------------ Button styles ------------------- */
+
+.btn-outline-dark:hover {
+    border: solid 1px #FFC107;
+    background-color: #FFC107;
+    color: #212529;
+    
+}
+
+.btn-warning:hover {
+    border: solid 1px #212529;
+    background-color: #212529;
+    color: #FFC107;
+}
+
 /* ------------------ Media Queries ------------------- */
 
 /* From Boutique Ado */
