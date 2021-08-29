@@ -36,6 +36,7 @@ def cart_contents(request):
 
     context = {
         'cart_items': cart_items,
+        'total': total,
         'final_total': final_total,
         'product_count': product_count,
         'delivery': delivery,
