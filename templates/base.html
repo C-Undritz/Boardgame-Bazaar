@@ -72,12 +72,12 @@
                     {% if request.user.is_authenticated %}
                         <li class="list-inline-item">
                             <a class="text-light mx-1 nav-link" href="{% url 'account_logout' %}">
-                                <!-- Responsive behaviour - visible on all screens over >575px -->
+                                <!-- Responsive behaviour - visible on all screens >575px -->
                                 <div class="d-none d-sm-block">
                                     <i class="fas fa-sign-out-alt"></i>
                                     Log out
                                 </div>
-                                <!-- Responsive behaviour - visible on all screens over <575px -->
+                                <!-- Responsive behaviour - visible on all screens <575px -->
                                 <div class="d-block d-sm-none">
                                     <i class="fas fa-sign-out-alt"></i>
                                 </div>
