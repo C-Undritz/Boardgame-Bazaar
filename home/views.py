@@ -9,41 +9,32 @@ import datetime
 def determine_new_releases():
     """
     Determines whether product is a new release or not.  Queries whether
-    each products release date is within the last previous period of months
-    (determined by the 'new_release_month_period' value) and updates the
+    each products release date is within a specific period of time.
+    (determined by the 'new_release_time_period' value) and updates the
     product new_release boolean value accordingly.
+    https://www.listendata.com/2019/07/how-to-use-datetime-in-python.html#Calculate-future-or-past-dates
     """
-    new_release_month_period = 6
     products = Product.objects.all()
 
-    try:
-        def determine_past_date(value):
-            return value.replace(month=value.month - new_release_month_period)
+    new_release_time_period = 90
+    today = datetime.date.today()
+    print(f'Todays date is: {today}')
+    delta = datetime.timedelta(days=new_release_time_period)
+    past_date = today - delta
+    print(f'the past date is: {past_date}')
 
-        today = datetime.date.today()
-        past_date = determine_past_date(today)
-        print(f'Try statement run - past date is: {past_date}')
-    except ValueError:
-        def determine_past_date(value):
-            minus_months = value.replace(month=value.month - new_release_month_period)
-            return minus_months.replace(day=minus_months.day - 5)
-
-        today = datetime.date.today()
-        past_date = determine_past_date(today)
-        print(f'Except statement run - past date is: {past_date}')
-    finally:
-        print('now running updates')
-        for product in products:
-            if (product.release_date > past_date) and (product.release_date < today):
-                this_product = product
-                this_product.new_release = True
-                this_product.save()
-                print('true')
-            else:
-                this_product = product
-                this_product.new_release = False
-                this_product.save()
-                print('false')
+    print('now running updates')
+    for product in products:
+        if (product.release_date > past_date) and (product.release_date < today):
+            this_product = product
+            this_product.new_release = True
+            this_product.save()
+            print('true')
+        else:
+            this_product = product
+            this_product.new_release = False
+            this_product.save()
+            print('false')
 
 
 def determine_preorders():
@@ -103,7 +94,7 @@ def index(request):
             products = products.filter(on_sale=True)
 
         if 'new' in request.GET:
-            # determine_new_releases()
+            determine_new_releases()
             page_heading = 'Latest Releases!'
             products = products.filter(new_release=True)
 
