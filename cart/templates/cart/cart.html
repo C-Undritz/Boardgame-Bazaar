@@ -46,14 +46,25 @@
                                 <td class="py-3">
                                     <p class="my-0 fs-3"><strong>{{ item.product.product_name }}</strong></p>
                                     <p class="my-0 d-block d-lg-none">Price: £{{ item.product.price }}</p>
-                                    <p class="my-0 d-block d-lg-none">Qty: {{ item.quantity }}</p>
+                                    <!-- <p class="my-0 d-block d-lg-none">Qty: {{ item.quantity }}</p> -->
+                                    <div class="my-0 d-block d-lg-none d-flex flex-row">
+                                        <p class="my-0 me-1 fs-3">Qty:</p>
+                                        <div id="qty-select">
+                                            <input class="form-control qty_input" type="number" name="quantity" 
+                                                value="{{ item.quantity }}" min="1" max="15" data-item_id="{{ item.item_id }}" id="id_qty_{{ item.item_id }}">
+                                        </div>
+                                    </div>
                                     <p class="my-0 small text-muted">SKU: {{ item.product.sku|upper }}</p>
                                 </td>
                                 <td class="py-3 d-none d-lg-table-cell">
                                     <p class="my-0 fs-4">£{{ item.product.price }}</p>
                                 </td>
                                 <td class="py-3 d-none d-lg-table-cell">
-                                    <p class="my-0 fs-4">{{ item.quantity }}</p>
+                                    <div id="qty-select">
+                                        <input class="form-control qty_input" type="number" name="quantity" 
+                                            value="{{ item.quantity }}" min="1" max="15" data-item_id="{{ item.item_id }}" id="id_qty_{{ item.item_id }}">
+                                    </div>
+                                    <!-- <p class="my-0 fs-4">{{ item.quantity }}</p> -->
                                 </td>
                                 <td class="py-3 text-end">
                                     <p class="my-0 fs-4">{{ item.product.price }}</p>
