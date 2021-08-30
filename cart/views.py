@@ -1,10 +1,16 @@
 from django.shortcuts import render, redirect
+from products.models import Genre
 
 
 def view_cart(request):
     """ A view that renders the shopping cart page """
+    genres = Genre.objects.all()
 
-    return render(request, 'cart/cart.html')
+    context = {
+        'genres': genres,
+    }
+
+    return render(request, 'cart/cart.html', context)
 
 
 def add_to_cart(request, item_id):
