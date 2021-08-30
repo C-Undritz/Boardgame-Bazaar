@@ -25,12 +25,22 @@ def cart_contents(request):
             'product': product,
         })
 
-    if product_count >= settings.MULTIBUY_DISCOUNT_ONE:
-        final_total = total - Decimal(total* Decimal(settings.MULTIBUY_DISCOUNT_ONE / 100))
+    if product_count >= settings.MULTIBUY_DISCOUNT_TWO:
+        discount_rate = 5
+        discount_amount = Decimal(total * Decimal(settings.MULTIBUY_DISCOUNT_TWO / 100))
+        final_total = total - discount_amount
         discount_count_delta = 0
+    elif product_count >= settings.MULTIBUY_DISCOUNT_ONE:
+        discount_rate = 3
+        discount_amount = Decimal(total * Decimal(settings.MULTIBUY_DISCOUNT_ONE / 100))
+        final_total = total - discount_amount
+        discount_count_delta = settings.MULTIBUY_DISCOUNT_TWO - product_count
     else:
+        discount_rate = 0
+        discount_amount = 0
         final_total = total
         discount_count_delta = settings.MULTIBUY_DISCOUNT_ONE - product_count
+
 
     grand_total = delivery + final_total
 
@@ -41,7 +51,10 @@ def cart_contents(request):
         'product_count': product_count,
         'delivery': delivery,
         'discount_count_delta': discount_count_delta,
+        'discount_rate': discount_rate,
+        'discount_amount': discount_amount,
         'multibuy_discount_one': settings.MULTIBUY_DISCOUNT_ONE,
+        'multibuy_discount_two': settings.MULTIBUY_DISCOUNT_TWO,
         'grand_total': grand_total,
     }
 
