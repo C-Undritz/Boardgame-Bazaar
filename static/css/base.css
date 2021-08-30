@@ -85,6 +85,11 @@ hr {
 
 /* ------------------ Button styles ------------------- */
 
+.btn {
+    height: 44px;
+    padding-top: 7px !important;
+}
+
 .btn-outline-dark:hover {
     border: solid 1px #FFC107;
     background-color: #FFC107;
@@ -96,6 +101,12 @@ hr {
     border: solid 1px #212529;
     background-color: #212529;
     color: #FFC107;
+}
+
+/* ------------------ Form styles ------------------- */
+
+#qty-select {
+    width: 100px !important;
 }
 
 /* ------------------ Media Queries ------------------- */
