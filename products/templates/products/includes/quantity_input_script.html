@@ -33,25 +33,46 @@ document.querySelector('.qty-input').addEventListener("change", function() {
 });
 
 // Increase quantity
-document.querySelector(".plus-btn").addEventListener("click", function(event) {
-    console.log('hello')
-    event.preventDefault();
-    let closestInput = this.closest('.input-group').querySelectorAll('.qty-input')[0];
-    let currentValue = parseInt(closestInput.value);
-    closestInput.value = currentValue + 1;
-    let itemId = this.dataset.item_id
-    handleEnabledDisabled(itemId);
+document.querySelectorAll('.plus-btn').forEach(item => {
+    item.addEventListener('click', event => {
+        event.preventDefault();
+        let closestInput = item.closest('.input-group').querySelectorAll('.qty-input')[0];
+        let currentValue = parseInt(closestInput.value);
+        closestInput.value = currentValue + 1;
+        let itemId = item.dataset.item_id
+        handleEnabledDisabled(itemId);
+    });
 });
 
+// document.querySelector(".plus-btn").addEventListener("click", function(event) {
+//     event.preventDefault();
+//     let closestInput = this.closest('.input-group').querySelectorAll('.qty-input')[0];
+//     let currentValue = parseInt(closestInput.value);
+//     closestInput.value = currentValue + 1;
+//     let itemId = this.dataset.item_id
+//     handleEnabledDisabled(itemId);
+// });
+
 // Decrease quantity
-document.querySelector(".minus-btn").addEventListener("click", function(event) {
-    console.log('goodbye')
-    event.preventDefault();
-    let closestInput = this.closest('.input-group').querySelectorAll('.qty-input')[0];
-    let currentValue = parseInt(closestInput.value);
-    closestInput.value = currentValue - 1;
-    let itemId = this.dataset.item_id
-    handleEnabledDisabled(itemId);
+document.querySelectorAll('.minus-btn').forEach(item => {
+    item.addEventListener('click', event => {
+        event.preventDefault();
+        let closestInput = item.closest('.input-group').querySelectorAll('.qty-input')[0];
+        let currentValue = parseInt(closestInput.value);
+        closestInput.value = currentValue - 1;
+        let itemId = item.dataset.item_id
+        handleEnabledDisabled(itemId);
+    });
 });
+
+
+// document.querySelector(".minus-btn").addEventListener("click", function(event) {
+//     event.preventDefault();
+//     let closestInput = this.closest('.input-group').querySelectorAll('.qty-input')[0];
+//     let currentValue = parseInt(closestInput.value);
+//     closestInput.value = currentValue - 1;
+//     let itemId = this.dataset.item_id
+//     handleEnabledDisabled(itemId);
+// });
 
 </script>
