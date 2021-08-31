@@ -49,23 +49,6 @@
                                     <!-- <p class="my-0 d-block d-lg-none">Qty: {{ item.quantity }}</p> -->
                                     <div class="my-0 d-block d-lg-none d-flex flex-row">
                                         <p class="my-0 me-1 fs-3">Qty:</p>
-                                        <!-- <div id="qty-select">
-                                            <input class="form-control qty_input" type="number" name="quantity" 
-                                                value="{{ item.quantity }}" min="1" max="15" data-item_id="{{ item.item_id }}" id="id_qty_{{ item.item_id }}">
-                                        </div> -->
-                                        <form class="form update-form" method="POST" action="">
-                                            {% csrf_token %}
-                                            <div class="input-group qty-select">
-                                                <button class="minus-btn btn bg-warning btn-outline-warning" data-item_id="{{ item.item_id }}" id="minus-qty_{{ item.item_id }}">
-                                                    <i class="text-dark fas fa-minus fa-sm"></i>
-                                                </button>
-                                                <input type="number" class="form-control qty-input fs-4 fw-bold" name="quantity" value="{{ item.quantity }}" min="1" max="15" data-item_id="{{ item.item_id }}" 
-                                                    id="id_qty_{{ item.item_id }}">
-                                                <button class="plus-btn btn bg-warning btn-outline-warning" data-item_id="{{ item.item_id }}" id="plus-qty_{{ item.item_id }}">
-                                                    <i class="text-dark fas fa-plus fa-sm"></i>
-                                                </button>
-                                            </div>
-                                        </form>
                                     </div>
                                     <p class="my-0 small text-muted">SKU: {{ item.product.sku|upper }}</p>
                                 </td>
