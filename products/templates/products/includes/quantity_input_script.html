@@ -1,0 +1,33 @@
+<script type="text/javascript">
+
+// Increase quantity
+let plusBtn = document.querySelector(".plus-btn").addEventListener("click", function(event) {
+    event.preventDefault();
+    let closestInput = this.closest('.input-group').querySelectorAll('.qty-input')[0];
+    let minusBtn = this.closest('.input-group').querySelectorAll('.minus-btn')[0]
+    minusBtn.removeAttribute("disabled");
+    currentValue = parseInt(closestInput.value);
+    if(currentValue > 14) {
+        this.setAttribute("disabled", "disabled");
+    } else {
+        closestInput.value = currentValue + 1;
+    };
+    console.log(closestInput.value);
+});
+
+// Decrease quantity
+let minusBtn = document.querySelector(".minus-btn").addEventListener("click", function(event) {
+    event.preventDefault();
+    let closestInput = this.closest('.input-group').querySelectorAll('.qty-input')[0];
+    let plusBtn = this.closest('.input-group').querySelectorAll('.plus-btn')[0];
+    plusBtn.removeAttribute("disabled");
+    currentValue = parseInt(closestInput.value);
+    if(currentValue < 2) {
+        this.setAttribute("disabled", "disabled");
+    } else {
+        closestInput.value = currentValue - 1;
+    };
+    console.log(closestInput.value);
+});
+
+</script>
