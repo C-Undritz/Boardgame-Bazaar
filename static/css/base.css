@@ -94,19 +94,26 @@ hr {
     border: solid 1px #FFC107;
     background-color: #FFC107;
     color: #212529;
-    
 }
 
 .btn-warning:hover {
     border: solid 1px #212529;
     background-color: #212529;
-    color: #FFC107;
+    color: #FFC107 !important;
 }
 
 /* ------------------ Form styles ------------------- */
 
 #qty-select {
     width: 75px !important;
+}
+
+.qty-input {
+    height: 44px;
+}
+
+.input-group {
+    width: 200px;
 }
 
 /* ------------------ Media Queries ------------------- */
