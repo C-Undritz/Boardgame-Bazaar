@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, reverse
+from django.shortcuts import render, redirect, reverse, HttpResponse
 from products.models import Genre
 
 
@@ -19,42 +19,56 @@ def add_to_cart(request, item_id):
     Boutique Ado project
     """
     quantity = int(request.POST.get('quantity'))
-    print(f'the item quantity is: {quantity}')
+    print(f'the quantity is: {quantity}')
     redirect_url = request.POST.get('redirect_url')
-    print(f'the redirect_url is: {redirect_url}')
     # gets session 'cart' variable or creates it
     cart = request.session.get('cart', {})
-    print(f'The cart contents is: {cart}')
 
     # determines if item exists and updates quantity or adds item.
     if item_id in list(cart.keys()):
         cart[item_id] += quantity
+        print(f'add to cart - the cart is: {cart}')
     else:
         cart[item_id] = quantity
-    print(f'The cart contents is now: {cart}')
+        print(f'add to cart - the cart is: {cart}')
 
     # overwrites the variable in the session with updated version
     request.session['cart'] = cart
-    print(request.session['cart'])
     return redirect(redirect_url)
 
 
 def update_cart(request, item_id):
     """
     Updates the quantity of the specified product to a specified amount.
+    Adapted from the CI Boutique Ado project
     """
     quantity = int(request.POST.get('quantity'))
     print(f'the item quantity is: {quantity}')
-    # gets session 'cart' variable or creates it
     cart = request.session.get('cart', {})
-    print(f'The cart contents is: {cart}')
 
-    # determines if item exists and updates quantity or adds item.
     if quantity > 0:
         cart[item_id] = quantity
+        print(f'update cart - the cart is: {cart}')
     else:
-        cart.pop[item_id]
+        cart.pop(item_id)
+        print(f'the cart is: {cart}')
 
-    # overwrites the variable in the session with updated version
     request.session['cart'] = cart
     return redirect(reverse('view_cart'))
+
+
+def remove_from_cart(request, item_id):
+    """
+    Removes the item from the shopping cart. Adapted from the CI Boutique Ado 
+    project.
+    """
+    try:
+        cart = request.session.get('cart', {})
+        cart.pop(item_id)
+
+        request.session['cart'] = cart
+        return HttpResponse(status=200)
+
+    except Exception as e:
+        print(e)
+        return HttpResponse(status=500)
