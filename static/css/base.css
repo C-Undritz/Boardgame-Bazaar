@@ -102,6 +102,11 @@ hr {
     color: #FFC107 !important;
 }
 
+.update-link,
+.remove-item {
+    cursor: pointer;
+}
+
 /* ------------------ Form styles ------------------- */
 
 #qty-select {
