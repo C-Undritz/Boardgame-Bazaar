@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, reverse, HttpResponse
-from products.models import Genre
+from django.contrib import messages
+from products.models import Genre, Product
 
 
 def view_cart(request):
@@ -18,19 +19,18 @@ def add_to_cart(request, item_id):
     Add a quantity of a product to the shopping cart.  Adapted from the CI
     Boutique Ado project
     """
+    product = Product.objects.get(pk=items_id)  # retrieved for messages
+
     quantity = int(request.POST.get('quantity'))
-    print(f'the quantity is: {quantity}')
     redirect_url = request.POST.get('redirect_url')
-    # gets session 'cart' variable or creates it
-    cart = request.session.get('cart', {})
+    cart = request.session.get('cart', {})  # gets session 'cart' variable or creates it
 
     # determines if item exists and updates quantity or adds item.
     if item_id in list(cart.keys()):
         cart[item_id] += quantity
-        print(f'add to cart - the cart is: {cart}')
     else:
         cart[item_id] = quantity
-        print(f'add to cart - the cart is: {cart}')
+        messages.success(request, f'Added {product.name} to shopping cart')
 
     # overwrites the variable in the session with updated version
     request.session['cart'] = cart
