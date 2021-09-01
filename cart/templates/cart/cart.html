@@ -61,7 +61,7 @@
                                             value="{{ item.quantity }}" min="1" max="15" data-item_id="{{ item.item_id }}" id="id_qty_{{ item.item_id }}">
                                     </div> -->
                                     <!-- <p class="my-0 fs-4">{{ item.quantity }}</p> -->
-                                    <form class="form update-form" method="POST" action="">
+                                    <form class="form update-form" method="POST" action="{% url 'update_cart' item.item_id %}">
                                         {% csrf_token %}
                                         <div class="input-group qty-select">
                                             <button class="minus-btn btn bg-warning btn-outline-warning" data-item_id="{{ item.item_id }}" id="minus-qty_{{ item.item_id }}">
