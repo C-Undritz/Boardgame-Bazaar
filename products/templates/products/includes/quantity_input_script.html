@@ -1,4 +1,5 @@
 <script type="text/javascript">
+// below is pure JS version of the Boutique Ado Jquery for the handling of the quantity select functionality.
 // found how to disable here: http://www.java2s.com/example/javascript/dom-html-element/disable-a-button-with-setattributedisabled-and-removeattributedi.html
 
 //handles enabling and disabling of the buttons based on the value of input that they are controlling
@@ -44,15 +45,6 @@ document.querySelectorAll('.plus-btn').forEach(item => {
     });
 });
 
-// document.querySelector(".plus-btn").addEventListener("click", function(event) {
-//     event.preventDefault();
-//     let closestInput = this.closest('.input-group').querySelectorAll('.qty-input')[0];
-//     let currentValue = parseInt(closestInput.value);
-//     closestInput.value = currentValue + 1;
-//     let itemId = this.dataset.item_id
-//     handleEnabledDisabled(itemId);
-// });
-
 // Decrease quantity
 document.querySelectorAll('.minus-btn').forEach(item => {
     item.addEventListener('click', event => {
@@ -64,15 +56,5 @@ document.querySelectorAll('.minus-btn').forEach(item => {
         handleEnabledDisabled(itemId);
     });
 });
-
-
-// document.querySelector(".minus-btn").addEventListener("click", function(event) {
-//     event.preventDefault();
-//     let closestInput = this.closest('.input-group').querySelectorAll('.qty-input')[0];
-//     let currentValue = parseInt(closestInput.value);
-//     closestInput.value = currentValue - 1;
-//     let itemId = this.dataset.item_id
-//     handleEnabledDisabled(itemId);
-// });
 
 </script>
