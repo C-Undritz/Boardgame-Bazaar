@@ -79,6 +79,9 @@ TEMPLATES = [
     },
 ]
 
+# Ensures that messages are stored in the session (required as IDE is Gitpod)
+MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
+
 AUTHENTICATION_BACKENDS = [
     # Needed to login by username in Django admin, regardless of `allauth`
     'django.contrib.auth.backends.ModelBackend',

@@ -245,6 +245,7 @@
     {% endblock %}
 
     {% block postloadjs %}
+    <!-- Script to show hide the search input on mobile views -->
     <script type="text/Javascript">
 
     let searchBtn = document.getElementById('mobile-search-btn')
@@ -261,8 +262,18 @@
             searchInput.style.display = "none"
         };
     });
-    
+
     </script>
+
+    <!-- Required Javascript to display toasts -->
+    <script type="text/Javascript">
+
+    let toast = document.querySelector('.toast')
+    toast.show()
+
+    </script>
+
+
     {% endblock %}
 
 </body>
