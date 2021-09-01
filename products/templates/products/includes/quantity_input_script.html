@@ -21,17 +21,27 @@ function handleEnabledDisabled(itemId) {
 
 // On page load, loops through all input fields and calls the handleEnabledDisabled function
 // to ensure proper enabling/disabling of all inputs on the page
-var allQtyInputs = document.querySelectorAll('.qty-input');
-for (let i = 0; i < allQtyInputs.length; i++) {
-    let itemId = allQtyInputs[i].dataset.item_id;
-    handleEnabledDisabled(itemId);
+let allQtyInputs = document.querySelectorAll('.qty-input');
+if (allQtyInputs) {
+    for (let i = 0; i < allQtyInputs.length; i++) {
+        let itemId = allQtyInputs[i].dataset.item_id;
+        handleEnabledDisabled(itemId);
+    }
 }
 
 // Check enable/disable every time the input is changed by built in functions
-document.querySelector('.qty-input').addEventListener("change", function() {
-    let itemId = this.dataset.item_id;
-    handleEnabledDisabled(itemId);
-});
+// document.querySelector('.qty-input').addEventListener("change", function() {
+//     let itemId = this.dataset.item_id;
+//     handleEnabledDisabled(itemId);
+// });
+
+let qtyInput = document.querySelector('.qty-input');
+if (qtyInput) {
+    qtyInput.addEventListener("change", function() {
+        let itemId = this.dataset.item_id;
+        handleEnabledDisabled(itemId);
+    });
+};
 
 // Increase quantity
 document.querySelectorAll('.plus-btn').forEach(item => {
