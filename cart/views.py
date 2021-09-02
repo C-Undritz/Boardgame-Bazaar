@@ -19,7 +19,7 @@ def add_to_cart(request, item_id):
     Add a quantity of a product to the shopping cart.  Adapted from the CI
     Boutique Ado project
     """
-    product = Product.objects.get(pk=items_id)  # retrieved for messages
+    product = Product.objects.get(pk=item_id)  # retrieved for messages
 
     quantity = int(request.POST.get('quantity'))
     redirect_url = request.POST.get('redirect_url')
@@ -30,7 +30,7 @@ def add_to_cart(request, item_id):
         cart[item_id] += quantity
     else:
         cart[item_id] = quantity
-        messages.success(request, f'Added {product.name} to shopping cart')
+        messages.success(request, f'Added {product.product_name} to shopping cart')
 
     # overwrites the variable in the session with updated version
     request.session['cart'] = cart
