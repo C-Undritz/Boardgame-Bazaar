@@ -107,11 +107,22 @@ hr {
     cursor: pointer;
 }
 
+/* ------------------ Messages ------------------- */
+
 .messages-container {
     position: fixed;
     top: 160px;
     right: 15px;
     z-index: 99999999999;
+}
+
+.toast-header strong,
+.toast-body p {
+    font-size: 1.35rem;
+}
+
+.toast-capper {
+    height: 4px;
 }
 
 /* ------------------ Form styles ------------------- */
