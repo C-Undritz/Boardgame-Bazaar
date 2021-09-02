@@ -107,6 +107,13 @@ hr {
     cursor: pointer;
 }
 
+.messages-container {
+    position: fixed;
+    top: 160px;
+    right: 15px;
+    z-index: 99999999999;
+}
+
 /* ------------------ Form styles ------------------- */
 
 #qty-select {
