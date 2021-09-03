@@ -24,14 +24,17 @@ def add_to_cart(request, item_id):
     quantity = int(request.POST.get('quantity'))
     redirect_url = request.POST.get('redirect_url')
     cart = request.session.get('cart', {})  # gets session 'cart' variable or creates it
+    SHOP = 50
 
     # determines if item exists and updates quantity or adds item.
     if item_id in list(cart.keys()):
         cart[item_id] += quantity
-        messages.success(request, f'You now have {cart[item_id]} copies of {product.product_name} in your cart')
+        # messages.success(request, f'You now have {cart[item_id]} copies of {product.product_name} in your cart')
+        messages.add_message(request, SHOP, 'test')
     else:
         cart[item_id] = quantity
-        messages.success(request, f'Added {product.product_name} to shopping cart')
+        # messages.success(request, f'Added {product.product_name} to shopping cart')
+        messages.add_message(request, SHOP, 'test')
 
     # overwrites the variable in the session with updated version
     request.session['cart'] = cart
