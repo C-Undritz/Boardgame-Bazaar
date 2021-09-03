@@ -39,9 +39,15 @@
                             <tr>
                                 <!-- Item image -->
                                 <td class="p-3 w-25">
+                                    {% if item.product.image %}
                                     <a href="{% url 'product_detail' item.product.id %}">
-                                        <img class="img-fluid rounded" src="{{ item.product.image.url }}" alt="Cart item product image"> 
+                                        <img class="img-fluid rounded" src="{{ item.product.image.url }}" alt="Cart item {{ product.name }} image"> 
                                     </a>
+                                    {% else %}
+                                    <a href="{% url 'product_detail' product.id %}">
+                                        <img class="img-fluid rounded" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
+                                    </a>
+                                    {% endif %}
                                 </td>
                                 <!-- Product information, price, quantity and subtotal -->
                                 <td class="py-3">
