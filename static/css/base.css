@@ -141,12 +141,15 @@ hr {
 
 /* ------------------ shopping cart and checkout styles ------------------- */
 
-.cart-hr {
+.cart-heading-hr {
     height: 5px !important;
     background-color: #FFC107;
-    color: #FFC107;
 }
 
+.cart-item-hr {
+    height: 1px !important;
+    background-color: lightgrey;
+}
 
 /* ------------------ Media Queries ------------------- */
 
