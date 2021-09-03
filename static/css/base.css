@@ -139,6 +139,15 @@ hr {
     width: 200px;
 }
 
+/* ------------------ shopping cart and checkout styles ------------------- */
+
+.cart-hr {
+    height: 5px !important;
+    background-color: #FFC107;
+    color: #FFC107;
+}
+
+
 /* ------------------ Media Queries ------------------- */
 
 /* From Boutique Ado */
