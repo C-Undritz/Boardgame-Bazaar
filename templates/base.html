@@ -236,6 +236,8 @@
                     {% include 'includes/toasts/toast_warning.html' %}
                 {% elif level == 25 %}
                     {% include 'includes/toasts/toast_success.html' %}
+                {% elif level == 50 %}
+                    {% include 'includes/offcanvas/offcanvas_cart.html' %}
                 {% else %}
                     {% include 'includes/toasts/toast_info.html' %}
                 {% endif %}
@@ -288,6 +290,17 @@
             return new bootstrap.Toast(toastEl, option)
         })
         toastList.forEach(toast => toast.show());
+
+    </script>
+
+    <!-- Required Javascript to display bootstrap offcanvas -->
+    <script type="text/Javascript">
+
+        var offcanvasElementList = [].slice.call(document.querySelectorAll('.offcanvas'))
+        var offcanvasList = offcanvasElementList.map(function (offcanvasEl) {
+            return new bootstrap.Offcanvas(offcanvasEl)
+        })
+        offcanvasList.forEach(offcanvas => offcanvas.show());
 
     </script>
 
