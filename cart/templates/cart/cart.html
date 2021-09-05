@@ -41,11 +41,11 @@
                                 <td class="p-3 w-25">
                                     {% if item.product.image %}
                                     <a href="{% url 'product_detail' item.product.id %}">
-                                        <img class="img-fluid rounded" src="{{ item.product.image.url }}" alt="Cart item {{ product.name }} image"> 
+                                        <img class="img-fluid rounded" src="{{ item.product.image.url }}" alt="Cart item {{ product.product_name }} image"> 
                                     </a>
                                     {% else %}
                                     <a href="{% url 'product_detail' product.id %}">
-                                        <img class="img-fluid rounded" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
+                                        <img class="img-fluid rounded" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.product_name }}">
                                     </a>
                                     {% endif %}
                                 </td>
@@ -114,8 +114,8 @@
                                     </span>
                                     <span class="text-uppercase fw-bold">Keep Shopping</span>
                                 </a>
-                                <a href="" class="btn btn-warning btn-lg text-uppercase fw-bold">
-                                    <span class="text-uppercase">Secure Checkout</span>
+                                <a href="{% url 'checkout' %}" class="btn btn-warning btn-lg">
+                                    <span class="text-uppercase fw-bold">Secure Checkout</span>
                                     <span>
                                         <i class="fas fa-lock"></i>
                                     </span>
