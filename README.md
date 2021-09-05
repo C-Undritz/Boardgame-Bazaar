@@ -299,7 +299,7 @@ Testing completed is detailed in the [TESTING.md](https://github.com/C-Undritz/C
 # Images and Content
 
 ## Images
-
+- stripe logo badge used in accordance with [Stripe Marks Usage Agreement](https://stripe.com/en-gb/marks/legal)
 
 
 ## Content
