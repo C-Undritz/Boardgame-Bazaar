@@ -1,3 +1,24 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, reverse
+from django.contrib import messages
 
-# Create your views here.
+from .forms import OrderForm
+
+
+def checkout(request):
+    """
+    Returns to return the checkout page.  Includes if statement to protect
+    against. URL abuse a button to checkout only appears in item(s) in cart.
+    Learnt and adapted from Boutique Ado project.
+    """
+    cart = request.session.get('cart', {})
+    if not cart:
+        messages.error(request, "Your cart is empty, please add a game to checkout.")
+        return redirect(reverse('home'))
+
+    order_form = OrderForm()
+    template = 'checkout/checkout.html'
+    context = {
+        'order_form': order_form
+    }
+
+    return render(request, template, context)
