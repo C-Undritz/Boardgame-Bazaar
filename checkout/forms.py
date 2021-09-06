@@ -43,5 +43,5 @@ class OrderForm(forms.ModelForm):
             # Sets the placeholder content to value defined in dictionary
             self.fields[field].widget.attrs['placeholder'] = placeholder
             # removes form labels
-            self.fields[field].label = False  
+            self.fields[field].label = False
             self.fields[field].widget.attrs['class'] = 'stripe-style-input'
