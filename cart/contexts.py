@@ -41,7 +41,6 @@ def cart_contents(request):
         final_total = total
         discount_count_delta = settings.MULTIBUY_DISCOUNT_ONE - product_count
 
-
     grand_total = delivery + final_total
 
     context = {
