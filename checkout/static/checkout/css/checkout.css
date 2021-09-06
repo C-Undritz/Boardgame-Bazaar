@@ -33,3 +33,7 @@
     position: relative;
     right: .5rem;
 }
+
+#card-errors {
+    height: 25px;
+}
