@@ -99,7 +99,7 @@
                                 {% if order.discount %}
                                     <p class="mb-0">-£{{ order.discount }}</p>
                                 {% endif %}
-                                <p class="mb-0 ms-3">£{{ order.delivery_cost|floatformat:2 }}</p>
+                                <p class="mb-0 ms-2">£{{ order.delivery_cost|floatformat:2 }}</p>
                                 <p class="mb-0 fw-bold">£{{ order.grand_total }}</p>
                             </div>
                         </div>
