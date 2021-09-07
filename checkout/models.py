@@ -43,7 +43,7 @@ class Order(models.Model):
         total quantity of the items bought to calculate discount and then
         use that to calculate the grand total.
         """
-        self.order_total = self.lineitems.aggregate(Sum('lineitem_total'))['lineitem_total__sum']
+        self.order_total = self.lineitems.aggregate(Sum('lineitem_total'))['lineitem_total__sum'] or 0
         quantity_total = self.lineitems.aggregate(Sum('quantity'))['quantity__sum']
         self.delivery_cost = 4
 
