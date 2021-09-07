@@ -118,7 +118,7 @@
                             <span>Your card will be charged <strong>£{{ grand_total|floatformat:2 }}</strong></span>
                         </p>
                         <div class="d-grid gap-2 d-sm-block">
-                            <a href="{% url 'view_cart' %}" class="btn btn-outline-dark btn-lg">
+                            <a href="{% url 'view_cart' %}" id="adjust-cart-btn" class="btn btn-outline-dark btn-lg">
                                 <span>
                                     <i class="fas fa-chevron-left"></i>
                                 </span>
@@ -140,6 +140,14 @@
                 </form>
             </div>
         </div>
+    </div>
+    <!-- Loading overlap to display whilst payment being processed (from Boutique Ado Project) -->
+    <div id="loading-overlay">
+        <h1 class="text-light loading-spinner">
+            <span>
+                <i class="text-secondary fas fa-3x fas fa-spinner fa-pulse"></i>
+            </span>
+        </h1>
     </div>
 {% endblock %}
 
