@@ -1,7 +1,8 @@
 # Logic and instructions for the stripe elements below can be found here:
 # https://stripe.com/docs/payments/accept-a-payment?platform=web&ui=elements
 
-from django.shortcuts import render, redirect, reverse, get_object_or_404
+from django.shortcuts import render, redirect, reverse, get_object_or_404, HttpResponse
+from django.views.decorators.http import require_POST
 from django.contrib import messages
 from django.conf import settings
 
@@ -11,6 +12,29 @@ from products.models import Product
 from cart.contexts import cart_contents
 
 import stripe
+import json
+
+
+@require_POST
+def cache_checkout_data(request):
+    """
+    This function is called before the 'stripe.confirmCardPayment' method in
+    JS. It passes the user choice for 'save_info' checkbox on the checkout
+    form within the metadata key and attaches it to the PaymentIntent.
+    """
+    try:
+        pid = request.POST.get('client_secret').split('_secret')[0]
+        stripe.api_key = settings.STRIPE_SECRET_KEY
+        stripe.PaymentIntent.modify(pid, metadata={
+            'cart': json.dumps(request.session.get('cart', {})),
+            'save_info': request.POST.get('save_info'),
+            'username': request.user,
+        })
+        return HttpResponse(status=200)
+    except Exception as e:
+        messages.error(request, f'{e}: Sorry, your payment cannot be processed. \
+            Please try again later.')
+        return HttpResponse(status=400)
 
 
 def checkout(request):
@@ -109,7 +133,7 @@ def checkout_success(request, order_number):
     # deletes session cart
     if 'cart' in request.session:
         del request.session['cart']
-    
+
     template = 'checkout/checkout_success.html'
     context = {
         'order': order,
