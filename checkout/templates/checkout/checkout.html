@@ -109,6 +109,8 @@
                         <div class="mb-1" id="card-element"></div>
                         <!-- Used to display the validation errors generated from the card element -->
                         <div class="mb-1 text-danger" id="card-errors" role="alert"></div>
+                        <!-- Passes client secret to the view so can access the payment intent id -->
+                        <input type="hidden" value="{{ client_secret }}" name="client_secret">
                     </fieldset> 
                     <div class="submit-button text-right mt-3 mb-2">
                         <p class="small text-danger mb-1">
