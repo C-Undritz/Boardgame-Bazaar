@@ -1,4 +1,5 @@
 from django.db import models
+from django.shortcuts import get_object_or_404
 
 
 CATEGORY_DEFAULT = 'none'
@@ -63,6 +64,12 @@ class Product(models.Model):
 
     def __str__(self):
         return self.product_name
+
+    def update_stock_sold(self, instance):
+        product = get_object_or_404(Product, pk=instance.product_id)
+        product.stock = product.stock - instance.quantity
+        product.sold = product.sold + instance.quantity
+        product.save()
 
 
 class GenreAssignment(models.Model):
