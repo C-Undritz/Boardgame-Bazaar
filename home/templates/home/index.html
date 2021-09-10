@@ -59,7 +59,7 @@
                                     <div class="row d-flex justify-content-center">
                                         {% if product.stock > 10 %}
                                             <p class="mb-0 text-center bg-warning w-50">10+ in stock</p> 
-                                        {% elif product.stock == 0 %}
+                                        {% elif product.stock < 1 %}
                                             <p class="mb-0 text-center w-50">in stock soon</p> 
                                         {% else %}
                                             <p class="mb-0 text-center text-light bg-secondary w-50">{{ product.stock }} in stock</p>
