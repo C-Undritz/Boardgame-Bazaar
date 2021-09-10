@@ -16,6 +16,37 @@ import json
 
 
 @require_POST
+def is_in_stock(request):
+    print('is_in_stock function called')
+    try:
+        print('try statement')
+        cart = request.session.get('cart', {})
+        print(f'is_in_stock - cart: {cart}')
+        for item_id, item_data in cart.items():
+            product = Product.objects.get(id=item_id)
+            print(f'product: {product.id}')
+            print(f'product stock is: {product.stock}')
+            print(f'cart item id: {item_id}')
+            print(f'cart item quantity: {item_data}')
+            if item_data > product.stock:
+                print('not enough stock')
+                messages.error(request, f'Not enough stock of one or \
+                    more of your purchases')
+                # return HttpResponse(status=400)  # --> hangs on the loading overlay
+                # return redirect(reverse('view_cart')) --> hangs on the loading overlay
+                # return redirect(reverse('checkout')) --> processes order.
+            else:
+                print('continuing')
+                continue
+        return HttpResponse(status=200)
+    except Exception as e:
+        print('exception statement')
+        messages.error(request, f'{e}: Sorry, your payment cannot be processed. \
+            Please try again later.')
+        return HttpResponse(status=400)
+
+
+@require_POST
 def cache_checkout_data(request):
     """
     This function is called before the 'stripe.confirmCardPayment' method in
@@ -23,6 +54,7 @@ def cache_checkout_data(request):
     form within the metadata key and attaches it to the PaymentIntent, along
     takes a copy of the session cart and the customer username. 
     """
+    print('cache_checkout_data function called')
     try:
         pid = request.POST.get('client_secret').split('_secret')[0]
         stripe.api_key = settings.STRIPE_SECRET_KEY
