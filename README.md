@@ -266,7 +266,54 @@ Testing completed is detailed in the [TESTING.md](https://github.com/C-Undritz/C
 
 # Security
 
-# Data Management
+# Data Management and Use
+## Product attributes:
+### New Releases.
+Determined during site startup and when ‘new releases’ selected from the shop front menu through the function ‘determine_new_releases()’ In home app views.py.   
+
+#### Mechanism:
+Function checks the recorded release date mandatory field against the date 90 days in the past from the current date.  If the release of the game occurred within the past 90 days then it is checked as being a ‘new release’.
+
+#### Display:
+Only games that were released within the last 90 days will be checked as a new release and therefore displayed as such on the website with a banner over the image.
+
+### Pre-orders.
+Determined during site startup and when ‘pre-orders’ selected from the shop front menu through the function ‘determine_preorders()’ In home app views.py.   
+
+#### Mechanism: 
+function checks the recorded release date mandatory field against the current date.  If the release date of the game is in the future then it is checked as being a ‘pre-order’.
+
+#### Display:
+Only games that have a release date recorded in the database that is in the future will be checked as a preorder and therefore displayed as such on the website with a banner over the image.
+
+
+### Stock.
+#### Updating the stock figure:
+The stock figure against each product is updated when a game is purchased to reflect the quantity sold.
+
+#### Mechanism: 
+this is achieved by calling the Product model method ‘update_stock_sold’ using a post_save signal triggered by the OrderLineItem model.
+
+#### Display (affect of stock levels on display of items):
+- 0 Stock:
+  - Home page: Displayed as ‘in stock soon’
+  - Product detail: Displayed as ‘Sorry, currently out of stock’
+
+- Between 1 and 10 in stock:
+  - Home page: Exact number in stock displayed
+  - Product detail: Exact number in stock displayed
+
+- Above 10 in stock:
+  - Home page: ‘10+ in stock’ displayed.
+  - Product detail: ‘10+ in stock’ displayed.
+
+### Quantity selector:
+The stock figure is also used to limit the amount a customer can buy at once by affecting the maximum number that can be selected.  If the product stock is more than 9 then the most of any product a customer can buy at once is 10.  However should the current stock fall below 10 then then limit on the quantity selector is set by the current stock number.   
+
+#### Mechanism:  
+Stock variable passed to the Javascript function ‘handleEnabledDisabled’ though a hidden input html element which has the item stock as the value.
+
+
 
 
 
