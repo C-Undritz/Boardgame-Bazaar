@@ -62,56 +62,65 @@ form.addEventListener('submit', function (ev) {
         'client_secret': clientSecret,
     };
 
-    var stock_check_url = '/checkout/is_in_stock/'
-    $.post(stock_check_url, postData).done(function() {
-        var cache_url = '/checkout/cache_checkout_data/';
-        $.post(cache_url, postData).done(function() {
-            stripe.confirmCardPayment(clientSecret, {
-                payment_method: {
-                    card: card,
-                    billing_details: {
+    var in_stock_url = '/checkout/is_in_stock/';
+    $.post(in_stock_url, postData).done(function(response) {
+        console.log(response);
+        if (response.result === true) {
+            var cache_data_url = '/checkout/cache_checkout_data/';
+            $.post(cache_data_url, postData).done(function() {
+                stripe.confirmCardPayment(clientSecret, {
+                    payment_method: {
+                        card: card,
+                        billing_details: {
+                            name: $.trim(form.full_name.value),
+                            phone: $.trim(form.phone_number.value),
+                            email: $.trim(form.email.value),
+                            address:{
+                                line1: $.trim(form.street_address1.value),
+                                line2: $.trim(form.street_address2.value),
+                                city: $.trim(form.town_or_city.value),
+                                state: $.trim(form.county.value),
+                                country: $.trim(form.country.value),
+                            }
+                        }
+                    },
+                    shipping: {
                         name: $.trim(form.full_name.value),
                         phone: $.trim(form.phone_number.value),
-                        email: $.trim(form.email.value),
                         address:{
                             line1: $.trim(form.street_address1.value),
                             line2: $.trim(form.street_address2.value),
                             city: $.trim(form.town_or_city.value),
                             state: $.trim(form.county.value),
+                            postal_code: $.trim(form.postcode.value),
                             country: $.trim(form.country.value),
                         }
                     }
-                },
-                shipping: {
-                    name: $.trim(form.full_name.value),
-                    phone: $.trim(form.phone_number.value),
-                    address:{
-                        line1: $.trim(form.street_address1.value),
-                        line2: $.trim(form.street_address2.value),
-                        city: $.trim(form.town_or_city.value),
-                        state: $.trim(form.county.value),
-                        postal_code: $.trim(form.postcode.value),
-                        country: $.trim(form.country.value),
+                }).then(function(result) {
+                    if (result.error) {
+                        var displayError = document.getElementById('card-errors');
+                        displayError.textContent = result.error.message;
+                        $('#payment-form').fadeToggle(100);
+                        $('#loading-overlay').fadeToggle(100);
+                        card.update({'disabled': false}); // enables card element
+                        $('#submit-button').attr('disabled', false); // enables submit button
+                        $('#adjust-cart-btn').attr('disabled', false); // enables adjust cart button
+                    } else {
+                        if (result.paymentIntent.status === 'succeeded') {
+                            form.submit();
+                        }
                     }
-                }
-            }).then(function(result) {
-                if (result.error) {
-                    var displayError = document.getElementById('card-errors');
-                    displayError.textContent = result.error.message;
-                    $('#payment-form').fadeToggle(100);
-                    $('#loading-overlay').fadeToggle(100);
-                    card.update({'disabled': false}); // enables card element
-                    $('#submit-button').attr('disabled', false); // enables submit button
-                    $('#adjust-cart-btn').attr('disabled', false); // enables adjust cart button
-                } else {
-                    if (result.paymentIntent.status === 'succeeded') {
-                        form.submit();
-                    }
-                }
+                });
+            }).fail(function() {
+                // reloads page with error shown in django messages; customer not charged.
+                location.reload();
             });
-        }).fail(function() {
-            // reloads page with error shown in django messages; customer not charged.
+        } else {
+            console.log('no sale')
+            alert("Not enough stock of one or more of your purchases")
             location.reload();
-        });
+            // var no_sale_url = '/checkout/no_sale/'; -----> hangs on loading overlay
+            // $.post(no_sale_url, postData) ------> hangs on loading overlay
+        };
     });
 });

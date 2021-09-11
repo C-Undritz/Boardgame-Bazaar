@@ -5,6 +5,7 @@ from django.shortcuts import render, redirect, reverse, get_object_or_404, HttpR
 from django.views.decorators.http import require_POST
 from django.contrib import messages
 from django.conf import settings
+from django.http import JsonResponse
 
 from .forms import OrderForm
 from .models import Order, OrderLineItem
@@ -17,33 +18,30 @@ import json
 
 @require_POST
 def is_in_stock(request):
-    print('is_in_stock function called')
-    try:
-        print('try statement')
-        cart = request.session.get('cart', {})
-        print(f'is_in_stock - cart: {cart}')
-        for item_id, item_data in cart.items():
-            product = Product.objects.get(id=item_id)
-            print(f'product: {product.id}')
-            print(f'product stock is: {product.stock}')
-            print(f'cart item id: {item_id}')
-            print(f'cart item quantity: {item_data}')
-            if item_data > product.stock:
-                print('not enough stock')
-                messages.error(request, f'Not enough stock of one or \
-                    more of your purchases')
-                # return HttpResponse(status=400)  # --> hangs on the loading overlay
-                # return redirect(reverse('view_cart')) --> hangs on the loading overlay
-                # return redirect(reverse('checkout')) --> processes order.
-            else:
-                print('continuing')
-                continue
-        return HttpResponse(status=200)
-    except Exception as e:
-        print('exception statement')
-        messages.error(request, f'{e}: Sorry, your payment cannot be processed. \
-            Please try again later.')
-        return HttpResponse(status=400)
+    cart = request.session.get('cart', {})
+    confirmed_okay = 0
+    for item_id, item_data in cart.items():
+        product = Product.objects.get(id=item_id)
+        if item_data < product.stock:
+            confirmed_okay += 1
+        else:
+            continue
+
+    if confirmed_okay == len(cart):
+        result = True  # this means that sale can complete
+    else:
+        result = False  # this means that sale cannot complete
+
+    print(f'the result is: {result}')
+    return JsonResponse({'result': result})
+
+
+@require_POST
+def no_sale(request):
+    messages.error(request, (
+         "Not enough stock of one or more of your purchases")
+    )
+    return redirect(reverse('view_cart'))
 
 
 @require_POST
