@@ -18,6 +18,12 @@ import json
 
 @require_POST
 def is_in_stock(request):
+    """
+    At the point of checkout, determines is there is enough stock
+    for each item in the cart, by checking with the database stock
+    levels.  Purchase will be stopped if the chosen quantity of one
+    or more of the items is more than the current stock.
+    """
     cart = request.session.get('cart', {})
     confirmed_okay = 0
     for item_id, item_data in cart.items():
@@ -36,10 +42,18 @@ def is_in_stock(request):
     return JsonResponse({'result': result})
 
 
-@require_POST
 def no_sale(request):
+    """
+    Should there not be enough stock of one or more of the cart items at
+    the point of checkout, this function is called to redirect customer
+    to the cart and display an appropriate message.
+    """
+    print('no_sale function called')
     messages.error(request, (
-         "Not enough stock of one or more of your purchases")
+        "You have selected too many items for one or more of your purchases. \
+            Please recheck the displayed stock levels of your selected games. \
+                Not enough stock of one or more of your purchases"
+        "Please do contact us to discuss if you experience further issues.")
     )
     return redirect(reverse('view_cart'))
 
@@ -50,7 +64,7 @@ def cache_checkout_data(request):
     This function is called before the 'stripe.confirmCardPayment' method in
     JS. It passes the user choice for 'save_info' checkbox on the checkout
     form within the metadata key and attaches it to the PaymentIntent, along
-    takes a copy of the session cart and the customer username. 
+    takes a copy of the session cart and the customer username.
     """
     print('cache_checkout_data function called')
     try:

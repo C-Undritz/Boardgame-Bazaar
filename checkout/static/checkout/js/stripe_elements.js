@@ -117,10 +117,10 @@ form.addEventListener('submit', function (ev) {
             });
         } else {
             console.log('no sale')
-            alert("Not enough stock of one or more of your purchases")
-            location.reload();
-            // var no_sale_url = '/checkout/no_sale/'; -----> hangs on loading overlay
-            // $.post(no_sale_url, postData) ------> hangs on loading overlay
+            loc = window.location.href;
+            path = window.location.pathname;
+            newurl = loc.replace(path, '/checkout/no_sale/')
+            location.replace(newurl);
         };
     });
 });
