@@ -27,7 +27,6 @@ class OrderForm(forms.ModelForm):
             'town_or_city': 'Town or City',
             'county': 'County',
             'postcode': 'Postal Code',
-            'country': 'Country',
         }
 
         # ensures cursor starts in full name field
@@ -35,13 +34,14 @@ class OrderForm(forms.ModelForm):
 
         # interate through fields to apply the below:
         for field in self.fields:
-            if self.fields[field].required:
-                # adds a star to required fields
-                placeholder = f'{placeholders[field]} *'
-            else:
-                placeholder = placeholders[field]
-            # Sets the placeholder content to value defined in dictionary
-            self.fields[field].widget.attrs['placeholder'] = placeholder
+            if field != 'country':
+                if self.fields[field].required:
+                    # adds a star to required fields
+                    placeholder = f'{placeholders[field]} *'
+                else:
+                    placeholder = placeholders[field]
+                # Sets the placeholder content to value defined in dictionary
+                self.fields[field].widget.attrs['placeholder'] = placeholder
             # removes form labels
             self.fields[field].label = False
             self.fields[field].widget.attrs['class'] = 'stripe-style-input'
