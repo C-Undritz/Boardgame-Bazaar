@@ -61,6 +61,11 @@ hr {
     margin-top: 12px;
 }
 
+/* Styles to colour of the search box */
+/* input[name='q']::placeholder {
+    color: #aab7c4;
+} */
+
 /* ------------------ Product display styles ------------------- */
 
 .image-container {
@@ -149,6 +154,12 @@ hr {
 .cart-item-hr {
     height: 1px !important;
     background-color: lightgrey;
+}
+
+/* ------------------ Allauth form formatting ----------------------- */
+
+.allauth-form-inner-content label:not([for='id_remember']) {
+    display: none;
 }
 
 /* ------------------ Media Queries ------------------- */
