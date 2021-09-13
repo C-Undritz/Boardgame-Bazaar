@@ -52,8 +52,8 @@ def no_sale(request):
     messages.error(request, (
         "You have selected too many items for one or more of your purchases. \
             Please recheck the displayed stock levels of your selected games. \
-                Not enough stock of one or more of your purchases"
-        "Please do contact us to discuss if you experience further issues.")
+                Please do contact us to discuss if you experience further \
+                    issues.")
     )
     return redirect(reverse('view_cart'))
 
