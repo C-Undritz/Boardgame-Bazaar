@@ -288,30 +288,16 @@ Only games that have a release date recorded in the database that is in the futu
 
 
 ### Stock.
-#### Updating the stock figure:
-The stock figure against each product is updated when a game is purchased to reflect the quantity sold.
+The stock figure is updated when an item is purchased to reflect the amount purchased.  There are no controls to stop the 'stock' count becoming a minus figure as this should be allowed to highlight if more stock has been sold than is in place.  However there are a number of measures in place to prevent this from happening.
 
-#### Mechanism: 
-this is achieved by calling the Product model method ‘update_stock_sold’ using a post_save signal triggered by the OrderLineItem model.
+1. To keep the customer informed, the current stock is displayed to the customer along with the product, both on the home page and on the product detail.  If there is over 10 in stock stock then '10+ in stock' is displayed.  If stock is 10 or below, then the actual figure is displayed to the customer as 'X in stock.  If there is no stock then, 'in stock soon' is displayed on the home screen and 'Sorry, currently out of sttock' is displayed within the product detail.  Additionally; to stop the sale of products with no stock, the quantity selector and 'add to cart' button are not displayed.
 
-#### Display (affect of stock levels on display of items):
-- 0 Stock:
-  - Home page: Displayed as ‘in stock soon’
-  - Product detail: Displayed as ‘Sorry, currently out of stock’
+2. The stock figure is also used to limit the amount a customer can buy at once by affecting the maximum number that can be selected.  If the product stock is more than 9 then the most of any product a customer can buy at once is 10.  However should the current stock fall below 10 then then limit on the quantity selector is set by the current stock number. 
 
-- Between 1 and 10 in stock:
-  - Home page: Exact number in stock displayed
-  - Product detail: Exact number in stock displayed
+3. At the point of purchase when the customer clicks/taps on the 'complete order' button on the checkout screen, a realtime check is made against the current stock level of each product in the basket and the intended purchase amount. If any of the items purchased quantity is more than the stock figure for that item, the purchase fails and the customer is directed back back to the cart screen.  A message is also displayed explaining this and asks for the customer to recheck the displayed stock levels for their purchase(s).  This is to catch instances where a customer has been able to add items to their cart, but may be slow to checkout and remaining stock has been sold in the meantime.
 
-- Above 10 in stock:
-  - Home page: ‘10+ in stock’ displayed.
-  - Product detail: ‘10+ in stock’ displayed.
 
-### Quantity selector:
-The stock figure is also used to limit the amount a customer can buy at once by affecting the maximum number that can be selected.  If the product stock is more than 9 then the most of any product a customer can buy at once is 10.  However should the current stock fall below 10 then then limit on the quantity selector is set by the current stock number.   
 
-#### Mechanism:  
-Stock variable passed to the Javascript function ‘handleEnabledDisabled’ though a hidden input html element which has the item stock as the value.
 
 
 
@@ -356,3 +342,7 @@ Stock variable passed to the Javascript function ‘handleEnabledDisabled’ tho
   - [Board Game Industry Statistics](https://printninja.com/board-game-industry-statistics/)
 
 # Acknowledgments
+- Thanks to the slack community for support and help throughout the course and this project.  Honourable mentions for this project go to Ed B_alum, Gaff Alumnus, 
+- Thanks to @ckz8780 for the support on slack and helping with getting the stock check against purchase quantity working!
+- Thanks to tutor support for all the help throughout this project
+- Thanks to Code Institute for the encouragement and great course material. 
