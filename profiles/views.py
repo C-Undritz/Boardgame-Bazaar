@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.contrib import messages
 
 from products.models import Genre
+from checkout.models import Order
 from .models import UserProfile
 from .forms import UserProfileForm
 
@@ -33,7 +34,7 @@ def profile(request):
 
 def profile_orders(request):
     """
-    Displays the user account order history.  
+    Displays the user account order history.
     """
     genres = Genre.objects.all()
     profile = get_object_or_404(UserProfile, user=request.user)
@@ -46,6 +47,26 @@ def profile_orders(request):
         'genres': genres,
         'profile': profile,
         'orders': orders
+    }
+
+    return render(request, template, context)
+
+
+def order_detail(request, order_number):
+    """
+    Displays information for the selected order from the order history
+    page
+    """
+    genres = Genre.objects.all()
+    profile = get_object_or_404(UserProfile, user=request.user)
+
+    order = get_object_or_404(Order, order_number=order_number)
+
+    template = 'profiles/order_detail.html'
+    context = {
+        'genres': genres,
+        'profile': profile,
+        'order': order
     }
 
     return render(request, template, context)

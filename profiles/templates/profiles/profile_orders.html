@@ -3,7 +3,39 @@
 {% block profile_content %}
 <p class="fs-4 mb-1">Order History</p>
 <p class="text-muted fs-5"></p>
-
-{{ orders }}
+<div class="order-history table-responsive">
+    <table class="table table-sm table-borderless">
+        <thead>
+            <tr>
+                <th>Order Number</th>
+                <th>Date</th>
+                <th>Items</th>
+                <th class="float-end">Order Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for order in orders %}
+                <tr>
+                    <td>
+                        <a href="{% url 'order_detail' order.order_number %}" title="{{ order.order_number }}">
+                            {{ order.order_number|truncatechars:6 }}
+                        </a>
+                    </td>
+                    <td>{{ order.date }}</td>
+                    <td>
+                        <ul class="list-unstyled">
+                            {% for item in order.lineitems.all %}
+                                <li class="small">
+                                    {{ item.product.product_name}} X{{ item.quantity }}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </td>
+                    <td class="float-end">£{{ order.grand_total }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
 
 {% endblock %}
