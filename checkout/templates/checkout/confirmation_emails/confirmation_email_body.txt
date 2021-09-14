@@ -1,0 +1,30 @@
+Thank you for your purchase!
+
+Hi {{ order.full_name }}, we're getting your order ready to be shipped. We will notify you when it has been sent.
+
+The order summary is below:
+
+Order Number: {{ order.order_number }}
+Order Date: {{ order.date }}
+
+{{ order.product.product_name }} x{{order.quantity}}
+
+Order Total: ${{ order.order_total }}
+Delivery: ${{ order.delivery_cost }}
+Grand Total: ${{ order.grand_total }}
+
+
+Your order will be shipped to:
+{{ order.street_address1 }}
+{{ order.town_or_city }}, 
+{{ order.country }}.
+
+We've got your phone number on file as {{ order.phone_number }}.
+
+If you have any questions, feel free to contact us at {{ contact_email }}.
+
+Thank you for your order and don't forget to rate and review your purchase to help our other customers.  You can do this checking your order history and clicking on the review button next to the purchased game.
+
+Sincerely,
+
+Boutique Ado

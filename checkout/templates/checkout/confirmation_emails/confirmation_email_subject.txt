@@ -1,0 +1,1 @@
+Boardgame Bazaar Order {{ order.order_number }} confirmed
