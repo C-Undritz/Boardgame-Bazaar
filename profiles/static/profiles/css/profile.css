@@ -1,0 +1,14 @@
+#profile-update-form input::placeholder {
+    color: #aab7c4;
+}
+
+/* makes the country drop down list font color Bootstrap 'dark' by default, except for the first option */
+#id_default_country,
+#id_default_country option:not(:first-child) {
+    color: #212529;
+}
+
+/* makes the first option element in the country drop down, the colour of the placeholder. */
+#id_default_country option:first-child {
+    color: #aab7c4;
+}

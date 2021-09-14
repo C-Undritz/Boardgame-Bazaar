@@ -17,15 +17,17 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                <hr>
-                <h2 class="mb-4">Account Details</h2>
-                <hr>
+                <div class="col text-center mt-3">
+                    <hr>
+                    <h2 class="mb-4">Account Details</h2>
+                    <hr>
+                </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-12 col-lg-3">
+            <div class="col-12 offset-lg-2 col-lg-3">
                 <div>
-                    <h2 class="my-5">{{ profile }}</h2>
+                    <h2 class="my-3">{{ profile }}'s Account</h2>
                 </div>
                 <div>
                     <a href="{% url 'profile' %}" class="btn btn-warning btn-lg text-uppercase fw-bold pt-2 mt-4 mb-2 w-75">
@@ -36,7 +38,7 @@
                     </a>
                 </div>
                 <div>
-                    <a href="{% url 'home' %}" class="btn btn-warning btn-lg text-uppercase fw-bold pt-2 my-2 w-75">
+                    <a href="{% url 'profile_orders' %}" class="btn btn-warning btn-lg text-uppercase fw-bold pt-2 my-2 w-75">
                         <span>
                             <i class="fas fa-shopping-cart"></i>
                         </span>
@@ -52,7 +54,7 @@
                     </a>
                 </div>
                 <div>
-                    <a href="{% url 'home' %}" class="btn btn-warning btn-lg text-uppercase fw-bold pt-2 mt-2 mb-4 w-75">
+                    <a href="{% url 'account_logout' %}" class="btn btn-warning btn-lg text-uppercase fw-bold pt-2 mt-2 mb-4 w-75">
                         <span>
                             <i class="fas fa-sign-out-alt"></i>
                         </span>
@@ -60,11 +62,16 @@
                     </a>
                 </div>
             </div>
-            <div class="col-12 col-lg-3">
+            <div class="col-12 col-lg-5">
                 {% block profile_content %}
                 {% endblock %}
             </div>
         </div>
     </div>
 
+{% endblock %}
+
+{% block postloadjs %}
+    {{ block.super }}
+    <script type="text/javascript" src="{% static 'profiles/js/countryfield.js' %}"></script>
 {% endblock %}

@@ -16,16 +16,16 @@ class UserProfileForm(forms.ModelForm):
         super().__init__(*args, **kwargs)  # default method to set up the form.
         # dictionary of placeholders that will show in the form fields.
         placeholders = {
-            'default_phone_number': 'Phone Number',
             'default_street_address1': 'Street Address 1',
             'default_street_address2': 'Street Address 2',
             'default_town_or_city': 'Town or City',
             'default_county': 'County',
             'default_postcode': 'Postal Code',
+            'default_phone_number': 'Phone Number',
         }
 
         # ensures cursor starts in full name field
-        self.fields['default_phone_number'].widget.attrs['autofocus'] = True
+        # self.fields['default_street_address1'].widget.attrs['autofocus'] = True
 
         # interate through fields to apply the below:
         for field in self.fields:
