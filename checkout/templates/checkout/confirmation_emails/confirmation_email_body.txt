@@ -7,12 +7,9 @@ The order summary is below:
 Order Number: {{ order.order_number }}
 Order Date: {{ order.date }}
 
-{{ order.product.product_name }} x{{order.quantity}}
-
 Order Total: ${{ order.order_total }}
 Delivery: ${{ order.delivery_cost }}
 Grand Total: ${{ order.grand_total }}
-
 
 Your order will be shipped to:
 {{ order.street_address1 }}
