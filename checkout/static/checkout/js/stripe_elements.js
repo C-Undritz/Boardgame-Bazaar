@@ -107,7 +107,7 @@ form.addEventListener('submit', function (ev) {
                         $('#adjust-cart-btn').attr('disabled', false); // enables adjust cart button
                     } else {
                         if (result.paymentIntent.status === 'succeeded') {
-                            form.submit();
+                            // form.submit();
                         }
                     }
                 });
