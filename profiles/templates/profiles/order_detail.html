@@ -1,0 +1,135 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}">
+{% endblock %}
+
+{% block page_header %}
+    <div class="container header-container">
+        <div class="row">
+            <div class="col"></div>
+        </div>
+    </div>
+{% endblock%}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col text-center">
+                <hr>
+                <h4 class="my-3"><strong>Order number:</strong> {{ order.order_number }}</h4>
+                <hr>
+            </div>
+        </div>
+        <div class="my-0">
+            <div class="row">
+                <div class="col offset-lg-2">
+                    <a href="{% url 'profile_orders' %}" class="btn btn-outline-dark btn-lg pt-2">
+                        <span>
+                            <i class="fas fa-chevron-left"></i>
+                        </span>
+                        <span class="fw-bold text-uppercase">Back</span>
+                    </a>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-lg-4 offset-lg-2 fs-5">
+                    <!-- Display of order details -->
+                    <p class="mb-0 mt-2">Order details:</p>
+                    <div class="border border-warning rounded bg-white">
+                        <div class="mb-3 ms-3">
+                            <div class="row">
+                                <div class="col-12">
+                                    <p class="mb-0 text-dark fw-bold">Order Date: </p>
+                                </div>
+                                <div class="col-12">
+                                    <p class="mb-0">{{ order.date }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row ms-1">
+                            <div class="col-6">
+                                <p class="mb-0 text-dark fw-bold">Order Total:</p>
+                                {% if order.discount %}
+                                    <p class="mb-0 text-dark fw-bold">Discount:</p>
+                                {% endif %}
+                                <p class="mb-0 text-dark fw-bold">Delivery:</p>
+                                <p class="mb-0 text-dark fw-bold fs-4">Grand Total:</p>
+                            </div>
+                            <div class="col-6">
+                                <p class="mb-0">£{{ order.order_total }}</p>
+                                {% if order.discount %}
+                                    <p class="mb-0">-£{{ order.discount }}</p>
+                                {% endif %}
+                                <p class="mb-0 ms-2">£{{ order.delivery_cost|floatformat:2 }}</p>
+                                <p class="mb-0 fw-bold">£{{ order.grand_total }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 fs-5">
+                    <!-- Delivery and contact details display  -->
+                    <p class="mb-0 mt-2">Delivered to:</p>
+                    <div class="border border-warning rounded bg-white">
+                        <div class="mx-3">
+                            <p class="mb-0 fw-bold">{{ order.full_name }}</p>
+                            <p class="mb-0">{{ order.street_address1 }}</p>
+                            {% if order.street_address2 %}
+                                <p class="mb-0">{{ order.street_address2 }}</p>
+                            {% endif %}
+                            <p class="mb-0">{{ order.town_or_city }}</p>
+                            {% if order.county %}
+                                <p class="mb-0">{{ order.county}}</p>
+                            {% endif %}
+                            {% if order.postcode %}
+                                <p class="mb-0">{{ order.postcode }}</p>
+                            {% endif %}
+                            <p class="mt-1 text-uppercase">{{ order.country }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Display of products bought -->
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2 col-12">
+                    <div class="cart-heading-hr mb-2"></div>
+                    {% for item in order.lineitems.all %}
+                        <div class="row">
+                            <div class="col-2 d-none d-sm-block">
+                                <!-- displays product image -->
+                                {% if item.product.image %}
+                                <a href="{% url 'product_detail' item.product.id %}">
+                                    <img class="img-fluid rounded" src="{{ item.product.image.url }}" alt="order item {{ item.product.product_name }} image"> 
+                                </a>
+                                {% else %}
+                                <a href="">
+                                    <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.product_name }}">
+                                </a>
+                                {% endif %}
+                            </div>
+                            <!-- Display of bought product name, bought quantity and the individual product price  -->
+                            <div class="col-md-5 col d-flex align-items-center">
+                                <p class="small mb-0 text-dark fw-bold">
+                                    {{ item.product.product_name }} x {{ item.quantity }} (@ £{{ item.product.price }} each)
+                                </p>
+                            </div>
+                            <div class="col-md-5 col d-flex align-items-center">
+                                <a href="" class="btn btn-warning btn-lg fw-bold pt-2 ms-3 float-end">
+                                    <span class="">Review</span>
+                                </a>
+                            </div>
+                        </div>
+                        <!-- Generates the horizontal lines inbeween and at the of the products -->
+                        {% if forloop.revcounter0 > 0 %}
+                            <div class="cart-item-hr my-2"></div>
+                        {% endif %}
+                        {% if forloop.revcounter0 == 0 %}
+                            <div class="cart-heading-hr mt-2"></div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
