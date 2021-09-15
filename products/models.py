@@ -49,6 +49,7 @@ class Product(models.Model):
     description = models.TextField()
     release_date = models.DateField()
     price = models.DecimalField(max_digits=6, decimal_places=2)
+    on_sale = models.BooleanField(default=False)
     sale_price = models.DecimalField(null=True, blank=True, max_digits=6, decimal_places=2)
     genre = models.ManyToManyField(Genre, through="GenreAssignment")
     stock = models.IntegerField(null=False, blank=False, default=0)
@@ -58,7 +59,6 @@ class Product(models.Model):
     image = models.ImageField(null=True, blank=True)
     # Category fields rendered as boolean to try out queries
     used = models.BooleanField(default=False)
-    on_sale = models.BooleanField(default=False)
     pre_order = models.BooleanField(default=False)
     new_release = models.BooleanField(default=False)
 
