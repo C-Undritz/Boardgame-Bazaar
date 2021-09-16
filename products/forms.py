@@ -2,8 +2,11 @@ from django import forms
 from .models import Product, Genre
 
 
-class ProductForm(forms.ModelForm):
+class DateInput(forms.DateInput):
+    input_type = 'date'
 
+
+class ProductForm(forms.ModelForm):
     #  https://medium.com/swlh/django-forms-for-many-to-many-fields-d977dec4b024
     genre = forms.ModelMultipleChoiceField(queryset=Genre.objects.all(), widget=forms.CheckboxSelectMultiple)
 
@@ -11,7 +14,7 @@ class ProductForm(forms.ModelForm):
         model = Product
         exclude = ('sold', 'stock', 'new_release', 'pre_order')
         # fields = '__all__'
-
+        widgets = {'release_date': DateInput}
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
