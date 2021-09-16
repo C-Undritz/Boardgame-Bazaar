@@ -328,6 +328,8 @@ The stock figure is updated when an item is purchased to reflect the amount purc
 > # **CREDITS AND THANKS**
 
 # Code
+- For rendering the game genres as checkboxes: [Django Forms for Many-to-Many Fields](https://medium.com/swlh/django-forms-for-many-to-many-fields-d977dec4b024)
+- To get a calender box to show up to pick a date for the 'release date' field in the add products page: [How to use Datepicker in Django?](https://webpedia.net/how-to-use-datepicker-in-django)
 
 # Images and Content
 
@@ -342,7 +344,7 @@ The stock figure is updated when an item is purchased to reflect the amount purc
   - [Board Game Industry Statistics](https://printninja.com/board-game-industry-statistics/)
 
 # Acknowledgments
-- Thanks to the slack community for support and help throughout the course and this project.  Honourable mentions for this project go to Ed B_alum, Gaff Alumnus, 
+- Thanks to the slack community for support and help throughout the course and this project.  Honourable mentions for this project go to Ed B_alum, Gaff Alumnus, Daisy_mentor
 - Thanks to @ckz8780 for the support on slack and helping with getting the stock check against purchase quantity working!
 - Thanks to tutor support for all the help throughout this project
 - Thanks to Code Institute for the encouragement and great course material. 
