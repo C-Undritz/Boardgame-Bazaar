@@ -214,3 +214,9 @@ hr {
         display: none;
     }
 }
+
+
+div > div.form-check {
+    display: inline-flex;
+    width: 30%;
+}
