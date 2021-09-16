@@ -12,11 +12,11 @@
             <div class="col-3">
                 {% if item.product.image %}
                 <a href="{% url 'product_detail' item.product.id %}">
-                    <img class="img-fluid rounded" src="{{ item.product.image.url }}" alt="Cart item {{ product.product_name }} image"> 
+                    <img class="img-fluid rounded" src="{{ item.product.image.url }}" alt="Cart item {{ item.product.product_name }} image"> 
                 </a>
                 {% else %}
-                <a href="">
-                    <img class="img-fluid rounded" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.product_name }}">
+                <a href="{% url 'product_detail' item.product.id %}">
+                    <img class="img-fluid rounded" src="{{ MEDIA_URL }}noimage.png" alt="{{ item.product.product_name }}">
                 </a>
                 {% endif %}
             </div>
