@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block page_header %}
+    <div class="container header-container">
+        <div class="row">
+            <div class="col"></div>
+        </div>
+    </div>
+{% endblock%}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col text-center">
+                <hr>
+                <h2 class="mb-4">Update Stock</h2>
+                <h5 class="text-muted">You are Updating the stock for <strong>{{ product.product_name }}</strong></h5>
+                <hr>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="offset-lg-2 col-lg-8 offset-sm-1 col-sm-10">
+                <form method="POST" action="{% url 'update_stock' product.id %}" class="form mb-2" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form | crispy }}
+                    <div class="text-right">
+                        <a class="btn btn-outline-dark btn-lg my-3 text-uppercase fw-bold" href="{% url 'product_detail' product.id %}">Back</a>
+                        <button class="btn btn-warning btn-lg text-uppercase fw-bold pt-2" type="submit">Save</button>         
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
