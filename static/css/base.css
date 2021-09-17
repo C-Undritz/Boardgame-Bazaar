@@ -162,6 +162,28 @@ hr {
     display: none;
 }
 
+/* ------------------ Product Detail view - admin link styles ------------------- */
+#admin-reveal {
+    border: 0;
+    background-color: #F8F9FA;
+    margin-bottom: 3px;
+}
+
+#admin-reveal:hover {
+    text-decoration: underline;
+}
+
+/* ------------------ add product form styles ------------------- */
+
+div > div.form-check {
+    display: inline-flex;
+    width: 32%;
+}
+
+div > div.form-check > .form-check-label {
+    margin-left: 5px;
+}
+
 /* ------------------ Media Queries ------------------- */
 
 /* From Boutique Ado */
@@ -195,6 +217,10 @@ hr {
     #product-detail-title {
         margin-top: -40px;
     }
+
+    div > div.form-check {
+        width: 45%;
+    }
 }
 
 @media (max-width: 576px) {
@@ -209,8 +235,22 @@ hr {
     }
 }
 
+@media (max-width: 425px) {
+    div > div.form-check {
+        width: 95%;
+    }
+}
+
 @media (max-width: 375px) {
     #strap-line {
         display: none;
     }
 }
+
+
+
+
+
+
+
+
