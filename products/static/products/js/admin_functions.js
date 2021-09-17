@@ -1,6 +1,7 @@
 let adminReveal = document.querySelector('#admin-reveal');
 let adminFunctions = document.querySelector('#admin-functions');
 
+// Controls the display of the Admin functions on the product detail view
 document.addEventListener("DOMContentLoaded", function () {
     adminFunctions.style.display = "none";
 });
