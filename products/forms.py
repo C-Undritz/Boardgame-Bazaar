@@ -25,3 +25,10 @@ class ProductForm(forms.ModelForm):
         self.fields['genre'].choices = friendly_names
         for field_name, field in self.fields.items():
             field.widget.attrs['class'] = 'border-grey rounded-1'
+
+
+class UpdateStockForm(forms.ModelForm):
+
+    class Meta:
+        model = Product
+        fields = ('stock',)

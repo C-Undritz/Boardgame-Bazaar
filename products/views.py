@@ -2,7 +2,8 @@ from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .models import Product, Genre, GenreAssignment
-from .forms import ProductForm
+from .forms import ProductForm, UpdateStockForm
+from profiles.models import UserProfile
 
 
 def product_detail(request, product_id):
@@ -29,6 +30,8 @@ def add_product(request):
     """
     Add a product to the store
     """
+    genres = Genre.objects.all()
+    profile = get_object_or_404(UserProfile, user=request.user)
     if not request.user.is_superuser:
         messages.error(request, 'Only authorised staff can perform this function')
         return redirect(reverse('home'))
@@ -46,7 +49,9 @@ def add_product(request):
 
     template = 'products/add_product.html'
     context = {
+        'genres': genres,
         'form': form,
+        'profile': profile,
     }
 
     return render(request, template, context)
@@ -72,10 +77,12 @@ def edit_product(request, product_id):
     else:
         form = ProductForm(instance=product)
 
+    genres = Genre.objects.all()
     template = 'products/edit_product.html'
     context = {
         'form': form,
         'product': product,
+        'genres': genres,
     }
 
     return render(request, template, context)
@@ -88,7 +95,7 @@ def delete_product(request, product_id):
     if not request.user.is_superuser:
         messages.error(request, 'Only authorised staff can perform this function')
         return redirect(reverse('home'))
-        
+
     product = get_object_or_404(Product, pk=product_id)
     product.delete()
     messages.success(request, 'Product deleted')
@@ -96,15 +103,32 @@ def delete_product(request, product_id):
 
 
 @login_required
-def product_admin_menu(request):
+def update_stock(request, product_id):
     """
-    Displays the current selectable admin options
+    Update product stock function
     """
-    genres = Genre.objects.all()
+    if not request.user.is_superuser:
+        messages.error(request, 'Only authorised staff can perform this function')
+        return redirect(reverse('home'))
 
+    product = get_object_or_404(Product, pk=product_id)
+    if request.method == 'POST':
+        form = UpdateStockForm(request.POST, instance=product)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Product stock successfully updated')
+            return redirect(reverse('update_stock', args=[product.id]))
+        else:
+            messages.error(request, 'Failed to update stock.  Please check that you have correctly filled out the correct information.')
+    else:
+        form = UpdateStockForm(instance=product)
+
+    genres = Genre.objects.all()
+    template = 'products/update_stock.html'
     context = {
+        'product': product,
         'genres': genres,
+        'form': form,
     }
 
-    return render(request, 'products/product_admin_menu.html', context)
-
+    return render(request, template, context)
