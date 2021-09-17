@@ -1,6 +1,10 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'products/css/product.css' %}">
+{% endblock %}
+
 {% block page_header %}
     <div class="container header-container">
         <div class="row">
@@ -25,7 +29,7 @@
                 <form method="POST" action="{% url 'add_product' %}" class="form mb-2" enctype="multipart/form-data">
                     {% csrf_token %}
                     {{ form | crispy }}
-                    <div class="text-right">
+                    <div>
                         <a class="btn btn-outline-dark btn-lg my-3 text-uppercase fw-bold" href="{% url 'home' %}">Cancel</a>
                         <button class="btn btn-warning btn-lg text-uppercase fw-bold pt-2" type="submit">Add Product</button>         
                     </div>
