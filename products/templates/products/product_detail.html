@@ -1,6 +1,10 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'products/css/product.css' %}">
+{% endblock %}
+
 {% block page_header %}
     <div class="container header-container">
         <div class="row">
@@ -115,6 +119,15 @@
                         <span class="text-uppercase fw-bold">Keep Shopping</span>
                     </a>
                 </div>
+                {% if request.user.is_superuser %}
+                    <div>
+                        <button id="admin-reveal" class="text-primary">Admin ></button>
+                    </div>
+                    <div id= "admin-functions" class="">
+                        <a class="btn btn-warning btn-lg text-uppercase fw-bold pt-2" href="{% url 'edit_product' product.id %}">Edit</a>
+                        <a class="btn btn-warning btn-lg text-uppercase fw-bold pt-2" href="{% url 'home' %}">Delete</a>    
+                    </div>
+                {% endif %}
             </div>
         </div>
     </div>  
@@ -123,4 +136,5 @@
 {% block postloadjs %}
 {{ block.super }}
 {% include 'products/includes/quantity_input_script.html' %}
+<script src="{% static 'products/js/admin_functions.js' %}"></script>
 {% endblock %}
