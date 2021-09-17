@@ -93,3 +93,18 @@ def delete_product(request, product_id):
     product.delete()
     messages.success(request, 'Product deleted')
     return redirect(reverse('home'))
+
+
+@login_required
+def product_admin_menu(request):
+    """
+    Displays the current selectable admin options
+    """
+    genres = Genre.objects.all()
+
+    context = {
+        'genres': genres,
+    }
+
+    return render(request, 'products/product_admin_menu.html', context)
+
