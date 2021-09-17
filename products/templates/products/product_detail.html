@@ -125,6 +125,7 @@
                     </div>
                     <div id= "admin-functions" class="">
                         <a class="btn btn-warning btn-lg text-uppercase fw-bold pt-2" href="{% url 'edit_product' product.id %}">Edit</a>
+                        <a class="btn btn-warning btn-lg text-uppercase fw-bold pt-2 ms-1" href="{% url 'update_stock' product.id %}">Update Stock</a>
                         <a class="btn btn-warning btn-lg text-uppercase fw-bold pt-2 ms-1" data-bs-toggle="modal" data-bs-target="#exampleModal">Delete</a>    
                     </div>
                 {% endif %}
