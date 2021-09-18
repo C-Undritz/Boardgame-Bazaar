@@ -55,12 +55,13 @@ class Order(models.Model):
         quantity_total = self.lineitems.aggregate(Sum('quantity'))['quantity__sum']
         self.delivery_cost = 4
 
-        if quantity_total >= settings.MULTIBUY_DISCOUNT_TWO:
-            self.discount = Decimal(self.order_total * Decimal(settings.MULTIBUY_DISCOUNT_TWO / 100))
-        elif quantity_total >= settings.MULTIBUY_DISCOUNT_ONE:
-            self.discount = Decimal(self.order_total * Decimal(settings.MULTIBUY_DISCOUNT_ONE / 100))
-        else:
-            self.discount = 0
+        if quantity_total:
+            if quantity_total >= settings.MULTIBUY_DISCOUNT_TWO:
+                self.discount = Decimal(self.order_total * Decimal(settings.MULTIBUY_DISCOUNT_TWO / 100))
+            elif quantity_total >= settings.MULTIBUY_DISCOUNT_ONE:
+                self.discount = Decimal(self.order_total * Decimal(settings.MULTIBUY_DISCOUNT_ONE / 100))
+            else:
+                self.discount = 0
 
         self.grand_total = (self.order_total - self.discount) + self.delivery_cost
         self.save()

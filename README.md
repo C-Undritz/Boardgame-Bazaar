@@ -250,6 +250,11 @@ All social icons change colour and size upon mouse hover
 
 Testing completed is detailed in the [TESTING.md](https://github.com/C-Undritz/Community-Treats/blob/master/TESTING.md) document
 
+ADD TO TESTING DOCUMENT WHEN CREATED:
+
+Issue: When deleting orders within the admin the error "'>=' not supported between instances of 'NoneType' and 'int'" was returned.
+Solution: It was found that this was an issue with the def update_total(self) function within the Order Model.  Upon delete the variable 'quantity_total' was 'None'.  It was understood to be due to the fact that the save function on the OrderLineItem model executes first which initiates the update_total function on the Order model and therefore there would be no line items to iterate through as they would have been deleted and the value therefore 'None'.  To solve this and allow a delete to occur, an if statement was added (line 58) before the discount is determined (lines 59 to 64) to determine if quanity_total has a value and the discount determined only if this is true.
+
 ------
 
 > # **NOTED DESIGN CHANGES**
