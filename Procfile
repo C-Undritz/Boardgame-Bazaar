@@ -1,1 +1,1 @@
-web: gunicorn boardgame-bazaar.wsgi:application
+web: gunicorn boardgame_bazaar.wsgi:application
