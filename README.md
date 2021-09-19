@@ -255,6 +255,11 @@ ADD TO TESTING DOCUMENT WHEN CREATED:
 Issue: When deleting orders within the admin the error "'>=' not supported between instances of 'NoneType' and 'int'" was returned.
 Solution: It was found that this was an issue with the def update_total(self) function within the Order Model.  Upon delete the variable 'quantity_total' was 'None'.  It was understood to be due to the fact that the save function on the OrderLineItem model executes first which initiates the update_total function on the Order model and therefore there would be no line items to iterate through as they would have been deleted and the value therefore 'None'.  To solve this and allow a delete to occur, an if statement was added (line 58) before the discount is determined (lines 59 to 64) to determine if quanity_total has a value and the discount determined only if this is true.
 
+Issue: When completing the initial migrations of the database to the postgres database setup on Heroku, the error below was returned and the database would not migrate.
+"psycopg2.errors.UndefinedTable: relation "products_product" does not exist"
+"LINE 1: ...pre_order", "products_product"."new_release" FROM "products_..."
+Solution: The functions determine_new_releases() and determine_preorders() with the home app 'views.py' file run when the app is started and require the database is in place.  As the database was not in place at that point, the error resulted.  Quoting out 'main()' on line 72 of the home app 'views.py' file disabled these functions running at startup and the migration was then completed without issue.  This has been added to the deployment instructions.
+
 ------
 
 > # **NOTED DESIGN CHANGES**
