@@ -1,0 +1,1 @@
+web: gunicorn boardgame-bazaar.wsgi:application
