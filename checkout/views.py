@@ -40,7 +40,7 @@ def is_in_stock(request):
     else:
         result = False  # this means that sale cannot complete
 
-    print(f'the result is: {result}')
+    # print(f'the result is: {result}')
     return JsonResponse({'result': result})
 
 
@@ -50,7 +50,7 @@ def no_sale(request):
     the point of checkout, this function is called to redirect customer
     to the cart and display an appropriate message.
     """
-    print('no_sale function called')
+    # print('no_sale function called')
     messages.error(request, (
         "You have selected too many items for one or more of your purchases. \
             Please recheck the displayed stock levels of your selected games. \
@@ -68,7 +68,7 @@ def cache_checkout_data(request):
     form within the metadata key and attaches it to the PaymentIntent, along
     takes a copy of the session cart and the customer username.
     """
-    print('cache_checkout_data function called')
+    # print('cache_checkout_data function called')
     try:
         pid = request.POST.get('client_secret').split('_secret')[0]
         stripe.api_key = settings.STRIPE_SECRET_KEY
@@ -95,7 +95,7 @@ def checkout(request):
 
     if request.method == 'POST':
         cart = request.session.get('cart', {})
-        print(cart)
+        # print(cart)
 
         form_data = {
             'full_name': request.POST['full_name'],

@@ -49,16 +49,16 @@ def update_cart(request, item_id):
     product = get_object_or_404(Product, pk=item_id)
 
     quantity = int(request.POST.get('quantity'))
-    print(f'the item quantity is: {quantity}')
+    # print(f'the item quantity is: {quantity}')
     cart = request.session.get('cart', {})
 
     if quantity > 0:
         cart[item_id] = quantity
-        print(f'update cart - the cart is: {cart}')
+        # print(f'update cart - the cart is: {cart}')
         messages.success(request, f'{product.product_name} quantity updated to {cart[item_id]}')
     else:
         cart.pop(item_id)
-        print(f'the cart is: {cart}')
+        # print(f'the cart is: {cart}')
         messages.success(request, f'{product.product_name} removed from cart')
 
     request.session['cart'] = cart
@@ -81,5 +81,5 @@ def remove_from_cart(request, item_id):
 
     except Exception as e:
         messages.error(request, f'Error removing item: {e}')
-        print(e)
+        # print(e)
         return HttpResponse(status=500)

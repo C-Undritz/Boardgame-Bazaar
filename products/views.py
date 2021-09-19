@@ -14,7 +14,7 @@ def product_detail(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
     display_genres = GenreAssignment.objects.filter(product=product)
     stock = product.stock
-    print(f'product stock is: {stock}')
+    # print(f'product stock is: {stock}')
 
     context = {
         'product': product,

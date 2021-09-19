@@ -16,25 +16,27 @@ def determine_new_releases():
     """
     products = Product.objects.all()
 
+    print("ADDED BY JO: PRODUCTS IN DETERMINE NEW RELEASES: ", products)
+
     new_release_time_period = 90
     today = datetime.date.today()
-    print(f'Todays date is: {today}')
+    # print(f'Todays date is: {today}')
     delta = datetime.timedelta(days=new_release_time_period)
     past_date = today - delta
-    print(f'the past date is: {past_date}')
+    # print(f'the past date is: {past_date}')
 
-    print('now running updates')
+    # print('now running updates')
     for product in products:
         if (product.release_date > past_date) and (product.release_date < today):
             this_product = product
             this_product.new_release = True
             this_product.save()
-            print('true')
+            # print('true')
         else:
             this_product = product
             this_product.new_release = False
             this_product.save()
-            print('false')
+            # print('false')
 
 
 def determine_preorders():
@@ -67,7 +69,7 @@ def main():
     determine_preorders()
 
 
-main()
+# main() 
 
 
 def index(request):
