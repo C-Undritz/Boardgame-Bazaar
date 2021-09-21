@@ -236,6 +236,8 @@ All social icons change colour and size upon mouse hover
 - [GitHub](https://github.com/) - for storage and sharing of code remotely.
 - [Heroku](https://www.heroku.com/) - Hosting provider for app.
 - [Amazon Web Services (AWS)](https://aws.amazon.com/) - for hosting of all image files
+- [Stripe](https://stripe.com/gb) - for processing of payments
+- [Gmail](https://www.google.com/) - service used for django to send emails
 - [allauth](https://django-allauth.readthedocs.io/en/latest/index.html) - for site user login and logout of account
 - [Balsamiq](https://balsamiq.com/) - to create wireframes.
 - [Lucidchart](https://www.lucidchart.com/) - for DB design illustration.
@@ -307,12 +309,6 @@ The stock figure is updated when an item is purchased to reflect the amount purc
 3. At the point of purchase when the customer clicks/taps on the 'complete order' button on the checkout screen, a realtime check is made against the current stock level of each product in the basket and the intended purchase amount. If any of the items purchased quantity is more than the stock figure for that item, the purchase fails and the customer is directed back back to the cart screen.  A message is also displayed explaining this and asks for the customer to recheck the displayed stock levels for their purchase(s).  This is to catch instances where a customer has been able to add items to their cart, but may be slow to checkout and remaining stock has been sold in the meantime.
 
 
-
-
-
-
-
-
 ------
 
 > # **FURTHER DEVELOPMENT**
@@ -323,7 +319,249 @@ The stock figure is updated when an item is purchased to reflect the amount purc
 
 > # **DEVELOPMENT AND DEPLOYMENT**
 
-# Deploy to Heroku
+A repository was setup in GitHub using the Code Institute Gitpod [full template]( https://github.com/Code-Institute-Org/gitpod-full-template).  Development was completed using Gitpod and code was regularly pushed back to the GitHub repository.  The master branch of this repository is the most current version and has been used for the deployed version of the site.
+
+You will need to install the following into your chosen development environment to run this project:
+
+*	[Python 3 - core code](https://www.python.org/)
+*	[PIP - package installation](https://pip.pypa.io/en/stable/)
+*	[Git](https://git-scm.com/)
+
+The current live website is hosted as a Heroku app, however the images and static files are hosted on an AWS simple storage service (s3).  These instructions cover the process to deploy to these. 
+
+# Running the project locally
+To work on the project code locally a clone can be taken by following the steps below or downloading the files as a zip file. To see the options, open the desired repository and select the drop down menu button ‘Code’ (found under the repo name and above the list of files).
+
+## Clone:
+To do this you will need Git for Windows installed (for other OS versions see [here]( https://git-scm.com/downloads)).
+
+*   Open Git.
+*   Change the current working directory is required. On windows, by default, the files will be downloaded to the users file directory on the C: drive.
+*   In the ‘Code’ dropdown menu in GitHub, select either HTTPS or SSH and copy the link.
+*   In the GitBash window type ‘git clone’ and then paste the copied link:
+```
+  git clone https://github.com/C-Undritz/Boardgame-Bazaar.git
+```
+*   Hit Enter and the files will then be cloned to be worked on locally.
+
+Please see [here](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository-from-github/cloning-a-repository) for the GitHub Docs page on this process.
+
+Within your development environment, if needed, upgrade pip locally with the command:
+```
+  pip install --upgrade pip
+```
+The cloned repository should include the ‘requirements.txt’ to enable the installation of the packages required for this project using the following command in the terminal:
+```
+  pip3 install -r requirements.txt
+```
+## Environment Variables
+The following environment variables (in CAPS) must be set within your development environment for the site to function correctly.  These are listed and described below and instructions to obtain these are featured in the following sections.
+
+* DEVELOPMENT
+  * Required so that within the development environment, debug = True.
+  * *Value: set as **True*** 
+* SECRET_KEY
+  * Required by Django: A random sequence of characters used to maintain security.  
+  * *Value: Django secret key.  A good resource is [miniwebtool – django secret key  generator](https://miniwebtool.com/django-secret-key-generator/) and should be different to the same variable in the Heroku app.*
+* STRIPE_PUBLIC_KEY 
+  * *Value: from stripe account (see below section ?)*
+* STRIPE_SECRET_KEY
+  * *Value: from stripe account (see below section ?)*
+* STRIPE_WH_SECRET
+  * *Value: from stripe webhook endpoint (see below section ?).*  Note that this is different to the one set for Heroku (see below section ?).  
+
+The application can now be run locally by typing in a terminal window:
+```
+  python3 manage.py runserver
+```
+
+# Heroku Deployment
+***!IMPORTANT*: comment out line 72 (main()) within the home app 'views' python file.  Failure to do this will stop the migrations to the Heroku database.  Once deployment is fully complete un-comment this line.**
+
+## Heroku Variables
+The following environment variables (in CAPS) must be set within the ‘Config Vars’ section in Heroku for the deployed site to function correctly.  These are listed and described below and instructions to obtain these are featured in the following sections.
+
+* SECRET_KEY
+  * Required by Django: A random sequence of characters used to maintain security.  
+  * *Value: Can use django secret key generator (https://miniwebtool.com/django-secret-key-generator/) and should be different to the same variable in the development environment.*
+* STRIPE_PUBLIC_KEY 
+  * *Value: from stripe account (see below section ?)*
+* STRIPE_SECRET_KEY
+  * *Value: from stripe account (see below section ?)*
+* STRIPE_WH_SECRET
+  * *Value: from stripe webhook endpoint. Note that this is different to the one set for the development environment (see below section ?).*  
+* DATABASE_URL
+  * *Value: automatically setup during Heroku deployment (can be obtained by viewing your Postgres database within the Heroku dashboard, under Settings Database Credentials).*
+* USE_AWS
+  * Required so that the deployed app uses AWS for images and static files.
+  * *Value: set as **True***
+* AWS_ACCESS_KEY_ID
+  * Required for connection to the AWS s3 bucket
+  * *Value: obtained within the downloaded .csv file generated during user creation in AWS*
+* AWS_SECRET_ACCESS_KEY
+  * Required for connection to the AWS s3 bucket
+  * *Value: obtained within the downloaded .csv file generated during user* creation in AWS
+* EMAIL_HOST_PASS
+  * Required by Django to send emails using chosen email account
+  * *Value: 16 character password provided by, in this instance; Gmail.*
+* EMAIL_HOST_USER
+  * Required by Django to send emails using chosen email account
+  * *Value: the email address of chosen email account (e.g. bob.smith@gmail.com)*
+
+## Deployment
+In order to run properly, Heroku requires:
+*	requirements.txt
+*	Procfile
+
+Both of these files should be within the cloned repository, so ensure these are pushed to your GitHub repository. 
+
+To deploy the app to Heroku from the GitHub repository you will need to follow the below steps:
+*	Go to [Heroku]( https://www.heroku.com/).
+*	Log in and click on 'New' > 'create new app'.
+*	Enter an App name (do not use spaces and use lower case letters).
+*	Choose a region, then click ‘create app’.
+* Within the new app select the ‘resources’ tab and under addons type in ‘postgres’ to provision a new Heroku Postgres database (this will also add the required DATABASE_URL variable and value in the Heroku Config variables)
+
+### Setup to auto-deploy when pushed to Github:
+* Within the Heroku web dashboard, Click on the Deploy tab:
+* Select deployment method as ‘GitHub’, and then search for your repository below that.
+* Once your repository name is returned, click 'connect'.
+* Then click ‘enable automatic deploys’
+
+Within the development environment, in a terminal, type and run the below commands to set up the database:
+```
+  python3 manage.py makemigrations
+
+  python3 manage.py migrate
+```
+
+The project repository comes with a ‘db.json’ file containing all data added during development which can be used to deploy by running this command within the terminal:  
+```
+  python3 manage.py loaddata db.json
+```
+
+Once that is successfully complete, setup a super user to log in to the deployed app by typing the below into the terminal and following the prompts:
+```
+  python 3 manage.py createsuperuser
+```
+The deployed app can then be run from Heroku by selecting it and clicking 'open app'.
+
+# Amazon Web Services (AWS) Setup
+## Create s3 bucket
+* Go to aws.amazon.com and set up an account if you do not have one.
+* Once logged in, under ‘my account’ select ‘AWS Management Console’ and search for the service ‘s3’
+* Once in the s3 interface create a new bucket for this project:
+* Name the bucket and select a region closest to you.
+* Uncheck block all public access and acknowledge that the bucket will be public:
+* Select ‘create bucket’ to finish and the bucket will be created.
+* Under the bucket properties tab, select to ‘edit’ Static website hosting and select ‘enable’.
+* Ensure that ‘host a static website’ is selected and enter a default value for index as this will not be used for this project deployment. 
+* Click save.
+* Next click permissions tab and select to edit the CORS 
+* Enter and save the below cors configuration which will set up the required access between the Heroku app and this s3 bucket.
+```
+[
+  {
+      "AllowedHeaders": [
+          "Authorization"
+      ],
+      "AllowedMethods": [
+          "GET"
+      ],
+      "AllowedOrigins": [
+          "*"
+      ],
+      "ExposeHeaders": []
+  }
+]
+
+```
+* Next select to edit the bucket policy and select ‘policy generator’ to generate a policy.  Before you do that, copy the ‘Bucket ARN’ as shown below (you will also need this for setting up a group within Identity and Access Management below).
+* Within the policy generator select policy type of ‘S3 Bucket Policy’
+Within Add Statements, select ‘allow’ for effect and type a star within ‘Principal’
+* For Actions select only ‘GetObject’
+* Then below that paste in the ‘bucket ARN into the Amazon Resource Name input box.
+* Click ‘Add Statement’, then ‘Generate Policy’
+* Copy the policy into the bucket policy editor and then so as to allow access to all resources in this bucket, add a slash star onto the end of the resource key:
+* Click Save.
+* Next select to edit the Access control list and set the list objects permission for everyone under the Public Access section as below:
+ 
+## Create access policy, group and user
+### Creat Group and Policy
+* Within the AWS services menu open Iam (Identity and Access Management) and in the left hand menu click ‘User groups’ to create a new group.
+* Name a new group and click ‘create group’.
+* Click ‘policies’ so as to create a policy used to access the new bucket.
+* Click ‘create policy’ and then select the ‘JSON’ tab and select ‘import managed policy’.
+* Within the search input, search for s3 and then select to import the Amazon s3 full access policy.
+* Modify the policy by entering the ARN from the bucket policy in s3 as the value for resource as below:
+* Click ‘Next: Tags’ and then click ‘Next: Review’
+* Provide a name and description for the policy and click ‘Create policy’.
+
+### Attach policy to group.
+* Within the AWS services menu open Iam and in the left hand menu click ‘User groups’ to view the newly created group.
+* Select the new group and click on the permissions tab
+* Click the ‘Add permissions’ button and select ‘Attach Policies’ from the drop down.
+* Select the policy that was just created, by checking the tick box and click on ‘Add permissions’
+
+### Create User and add to group.
+* Within the AWS services menu open Iam and in the left hand menu click ‘Users’ and then select ‘Add users’
+* Provide a name for the user, check the tick box to give the user programmatic access and select next.
+* Check the tick box next to the group just created to add the user to the group.  Click through the next few pages to create user.
+* On the success page, click 'Download .csv file' which contains the user access key and secret access key needed to authenticate them from the django app.
+
+## Connect Django to AWS s3 bucket.
+Within the Django app settings python file enter the name and region name for the AWS s3 bucket that you have set up as indicated below:
+
+Within Heroku add the AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY to the config variables and also add a USE_AWS key and set it to true.  The access key and secret key are contained with the downloaded csv file.
+
+Once that is done, git add, commit and push the changes which will trigger a deployment to Heroku.  Check the Heroku build log to check that the static files were collected and there should be a 'static' folder within the s3 bucket. 
+
+## Add media files to s3 bucket
+The below instructions detail how to do this within the s3 management interface.
+
+* Within the s3 bucket overview click create folder and call it media.
+* Inside that folder click on ‘upload’and then ‘add files’
+* Select all of the product images (found within the repo download performed earlier) and click open
+* Click next and then under permissions, check the box for ‘grant public-read access’:
+* Then click upload.
+
+# Stripe Setup
+* Create a Stripe account or log in to existing.
+* On the Stripe dashboard, under ‘Developers’ copy the ‘test API key’ and ‘ Secret key’.  Use these as the values for the environment and Heroku variables STRIPE_PUBLIC_KEY and STRIPE_SECRET_KEY as detailed above. 
+
+## Create new webhook end point.
+**NOTE:** Two separate webhooks will need to be setup. One for the development environment and one for the Heroku app
+* Run the application to get the address of the site.  Copy this and go to the Stripe dashboard.
+* Click ‘Developers’, select ‘webhooks’ and then click ‘Add endpoint’.
+Paste in the site URL and add to the end ‘/checkout/wh/’
+* Click ‘Select Events’ and select the events to listen to as:
+```
+  ‘payment_intent_suceeded’ 
+
+  ‘payment_intent_failed’
+```
+* In the newly created webhook endpoint details the ‘signing secret’ is now available.  Copy this and add it to the value for the environment and Heroku variable STRIPE_WH_SECRET as detailed above.
+* Within the Stripe dashboard for that webhook, click ‘send test webhook’ and verify that it is working.
+
+The STRIPE_CURRENCY variable is defined within the django app 'settings.py' file and is set to ‘gbp’.  If a different currency is needed then this will need to be changed.  See this link for [support currencies](https://stripe.com/docs/currencies#presentment-currencies)
+
+# Email Setup
+The below instructions cover the setup using a Gmail account.
+
+* Log in to your email account or set one up.
+* Click account settings, and select the 'Accounts and Import' option from the top selection
+* Under ‘Change account settings’ click ‘Other Google Account settings’
+* Click on the ‘security’ option on the left and then under ‘Signing in to Google’ click on ‘2-Step Verification’
+* Click ‘get started’, enter password and then work through the verification.
+* Once verification is done and 2-Step verification is turned on, a new option now shows under the previous ‘Signing in to Google’ menu screen.
+* In this, on the App passwords screen, select from the dropdowns; ‘mail’ for app and ‘other’ for device.  Add an appropriate name and click ‘generate’.
+You will then be given a 16 character password which you will need to copy.
+
+## In Heroku.
+Within the Heroku Config variables add the 16 character password as the value to the variable ‘EMAIL_HOST_PASS’.  Add another variable called ‘EMAIL_HOST_USER’ and set the value as the gmail account email used.
+
+
+
 
 
 
@@ -331,7 +569,7 @@ The stock figure is updated when an item is purchased to reflect the amount purc
 
 > # **DOCUMENTATION REFERENCED**
 
-
+[Django online documentation](https://docs.djangoproject.com/en/3.2/)
 
 ------
 
