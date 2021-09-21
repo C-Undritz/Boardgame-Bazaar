@@ -69,7 +69,7 @@ def main():
     determine_preorders()
 
 
-# main() 
+main() 
 
 
 def index(request):
