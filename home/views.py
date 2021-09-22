@@ -16,8 +16,6 @@ def determine_new_releases():
     """
     products = Product.objects.all()
 
-    print("ADDED BY JO: PRODUCTS IN DETERMINE NEW RELEASES: ", products)
-
     new_release_time_period = 90
     today = datetime.date.today()
     # print(f'Todays date is: {today}')
@@ -69,7 +67,7 @@ def main():
     determine_preorders()
 
 
-main() 
+# main() 
 
 
 def index(request):
