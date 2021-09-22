@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Product, Genre, Category, Condition, GenreAssignment
+from .models import Product, Genre, Category, Condition, GenreAssignment, Review
 
 # Register your models here.
 
@@ -18,6 +18,17 @@ class ProductAdmin(admin.ModelAdmin):
 
     ordering = ('sku',)
 
+
+class ReviewAdmin(admin.ModelAdmin):
+    list_display = (
+        'id',
+        'product',
+        'review',
+        'rating',
+        'user',
+    )
+
+    ordering = ('created',)
 
 class GenreAdmin(admin.ModelAdmin):
     list_display = (
@@ -54,3 +65,4 @@ admin.site.register(Genre, GenreAdmin)
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Condition, ConditionAdmin)
 admin.site.register(GenreAssignment, GenreAssignmentAdmin)
+admin.site.register(Review, ReviewAdmin)

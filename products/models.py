@@ -1,6 +1,8 @@
 from django.db import models
 from django.shortcuts import get_object_or_404
 
+from django.contrib.auth.models import User
+
 
 CATEGORY_DEFAULT = 'none'
 CONDITION_DEFAULT = 'undetermined'
@@ -73,8 +75,20 @@ class Product(models.Model):
 
 
 class GenreAssignment(models.Model):
-    genre = models.ForeignKey('Genre', null=True, blank=True, on_delete=models.SET_NULL)
+    # genre = models.ForeignKey('Genre', null=True, blank=True, on_delete=models.SET_NULL)
+    genre = models.ForeignKey('Genre', null=True, blank=True, on_delete=models.CASCADE)
     product = models.ForeignKey('Product', on_delete=models.CASCADE)
 
     class Meta:
         unique_together = [['genre', 'product']]
+
+
+class Review(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='reviews')
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='reviews')
+    review = models.TextField(max_length=500, blank=False)
+    rating = models.IntegerField(null=False, blank=False, default=0)
+    created = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return str(self.id)

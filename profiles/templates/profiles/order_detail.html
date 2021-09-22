@@ -1,9 +1,4 @@
 {% extends "base.html" %}
-{% load static %}
-
-{% block extra_css %}
-    <link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}">
-{% endblock %}
 
 {% block page_header %}
     <div class="container header-container">
@@ -115,7 +110,7 @@
                                 </p>
                             </div>
                             <div class="col-md-5 col d-flex align-items-center">
-                                <a href="" class="btn btn-warning btn-lg fw-bold pt-2 ms-3 float-end">
+                                <a href="{% url 'review_rate' item.product.id %}" class="btn btn-warning btn-lg fw-bold pt-2 ms-3 float-end">
                                     <span class="">Review</span>
                                 </a>
                             </div>

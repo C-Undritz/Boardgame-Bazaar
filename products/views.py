@@ -132,3 +132,21 @@ def update_stock(request, product_id):
     }
 
     return render(request, template, context)
+
+
+@login_required
+def review_rate(request, product_id):
+    """
+    Update product stock function
+    """
+    print(product_id)
+    genres = Genre.objects.all()
+    product = get_object_or_404(Product, pk=product_id)
+
+    template = 'products/review_rate.html'
+    context = {
+        'product': product,
+        'genres': genres,
+    }
+
+    return render(request, template, context)

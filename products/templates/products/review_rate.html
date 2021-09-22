@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'products/css/product.css' %}">
+{% endblock %}
+
+{% block page_header %}
+    <div class="container header-container">
+        <div class="row">
+            <div class="col"></div>
+        </div>
+    </div>
+{% endblock%}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col text-center">
+                <hr>
+                <h4 class="my-3">Rate and Review</h4>
+                <hr>
+            </div>
+        </div>
+        <div class="my-0">
+            <div class="row">
+                <div class="col offset-lg-2">
+                    <a onclick="goBack()" class="btn btn-outline-dark btn-lg pt-2">
+                        <span>
+                            <i class="fas fa-chevron-left"></i>
+                        </span>
+                        <span class="fw-bold text-uppercase">Back</span>
+                    </a>
+                </div>
+            </div>
+            <!-- Display of products bought -->
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2 col-12">
+                    <h4 class="mt-2">Review and Rate your purchase of <strong>{{ product.product_name }}</strong>:</h4>
+                    <div class="d-inline-flex">
+                        <div>
+                            <h3 class="pt-1">Rate:</h3>
+                        </div>
+                        <div id="rating-area" class="ms-2">
+                            <form class="display-flex" method="" action="">
+                                <div id="star-panel">
+                                    <input type="radio" class="radio_item" value="1" name="rating" id="radio1">
+                                    <label for="radio1" id="star1"></label>
+                                    <input type="radio" class="radio_item" value="2" name="rating" id="radio2">
+                                    <label class="label_item" for="radio2"><i id="star2"></i></label>
+                                    <input type="radio" class="radio_item" value="3" name="rating" id="radio3">
+                                    <label class="label_item" for="radio3"><i id="star3"></i></label>
+                                    <input type="radio" class="radio_item" value="4" name="rating" id="radio4">
+                                    <label class="label_item" for="radio4"><i id="star4"></i></label>
+                                    <input type="radio" class="radio_item" value="5" name="rating" id="radio5">
+                                    <label class="label_item" for="radio5"><i id="star5"></i></label>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <h3>Review:</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+<script src="{% static 'products/js/user_rating_script.js' %}"></script>
+{% endblock %}

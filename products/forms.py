@@ -1,5 +1,5 @@
 from django import forms
-from .models import Product, Genre
+from .models import Product, Genre, Review
 
 
 class DateInput(forms.DateInput):
@@ -32,3 +32,10 @@ class UpdateStockForm(forms.ModelForm):
     class Meta:
         model = Product
         fields = ('stock',)
+
+
+class ReviewRateForm(forms.ModelForm):
+
+    class Meta:
+        model = Review
+        fields = ('review',)

@@ -1,0 +1,14 @@
+/* ---------- Rating & review input ---------- */
+#star-panel {
+    padding: 5px;
+}
+
+.radio_item {
+    position:fixed; 
+    opacity:0;
+}
+
+.rating-star {
+    font-size: 1.6rem;
+    cursor: pointer;
+}
