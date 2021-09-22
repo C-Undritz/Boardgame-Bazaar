@@ -445,7 +445,7 @@ Once that is successfully complete, setup a super user to log in to the deployed
 ```
   python 3 manage.py createsuperuser
 ```
-The deployed app can then be run from Heroku by selecting it and clicking 'open app'.
+Once all the configuration variables have been added, the deployed app can then be run from Heroku by selecting it and clicking 'open app'.  The config variables are added within the Heroku app by selecting the Settings tab, and under the heading 'Config Vars' clicking the button 'Reveal Config Vars' to show the key / value input boxes for the variables.
 
 # Amazon Web Services (AWS) Setup
 ## Create s3 bucket
