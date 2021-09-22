@@ -262,6 +262,17 @@ Issue: When completing the initial migrations of the database to the postgres da
 "LINE 1: ...pre_order", "products_product"."new_release" FROM "products_..."
 Solution: The functions determine_new_releases() and determine_preorders() with the home app 'views.py' file run when the app is started and require the database is in place.  As the database was not in place at that point, the error resulted.  Quoting out 'main()' on line 72 of the home app 'views.py' file disabled these functions running at startup and the migration was then completed without issue.  This has been added to the deployment instructions.
 
+Issue: The code for the rating stars was the same custom code from my other project 'Community Treats'.  However here when the stars were rendered, the radio buttons were also showing:  
+![Ratings stars display issue](assets/readme/rating_stars_issue.png)  
+Solution: a similar question was asked on [stackoverflow](https://stackoverflow.com/questions/29346385/hide-radio-button-while-keeping-its-functionality/29346555) and one of the answers featured on the page detailed the below css fix which, when applied, solved the issue:
+```
+.radio_item {
+    position:fixed; 
+    opacity:0;
+}
+```  
+![Ratings stars display issue](assets/readme/rating_stars_fix.png)  
+
 ------
 
 > # **NOTED DESIGN CHANGES**
