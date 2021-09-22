@@ -10,20 +10,20 @@
 
 # Table of Contents
 
-- [OVERVIEW](https://github.com/C-Undritz/Community-Treats#overview)
-- [STRATEGY](https://github.com/C-Undritz/Community-Treats#strategy)
-- [SCOPE](https://github.com/C-Undritz/Community-Treats#scope)
-- [STRUCTURE](https://github.com/C-Undritz/Community-Treats#structure)
-- [SKELETON](https://github.com/C-Undritz/Community-Treats#skeleton)
-- [SURFACE](https://github.com/C-Undritz/Community-Treats#surface)
-- [TECHNOLOGIES USED](https://github.com/C-Undritz/Community-Treats#technologies-used)
-- [TESTING](https://github.com/C-Undritz/Community-Treats#testing)
-- [NOTED DESIGN CHANGES](https://github.com/C-Undritz/Community-Treats#noted-design-changes)
-- [FEATURES](https://github.com/C-Undritz/Community-Treats#features)
-- [FURTHER DEVELOPMENT](https://github.com/C-Undritz/Community-Treats#further-development)
-- [DEVELOPMENT AND DEPLOYMENT](https://github.com/C-Undritz/Community-Treats#development-and-deployment)
-- [DOCUMENTATION REFERENCED](https://github.com/C-Undritz/Community-Treats#documentation-referenced)
-- [CREDITS AND THANKS](https://github.com/C-Undritz/Community-Treats#credits-and-thanks)
+- [OVERVIEW](https://github.com/C-Undritz/Boardgame-Bazaar#overview)
+- [STRATEGY](https://github.com/C-Undritz/Boardgame-Bazaar#strategy)
+- [SCOPE](https://github.com/C-Undritz/Boardgame-Bazaar#scope)
+- [STRUCTURE](https://github.com/C-Undritz/Boardgame-Bazaar#structure)
+- [SKELETON](https://github.com/C-Undritz/Boardgame-Bazaar#skeleton)
+- [SURFACE](https://github.com/C-Undritz/Boardgame-Bazaar#surface)
+- [TECHNOLOGIES USED](https://github.com/C-Undritz/Boardgame-Bazaar#technologies-used)
+- [TESTING](https://github.com/C-Undritz/Boardgame-Bazaar#testing)
+- [NOTED DESIGN CHANGES](https://github.com/C-Undritz/Boardgame-Bazaar#noted-design-changes)
+- [FEATURES](https://github.com/C-Undritz/Boardgame-Bazaar#features)
+- [FURTHER DEVELOPMENT](https://github.com/C-Undritz/Boardgame-Bazaar#further-development)
+- [DEVELOPMENT AND DEPLOYMENT](https://github.com/C-Undritz/Boardgame-Bazaar#development-and-deployment)
+- [DOCUMENTATION REFERENCED](https://github.com/C-Undritz/Boardgame-Bazaar#documentation-referenced)
+- [CREDITS AND THANKS](https://github.com/C-Undritz/Boardgame-Bazaar#credits-and-thanks)
 
 ------
 
@@ -319,7 +319,7 @@ The stock figure is updated when an item is purchased to reflect the amount purc
 
 > # **DEVELOPMENT AND DEPLOYMENT**
 
-A repository was setup in GitHub using the Code Institute Gitpod [full template]( https://github.com/Code-Institute-Org/gitpod-full-template).  Development was completed using Gitpod and code was regularly pushed back to the GitHub repository.  The master branch of this repository is the most current version and has been used for the deployed version of the site.
+A repository was setup in GitHub using the Code Institute Gitpod [full template](https://github.com/Code-Institute-Org/gitpod-full-template).  Development was completed using Gitpod and code was regularly pushed back to the GitHub repository.  The master branch of this repository is the most current version and has been used for the deployed version of the site.
 
 You will need to install the following into your chosen development environment to run this project:
 
@@ -327,7 +327,7 @@ You will need to install the following into your chosen development environment 
 *	[PIP - package installation](https://pip.pypa.io/en/stable/)
 *	[Git](https://git-scm.com/)
 
-The current live website is hosted as a Heroku app, however the images and static files are hosted on an AWS simple storage service (s3).  These instructions cover the process to deploy to these. 
+The current live website is hosted as a [Heroku](https://www.heroku.com) app, however the images and static files are hosted on an [AWS](https://aws.amazon.com) simple storage service (s3).  [Stripe](https://stripe.com) is utilised for the management of financial transactions and [Gmail](https://google.com) is used for emails.  The instructions in this section cover the process to set up and use these services. 
 
 # Running the project locally
 To work on the project code locally a clone can be taken by following the steps below or downloading the files as a zip file. To see the options, open the desired repository and select the drop down menu button ‘Code’ (found under the repo name and above the list of files).
@@ -350,7 +350,7 @@ Within your development environment, if needed, upgrade pip locally with the com
 ```
   pip install --upgrade pip
 ```
-The cloned repository should include the ‘requirements.txt’ to enable the installation of the packages required for this project using the following command in the terminal:
+The cloned repository includes the ‘requirements.txt’ to enable the installation of the packages required for this project using the following command in the terminal:
 ```
   pip3 install -r requirements.txt
 ```
@@ -364,11 +364,11 @@ The following environment variables (in CAPS) must be set within your developmen
   * Required by Django: A random sequence of characters used to maintain security.  
   * *Value: Django secret key.  A good resource is [miniwebtool – django secret key  generator](https://miniwebtool.com/django-secret-key-generator/) and should be different to the same variable in the Heroku app.*
 * STRIPE_PUBLIC_KEY 
-  * *Value: from stripe account (see below section ?)*
+  * *Value: from stripe account (see below section [Stripe Setup](#Stripe-Setup))*
 * STRIPE_SECRET_KEY
-  * *Value: from stripe account (see below section ?)*
+  * *Value: from stripe account (see below section [Stripe Setup](#Stripe-Setup))*
 * STRIPE_WH_SECRET
-  * *Value: from stripe webhook endpoint (see below section ?).*  Note that this is different to the one set for Heroku (see below section ?).  
+  * *Value: from stripe webhook endpoint (see below section [Create webhook](#Create-new-webhook-end-point)).*  Note that this is different to the one set for Heroku (see below section ?).  
 
 The application can now be run locally by typing in a terminal window:
 ```
@@ -385,11 +385,11 @@ The following environment variables (in CAPS) must be set within the ‘Config V
   * Required by Django: A random sequence of characters used to maintain security.  
   * *Value: Can use django secret key generator (https://miniwebtool.com/django-secret-key-generator/) and should be different to the same variable in the development environment.*
 * STRIPE_PUBLIC_KEY 
-  * *Value: from stripe account (see below section ?)*
+  * *Value: from stripe account (see below section [Stripe Setup](#Stripe-Setup))*
 * STRIPE_SECRET_KEY
-  * *Value: from stripe account (see below section ?)*
+  * *Value: from stripe account (see below section [Stripe Setup](#Stripe-Setup))*
 * STRIPE_WH_SECRET
-  * *Value: from stripe webhook endpoint. Note that this is different to the one set for the development environment (see below section ?).*  
+  * *Value: from stripe webhook endpoint. Note that this is different to the one set for the development environment (see below section [Create webhook](#Create-new-webhook-end-point)).*  
 * DATABASE_URL
   * *Value: automatically setup during Heroku deployment (can be obtained by viewing your Postgres database within the Heroku dashboard, under Settings Database Credentials).*
 * USE_AWS
@@ -397,13 +397,13 @@ The following environment variables (in CAPS) must be set within the ‘Config V
   * *Value: set as **True***
 * AWS_ACCESS_KEY_ID
   * Required for connection to the AWS s3 bucket
-  * *Value: obtained within the downloaded .csv file generated during user creation in AWS*
+  * *Value: obtained within the downloaded .csv file generated during user creation in AWS (see below section [Create s3 bucket](#Create-s3-bucket)).*
 * AWS_SECRET_ACCESS_KEY
   * Required for connection to the AWS s3 bucket
-  * *Value: obtained within the downloaded .csv file generated during user* creation in AWS
+  * *Value: obtained within the downloaded .csv file generated during user* creation in AWS (see below section [Create s3 bucket](#Create-s3-bucket)).*
 * EMAIL_HOST_PASS
   * Required by Django to send emails using chosen email account
-  * *Value: 16 character password provided by, in this instance; Gmail.*
+  * *Value: 16 character password provided by, in this instance; Gmail (see below section [Email Setup](#Email-Setup)).*
 * EMAIL_HOST_USER
   * Required by Django to send emails using chosen email account
   * *Value: the email address of chosen email account (e.g. bob.smith@gmail.com)*
@@ -422,8 +422,9 @@ To deploy the app to Heroku from the GitHub repository you will need to follow t
 *	Choose a region, then click ‘create app’.
 * Within the new app select the ‘resources’ tab and under addons type in ‘postgres’ to provision a new Heroku Postgres database (this will also add the required DATABASE_URL variable and value in the Heroku Config variables)
 
-### Setup to auto-deploy when pushed to Github:
-* Within the Heroku web dashboard, Click on the Deploy tab:
+### Setup to auto-deploy when pushed to GitHub:
+* Within the Heroku web dashboard, Click on the Deploy tab:  
+![Heroku option deploy](assets/readme/heroku_options_deploy.png)
 * Select deployment method as ‘GitHub’, and then search for your repository below that.
 * Once your repository name is returned, click 'connect'.
 * Then click ‘enable automatic deploys’
@@ -450,12 +451,15 @@ The deployed app can then be run from Heroku by selecting it and clicking 'open 
 ## Create s3 bucket
 * Go to aws.amazon.com and set up an account if you do not have one.
 * Once logged in, under ‘my account’ select ‘AWS Management Console’ and search for the service ‘s3’
-* Once in the s3 interface create a new bucket for this project:
+* Once in the s3 interface create a new bucket for this project:  
+![AWS create bucket button](assets/readme/aws_create_bucket_btn.png)
 * Name the bucket and select a region closest to you.
-* Uncheck block all public access and acknowledge that the bucket will be public:
+* Uncheck block all public access and acknowledge that the bucket will be public:  
+![AWS bucket - block public access settings](assets/readme/aws_create_bucket_public_access.png)
 * Select ‘create bucket’ to finish and the bucket will be created.
 * Under the bucket properties tab, select to ‘edit’ Static website hosting and select ‘enable’.
-* Ensure that ‘host a static website’ is selected and enter a default value for index as this will not be used for this project deployment. 
+* Ensure that ‘host a static website’ is selected and enter a default value for index as this will not be used for this project deployment:  
+![AWS bucket - static web hosting](assets/readme/aws_create_bucket_sw_hosting.png)
 * Click save.
 * Next click permissions tab and select to edit the CORS 
 * Enter and save the below cors configuration which will set up the required access between the Heroku app and this s3 bucket.
@@ -476,24 +480,30 @@ The deployed app can then be run from Heroku by selecting it and clicking 'open 
 ]
 
 ```
-* Next select to edit the bucket policy and select ‘policy generator’ to generate a policy.  Before you do that, copy the ‘Bucket ARN’ as shown below (you will also need this for setting up a group within Identity and Access Management below).
+* Next select to edit the bucket policy and select ‘policy generator’ to generate a policy.  Before you do that, copy the ‘Bucket ARN’ as shown below (you will also need this for setting up a group within Identity and Access Management below).  
+![AWS bucket - edit policy](assets/readme/aws_create_bucket_edit_policy.png)
 * Within the policy generator select policy type of ‘S3 Bucket Policy’
-Within Add Statements, select ‘allow’ for effect and type a star within ‘Principal’
-* For Actions select only ‘GetObject’
+* Within Add Statements, select ‘allow’ for effect and type a star within ‘Principal’:  
+![AWS bucket - add statements](assets/readme/aws_create_bucket_add_statements.png)
+* For Actions select only ‘GetObject’:  
+![AWS bucket - action select](assets/readme/aws_create_bucket_getobject.png)
 * Then below that paste in the ‘bucket ARN into the Amazon Resource Name input box.
 * Click ‘Add Statement’, then ‘Generate Policy’
 * Copy the policy into the bucket policy editor and then so as to allow access to all resources in this bucket, add a slash star onto the end of the resource key:
 * Click Save.
-* Next select to edit the Access control list and set the list objects permission for everyone under the Public Access section as below:
+* Next select to edit the Access control list and set the list objects permission for everyone under the Public Access section as below:  
+![AWS bucket - acl](assets/readme/aws_create_bucket_acl.png)
  
 ## Create access policy, group and user
-### Creat Group and Policy
+### Create Group and Policy
 * Within the AWS services menu open Iam (Identity and Access Management) and in the left hand menu click ‘User groups’ to create a new group.
 * Name a new group and click ‘create group’.
 * Click ‘policies’ so as to create a policy used to access the new bucket.
 * Click ‘create policy’ and then select the ‘JSON’ tab and select ‘import managed policy’.
-* Within the search input, search for s3 and then select to import the Amazon s3 full access policy.
-* Modify the policy by entering the ARN from the bucket policy in s3 as the value for resource as below:
+* Within the search input, search for s3 and then select to import the Amazon s3 full access policy:  
+![AWS bucket - group policy](assets/readme/aws_group_policy.png)
+* Modify the policy by entering the ARN from the bucket policy in s3 as the value for resource as below:  
+![AWS bucket - policy modification](assets/readme/aws_modify_policy.png)
 * Click ‘Next: Tags’ and then click ‘Next: Review’
 * Provide a name and description for the policy and click ‘Create policy’.
 
@@ -507,12 +517,13 @@ Within Add Statements, select ‘allow’ for effect and type a star within ‘P
 * Within the AWS services menu open Iam and in the left hand menu click ‘Users’ and then select ‘Add users’
 * Provide a name for the user, check the tick box to give the user programmatic access and select next.
 * Check the tick box next to the group just created to add the user to the group.  Click through the next few pages to create user.
-* On the success page, click 'Download .csv file' which contains the user access key and secret access key needed to authenticate them from the django app.
+* **!IMPORTANT:** On the success page, click 'Download .csv file' which contains the user access key and secret access key needed to authenticate them from the django app.
 
 ## Connect Django to AWS s3 bucket.
-Within the Django app settings python file enter the name and region name for the AWS s3 bucket that you have set up as indicated below:
+Within the Django app settings python file enter the name and region name for the AWS s3 bucket that you have set up as indicated below:  
+![AWS bucket - aws django settings](assets/readme/django_settings_aws.png)
 
-Within Heroku add the AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY to the config variables and also add a USE_AWS key and set it to true.  The access key and secret key are contained with the downloaded csv file.
+Within Heroku add the AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY to the config variables and also add a USE_AWS key and set it to true.  The access key and secret key are contained with the **downloaded csv file**.
 
 Once that is done, git add, commit and push the changes which will trigger a deployment to Heroku.  Check the Heroku build log to check that the static files were collected and there should be a 'static' folder within the s3 bucket. 
 
@@ -520,20 +531,23 @@ Once that is done, git add, commit and push the changes which will trigger a dep
 The below instructions detail how to do this within the s3 management interface.
 
 * Within the s3 bucket overview click create folder and call it media.
-* Inside that folder click on ‘upload’and then ‘add files’
+* Inside that folder click on ‘upload’ and then ‘add files’
 * Select all of the product images (found within the repo download performed earlier) and click open
-* Click next and then under permissions, check the box for ‘grant public-read access’:
+* Click next and then under permissions, check the box for ‘grant public-read access’:  
+![AWS bucket - add media](assets/readme/aws_bucket_add_media.png)
 * Then click upload.
+* There should now be a 'media' folder within the s3 bucket containing the images. 
 
 # Stripe Setup
-* Create a Stripe account or log in to existing.
+* Create a [Stripe](https://stripe.com) account or log in to existing.
 * On the Stripe dashboard, under ‘Developers’ copy the ‘test API key’ and ‘ Secret key’.  Use these as the values for the environment and Heroku variables STRIPE_PUBLIC_KEY and STRIPE_SECRET_KEY as detailed above. 
 
 ## Create new webhook end point.
-**NOTE:** Two separate webhooks will need to be setup. One for the development environment and one for the Heroku app
+**NOTE:** Two separate webhooks will need to be setup. One for the development environment and one for the Heroku app.
 * Run the application to get the address of the site.  Copy this and go to the Stripe dashboard.
 * Click ‘Developers’, select ‘webhooks’ and then click ‘Add endpoint’.
-Paste in the site URL and add to the end ‘/checkout/wh/’
+* Paste in the site URL and add to the end ‘/checkout/wh/’:  
+![Stripe webhook url entry](assets/readme/stripe_wh_url.png)
 * Click ‘Select Events’ and select the events to listen to as:
 ```
   ‘payment_intent_suceeded’ 
@@ -543,10 +557,10 @@ Paste in the site URL and add to the end ‘/checkout/wh/’
 * In the newly created webhook endpoint details the ‘signing secret’ is now available.  Copy this and add it to the value for the environment and Heroku variable STRIPE_WH_SECRET as detailed above.
 * Within the Stripe dashboard for that webhook, click ‘send test webhook’ and verify that it is working.
 
-The STRIPE_CURRENCY variable is defined within the django app 'settings.py' file and is set to ‘gbp’.  If a different currency is needed then this will need to be changed.  See this link for [support currencies](https://stripe.com/docs/currencies#presentment-currencies)
+The STRIPE_CURRENCY variable is defined within the django app 'settings' python file and is set to ‘gbp’.  If a different currency is needed then this will need to be changed.  See this link for [supported currencies](https://stripe.com/docs/currencies#presentment-currencies)
 
 # Email Setup
-The below instructions cover the setup using a Gmail account.
+The below instructions cover the setup using a [Gmail](https://google.com) account.
 
 * Log in to your email account or set one up.
 * Click account settings, and select the 'Accounts and Import' option from the top selection
