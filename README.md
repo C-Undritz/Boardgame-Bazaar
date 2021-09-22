@@ -400,13 +400,13 @@ The following environment variables (in CAPS) must be set within the ‘Config V
   * *Value: obtained within the downloaded .csv file generated during user creation in AWS (see below section [Create s3 bucket](#Create-s3-bucket)).*
 * AWS_SECRET_ACCESS_KEY
   * Required for connection to the AWS s3 bucket
-  * *Value: obtained within the downloaded .csv file generated during user* creation in AWS (see below section [Create s3 bucket](#Create-s3-bucket)).*
+  * *Value: obtained within the downloaded .csv file generated during user creation in AWS (see below section [Create s3 bucket](#Create-s3-bucket)).*
 * EMAIL_HOST_PASS
   * Required by Django to send emails using chosen email account
   * *Value: 16 character password provided by, in this instance; Gmail (see below section [Email Setup](#Email-Setup)).*
 * EMAIL_HOST_USER
   * Required by Django to send emails using chosen email account
-  * *Value: the email address of chosen email account (e.g. bob.smith@gmail.com)*
+  * *Value: the email address of chosen email account (e.g. `bob.smith@gmail.com`)*
 
 ## Deployment
 In order to run properly, Heroku requires:
@@ -449,7 +449,7 @@ The deployed app can then be run from Heroku by selecting it and clicking 'open 
 
 # Amazon Web Services (AWS) Setup
 ## Create s3 bucket
-* Go to aws.amazon.com and set up an account if you do not have one.
+* Go to [Amazon Web Services](https://aws.amazon.com/) and set up an account if you do not have one.
 * Once logged in, under ‘my account’ select ‘AWS Management Console’ and search for the service ‘s3’
 * Once in the s3 interface create a new bucket for this project:  
 ![AWS create bucket button](assets/readme/aws_create_bucket_btn.png)
