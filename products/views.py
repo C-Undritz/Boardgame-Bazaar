@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .models import Product, Genre, GenreAssignment
-from .forms import ProductForm, UpdateStockForm
+from .forms import ProductForm, UpdateStockForm, ReviewRateForm
 from profiles.models import UserProfile
 
 
@@ -135,18 +135,38 @@ def update_stock(request, product_id):
 
 
 @login_required
-def review_rate(request, product_id):
+def review_rate(request, order_ref, product_id):
     """
-    Update product stock function
+    Saves user reviews and ratings for a bought product. 
     """
-    print(product_id)
+    print(request)
+    print(order_ref)
     genres = Genre.objects.all()
     product = get_object_or_404(Product, pk=product_id)
+    if request.method == 'POST':
+        print('if function called')
+        form_data = {
+            'rating': request.POST['rating'],
+            'review': request.POST['review'],
+        }
+        review_form = ReviewRateForm(form_data)
+        if review_form.is_valid():
+            data = review_form.save(commit=False)
+            data.user = request.user
+            data.product = product
+            data.save()
+            return redirect(reverse('order_detail', args=[order_ref]))
+        else:
+            messages.error(request, 'Failed to add rating and review. Please check that you have correctly filled out all required information.')
+    else:
+        form = ReviewRateForm()
 
     template = 'products/review_rate.html'
     context = {
         'product': product,
         'genres': genres,
+        'form': form,
+        'order_ref': order_ref,
     }
 
     return render(request, template, context)

@@ -37,28 +37,35 @@
             <div class="row">
                 <div class="col-lg-8 offset-lg-2 col-12">
                     <h4 class="mt-2">Review and Rate your purchase of <strong>{{ product.product_name }}</strong>:</h4>
-                    <div class="d-inline-flex">
-                        <div>
+                    <form method="POST" action="{% url 'review_rate' order_ref product.id %}">
+                        {% csrf_token %}
+                        <div class="d-inline-flex">
                             <h3 class="pt-1">Rate:</h3>
-                        </div>
-                        <div id="rating-area" class="ms-2">
-                            <form class="display-flex" method="" action="">
+                            <div id="rating-area" class="ms-2">
                                 <div id="star-panel">
-                                    <input type="radio" class="radio_item" value="1" name="rating" id="radio1">
+                                    <input type="radio" class="radio_item" value="1" name="rating" id="radio1" required>
                                     <label for="radio1" id="star1"></label>
                                     <input type="radio" class="radio_item" value="2" name="rating" id="radio2">
-                                    <label class="label_item" for="radio2"><i id="star2"></i></label>
+                                    <label for="radio2" id="star2"></label>
                                     <input type="radio" class="radio_item" value="3" name="rating" id="radio3">
-                                    <label class="label_item" for="radio3"><i id="star3"></i></label>
+                                    <label for="radio3" id="star3"></label>
                                     <input type="radio" class="radio_item" value="4" name="rating" id="radio4">
-                                    <label class="label_item" for="radio4"><i id="star4"></i></label>
+                                    <label for="radio4" id="star4"></label>
                                     <input type="radio" class="radio_item" value="5" name="rating" id="radio5">
-                                    <label class="label_item" for="radio5"><i id="star5"></i></label>
+                                    <label for="radio5" id="star5"></label>
                                 </div>
-                            </form>
+                            </div>
                         </div>
-                    </div>
-                    <h3>Review:</h3>
+                        <div>
+                            <h3>Review:</h3>
+                            <textarea class="w-100" name="review" id="review" rows="5" required></textarea>
+                        </div>
+                        <div class="float-end">
+                            <a class="btn btn-outline-dark btn-lg my-3 text-uppercase fw-bold" onclick="goBack()">Cancel</a>
+                            <button class="btn btn-warning btn-lg text-uppercase fw-bold pt-2" type="submit">Submit</button>         
+                        </div>
+                        <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                    </form>
                 </div>
             </div>
         </div>
