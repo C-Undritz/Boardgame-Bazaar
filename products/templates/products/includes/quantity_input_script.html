@@ -4,13 +4,14 @@
 
 //handles enabling and disabling of the buttons based on the value of input that they are controlling
 function handleEnabledDisabled(itemId) {
+    let plusDisabled;
     let currentValue = parseInt(document.querySelector(`#id_qty_${itemId}`).value);
     let currentStock = parseInt(document.querySelector(`#stock_${itemId}`).value);
     let minusDisabled = currentValue < 2;
     if (currentStock < 10) {
-        var plusDisabled = currentValue > (currentStock - 1);
+        plusDisabled = currentValue > (currentStock - 1);
     } else {
-        var plusDisabled = currentValue > 9;
+        plusDisabled = currentValue > 9;
     }
     let minusBtn = document.querySelector(`#minus-qty_${itemId}`)
     let plusBtn = document.querySelector(`#plus-qty_${itemId}`)
