@@ -46,36 +46,82 @@
                 </div>
                 {% endif %}
                 <!-- Genre tags -->
-                <ul class="list-inline list-unstyled"></ul>
-                    <li class="list-inline-item">
-                        <p class="small my-0">
-                            <i class="fas fa-tags text-muted"></i>
-                        </p>
-                    </li>
-                {% for display_genre in display_genres %}
-                    <li class="list-inline-item">
-                        <p class="small my-0">
-                            <a class="text-muted" href="{% url 'home' %}?genre={{ display_genre.genre.name }}">
-                                {{ display_genre.genre.friendly_name }}
-                            </a>
-                        </p>
-                    </li>
-                {% endfor %}
-                </ul>
+                <div>
+                    <ul class="list-inline list-unstyled"></ul>
+                        <li class="list-inline-item">
+                            <p class="small my-0">
+                                <i class="fas fa-tags text-muted"></i>
+                            </p>
+                        </li>
+                    {% for display_genre in display_genres %}
+                        <li class="list-inline-item">
+                            <p class="small my-0">
+                                <a class="text-muted" href="{% url 'home' %}?genre={{ display_genre.genre.name }}">
+                                    {{ display_genre.genre.friendly_name }}
+                                </a>
+                            </p>
+                        </li>
+                    {% endfor %}
+                    </ul>
+                </div>
+                <div class="d-inline-flex">
+                    <div>
+                        {%  if product.current_rating == 0 %}
+                            <p class="text-muted fs-5">No ratings yet</p>
+                        {% elif product.current_rating == 1 %}
+                            <i class="fas fa-star fa-lg star-outline star-filled"></i>
+                            <i class="fas fa-star fa-lg star-outline star-empty"></i>
+                            <i class="fas fa-star fa-lg star-outline star-empty"></i>
+                            <i class="fas fa-star fa-lg star-outline star-empty"></i>
+                            <i class="fas fa-star fa-lg star-outline star-empty"></i>
+                        {% elif product.current_rating == 2 %}
+                            <i class="fas fa-star fa-lg star-outline star-filled"></i>
+                            <i class="fas fa-star fa-lg star-outline star-filled"></i>
+                            <i class="fas fa-star fa-lg star-outline star-empty"></i>
+                            <i class="fas fa-star fa-2x star-outline star-empty"></i>
+                            <i class="fas fa-star fa-2x star-outline star-empty"></i>
+                        {% elif product.current_rating == 3 %}
+                            <i class="fas fa-star star-outline star-filled"></i>
+                            <i class="fas fa-star star-outline star-filled"></i>
+                            <i class="fas fa-star star-outline star-filled"></i>
+                            <i class="fas fa-star star-outline star-empty"></i>
+                            <i class="fas fa-star star-outline star-empty"></i>
+                        {% elif product.current_rating == 4 %}
+                            <i class="fas fa-star fa-lg star-outline star-filled"></i>
+                            <i class="fas fa-star fa-lg star-outline star-filled"></i>
+                            <i class="fas fa-star fa-lg star-outline star-filled"></i>
+                            <i class="fas fa-star fa-lg star-outline star-filled"></i>
+                            <i class="fas fa-star fa-lg star-outline star-empty"></i>
+                        {% else %}
+                            <i class="fas fa-star star-outline star-filled"></i>
+                            <i class="fas fa-star star-outline star-filled"></i>
+                            <i class="fas fa-star star-outline star-filled"></i>
+                            <i class="fas fa-star star-outline star-filled"></i>
+                            <i class="fas fa-star star-outline star-filled"></i>
+                        {% endif %}
+                    </div>
+                    <div id="number-ratings">
+                        {% if product.ratings_number == 1 %}
+                            <p class="text-muted fs-5 ms-2">{{ product.ratings_number }} rating</p>
+                        {% elif product.ratings_number > 1 %}
+                            <p class="text-muted fs-5 ms-2">{{ product.ratings_number }} ratings</p>
+                        {% endif %}
+                    </div>
+                </div>
                 <!-- Determines message to display if no product stock -->
                 {% if product.stock <= 0%}
                     {% if product.pre_order %}
-                    <p class="mt-3 mb-1 fs-5 fw-bold text-success">Available for pre-order<i class="ms-2 fas fa-check"></i></p>
+                    <p class="mt-2 mb-1 fs-5 fw-bold text-success">Available for pre-order<i class="ms-2 fas fa-check"></i></p>
                     {% else %}
-                    <p class="mt-3 fs-5 fw-bold text-danger">Sorry, currently out of stock</i></p>
+                    <p class="mt-2 fs-5 fw-bold text-danger">Sorry, currently out of stock</i></p>
                     {% endif %}
                 {% endif %}
                 <!-- Determines the message to display if product in stock -->
                 {% if product.stock > 0 %}
                     {% if product.stock > 10 %}
-                    <p class="mt-3 mb-1 fs-5 text-success">10+ in stock</p> 
+                    <p class="mt-2 mb-1 fs-5 text-success">10+ in stock</p> 
                     {% else %}
-                    <p class="mt-3 mb-1 fs-5 fw-bold text-success">{{ product.stock }} in stock</p>
+                    <p class="mt-2 mb-1 fs-5 fw-bold text-success">{{ product.stock }} in stock</p>
                     {% endif %}
                     <input type="hidden" value="{{ stock }} " id="stock_{{ product.id }}">
                 {% endif %}

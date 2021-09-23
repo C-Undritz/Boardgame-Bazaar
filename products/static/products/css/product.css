@@ -12,3 +12,19 @@
     font-size: 1.6rem;
     cursor: pointer;
 }
+
+/* ---------- Rating & review display ----------*/
+.star-outline {
+    text-shadow: -1px 1px 2px #FFC107, 
+                 1px 1px 2px #FFC107,
+                 1px -1px 0 #FFC107,
+                 -1px -1px 0 #FFC107 !important;
+}
+
+.star-filled {
+    color: #FFC107;
+}
+
+.star-empty {
+    color: #F8F9FA;
+}
