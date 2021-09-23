@@ -63,6 +63,9 @@ class Product(models.Model):
     used = models.BooleanField(default=False)
     pre_order = models.BooleanField(default=False)
     new_release = models.BooleanField(default=False)
+    current_rating = models.IntegerField(null=False, blank=False, default=0)
+    ratings_total = models.IntegerField(null=False, blank=False, default=0)
+    ratings_number = models.IntegerField(null=False, blank=False, default=0)
 
     def __str__(self):
         return self.product_name
@@ -71,6 +74,13 @@ class Product(models.Model):
         product = get_object_or_404(Product, pk=instance.product_id)
         product.stock = product.stock - instance.quantity
         product.sold = product.sold + instance.quantity
+        product.save()
+    
+    def update_rating(self, instance):
+        product = get_object_or_404(Product, pk=instance.product_id)
+        product.ratings_total = product.ratings_total + instance.rating
+        product.ratings_number += 1
+        product.current_rating = product.ratings_total // product.ratings_number
         product.save()
 
 
