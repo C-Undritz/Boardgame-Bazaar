@@ -28,3 +28,9 @@
 .star-empty {
     color: #F8F9FA;
 }
+
+/* --- Disables the built in increment/decrement functions in quantity selector input ---*/
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button { 
+	-webkit-appearance: none;
+}
