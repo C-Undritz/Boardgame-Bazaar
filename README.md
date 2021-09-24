@@ -1,29 +1,30 @@
 # Boardgame Bazaar - Readme document
+<p>
+  <img style="width:100vw;"src="assets/readme/readme_header_image.png" alt="Header image with company logo displayed">
+</p>
 
-### Website can be viewed here: 
-
-### Project Github site:
-
+### Website can be viewed here: https://boardgame-bazaar.herokuapp.com/
+### Project Github site: https://github.com/C-Undritz/Boardgame-Bazaar
 ### **Disclaimer: This Website is for educational purposes only.**
 
 ------
 
 # Table of Contents
 
-- [OVERVIEW](https://github.com/C-Undritz/Boardgame-Bazaar#overview)
-- [STRATEGY](https://github.com/C-Undritz/Boardgame-Bazaar#strategy)
-- [SCOPE](https://github.com/C-Undritz/Boardgame-Bazaar#scope)
-- [STRUCTURE](https://github.com/C-Undritz/Boardgame-Bazaar#structure)
-- [SKELETON](https://github.com/C-Undritz/Boardgame-Bazaar#skeleton)
-- [SURFACE](https://github.com/C-Undritz/Boardgame-Bazaar#surface)
-- [TECHNOLOGIES USED](https://github.com/C-Undritz/Boardgame-Bazaar#technologies-used)
-- [TESTING](https://github.com/C-Undritz/Boardgame-Bazaar#testing)
-- [NOTED DESIGN CHANGES](https://github.com/C-Undritz/Boardgame-Bazaar#noted-design-changes)
-- [FEATURES](https://github.com/C-Undritz/Boardgame-Bazaar#features)
-- [FURTHER DEVELOPMENT](https://github.com/C-Undritz/Boardgame-Bazaar#further-development)
-- [DEVELOPMENT AND DEPLOYMENT](https://github.com/C-Undritz/Boardgame-Bazaar#development-and-deployment)
-- [DOCUMENTATION REFERENCED](https://github.com/C-Undritz/Boardgame-Bazaar#documentation-referenced)
-- [CREDITS AND THANKS](https://github.com/C-Undritz/Boardgame-Bazaar#credits-and-thanks)
+- [OVERVIEW](#overview)
+- [STRATEGY](#strategy)
+- [SCOPE](#scope)
+- [STRUCTURE](#structure)
+- [SKELETON](#skeleton)
+- [SURFACE](#surface)
+- [TECHNOLOGIES USED](#technologies-used)
+- [TESTING](#testing)
+- [NOTED DESIGN CHANGES](#noted-design-changes)
+- [FEATURES](#features)
+- [FURTHER DEVELOPMENT](#further-development)
+- [DEVELOPMENT AND DEPLOYMENT](#development-and-deployment)
+- [DOCUMENTATION REFERENCED](#documentation-referenced)
+- [CREDITS AND THANKS](#credits-and-thanks)
 
 ------
 
@@ -252,27 +253,6 @@ All social icons change colour and size upon mouse hover
 
 Testing completed is detailed in the [TESTING.md](https://github.com/C-Undritz/Community-Treats/blob/master/TESTING.md) document
 
-ADD TO TESTING DOCUMENT WHEN CREATED:
-
-Issue: When deleting orders within the admin the error "'>=' not supported between instances of 'NoneType' and 'int'" was returned.
-Solution: It was found that this was an issue with the def update_total(self) function within the Order Model.  Upon delete the variable 'quantity_total' was 'None'.  It was understood to be due to the fact that the save function on the OrderLineItem model executes first which initiates the update_total function on the Order model and therefore there would be no line items to iterate through as they would have been deleted and the value therefore 'None'.  To solve this and allow a delete to occur, an if statement was added (line 58) before the discount is determined (lines 59 to 64) to determine if quanity_total has a value and the discount determined only if this is true.
-
-Issue: When completing the initial migrations of the database to the postgres database setup on Heroku, the error below was returned and the database would not migrate.
-"psycopg2.errors.UndefinedTable: relation "products_product" does not exist"
-"LINE 1: ...pre_order", "products_product"."new_release" FROM "products_..."
-Solution: The functions determine_new_releases() and determine_preorders() with the home app 'views.py' file run when the app is started and require the database is in place.  As the database was not in place at that point, the error resulted.  Quoting out 'main()' on line 72 of the home app 'views.py' file disabled these functions running at startup and the migration was then completed without issue.  This has been added to the deployment instructions.
-
-Issue: The code for the rating stars was the same custom code from my other project 'Community Treats'.  However here when the stars were rendered, the radio buttons were also showing:  
-![Ratings stars display issue](assets/readme/rating_stars_issue.png)  
-Solution: a similar question was asked on [stackoverflow](https://stackoverflow.com/questions/29346385/hide-radio-button-while-keeping-its-functionality/29346555) and one of the answers featured on the page detailed the below css fix which, when applied, solved the issue:
-```
-.radio_item {
-    position:fixed; 
-    opacity:0;
-}
-```  
-![Ratings stars display issue](assets/readme/rating_stars_fix.png)  
-
 ------
 
 > # **NOTED DESIGN CHANGES**
@@ -280,8 +260,6 @@ Solution: a similar question was asked on [stackoverflow](https://stackoverflow.
 # Changes to original design
 
 # New features
-
-
 
 ------
 
@@ -585,11 +563,6 @@ You will then be given a 16 character password which you will need to copy.
 ## In Heroku.
 Within the Heroku Config variables add the 16 character password as the value to the variable ‘EMAIL_HOST_PASS’.  Add another variable called ‘EMAIL_HOST_USER’ and set the value as the gmail account email used.
 
-
-
-
-
-
 ------
 
 > # **DOCUMENTATION REFERENCED**
@@ -603,6 +576,8 @@ Within the Heroku Config variables add the 16 character password as the value to
 # Code
 - For rendering the game genres as checkboxes: [Django Forms for Many-to-Many Fields](https://medium.com/swlh/django-forms-for-many-to-many-fields-d977dec4b024)
 - To get a calender box to show up to pick a date for the 'release date' field in the add products page: [How to use Datepicker in Django?](https://webpedia.net/how-to-use-datepicker-in-django)
+- To remove the default increment and decrement mouse selectable controls for the quantity selector input fields the css in this [codegrepper](https://www.codegrepper.com/code-examples/whatever/how+to+disable+html+defualt+increment+decrement+in+number+type) page was used.
+- To remove the ability for the customer to type in the number within the quantity selector input fields the jQuery in this [stackoverflow](https://stackoverflow.com/questions/17164278/disable-writing-in-input-type-number-html5) page was used.
 
 # Images and Content
 
