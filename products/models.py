@@ -80,7 +80,7 @@ class Product(models.Model):
         product = get_object_or_404(Product, pk=instance.product_id)
         product.ratings_total = product.ratings_total + instance.rating
         product.ratings_number += 1
-        product.current_rating = product.ratings_total // product.ratings_number
+        product.current_rating = round(product.ratings_total / product.ratings_number)
         product.save()
 
 
