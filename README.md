@@ -8,8 +8,8 @@
 ### **Disclaimer: This Website is for educational purposes only.**
 
 ------
-
-# Table of Contents
+<span id="top"></span> 
+# Table of Contents 
 
 - [OVERVIEW](#overview)
 - [STRATEGY](#strategy)
@@ -42,7 +42,10 @@ Consequently recent survey data found that 43% of of board gamers may typically 
 
 Research has revealed that there is no current dedicated online board game store that will allow users to sell games in exchange for store credit.  Boardgame Bazaar uniquely offers this facility to registered site users and manages the end to end sale process through the users account and admin interface.  This allows users to build up credit to spend in store and will also provide Boardgame Bazaar with quality 2nd hand stock to sell longside new stock of the latest games and well known titles.
 
-The goal of this project is to produce a MVP of an e-commerce store dedicated to the sale of new and second hand table top board games.  
+The goal of this project is to produce a MVP of an e-commerce store dedicated to the sale of new and second hand table top board games.
+<div align="right"><a href="#top">Contents Table</a></div>
+
+
 
 # User Stories
 
@@ -80,6 +83,8 @@ The goal of this project is to produce a MVP of an e-commerce store dedicated to
 | 05-03         | Store Owner | Delete a product                                             | Remove items that are no longer available to buy             |
 | 05-04         | Store Owner | Manage customer sale of games to the store                   | Reject sales, make offers, dispatch pickup, and add the games to stock when they arrive |
 
+<div align="right"><a href="#top">Contents Table</a></div>
+
 ------
 
 > # **SCOPE**
@@ -95,6 +100,8 @@ The goal of this project is to produce a MVP of an e-commerce store dedicated to
 4. Clear and obvious links to social media platforms.
 5. Feedback animations to provide players with clear interaction cues.
 6. Nice to have: Interactive functions for user to provide feedback on a recipe and to view feedback provided by others.
+
+<div align="right"><a href="#top">Contents Table</a></div>
 
 
 ------
@@ -247,6 +254,8 @@ All social icons change colour and size upon mouse hover
 - [favicon](https://favicon.io/) - for generating 32x32 favicon.
 - [Am I responsive](http://ami.responsivedesign.is/) - to create the responsive illustrations featured in the TESTING.md.
 
+<div align="right"><a href="#top">Contents Table</a></div>
+
 ------
 
 > # **TESTING**
@@ -297,6 +306,7 @@ The stock figure is updated when an item is purchased to reflect the amount purc
 
 3. At the point of purchase when the customer clicks/taps on the 'complete order' button on the checkout screen, a realtime check is made against the current stock level of each product in the basket and the intended purchase amount. If any of the items purchased quantity is more than the stock figure for that item, the purchase fails and the customer is directed back back to the cart screen.  A message is also displayed explaining this and asks for the customer to recheck the displayed stock levels for their purchase(s).  This is to catch instances where a customer has been able to add items to their cart, but may be slow to checkout and remaining stock has been sold in the meantime.
 
+<div align="right"><a href="#top">Contents Table</a></div>
 
 ------
 
@@ -563,6 +573,8 @@ You will then be given a 16 character password which you will need to copy.
 ## In Heroku.
 Within the Heroku Config variables add the 16 character password as the value to the variable ‘EMAIL_HOST_PASS’.  Add another variable called ‘EMAIL_HOST_USER’ and set the value as the gmail account email used.
 
+<div align="right"><a href="#top">Contents Table</a></div>
+
 ------
 
 > # **DOCUMENTATION REFERENCED**
@@ -578,6 +590,7 @@ Within the Heroku Config variables add the 16 character password as the value to
 - To get a calender box to show up to pick a date for the 'release date' field in the add products page: [How to use Datepicker in Django?](https://webpedia.net/how-to-use-datepicker-in-django)
 - To remove the default increment and decrement mouse selectable controls for the quantity selector input fields the css in this [codegrepper](https://www.codegrepper.com/code-examples/whatever/how+to+disable+html+defualt+increment+decrement+in+number+type) page was used.
 - To remove the ability for the customer to type in the number within the quantity selector input fields the jQuery in this [stackoverflow](https://stackoverflow.com/questions/17164278/disable-writing-in-input-type-number-html5) page was used.
+- This Youtube tutorial video from [Onthir](https://www.youtube.com/watch?v=lSX8nzu9ozg) was used as a guide when implementing the review and rate features
 
 # Images and Content
 
@@ -596,3 +609,5 @@ Within the Heroku Config variables add the 16 character password as the value to
 - Thanks to @ckz8780 for the support on slack and helping with getting the stock check against purchase quantity working!
 - Thanks to tutor support for all the help throughout this project
 - Thanks to Code Institute for the encouragement and great course material. 
+
+<div align="right"><a href="#top">Contents Table</a></div>
