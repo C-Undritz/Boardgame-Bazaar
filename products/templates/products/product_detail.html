@@ -35,16 +35,35 @@
                 <h1 class="mb-0" id="product-detail-title">{{ product.product_name }}</h1>
                 <hr class="w100">
                 <!-- Determines if a sale price will be shown -->
-                {% if product.on_sale %}
-                <div class="d-inline-flex">
-                    <p class="mb-0 me-3 text-muted"><s>£{{ product.price }}</s></p> 
-                    <p class="mb-0"><strong>£{{ product.sale_price }}</strong></p> 
+                <div class="d-flex justify-content-between">
+                    <div>
+                        {% if product.on_sale %}
+                        <div class="d-inline-flex">
+                            <p class="mb-0 me-3 text-muted"><s>£{{ product.price }}</s></p> 
+                            <p class="mb-0"><strong>£{{ product.sale_price }}</strong></p> 
+                        </div>
+                        {% else %}
+                        <div>
+                            <p class="mb-0 text-left">£{{ product.price }}</p>
+                        </div>
+                        {% endif %}
+                    </div>
+                    <div>
+                        {% if request.user.is_authenticated %}
+                        <a href="" class="btn btn-outline-dark btn-lg" data-bs-toggle="tooltip" data-bs-placement="right" title="Add to wishlist">
+                            <span>
+                                <i class="far fa-heart"></i>
+                            </span>
+                        </a>
+                        {% else %}
+                        <a href="{% url 'account_login' %}" class="btn btn-outline-dark btn-lg" data-bs-toggle="tooltip" data-bs-placement="right" title="Sign in to use this function">
+                            <span>
+                                <i class="far fa-heart"></i>
+                            </span>
+                        </a>
+                        {% endif %}
+                    </div>
                 </div>
-                {% else %}
-                <div>
-                    <p class="mb-0 text-left">£{{ product.price }}</p>
-                </div>
-                {% endif %}
                 <!-- Genre tags -->
                 <div>
                     <ul class="list-inline list-unstyled"></ul>
