@@ -50,17 +50,25 @@
                     </div>
                     <div>
                         {% if request.user.is_authenticated %}
-                        <a href="" class="btn btn-outline-dark btn-lg" data-bs-toggle="tooltip" data-bs-placement="right" title="Add to wishlist">
-                            <span>
-                                <i class="far fa-heart"></i>
-                            </span>
-                        </a>
+                            {% if in_wishlist %}
+                                <a href="{% url 'wishlist_toggle' product.id %}" class="btn btn-warning btn-lg" data-bs-toggle="tooltip" data-bs-placement="right" title="Remove from wishlist">
+                                    <span>
+                                        <i class="fas fa-heart"></i>
+                                    </span>
+                                </a>
+                            {% else %}
+                                <a href="{% url 'wishlist_toggle' product.id %}" class="btn btn-outline-dark btn-lg" data-bs-toggle="tooltip" data-bs-placement="right" title="Add to wishlist">
+                                    <span>
+                                        <i class="far fa-heart"></i>
+                                    </span>
+                                </a>
+                            {% endif %}
                         {% else %}
-                        <a href="{% url 'account_login' %}" class="btn btn-outline-dark btn-lg" data-bs-toggle="tooltip" data-bs-placement="right" title="Sign in to use this function">
-                            <span>
-                                <i class="far fa-heart"></i>
-                            </span>
-                        </a>
+                            <a href="{% url 'account_login' %}" class="btn btn-outline-dark btn-lg" data-bs-toggle="tooltip" data-bs-placement="right" title="Sign in to use this function">
+                                <span>
+                                    <i class="far fa-heart"></i>
+                                </span>
+                            </a>
                         {% endif %}
                     </div>
                 </div>
