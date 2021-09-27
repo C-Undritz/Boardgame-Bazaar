@@ -14,13 +14,24 @@ def product_detail(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
     display_genres = GenreAssignment.objects.filter(product=product)
     stock = product.stock
-    # print(f'product stock is: {stock}')
+    
+    if request.user.is_authenticated:
+        profile = get_object_or_404(UserProfile, user=request.user)
+        if profile.wishlist.filter(id=product_id).exists():
+            in_wishlist = True
+        else:
+            in_wishlist = False
+    else:
+        in_wishlist = False
+
+    print(f'It is {in_wishlist} that the product is in the users wishlist')
 
     context = {
         'product': product,
         'genres': genres,
         'display_genres': display_genres,
         'stock': stock,
+        'in_wishlist': in_wishlist,
     }
 
     return render(request, 'products/product_detail.html', context)
