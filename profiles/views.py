@@ -1,8 +1,8 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
-from products.models import Genre
+from products.models import Product, Genre
 from checkout.models import Order
 from .models import UserProfile
 from .forms import UserProfileForm
@@ -73,3 +73,17 @@ def order_detail(request, order_number):
     }
 
     return render(request, template, context)
+
+@login_required
+def wishlist_toggle(request, product_id):
+    """
+    Allows the customer to add a product to a wishlist list and 
+    remove it if required
+    """
+    print(product_id)
+    profile = get_object_or_404(UserProfile, user=request.user)
+    if profile.wishlist.filter(id=product_id).exists():
+        profile.wishlist.remove(product_id)
+    else:
+        profile.wishlist.add(product_id)
+    return redirect(reverse('product_detail', args=[product_id]))
