@@ -1,0 +1,46 @@
+{% extends "profiles/profile_menu.html" %}
+
+{% block profile_content %}
+<p class="fs-4 mb-1">Current wishlist</p>
+<p class="text-muted fs-5"></p>
+<div class="row">
+    <div class="col-12">
+        <div class="cart-heading-hr mb-2"></div>
+        {% for product in wishlist %}
+            <div class="row">
+                <div class="col-2 d-none d-sm-block">
+                    <!-- displays product image -->
+                    {% if product.image %}
+                    <a href="{% url 'product_detail' product.id %}">
+                        <img class="img-fluid rounded" src="{{ product.image.url }}" alt="order item {{ product.product_name }} image"> 
+                    </a>
+                    {% else %}
+                    <a href="">
+                        <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.product_name }}">
+                    </a>
+                    {% endif %}
+                </div>
+                <!-- Display of bought product name, bought quantity and the individual product price  -->
+                <div class="col-md-5 col d-flex align-items-center">
+                    <p class="small mb-0 text-dark fw-bold">
+                        {{ product.product_name }}
+                    </p>
+                </div>
+                <!-- Remove button -->
+                <div class="col-md-5 col d-flex align-items-center justify-content-end">
+                    <a href="{% url 'wishlist_toggle' product.id %}" class="btn btn-warning btn-lg fw-bold pt-2 ms-3 float-end">
+                        <span><i class="fas fa-times"></i></span>
+                    </a>
+                </div>
+            </div>
+            <!-- Generates the horizontal lines inbeween and at the of the products -->
+            {% if forloop.revcounter0 > 0 %}
+                <div class="cart-item-hr my-2"></div>
+            {% endif %}
+            {% if forloop.revcounter0 == 0 %}
+                <div class="cart-heading-hr mt-2"></div>
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

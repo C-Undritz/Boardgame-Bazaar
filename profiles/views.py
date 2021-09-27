@@ -87,3 +87,24 @@ def wishlist_toggle(request, product_id):
     else:
         profile.wishlist.add(product_id)
     return redirect(reverse('product_detail', args=[product_id]))
+
+
+@login_required
+def wishlist(request):
+    """
+    Displays users current wishlist and allows the deletion
+    """
+    genres = Genre.objects.all()
+    profile = get_object_or_404(UserProfile, user=request.user)
+    wishlist = profile.wishlist.filter()
+
+    print(f'the wishlist is: {wishlist}')
+
+    template = 'profiles/profile_wishlist.html'
+    context = {
+        'genres': genres,
+        'profile': profile,
+        'wishlist': wishlist,
+    }
+
+    return render(request, template, context)
