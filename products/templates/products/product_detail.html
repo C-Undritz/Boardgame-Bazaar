@@ -51,13 +51,13 @@
                     <div>
                         {% if request.user.is_authenticated %}
                             {% if in_wishlist %}
-                                <a href="{% url 'wishlist_toggle' product.id %}" class="btn btn-warning btn-lg" data-bs-toggle="tooltip" data-bs-placement="right" title="Remove from wishlist">
+                                <a href="{% url 'wishlist_toggle' product.id 1 %}" class="btn btn-warning btn-lg" data-bs-toggle="tooltip" data-bs-placement="right" title="Remove from wishlist">
                                     <span>
                                         <i class="fas fa-heart"></i>
                                     </span>
                                 </a>
                             {% else %}
-                                <a href="{% url 'wishlist_toggle' product.id %}" class="btn btn-outline-dark btn-lg" data-bs-toggle="tooltip" data-bs-placement="right" title="Add to wishlist">
+                                <a href="{% url 'wishlist_toggle' product.id 1 %}" class="btn btn-outline-dark btn-lg" data-bs-toggle="tooltip" data-bs-placement="right" title="Add to wishlist">
                                     <span>
                                         <i class="far fa-heart"></i>
                                     </span>
