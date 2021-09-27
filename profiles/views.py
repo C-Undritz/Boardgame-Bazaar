@@ -75,18 +75,22 @@ def order_detail(request, order_number):
     return render(request, template, context)
 
 @login_required
-def wishlist_toggle(request, product_id):
+def wishlist_toggle(request, product_id, nav):
     """
     Allows the customer to add a product to a wishlist list and 
-    remove it if required
+    remove it if required. 
     """
-    print(product_id)
     profile = get_object_or_404(UserProfile, user=request.user)
+
     if profile.wishlist.filter(id=product_id).exists():
         profile.wishlist.remove(product_id)
     else:
         profile.wishlist.add(product_id)
-    return redirect(reverse('product_detail', args=[product_id]))
+    
+    if nav:
+        return redirect(reverse('product_detail', args=[product_id]))
+    else:
+        return redirect(reverse('wishlist'))
 
 
 @login_required
