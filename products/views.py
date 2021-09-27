@@ -24,8 +24,6 @@ def product_detail(request, product_id):
     else:
         in_wishlist = False
 
-    print(f'It is {in_wishlist} that the product is in the users wishlist')
-
     context = {
         'product': product,
         'genres': genres,
