@@ -29,6 +29,25 @@
     color: #F8F9FA;
 }
 
+#number-ratings a {
+    text-decoration: none;
+}
+
+#reveal-all-reviews:hover, #reveal-all-reviews:focus,
+#hide-all-reviews:hover, #hide-all-reviews:focus,
+#number-ratings a:hover, #number-ratings a:focus {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.review-box-rating {
+    border-radius: 5px 5px 0px 0px;
+}
+
+.review-box-review {
+    border-radius: 0px 0px 5px 5px;
+}
+
 /* --- Disables the built in increment/decrement functions in quantity selector input ---*/
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button { 
