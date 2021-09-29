@@ -45,7 +45,8 @@ hr {
     width: 75%;
 }
 
-.form-control {
+.form-control,
+.form-select {
     font-size: 1.25rem;
 }
 
