@@ -342,7 +342,8 @@
 
 {% block postloadjs %}
 {{ block.super }}
-{% include 'products/includes/quantity_input_script.html' %}
+
+<script src="{% static 'products/js/quantity_input_output.js' %}"></script>
 <script src="{% static 'products/js/admin_functions.js' %}"></script>
 <script src="{% static 'products/js/all_reviews_script.js' %}"></script>
 

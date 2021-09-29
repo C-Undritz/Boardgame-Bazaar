@@ -1,13 +1,12 @@
-<script type="text/javascript">
 // Disables the ability for the customer to type in a quantity into the quantity input box
 $("[type='number']").keypress(function (evt) {
     evt.preventDefault();
 });
 
-// below is pure JS version of the Boutique Ado Jquery for the handling of the quantity select functionality.
-// found how to disable here: http://www.java2s.com/example/javascript/dom-html-element/disable-a-button-with-setattributedisabled-and-removeattributedi.html
+/* Below is pure JS version of the Boutique Ado Jquery for the handling of the quantity select functionality.
+How to disable here: http://www.java2s.com/example/javascript/dom-html-element/disable-a-button-with-setattributedisabled-and-removeattributedi.html
 
-//handles enabling and disabling of the buttons based on the value of input that they are controlling
+Handles enabling and disabling of the buttons based on the value of input that they are controlling */
 function handleEnabledDisabled(itemId) {
     let plusDisabled;
     let currentValue = parseInt(document.querySelector(`#id_qty_${itemId}`).value);
@@ -40,20 +39,6 @@ if (allQtyInputs) {
     }
 }
 
-// Check enable/disable every time the input is changed by built in functions
-// document.querySelector('.qty-input').addEventListener("change", function() {
-//     let itemId = this.dataset.item_id;
-//     handleEnabledDisabled(itemId);
-// });
-
-let qtyInput = document.querySelector('.qty-input');
-if (qtyInput) {
-    qtyInput.addEventListener("change", function() {
-        let itemId = this.dataset.item_id;
-        handleEnabledDisabled(itemId);
-    });
-};
-
 // Increase quantity
 document.querySelectorAll('.plus-btn').forEach(item => {
     item.addEventListener('click', event => {
@@ -77,5 +62,3 @@ document.querySelectorAll('.minus-btn').forEach(item => {
         handleEnabledDisabled(itemId);
     });
 });
-
-</script>

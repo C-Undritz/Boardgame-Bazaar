@@ -147,9 +147,11 @@
 
 {% block postloadjs %}
 {{ block.super }}
-{% include 'products/includes/quantity_input_script.html' %}
-<!-- Below script from Boutique Ado project -->
 
+<script src="{% static 'products/js/quantity_input_output.js' %}"></script>
+
+<!-- Below script is from the Boutique Ado project to update a cart item line subtotal 
+if quantity is changed, and remove items from the cart if 'remove' is selected -->
 <script type="text/javascript">
     // Update quantity on click
     $('.update-link').click(function(e) {
