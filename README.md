@@ -591,6 +591,8 @@ Within the Heroku Config variables add the 16 character password as the value to
 - To remove the default increment and decrement mouse selectable controls for the quantity selector input fields the css in this [codegrepper](https://www.codegrepper.com/code-examples/whatever/how+to+disable+html+defualt+increment+decrement+in+number+type) page was used.
 - To remove the ability for the customer to type in the number within the quantity selector input fields the jQuery in this [stackoverflow](https://stackoverflow.com/questions/17164278/disable-writing-in-input-type-number-html5) page was used.
 - This Youtube tutorial video from [Onthir](https://www.youtube.com/watch?v=lSX8nzu9ozg) was used as a guide when implementing the review and rate features
+- This Youtube tutorial video from [Very Academy](https://www.youtube.com/watch?v=H4QPHLmsZMU) was used as a guide when implementing the add to wishlist feature
+- For keeping the footer positioned at the bottom of the page at all times, the section called 'There is a flexbox' was used from [this css-tricks.com](https://css-tricks.com/couple-takes-sticky-footer/) page.
 
 # Images and Content
 
