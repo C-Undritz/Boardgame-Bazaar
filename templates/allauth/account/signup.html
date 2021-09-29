@@ -5,12 +5,10 @@
 {% block head_title %}{% trans "Signup" %}{% endblock %}
 
 {% block inner_content %}
-
 <div class="row">
-  <div class="col">
-      <hr>
-      <h2 class="mb-3">{% trans "Sign Up" %}</h2>
-      <hr>
+  <div class="col mt-3">
+      <h2>{% trans "Sign Up" %}</h2>
+      <hr class="w-100 mb-1">
   </div>
 </div>
 
@@ -25,5 +23,4 @@
   <a href="{% url 'account_login' %}" class="btn btn-outline-dark btn-lg my-3 text-uppercase fw-bold">Back to Login</a>
   <button type="submit" class="btn btn-warning btn-lg text-uppercase fw-bold pt-2">{% trans "Sign Up" %}</button>
 </form>
-
 {% endblock %}

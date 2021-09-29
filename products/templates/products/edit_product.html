@@ -16,14 +16,14 @@
 {% block content %}
     <div class="container">
         <div class="row">
-            <div class="col text-center">
-                <hr>
-                <h2 class="mb-4">Product Management</h2>
-                <h5 class="text-muted">You are editing the details for {{ product.product_name }}</h5>
-                <hr>
+            <div class="col text-center mt-3">
+                <h2>Product Management</h2>
+                <div class="d-flex justify-content-center">
+                    <hr class="w-75 mb-1"> 
+                </div>
+                <h5 class="text-muted">You are editing the details for <strong>{{ product.product_name }}</strong></h5>
             </div>
         </div>
-
         <div class="row">
             <div class="offset-lg-2 col-lg-8 offset-sm-1 col-sm-10">
                 <form method="POST" action="{% url 'edit_product' product.id %}" class="form mb-2" enctype="multipart/form-data">
