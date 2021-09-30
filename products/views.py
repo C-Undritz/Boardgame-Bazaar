@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .models import Product, Genre, GenreAssignment
-from .forms import ProductForm, UpdateStockForm, ReviewRateForm
+from .forms import ProductForm, UpdateStockForm, ReviewRateForm, GenreForm
 from profiles.models import UserProfile
 
 
@@ -65,8 +65,31 @@ def add_product(request):
 
     return render(request, template, context)
 
+
 @login_required
-def edit_product(request, product_id):
+def products_list(request):
+    """
+    Returns a list of all of the products within the admin view so they can be
+    selected to be deleted or edited from the admin menu.
+    """
+    if not request.user.is_superuser:
+        messages.error(request, 'Only authorised staff can perform this function')
+        return redirect(reverse('home'))
+
+    products = Product.objects.all().order_by('product_name')
+    genres = Genre.objects.all()
+
+    template = 'products/products_list.html'
+    context = {
+        'products': products,
+        'genres': genres,
+    }
+
+    return render(request, template, context)
+
+
+@login_required
+def edit_product(request, product_id, nav):
     """
     Edit the details of an existing product
     """
@@ -80,7 +103,10 @@ def edit_product(request, product_id):
         if form.is_valid():
             form.save()
             messages.success(request, 'Product successfully updated')
-            return redirect(reverse('product_detail', args=[product.id]))
+            if nav:
+                return redirect(reverse('product_detail', args=[product.id]))
+            else:
+                return redirect(reverse('products_list'))
         else:
             messages.error(request, 'Failed to edit product. Please check that you have correctly filled out all required information.')
     else:
@@ -97,7 +123,7 @@ def edit_product(request, product_id):
     return render(request, template, context)
 
 @login_required
-def delete_product(request, product_id):
+def delete_product(request, product_id, nav):
     """
     Delete a product from the store
     """
@@ -108,7 +134,43 @@ def delete_product(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
     product.delete()
     messages.success(request, 'Product deleted')
-    return redirect(reverse('home'))
+
+    if nav:
+        return redirect(reverse('home'))
+    else:
+        return redirect(reverse('products_list'))
+
+
+@login_required
+def add_genre(request):
+    """
+    Add additional genre category
+    """
+    genres = Genre.objects.all()
+    profile = get_object_or_404(UserProfile, user=request.user)
+    if not request.user.is_superuser:
+        messages.error(request, 'Only authorised staff can perform this function')
+        return redirect(reverse('home'))
+
+    if request.method == 'POST':
+        form = GenreForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'New genre added to database')
+            return redirect(reverse('add_genre'))
+        else:
+            messages.error(request, 'Failed to add genre. Please check that you have correctly filled out all required information.')
+    else:
+        form = GenreForm()
+
+    template = 'products/add_genre.html'
+    context = {
+        'genres': genres,
+        'form': form,
+        'profile': profile,
+    }
+
+    return render(request, template, context)
 
 
 @login_required

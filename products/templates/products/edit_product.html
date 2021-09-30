@@ -26,7 +26,7 @@
         </div>
         <div class="row">
             <div class="offset-lg-2 col-lg-8 offset-sm-1 col-sm-10">
-                <form method="POST" action="{% url 'edit_product' product.id %}" class="form mb-2" enctype="multipart/form-data">
+                <form method="POST" action="{% url 'edit_product' product.id 1 %}" class="form mb-2" enctype="multipart/form-data">
                     {% csrf_token %}
                     {{ form | crispy }}
                     <div class="text-right">

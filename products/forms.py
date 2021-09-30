@@ -39,3 +39,10 @@ class ReviewRateForm(forms.ModelForm):
     class Meta:
         model = Review
         fields = ('rating', 'review')
+
+
+class GenreForm(forms.ModelForm):
+
+    class Meta:
+        model = Genre
+        fields = ('name', 'friendly_name')

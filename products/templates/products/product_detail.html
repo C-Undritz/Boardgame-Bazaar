@@ -192,9 +192,9 @@
                         <button id="admin-reveal" class="text-primary">Admin ></button>
                     </div>
                     <div id= "admin-functions" class="">
-                        <a class="btn btn-warning btn-lg text-uppercase fw-bold pt-2" href="{% url 'edit_product' product.id %}">Edit</a>
+                        <a class="btn btn-warning btn-lg text-uppercase fw-bold pt-2" href="{% url 'edit_product' product.id 1 %}">Edit</a>
                         <a class="btn btn-warning btn-lg text-uppercase fw-bold pt-2 ms-1" href="{% url 'update_stock' product.id %}">Update Stock</a>
-                        <a class="btn btn-warning btn-lg text-uppercase fw-bold pt-2 ms-1" data-bs-toggle="modal" data-bs-target="#exampleModal">Delete</a>    
+                        <a class="btn btn-warning btn-lg text-uppercase fw-bold pt-2 ms-1" data-bs-toggle="modal" data-bs-target="#deleteModal">Delete</a>    
                     </div>
                 {% endif %}
             </div>
@@ -322,7 +322,7 @@
         {% endif %}
     </div>  
     <!-- Modal shown to ask confirmation when superuser clicks on delete -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -333,7 +333,7 @@
                 </div>
                 <div class="modal-footer d-flex justify-content-center">
                     <button class="btn btn-outline-dark btn-lg my-3 text-uppercase fw-bold" data-bs-dismiss="modal">Cancel</button>
-                    <a class="btn btn-warning btn-lg text-uppercase fw-bold ms-2 pt-2" href="{% url 'delete_product' product.id %}">Delete</a>
+                    <a class="btn btn-warning btn-lg text-uppercase fw-bold ms-2 pt-2" href="{% url 'delete_product' product.id 1 %}">Delete</a>
                 </div>
             </div>
         </div>
