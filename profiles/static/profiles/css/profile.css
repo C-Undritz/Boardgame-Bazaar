@@ -18,12 +18,14 @@
     overflow-y: auto;
 }
 
-.profile-menu-btn {
+.profile-menu-btn,
+#admin-back-btn {
     width: 150px;
 }
 
 @media (max-width: 575px) {
-    .profile-menu-btn {
+    .profile-menu-btn,
+    #admin-back-btn {
         width: 250px;
     }
 }

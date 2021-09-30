@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'profiles/css/profile.css' %}">
+{% endblock %}
+
+{% block page_header %}
+    <div class="container header-container">
+        <div class="row">
+            <div class="col"></div>
+        </div>
+    </div>
+{% endblock%}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col text-center mt-3">
+                <h2>Admin Functions</h2>
+                <div class="d-flex justify-content-center">
+                    <hr class="w-75 mb-1"> 
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="offset-lg-2 col-lg-2 col-sm-4">
+                <div class="d-flex flex-column align-items-center">
+                    <div id="admin-back-btn" class="d-flex justify-content-sm-start justify-content-center">
+                        <a href="{% url 'profile' %}" class="btn btn-outline-dark btn-lg pt-2">
+                            <span>
+                                <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="fw-bold text-uppercase">Back</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="offset-lg-2 col-lg-2 col-sm-4">
+                <div class="d-flex flex-column align-items-center">
+                    <div>
+                        <a href="" class="btn btn-warning btn-lg profile-menu-btn pt-2 mt-4 mb-2">
+                            <span>
+                                <i class="fas fa-folder-plus"></i>
+                            </span>
+                            <span class="fw-bold">Add Product</span>
+                        </a>
+                    </div>
+                    <div>
+                        <a href="" class="btn btn-warning btn-lg profile-menu-btn pt-2 my-2">
+                            <span>
+                                <i class="far fa-edit"></i>
+                            </span>
+                            <span class="fw-bold">Edit Product</span>
+                        </a>
+                    </div>
+                    <div>
+                        <a href="" class="btn btn-warning btn-lg profile-menu-btn pt-2 my-2">
+                            <span>
+                                <i class="fas fa-dice"></i>
+                            </span>
+                            <span class="fw-bold">Add Genre</span>
+                        </a>
+                    </div>
+                    <div>
+                        <a href="" class="btn btn-warning btn-lg profile-menu-btn pt-2 my-2">
+                            <span>
+                                <i class="far fa-edit"></i>
+                            </span>
+                            <span class="fw-bold">Edit Genre</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-sm-8">
+                {% block profile_content %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+{% endblock %}
