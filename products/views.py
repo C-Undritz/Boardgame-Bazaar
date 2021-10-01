@@ -14,7 +14,7 @@ def product_detail(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
     display_genres = GenreAssignment.objects.filter(product=product)
     stock = product.stock
-    
+
     if request.user.is_authenticated:
         profile = get_object_or_404(UserProfile, user=request.user)
         if profile.wishlist.filter(id=product_id).exists():
@@ -118,6 +118,7 @@ def edit_product(request, product_id, nav):
         'form': form,
         'product': product,
         'genres': genres,
+        'nav': nav,
     }
 
     return render(request, template, context)
@@ -171,6 +172,75 @@ def add_genre(request):
     }
 
     return render(request, template, context)
+
+
+@login_required
+def genres_list(request):
+    """
+    Returns a list of all of the genres within the admin view so they can be
+    selected to be deleted or edited.
+    """
+    if not request.user.is_superuser:
+        messages.error(request, 'Only authorised staff can perform this function')
+        return redirect(reverse('home'))
+
+    genres = Genre.objects.all().order_by('friendly_name')
+
+    template = 'products/genres_list.html'
+    context = {
+        'genres': genres,
+    }
+
+    return render(request, template, context)
+
+
+@login_required
+def edit_genre(request, genre_id):
+    """
+    Edit the details of an existing genre
+    """
+    if not request.user.is_superuser:
+        messages.error(request, 'Only authorised staff can perform this function')
+        return redirect(reverse('home'))
+
+    genre = get_object_or_404(Genre, pk=genre_id)
+    if request.method == 'POST':
+        form = GenreForm(request.POST, instance=genre)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Genre successfully updated')
+            return redirect(reverse('genres_list'))
+        else:
+            messages.error(request, 'Failed to edit genre. Please check that you have correctly filled out all required information.')
+    else:
+        form = GenreForm(instance=genre)
+
+    genres = Genre.objects.all()
+    template = 'products/edit_genre.html'
+    context = {
+        'form': form,
+        'genres': genres,
+        'genre': genre,
+    }
+
+    return render(request, template, context)
+
+
+@login_required
+def delete_genre(request, genre_id):
+    """
+    Delete a genre from the database
+    """
+    print(f'genre id is: {genre_id}')
+    if not request.user.is_superuser:
+        messages.error(request, 'Only authorised staff can perform this function')
+        return redirect(reverse('home'))
+
+    genre = get_object_or_404(Genre, pk=genre_id)
+    genre.delete()
+    messages.success(request, 'Genre deleted')
+
+    return redirect(reverse('genres_list'))
 
 
 @login_required

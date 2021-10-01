@@ -1,0 +1,13 @@
+{% extends "profiles/admin_menu.html" %}
+
+{% block profile_content %}
+<h5 class="text-muted">You are editing the details for the genre: <strong>'{{ genre.friendly_name}}'</strong></h5>
+<form method="POST" action="{% url 'edit_genre' genre.id %}" class="form mb-2" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form | crispy }}
+    <div class="text-right">
+        <a class="btn btn-outline-dark btn-lg my-3 text-uppercase fw-bold" href="{% url 'genres_list' %}">Cancel</a>
+        <button class="btn btn-warning btn-lg text-uppercase fw-bold pt-2" type="submit">Update Genre</button>         
+    </div>
+</form>
+{% endblock %}
