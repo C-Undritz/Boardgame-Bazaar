@@ -5,10 +5,17 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .fa-sync-alt {
+	position: relative;
 	padding-top: 9px !important;
 	padding-bottom: 9px !important;
+	margin-left: -65px !important;
 }
 
 .fa-trash-alt:hover, .fa-sync-alt:hover {
 	color: #FFC107;
+}
+
+.input-group>.form-control, .input-group>.form-select {
+    flex: none !important;
+    width: 30% !important;
 }
