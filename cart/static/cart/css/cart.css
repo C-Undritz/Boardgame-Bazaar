@@ -4,6 +4,7 @@ input[type=number]::-webkit-outer-spin-button {
 	-webkit-appearance: none;
 }
 
+/*---- styles for responsiveness and size of quantity tool, and update and remove buttons ----*/
 .fa-sync-alt {
 	position: relative;
 	padding-top: 9px !important;
