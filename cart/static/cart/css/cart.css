@@ -3,3 +3,12 @@ input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button { 
 	-webkit-appearance: none;
 }
+
+.fa-sync-alt {
+	padding-top: 9px !important;
+	padding-bottom: 9px !important;
+}
+
+.fa-trash-alt:hover, .fa-sync-alt:hover {
+	color: #FFC107;
+}

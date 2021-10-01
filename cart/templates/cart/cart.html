@@ -73,25 +73,33 @@
                                             value="{{ item.quantity }}" min="1" max="15" data-item_id="{{ item.item_id }}" id="id_qty_{{ item.item_id }}">
                                     </div> -->
                                     <!-- <p class="my-0 fs-4">{{ item.quantity }}</p> -->
-                                    <form class="form update-form" method="POST" action="{% url 'update_cart' item.item_id %}">
-                                        {% csrf_token %}
-                                        <div class="input-group qty-select">
-                                            <button class="minus-btn btn bg-warning btn-outline-warning" data-item_id="{{ item.item_id }}" id="minus-qty_{{ item.item_id }}">
-                                                <i class="text-dark fas fa-minus fa-sm"></i>
-                                            </button>
-                                            <input type="number" class="form-control qty-input fs-4 fw-bold" name="quantity" value="{{ item.quantity }}" min="1" max="15" data-item_id="{{ item.item_id }}" 
-                                                id="id_qty_{{ item.item_id }}">
-                                            <button class="plus-btn btn bg-warning btn-outline-warning" data-item_id="{{ item.item_id }}" id="plus-qty_{{ item.item_id }}">
-                                                <i class="text-dark fas fa-plus fa-sm"></i>
-                                            </button>
-                                        </div>
-                                        <input type="hidden" value="{{ item.product.stock }}" id="stock_{{ item.item_id }}">
-                                    </form>
-                                    <a class="update-link text-info me-5"><small>Update</small></a>
-                                    <a class="remove-item text-danger ms-5" id="remove_{{ item.item_id }}"><small>Remove</small></a>
+                                    <div class="d-inline-flex">
+                                        <form class="form update-form" method="POST" action="{% url 'update_cart' item.item_id %}">
+                                            {% csrf_token %}
+                                            <div class="input-group qty-select">
+                                                <button class="minus-btn btn bg-warning btn-outline-warning" data-item_id="{{ item.item_id }}" id="minus-qty_{{ item.item_id }}">
+                                                    <i class="text-dark fas fa-minus fa-sm"></i>
+                                                </button>
+                                                <input type="number" class="form-control qty-input fs-4 fw-bold" name="quantity" value="{{ item.quantity }}" min="1" max="15" data-item_id="{{ item.item_id }}" 
+                                                    id="id_qty_{{ item.item_id }}">
+                                                <button class="plus-btn btn bg-warning btn-outline-warning" data-item_id="{{ item.item_id }}" id="plus-qty_{{ item.item_id }}">
+                                                    <i class="text-dark fas fa-plus fa-sm"></i>
+                                                </button>
+                                            </div>
+                                            <input type="hidden" value="{{ item.product.stock }}" id="stock_{{ item.item_id }}">
+                                        </form>
+                                        <a class="update-link text-secondary">
+                                            <i class="fas fa-sync-alt fa-lg fa-border"></i>
+                                        </a>
+                                    </div>
                                 </td>
                                 <td class="py-3 text-end">
-                                    <p class="my-0 fs-4">{{ item.product.price | calc_subtotal:item.quantity }}</p>
+                                    <div class="d-inline-flex">
+                                        <p class="my-0 fs-4">{{ item.product.price | calc_subtotal:item.quantity }}</p>
+                                        <a class="remove-item text-secondary ms-2" id="remove_{{ item.item_id }}">
+                                            <i class="far fa-trash-alt fa-lg"></i>
+                                        </a>
+                                    </div>
                                 </td>
                             </tr>
                         {% endfor %}
