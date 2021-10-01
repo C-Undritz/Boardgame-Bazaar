@@ -1,9 +1,4 @@
 {% extends "base.html" %}
-{% load static %}
-
-{% block extra_css %}
-    <link rel="stylesheet" href="{% static 'products/css/product.css' %}">
-{% endblock %}
 
 {% block page_header %}
     <div class="container header-container">
@@ -26,11 +21,19 @@
         </div>
         <div class="row">
             <div class="offset-lg-2 col-lg-8 offset-sm-1 col-sm-10">
-                <form method="POST" action="{% url 'edit_product' product.id 1 %}" class="form mb-2" enctype="multipart/form-data">
+                {% if nav == 1 %}
+                    <form method="POST" action="{% url 'edit_product' product.id 1 %}" class="form mb-2" enctype="multipart/form-data">
+                {% else %}
+                    <form method="POST" action="{% url 'edit_product' product.id 0 %}" class="form mb-2" enctype="multipart/form-data">
+                {% endif %}
                     {% csrf_token %}
                     {{ form | crispy }}
                     <div class="text-right">
-                        <a class="btn btn-outline-dark btn-lg my-3 text-uppercase fw-bold" href="{% url 'product_detail' product.id %}">Cancel</a>
+                        {% if nav == 1 %}
+                            <a class="btn btn-outline-dark btn-lg my-3 text-uppercase fw-bold" href="{% url 'product_detail' product.id %}">Cancel</a>
+                        {% else %}
+                            <a class="btn btn-outline-dark btn-lg my-3 text-uppercase fw-bold" href="{% url 'products_list' %}">Cancel</a>
+                        {% endif %}
                         <button class="btn btn-warning btn-lg text-uppercase fw-bold pt-2" type="submit">Update Product</button>         
                     </div>
                 </form>
