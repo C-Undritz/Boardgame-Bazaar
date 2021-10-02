@@ -1,5 +1,6 @@
 from django import forms
 from .models import UserProfile
+from django.contrib.auth.models import User
 
 
 class UserProfileForm(forms.ModelForm):
@@ -13,7 +14,7 @@ class UserProfileForm(forms.ModelForm):
         Overides init method Add placeholders and classes, remove
         auto-generated labels and set autofocus on first field
         """
-        super().__init__(*args, **kwargs)  # default method to set up the form.
+        super().__init__(*args, **kwargs)
         # dictionary of placeholders that will show in the form fields.
         placeholders = {
             'default_street_address1': 'Street Address 1',
@@ -40,3 +41,10 @@ class UserProfileForm(forms.ModelForm):
             # removes form labels
             self.fields[field].label = False
             self.fields[field].widget.attrs['class'] = 'profile-form-input'
+
+
+class UserForm(forms.ModelForm):
+    class Meta:
+        model = User
+        # Fields to be rendered in the form.
+        fields = ('first_name', 'last_name', 'username', 'email',)
