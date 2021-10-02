@@ -258,6 +258,11 @@ div > div.form-check > .form-check-label {
     #strap-line {
         display: none;
     }
+
+    /* Added to make BS toasts responsive. */
+    .toast {
+        width: 95%;
+    }
 }
 
 
