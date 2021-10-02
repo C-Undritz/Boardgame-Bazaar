@@ -353,6 +353,10 @@ The cloned repository includes the ‘requirements.txt’ to enable the installa
 ```
   pip3 install -r requirements.txt
 ```
+Once that is successfully complete, setup a super user to log into django admin and have admin privileges throughout the site, by typing the below into the terminal and following the prompts:
+```
+  python 3 manage.py createsuperuser
+```
 ## Environment Variables
 The following environment variables (in CAPS) must be set within your development environment for the site to function correctly.  These are listed and described below and instructions to obtain these are featured in the following sections.
 
@@ -369,6 +373,32 @@ The following environment variables (in CAPS) must be set within your developmen
 * STRIPE_WH_SECRET
   * *Value: from stripe webhook endpoint (see below section [Create webhook](#Create-new-webhook-end-point)).*  Note that this is different to the one set for Heroku (see below section ?).  
 
+Database migrations will need to be made by following the below commands:
+```
+  python3 manage.py makemigrations --dry-run*
+
+  python3 manage.py makemigrations
+
+  python3 manage.py migrate --plan*
+
+  python3 manage.py migrate
+```
+*These commands do not have to be run, but it is bext practice, so that the plan migrations can be viewed before completing them.
+
+The project repository comes with a ‘db.json’ file containing all data added during development which can be used to deploy by running this command within the terminal:  
+```
+  python3 manage.py loaddata db.json
+```
+
+The project should then be push to your repository using the below commands:
+```
+  git add <name of file> or <.>
+
+  git commit -m *<commit message>*
+
+  git push
+```
+
 The application can now be run locally by typing in a terminal window:
 ```
   python3 manage.py runserver
@@ -378,7 +408,7 @@ The application can now be run locally by typing in a terminal window:
 ***!IMPORTANT*: comment out line 72 (main()) within the home app 'views' python file.  Failure to do this will stop the migrations to the Heroku database.  Once deployment is fully complete un-comment this line.**
 
 ## Heroku Variables
-The following environment variables (in CAPS) must be set within the ‘Config Vars’ section in Heroku for the deployed site to function correctly.  These are listed and described below and instructions to obtain these are featured in the following sections.
+The following environment variables (in CAPS) must be set within the ‘Config Vars’ section in Heroku for the deployed site to function correctly.   The config variables are added within the Heroku app by selecting the Settings tab, and under the heading 'Config Vars' clicking the button 'Reveal Config Vars' to show the key / value input boxes for the variables.  Instructions to obtain the variables are featured within below sections.
 
 * SECRET_KEY
   * Required by Django: A random sequence of characters used to maintain security.  
@@ -428,23 +458,29 @@ To deploy the app to Heroku from the GitHub repository you will need to follow t
 * Once your repository name is returned, click 'connect'.
 * Then click ‘enable automatic deploys’
 
-Within the development environment, in a terminal, type and run the below commands to set up the database:
+Within the development environment, in a terminal window, login into heroku by entering the below command and following the prompts.
 ```
-  python3 manage.py makemigrations
-
-  python3 manage.py migrate
+  heroku login -i
 ```
 
-The project repository comes with a ‘db.json’ file containing all data added during development which can be used to deploy by running this command within the terminal:  
+Then type the below to setup a superuser: 
 ```
-  python3 manage.py loaddata db.json
+  heroku run python manage.py createsuperuser
 ```
 
-Once that is successfully complete, setup a super user to log in to the deployed app by typing the below into the terminal and following the prompts:
+Database migrations will need to be made to the Heroku postgres by following the below commands (you will need to be logged into Heroku to perform these):
 ```
-  python 3 manage.py createsuperuser
+  heroku run python manage.py makemigrations --dry-run*
+
+  heroku run python manage.py makemigrations
+
+  heroku run python manage.py migrate --plan*
+
+  heroku run python manage.py migrate
 ```
-Once all the configuration variables have been added, the deployed app can then be run from Heroku by selecting it and clicking 'open app'.  The config variables are added within the Heroku app by selecting the Settings tab, and under the heading 'Config Vars' clicking the button 'Reveal Config Vars' to show the key / value input boxes for the variables.
+*These commands do not have to be run, but it is bext practice, so that the plan migrations can be viewed before completing them.
+
+Once all the configuration variables have been added, the deployed app can then be run from Heroku by selecting it and clicking 'open app'. 
 
 # Amazon Web Services (AWS) Setup
 ## Create s3 bucket
