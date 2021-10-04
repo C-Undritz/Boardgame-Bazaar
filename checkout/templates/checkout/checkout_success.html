@@ -49,7 +49,11 @@
                             <!-- Display of bought product name, bought quantity and the individual product price  -->
                             <div class="col-md-10 col d-flex align-items-center">
                                 <p class="small mb-0 text-dark fw-bold">
-                                    {{ item.product.product_name }} x {{ item.quantity }} (@ £{{ item.product.price }} each)
+                                    {% if item.product.on_sale %}
+                                        {{ item.product.product_name }} x {{ item.quantity }} (@ £{{ item.product.sale_price }} each)
+                                    {% else %}
+                                        {{ item.product.product_name }} x {{ item.quantity }} (@ £{{ item.product.price }} each)
+                                    {% endif %}
                                 </p>
                             </div>
                         </div>

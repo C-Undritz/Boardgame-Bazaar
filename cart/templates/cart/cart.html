@@ -68,7 +68,11 @@
                                 </div>
                                 <!-- Product price -->
                                 <div class="col-lg-3 col-12 d-flex justify-content-start">
+                                    {% if item.product.on_sale %}
+                                    <p class="my-0"><span class="d-inline d-lg-none">Price:</span> £{{ item.product.sale_price }}</p>
+                                    {% else %}
                                     <p class="my-0"><span class="d-inline d-lg-none">Price:</span> £{{ item.product.price }}</p>
+                                    {% endif %}
                                 </div>
                                 <!-- Product quantity select tool -->
                                 <div class="col-lg-6 col-12 d-flex justify-content-start">
@@ -97,7 +101,11 @@
                         <!-- Cart line item subtotal -->
                         <div class="col-2 d-flex justify-content-end align-items-lg-start align-items-center">
                             <div class="d-inline-flex">
-                                <p class="my-0 fs-4">£{{ item.product.price | calc_subtotal:item.quantity }}</p>
+                                {% if item.product.on_sale %}
+                                    <p class="my-0 fs-4">£{{ item.product.sale_price | calc_subtotal:item.quantity }}</p>
+                                {% else %}
+                                    <p class="my-0 fs-4">£{{ item.product.price | calc_subtotal:item.quantity }}</p>
+                                {% endif %}
                                 <a class="remove-item text-secondary ms-2" id="remove_{{ item.item_id }}">
                                     <i class="far fa-trash-alt fa-lg"></i>
                                 </a>

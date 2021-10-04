@@ -14,7 +14,11 @@ Grand Total: £{{ order.grand_total }}
 
 Your items:
 {% for item in order.lineitems.all %}
-    {{ item.product.product_name }} x {{ item.quantity }} (@ £{{ item.product.price }} each)
+    {% if item.product.on_sale %}
+        {{ item.product.product_name }} x {{ item.quantity }} (@ £{{ item.product.sale_price }} each)
+    {% else %}
+        {{ item.product.product_name }} x {{ item.quantity }} (@ £{{ item.product.price }} each)
+    {% endif %}
 {% endfor %}
 
 Your order will be shipped to:

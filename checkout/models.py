@@ -51,6 +51,7 @@ class Order(models.Model):
         total quantity of the items bought to calculate discount and then
         use that to calculate the grand total.
         """
+        print(f'order number is: {self.order_number}')
         self.order_total = self.lineitems.aggregate(Sum('lineitem_total'))['lineitem_total__sum'] or 0
         quantity_total = self.lineitems.aggregate(Sum('quantity'))['quantity__sum']
         self.delivery_cost = 4
@@ -90,7 +91,14 @@ class OrderLineItem(models.Model):
         Override the original save method to set the lineitem total using 
         the line item quantity.  From Boutique Ado walkthrough project.
         """
-        self.lineitem_total = self.product.price * self.quantity
+        print(f'from OrderLineItem - sale price: {self.product.on_sale} - {self.product.sale_price}')
+        print(f'the product normal price: {self.product.price}')
+        if self.product.on_sale:
+            self.lineitem_total = self.product.sale_price * self.quantity
+            print('orderlineitem - on sale line called')
+        else:
+            self.lineitem_total = self.product.price * self.quantity
+            print('orderlineitem - normal price line item called')
         super().save(*args, **kwargs)
 
     def __str__(self):
