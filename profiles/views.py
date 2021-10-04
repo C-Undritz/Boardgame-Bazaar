@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 from products.models import Product, Genre
 from checkout.models import Order
 from .models import UserProfile
-from .forms import UserProfileForm, UserForm
+from .forms import UserAddressForm, UserForm
 
 
 @login_required
@@ -46,14 +46,14 @@ def profile_address(request):
     profile = get_object_or_404(UserProfile, user=request.user)
 
     if request.method == 'POST':
-        form = UserProfileForm(request.POST, instance=profile)
+        form = UserAddressForm(request.POST, instance=profile)
         if form.is_valid:
             form.save()
             messages.success(request, 'Account information updated successfully')
         else:
             messages.error(request, 'Update failed. Please check that you have filled out all required information')
     else:
-        form = UserProfileForm(instance=profile)
+        form = UserAddressForm(instance=profile)
 
     template = 'profiles/profile_address.html'
     context = {

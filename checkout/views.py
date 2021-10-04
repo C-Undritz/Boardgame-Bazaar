@@ -10,7 +10,7 @@ from django.http import JsonResponse
 from .forms import OrderForm
 from .models import Order, OrderLineItem
 from products.models import Product
-from profiles.forms import UserProfileForm
+from profiles.forms import UserAddressForm
 from profiles.models import UserProfile
 from cart.contexts import cart_contents
 
@@ -211,9 +211,9 @@ def checkout_success(request, order_number):
                 'default_country': order.country,
                 'default_phone_number': order.phone_number,
             }
-            user_profile_form = UserProfileForm(profile_data, instance=profile)
-            if user_profile_form.is_valid():
-                user_profile_form.save()
+            user_address_form = UserAddressForm(profile_data, instance=profile)
+            if user_address_form.is_valid():
+                user_address_form.save()
 
     messages.success(request, f'Order successful.  Your order \
         number is {order_number}. A confirmation email will be \
