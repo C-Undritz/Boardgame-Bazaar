@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from .models import Product, Genre, GenreAssignment
+from .models import Product, Genre, GenreAssignment, Review
 from .forms import ProductForm, UpdateStockForm, ReviewRateForm, GenreForm
 from profiles.models import UserProfile
 
@@ -275,6 +275,43 @@ def update_stock(request, product_id):
     return render(request, template, context)
 
 
+def edit_review(request, order_number, product_id):
+    print(f'the product id is: {product_id}')
+    genres = Genre.objects.all()
+    product = get_object_or_404(Product, pk=product_id)
+    review = get_object_or_404(Review, user=request.user, product=product_id)
+    reviewed = True
+
+    if request.method == 'POST':
+        form_data = {
+            'rating': request.POST['rating'],
+            'review': request.POST['review'],
+        }
+        review_form = ReviewRateForm(form_data, instance=review)
+        if review_form.is_valid():
+            data = review_form.save(commit=False)
+            data.user = request.user
+            data.product = product
+            data.save()
+            return redirect(reverse('order_detail', args=[order_number]))
+        else:
+            messages.error(request, 'Failed to add rating and review. Please check that you have correctly filled out all required information.')
+    else:
+        form = ReviewRateForm()
+
+    template = 'products/review_rate.html'
+    context = {
+        'product': product,
+        'genres': genres,
+        'form': form,
+        'order_number': order_number,
+        'review': review,
+        'reviewed': reviewed,
+    }
+
+    return render(request, template, context)
+
+
 @login_required
 def review_rate(request, order_number, product_id):
     """
@@ -297,14 +334,19 @@ def review_rate(request, order_number, product_id):
         else:
             messages.error(request, 'Failed to add rating and review. Please check that you have correctly filled out all required information.')
     else:
-        form = ReviewRateForm()
+        reviews = product.reviews.all()
+        if reviews.filter(user=request.user).exists():
+            return redirect(reverse('edit_review', args=[order_number, product_id]))
+        else:
+            form = ReviewRateForm()
+            print('new review')
 
-    template = 'products/review_rate.html'
-    context = {
-        'product': product,
-        'genres': genres,
-        'form': form,
-        'order_number': order_number,
-    }
+        template = 'products/review_rate.html'
+        context = {
+            'product': product,
+            'genres': genres,
+            'form': form,
+            'order_number': order_number,
+        }
 
-    return render(request, template, context)
+        return render(request, template, context)

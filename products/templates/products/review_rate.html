@@ -38,7 +38,11 @@
             <div class="row">
                 <div class="col-lg-8 offset-lg-2 col-12">
                     <h4 class="mt-2">Review and Rate your purchase of <strong>{{ product.product_name }}</strong>:</h4>
+                    {% if reviewed %}
+                    <form method="POST" action="{% url 'edit_review' order_number product.id %}">
+                    {% else %}
                     <form method="POST" action="{% url 'review_rate' order_number product.id %}">
+                    {% endif %}
                         {% csrf_token %}
                         <div class="d-inline-flex">
                             <h3 class="pt-1">Rate:</h3>
@@ -59,11 +63,15 @@
                         </div>
                         <div>
                             <h3>Review:</h3>
-                            <textarea class="w-100" name="review" id="review" rows="5" required></textarea>
+                            <textarea class="w-100" name="review" id="review" rows="5" required>{{ review.review }}</textarea>
                         </div>
                         <div class="float-end">
                             <a class="btn btn-outline-dark btn-lg my-3 text-uppercase fw-bold" onclick="goBack()">Cancel</a>
-                            <button class="btn btn-warning btn-lg text-uppercase fw-bold pt-2" type="submit">Submit</button>         
+                            {% if reviewed %}
+                            <button class="btn btn-warning btn-lg text-uppercase fw-bold pt-2" type="submit">Update</button>   
+                            {% else %}
+                            <button class="btn btn-warning btn-lg text-uppercase fw-bold pt-2" type="submit">Submit</button>   
+                            {% endif %}
                         </div>
                         <input type="hidden" name="redirect_url" value="{{ request.path }}">
                     </form>
