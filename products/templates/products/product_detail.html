@@ -104,27 +104,27 @@
                 </div>
                 <div class="d-inline-flex">
                     <div>
-                        {%  if product.current_rating == 0 %}
+                        {%  if product.avg_rating == 0 %}
                             <p class="text-muted fs-5">No ratings yet</p>
-                        {% elif product.current_rating == 1 %}
+                        {% elif product.avg_rating == 1 %}
                             <i class="fas fa-star star-outline star-filled"></i>
                             <i class="fas fa-star star-outline star-empty"></i>
                             <i class="fas fa-star star-outline star-empty"></i>
                             <i class="fas fa-star star-outline star-empty"></i>
                             <i class="fas fa-star star-outline star-empty"></i>
-                        {% elif product.current_rating == 2 %}
+                        {% elif product.avg_rating == 2 %}
                             <i class="fas fa-star star-outline star-filled"></i>
                             <i class="fas fa-star star-outline star-filled"></i>
                             <i class="fas fa-star star-outline star-empty"></i>
                             <i class="fas fa-star star-outline star-empty"></i>
                             <i class="fas fa-star star-outline star-empty"></i>
-                        {% elif product.current_rating == 3 %}
+                        {% elif product.avg_rating == 3 %}
                             <i class="fas fa-star star-outline star-filled"></i>
                             <i class="fas fa-star star-outline star-filled"></i>
                             <i class="fas fa-star star-outline star-filled"></i>
                             <i class="fas fa-star star-outline star-empty"></i>
                             <i class="fas fa-star star-outline star-empty"></i>
-                        {% elif product.current_rating == 4 %}
+                        {% elif product.avg_rating == 4 %}
                             <i class="fas fa-star star-outline star-filled"></i>
                             <i class="fas fa-star star-outline star-filled"></i>
                             <i class="fas fa-star star-outline star-filled"></i>
@@ -139,10 +139,10 @@
                         {% endif %}
                     </div>
                     <div id="number-ratings">
-                        {% if product.ratings_number == 1 %}
-                            <a href="#reviews-section"><p class="text-primary fs-5 ms-2">{{ product.ratings_number }} review</p></a>
-                        {% elif product.ratings_number > 1 %}
-                            <a href="#reviews-section"><p class="text-primary fs-5 ms-2">{{ product.ratings_number }} reviews</p></a>
+                        {% if product.reviews.all|length == 1 %}
+                            <a href="#reviews-section"><p class="text-primary fs-5 ms-2">{{ product.reviews.all|length }} review</p></a>
+                        {% elif product.reviews.all|length > 1 %}
+                            <a href="#reviews-section"><p class="text-primary fs-5 ms-2">{{ product.reviews.all|length }} reviews</p></a>
                         {% endif %}
                     </div>
                 </div>
