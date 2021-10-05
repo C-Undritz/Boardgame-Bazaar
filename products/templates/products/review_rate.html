@@ -52,7 +52,7 @@
                                     {% if review.rating == 1 %}
                                         <input type="radio" checked="checked" class="radio_item" value="1" name="rating" id="radio1">
                                     {% else %}
-                                        <input type="radio" class="radio_item" value="1" name="rating" id="radio1">
+                                        <input type="radio" class="radio_item" value="1" name="rating" id="radio1" required>
                                     {% endif %}
                                     <label for="radio1" id="star1"></label>
                                     {% if review.rating == 2 %}
