@@ -337,11 +337,6 @@ def delete_review(request, order_number, review_id):
     """
     Delete a genre from the database
     """
-    print(f'review id is: {review_id}')
-    if not request.user.is_superuser:
-        messages.error(request, 'Only authorised staff can perform this function')
-        return redirect(reverse('home'))
-
     review = get_object_or_404(Review, pk=review_id)
     review.delete()
     messages.success(request, 'Review deleted')
