@@ -258,6 +258,46 @@ def update_stock(request, product_id):
     return render(request, template, context)
 
 
+@login_required
+def review_rate(request, order_number, product_id):
+    """
+    Saves user reviews and ratings for a bought product. 
+    """
+    product = get_object_or_404(Product, pk=product_id)
+    if request.method == 'POST':
+        form_data = {
+            'rating': request.POST['rating'],
+            'review': request.POST['review'],
+        }
+        review_form = ReviewRateForm(form_data)
+        if review_form.is_valid():
+            data = review_form.save(commit=False)
+            data.user = request.user
+            data.product = product
+            data.save()
+            return redirect(reverse('order_detail', args=[order_number]))
+        else:
+            messages.error(request, 'Failed to add rating and review. Please check that you have correctly filled out all required information.')
+    else:
+        reviews = product.reviews.all()
+        if reviews.filter(user=request.user).exists():
+            messages.info(request, 'You have already reviewed this product.  You can update or delete your review and rating on this page.')
+            return redirect(reverse('edit_review', args=[order_number, product_id]))
+        else:
+            form = ReviewRateForm()
+            print('new review')
+
+        template = 'products/review_rate.html'
+        context = {
+            'product': product,
+            'form': form,
+            'order_number': order_number,
+        }
+
+        return render(request, template, context)
+
+
+@login_required
 def edit_review(request, order_number, product_id):
     product = get_object_or_404(Product, pk=product_id)
     review = get_object_or_404(Review, user=request.user, product=product_id)
@@ -293,38 +333,17 @@ def edit_review(request, order_number, product_id):
 
 
 @login_required
-def review_rate(request, order_number, product_id):
+def delete_review(request, order_number, review_id):
     """
-    Saves user reviews and ratings for a bought product. 
+    Delete a genre from the database
     """
-    product = get_object_or_404(Product, pk=product_id)
-    if request.method == 'POST':
-        form_data = {
-            'rating': request.POST['rating'],
-            'review': request.POST['review'],
-        }
-        review_form = ReviewRateForm(form_data)
-        if review_form.is_valid():
-            data = review_form.save(commit=False)
-            data.user = request.user
-            data.product = product
-            data.save()
-            return redirect(reverse('order_detail', args=[order_number]))
-        else:
-            messages.error(request, 'Failed to add rating and review. Please check that you have correctly filled out all required information.')
-    else:
-        reviews = product.reviews.all()
-        if reviews.filter(user=request.user).exists():
-            return redirect(reverse('edit_review', args=[order_number, product_id]))
-        else:
-            form = ReviewRateForm()
-            print('new review')
+    print(f'review id is: {review_id}')
+    if not request.user.is_superuser:
+        messages.error(request, 'Only authorised staff can perform this function')
+        return redirect(reverse('home'))
 
-        template = 'products/review_rate.html'
-        context = {
-            'product': product,
-            'form': form,
-            'order_number': order_number,
-        }
+    review = get_object_or_404(Review, pk=review_id)
+    review.delete()
+    messages.success(request, 'Review deleted')
 
-        return render(request, template, context)
+    return redirect(reverse('order_detail', args=[order_number]))
