@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models import Avg
 from django.shortcuts import get_object_or_404
 
 from django.contrib.auth.models import User
@@ -63,25 +64,28 @@ class Product(models.Model):
     used = models.BooleanField(default=False)
     pre_order = models.BooleanField(default=False)
     new_release = models.BooleanField(default=False)
-    current_rating = models.IntegerField(null=False, blank=False, default=0)
-    ratings_total = models.IntegerField(null=False, blank=False, default=0)
-    ratings_number = models.IntegerField(null=False, blank=False, default=0)
+    avg_rating = models.IntegerField(null=False, blank=False, default=0)
+
 
     def __str__(self):
         return self.product_name
 
     def update_stock_sold(self, instance):
-        product = get_object_or_404(Product, pk=instance.product_id)
-        product.stock = product.stock - instance.quantity
-        product.sold = product.sold + instance.quantity
-        product.save()
-    
+        """
+        Uses the sold quantities of products into to update the stock and sold
+        figures.
+        """
+        self.stock = self.stock - instance.quantity
+        self.sold = self.sold + instance.quantity
+        self.save()
+
     def update_rating(self, instance):
-        product = get_object_or_404(Product, pk=instance.product_id)
-        product.ratings_total = product.ratings_total + instance.rating
-        product.ratings_number += 1
-        product.current_rating = round(product.ratings_total / product.ratings_number)
-        product.save()
+        """
+        Determines each products average rating from all user ratings for that
+        product.
+        """
+        self.avg_rating = self.reviews.all().aggregate(Avg('rating'))['rating__avg']
+        self.save()
 
 
 class GenreAssignment(models.Model):
@@ -97,7 +101,7 @@ class Review(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='reviews')
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='reviews')
     review = models.TextField(max_length=500, blank=False)
-    rating = models.IntegerField(null=False, blank=False, default=0)
+    rating = models.IntegerField(null=True, blank=True, default=0)
     created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
