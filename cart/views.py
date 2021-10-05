@@ -5,13 +5,8 @@ from products.models import Genre, Product
 
 def view_cart(request):
     """ A view that renders the shopping cart page """
-    genres = Genre.objects.all()
 
-    context = {
-        'genres': genres,
-    }
-
-    return render(request, 'cart/cart.html', context)
+    return render(request, 'cart/cart.html')
 
 
 def add_to_cart(request, item_id):

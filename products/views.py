@@ -10,7 +10,6 @@ def product_detail(request, product_id):
     """
     View to show individual product details
     """
-    genres = Genre.objects.all()
     product = get_object_or_404(Product, pk=product_id)
     display_genres = GenreAssignment.objects.filter(product=product)
     stock = product.stock
@@ -26,7 +25,6 @@ def product_detail(request, product_id):
 
     context = {
         'product': product,
-        'genres': genres,
         'display_genres': display_genres,
         'stock': stock,
         'in_wishlist': in_wishlist,
@@ -39,7 +37,6 @@ def add_product(request):
     """
     Add a product to the store
     """
-    genres = Genre.objects.all()
     profile = get_object_or_404(UserProfile, user=request.user)
     if not request.user.is_superuser:
         messages.error(request, 'Only authorised staff can perform this function')
@@ -58,7 +55,6 @@ def add_product(request):
 
     template = 'products/add_product.html'
     context = {
-        'genres': genres,
         'form': form,
         'profile': profile,
     }
@@ -77,12 +73,10 @@ def products_list(request):
         return redirect(reverse('home'))
 
     products = Product.objects.all().order_by('product_name')
-    genres = Genre.objects.all()
 
     template = 'products/products_list.html'
     context = {
         'products': products,
-        'genres': genres,
     }
 
     return render(request, template, context)
@@ -112,12 +106,10 @@ def edit_product(request, product_id, nav):
     else:
         form = ProductForm(instance=product)
 
-    genres = Genre.objects.all()
     template = 'products/edit_product.html'
     context = {
         'form': form,
         'product': product,
-        'genres': genres,
         'nav': nav,
     }
 
@@ -147,7 +139,6 @@ def add_genre(request):
     """
     Add additional genre category
     """
-    genres = Genre.objects.all()
     profile = get_object_or_404(UserProfile, user=request.user)
     if not request.user.is_superuser:
         messages.error(request, 'Only authorised staff can perform this function')
@@ -166,7 +157,6 @@ def add_genre(request):
 
     template = 'products/add_genre.html'
     context = {
-        'genres': genres,
         'form': form,
         'profile': profile,
     }
@@ -178,20 +168,16 @@ def add_genre(request):
 def genres_list(request):
     """
     Returns a list of all of the genres within the admin view so they can be
-    selected to be deleted or edited.
+    selected to be deleted or edited.  Uses products > contexts.py to populate
+    list.
     """
     if not request.user.is_superuser:
         messages.error(request, 'Only authorised staff can perform this function')
         return redirect(reverse('home'))
 
-    genres = Genre.objects.all().order_by('friendly_name')
-
     template = 'products/genres_list.html'
-    context = {
-        'genres': genres,
-    }
 
-    return render(request, template, context)
+    return render(request, template)
 
 
 @login_required
@@ -215,11 +201,10 @@ def edit_genre(request, genre_id):
     else:
         form = GenreForm(instance=genre)
 
-    genres = Genre.objects.all()
+
     template = 'products/edit_genre.html'
     context = {
         'form': form,
-        'genres': genres,
         'genre': genre,
     }
 
@@ -264,11 +249,9 @@ def update_stock(request, product_id):
     else:
         form = UpdateStockForm(instance=product)
 
-    genres = Genre.objects.all()
     template = 'products/update_stock.html'
     context = {
         'product': product,
-        'genres': genres,
         'form': form,
     }
 
@@ -276,8 +259,6 @@ def update_stock(request, product_id):
 
 
 def edit_review(request, order_number, product_id):
-    print(f'the product id is: {product_id}')
-    genres = Genre.objects.all()
     product = get_object_or_404(Product, pk=product_id)
     review = get_object_or_404(Review, user=request.user, product=product_id)
     reviewed = True
@@ -302,7 +283,6 @@ def edit_review(request, order_number, product_id):
     template = 'products/review_rate.html'
     context = {
         'product': product,
-        'genres': genres,
         'form': form,
         'order_number': order_number,
         'review': review,
@@ -317,7 +297,6 @@ def review_rate(request, order_number, product_id):
     """
     Saves user reviews and ratings for a bought product. 
     """
-    genres = Genre.objects.all()
     product = get_object_or_404(Product, pk=product_id)
     if request.method == 'POST':
         form_data = {
@@ -344,7 +323,6 @@ def review_rate(request, order_number, product_id):
         template = 'products/review_rate.html'
         context = {
             'product': product,
-            'genres': genres,
             'form': form,
             'order_number': order_number,
         }

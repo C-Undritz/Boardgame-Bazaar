@@ -76,7 +76,6 @@ def index(request):
     includes sorting a searching queries.
     """
     products = Product.objects.all()
-    genres = Genre.objects.all()
     page_heading = "All Boardgames"
     genre_query = None
     query = None
@@ -127,7 +126,6 @@ def index(request):
 
     context = {
         'products': products,
-        'genres': genres,
         'search_term': query,
         # 'current_category': category,
         'heading': page_heading,

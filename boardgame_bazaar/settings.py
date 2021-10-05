@@ -86,6 +86,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.media',  # added for media URL template tag to work (remove this comment before submission)
                 'cart.contexts.cart_contents',  # means we can access cart contents from anywhere in the site (remove this comment before submission)
+                'products.contexts.genres_list',
             ],
             'builtins': [
                 'crispy_forms.templatetags.crispy_forms_tags',
