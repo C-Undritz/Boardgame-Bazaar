@@ -1,6 +1,6 @@
 /* 
 <----------  Below functions are associated with the review_rate.html page ---------->
-These functions allow the user to rate the viewed recipe out of five using an interactive display of an array of
+These functions allow the user to rate the viewed product out of five using an interactive display of an array of
 five stars.  The stars go from displaying as clear to the bootstrap warning colour as the user mouses over them.  
 Once the user clicks on a star to indicate their chosen score, the star clicked and those before it will remain filled. 
 The stars can be reset by moving the mouse cursor over the stars array and then moving the cursor away. Governing this 
