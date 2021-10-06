@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, reverse
+from django.core.paginator import Paginator
 from django.contrib import messages
 from django.db.models import Q
 from products.models import Product, Genre
@@ -76,6 +77,11 @@ def index(request):
     includes sorting a searching queries.
     """
     products = Product.objects.all()
+    per_page = 12
+    product_paginator = Paginator(products, per_page)
+    page_num = request.GET.get('page')
+    page = product_paginator.get_page(page_num)
+
     page_heading = "All Boardgames"
     genre_query = None
     query = None
@@ -124,8 +130,12 @@ def index(request):
             queries = Q(product_name__icontains=query) | Q(description__icontains=query)
             products = products.filter(queries)
 
+        product_paginator = Paginator(products, per_page)
+        page_num = request.GET.get('page')
+        page = product_paginator.get_page(page_num)
+
     context = {
-        'products': products,
+        'page': page,
         'search_term': query,
         # 'current_category': category,
         'heading': page_heading,
