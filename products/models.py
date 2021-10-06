@@ -64,7 +64,7 @@ class Product(models.Model):
     used = models.BooleanField(default=False)
     pre_order = models.BooleanField(default=False)
     new_release = models.BooleanField(default=False)
-    avg_rating = models.IntegerField(null=False, blank=False, default=0)
+    avg_rating = models.IntegerField(null=True, blank=False, default=0)
 
 
     def __str__(self):

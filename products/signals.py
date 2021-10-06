@@ -7,6 +7,14 @@ from .models import Review
 @receiver(post_save, sender=Review)
 def update_on_save(sender, instance, created, **kwargs):
     """
-    Update order total when lineitem updated/created
+    Update product rating when a review is updated/created
+    """
+    instance.product.update_rating(instance)
+
+
+@receiver(post_delete, sender=Review)
+def update_on_delete(sender, instance, **kwargs):
+    """
+    Update product rating when a review is deleted
     """
     instance.product.update_rating(instance)
