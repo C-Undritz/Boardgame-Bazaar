@@ -137,6 +137,7 @@ def index(request):
     context = {
         'page': page,
         'search_term': query,
+        'per_page': per_page,
         # 'current_category': category,
         'heading': page_heading,
         'chart': chart
