@@ -19,37 +19,27 @@
                 </div>
             </div>
         </div>
-        
-        <div class="row">
-            <!-- Pagination information -->
-            <div class="col-md-4 col-6">
-                <p class="text-center fs-4">{{ page.paginator.count }} Products | Page {{ page.number }} of {{ page.paginator.num_pages }}</p>
+        <!-- Sort dropdown options -->
+        <div class="row">          
+            <div class="col-12 d-flex justify-content-end">
+                <div class="sort-select-wrapper w-50">
+                    <select id="sort-selector" class="form-select form-select-sm border border-{% if current_sorting != 'None_None' %}info{% endif %}">
+                        <option value="reset" {% if current_sorting == 'None_None' %}selected{% endif %}>Sort by...</option>
+                        <option value="price_asc" {% if current_sorting == 'price_asc' %}selected{% endif %}>Price (low to high)</option>
+                        <option value="price_desc" {% if current_sorting == 'price_desc' %}selected{% endif %}>Price (high to low)</option>
+                        <option value="rating_asc" {% if current_sorting == 'rating_asc' %}selected{% endif %}>Rating (low to high)</option>
+                        <option value="rating_desc" {% if current_sorting == 'rating_desc' %}selected{% endif %}>Rating (high to low)</option>
+                        <option value="name_asc" {% if current_sorting == 'name_asc' %}selected{% endif %}>Name (A-Z)</option>
+                        <option value="name_desc" {% if current_sorting == 'name_desc' %}selected{% endif %}>Name (Z-A)</option>
+                    </select>
+                </div>
             </div>
-            <!-- Pagination controls - top -->
-            <div class="col-md-4 col-12 justify-content-center d-inline-flex">
-                {% if page.has_previous %}
-                <a href="{% url 'home' %}?page={{ page.previous_page_number }}" class="me-2">Previous Page</a>
-                {% endif %}
-                {% if page.paginator.count > per_page %}
-                    {% for num in page.paginator.page_range %}
-                        {% if page.number == num %}
-                            <a class="text-dark mx-1" href="?page={{ num }}">{{ num }}</a>
-                        {% elif num > page.number|add:'-2' and num < page.number|add:'2' %}
-                            <a class="text-grey mx-1" href="?page={{ num }}">{{ num }}</a>
-                        {% endif %}
-                    {% endfor %}
-                {% endif %}
-                {% if page.has_next %}
-                <a href="{% url 'home' %}?page={{ page.next_page_number }}" class="ms-2">Next Page</a> 
-                {% endif %}
-            </div>
-            <div class="col-md-4 col-6"></div>
         </div>
         <div class="row">
             <div class="product-container col-10 offset-1">
                 <div class="row mt-1 mb-2"></div>
                 <div class="row">
-                    {% for product in page.object_list %}                          
+                    {% for product in products %}                          
                         <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3 my-2">
                             <div class="card h-100 border border-secondary">
                                 <div class="image-container">
@@ -71,16 +61,16 @@
                                     </div>
                                     {% if product.image %}
                                         <a href="{% url 'product_detail' product.id %}">
-                                            <img class="card-img-top img-fluid" src="{{ product.image.url }}" alt="{{ product.product_name }}">
+                                            <img class="card-img-top img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
                                         </a>
                                     {% else %}
                                         <a href="{% url 'product_detail' product.id %}">
-                                            <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.product_name }}">
+                                            <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
                                         </a>
                                     {% endif %}
                                 </div>
                                 <div class="card-body pb-0 text-center text-uppercase">
-                                    <p class="mb-0"><strong>{{ product.product_name }}</strong></p>
+                                    <p class="mb-0"><strong>{{ product.name }}</strong></p>
                                 </div>
                                 <div class="card-footer bg-light pt-0 text-center">
                                     <div class="row">
@@ -111,25 +101,33 @@
                 </div>
             </div>
         </div>
-        <!-- Pagination controls - bottom -->
-        <div class="row">
-            <div class="col-12 justify-content-center d-inline-flex">
-                {% if page.has_previous %}
-                <a href="{% url 'home' %}?page={{ page.previous_page_number }}" class="me-2">Previous Page</a>
-                {% endif %}
-                {% if page.paginator.count > per_page %}
-                    {% for num in page.paginator.page_range %}
-                        {% if page.number == num %}
-                            <a class="text-dark mx-1" href="?page={{ num }}">{{ num }}</a>
-                        {% elif num > page.number|add:'-2' and num < page.number|add:'2' %}
-                            <a class="text-warning mx-1" href="?page={{ num }}">{{ num }}</a>
-                        {% endif %}
-                    {% endfor %}
-                {% endif %}
-                {% if page.has_next %}
-                <a href="{% url 'home' %}?page={{ page.next_page_number }}" class="ms-2">Next Page</a> 
-                {% endif %}
-            </div>
-        </div>
     </div>  
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+
+<script type="text/javascript">
+    $('#sort-selector').change(function() {
+        var selector = $(this);
+        var currentUrl = new URL(window.location);
+
+        var selectedVal = selector.val();
+        if(selectedVal != "reset"){
+            var sort = selectedVal.split("_")[0];
+            var direction = selectedVal.split("_")[1];
+
+            currentUrl.searchParams.set("sort", sort);
+            currentUrl.searchParams.set("direction", direction)
+
+            window.location.replace(currentUrl);
+        } else {
+            currentUrl.searchParams.delete("sort");
+            currentUrl.searchParams.delete("direction");
+
+            window.location.replace(currentUrl);
+        }
+    })
+</script>
+
 {% endblock %}
