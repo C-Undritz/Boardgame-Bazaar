@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
+from django.core.paginator import Paginator
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .models import Product, Genre, GenreAssignment, Review
@@ -73,10 +74,15 @@ def products_list(request):
         return redirect(reverse('home'))
 
     products = Product.objects.all().order_by('name')
+    per_page = 5
+    product_paginator = Paginator(products, per_page)
+    page_num = request.GET.get('page')
+    page = product_paginator.get_page(page_num)
 
     template = 'products/products_list.html'
     context = {
-        'products': products,
+        'page': page,
+        'per_page': per_page,
     }
 
     return render(request, template, context)
@@ -175,9 +181,19 @@ def genres_list(request):
         messages.error(request, 'Only authorised staff can perform this function')
         return redirect(reverse('home'))
 
-    template = 'products/genres_list.html'
+    genres = Genre.objects.all().order_by('friendly_name')
+    per_page = 8
+    genre_paginator = Paginator(genres, per_page)
+    page_num = request.GET.get('page')
+    page = genre_paginator.get_page(page_num)
 
-    return render(request, template)
+    template = 'products/genres_list.html'
+    context = {
+        'page': page,
+        'per_page': per_page,
+    }
+
+    return render(request, template, context)
 
 
 @login_required
