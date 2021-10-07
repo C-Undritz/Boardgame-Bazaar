@@ -32,18 +32,18 @@
                     </div>
                     {% if product.image %}
                         <a href="{{ product.image.url }}" target="_blank">
-                            <img class="card-img-top img-fluid" src="{{ product.image.url }}" alt="{{ product.product_name }}">
+                            <img class="card-img-top img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
                         </a>
                     {% else %}
                         <a href="">
-                            <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.product_name }}">
+                            <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
                         </a>
                     {% endif %}
                 </div>
             </div>
             <!-- Product details and purchase interaction -->
             <div class="col-12 col-md-6 col-lg-4">
-                <h1 class="mb-0" id="product-detail-title">{{ product.product_name }}</h1>
+                <h1 class="mb-0" id="product-detail-title">{{ product.name }}</h1>
                 <hr class="w100">
                 <!-- Determines if a sale price will be shown -->
                 <div class="d-flex justify-content-between">
@@ -104,27 +104,27 @@
                 </div>
                 <div class="d-inline-flex">
                     <div>
-                        {%  if product.avg_rating == 0 %}
+                        {%  if product.rating == 0 %}
                             <p class="text-muted fs-5">No ratings yet</p>
-                        {% elif product.avg_rating == 1 %}
+                        {% elif product.rating == 1 %}
                             <i class="fas fa-star star-outline star-filled"></i>
                             <i class="fas fa-star star-outline star-empty"></i>
                             <i class="fas fa-star star-outline star-empty"></i>
                             <i class="fas fa-star star-outline star-empty"></i>
                             <i class="fas fa-star star-outline star-empty"></i>
-                        {% elif product.avg_rating == 2 %}
+                        {% elif product.rating == 2 %}
                             <i class="fas fa-star star-outline star-filled"></i>
                             <i class="fas fa-star star-outline star-filled"></i>
                             <i class="fas fa-star star-outline star-empty"></i>
                             <i class="fas fa-star star-outline star-empty"></i>
                             <i class="fas fa-star star-outline star-empty"></i>
-                        {% elif product.avg_rating == 3 %}
+                        {% elif product.rating == 3 %}
                             <i class="fas fa-star star-outline star-filled"></i>
                             <i class="fas fa-star star-outline star-filled"></i>
                             <i class="fas fa-star star-outline star-filled"></i>
                             <i class="fas fa-star star-outline star-empty"></i>
                             <i class="fas fa-star star-outline star-empty"></i>
-                        {% elif product.avg_rating == 4 %}
+                        {% elif product.rating == 4 %}
                             <i class="fas fa-star star-outline star-filled"></i>
                             <i class="fas fa-star star-outline star-filled"></i>
                             <i class="fas fa-star star-outline star-filled"></i>

@@ -50,11 +50,11 @@
                         <div class="col-2 d-flex justify-content-start d-none d-sm-block">
                             {% if item.product.image %}
                             <a href="{% url 'product_detail' item.product.id %}">
-                                <img class="img-fluid rounded" src="{{ item.product.image.url }}" alt="Cart item {{ item.product.product_name }} image"> 
+                                <img class="img-fluid rounded" src="{{ item.product.image.url }}" alt="Cart item {{ item.product.name }} image"> 
                             </a>
                             {% else %}
                             <a href="{% url 'product_detail' item.product.id %}">
-                                <img class="img-fluid rounded" src="{{ MEDIA_URL }}noimage.png" alt="{{ item.product.product_name }}">
+                                <img class="img-fluid rounded" src="{{ MEDIA_URL }}noimage.png" alt="{{ item.product.name }}">
                             </a>
                             {% endif %}
                         </div>
@@ -63,7 +63,7 @@
                             <div class="row">
                                 <!-- Product information -->
                                 <div class="col-lg-3 col-12">
-                                    <p class="my-0 fs-3"><strong>{{ item.product.product_name }}</strong></p>
+                                    <p class="my-0 fs-3"><strong>{{ item.product.name }}</strong></p>
                                     <p class="my-0 fs-6 text-muted">SKU: {{ item.product.sku|upper }}</p>
                                 </div>
                                 <!-- Product price -->

@@ -48,7 +48,7 @@ class Condition(models.Model):
 
 class Product(models.Model):
     sku = models.CharField(max_length=254, null=True, blank=True)
-    product_name = models.CharField(max_length=254)
+    name = models.CharField(max_length=254)
     description = models.TextField()
     release_date = models.DateField()
     price = models.DecimalField(max_digits=6, decimal_places=2)
@@ -64,11 +64,11 @@ class Product(models.Model):
     used = models.BooleanField(default=False)
     pre_order = models.BooleanField(default=False)
     new_release = models.BooleanField(default=False)
-    avg_rating = models.IntegerField(null=True, blank=False, default=0)
+    rating = models.IntegerField(null=True, blank=False, default=0)
 
 
     def __str__(self):
-        return self.product_name
+        return self.name
 
     def update_stock_sold(self, instance):
         """
@@ -84,7 +84,7 @@ class Product(models.Model):
         Determines each products average rating from all user ratings for that
         product.
         """
-        self.avg_rating = self.reviews.all().aggregate(Avg('rating'))['rating__avg']
+        self.rating = self.reviews.all().aggregate(Avg('rating'))['rating__avg']
         self.save()
 
 

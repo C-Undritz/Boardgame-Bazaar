@@ -11,18 +11,18 @@
                 <div class="col-2 d-none d-sm-block">
                     {% if product.image %}
                     <a href="{% url 'product_detail' product.id %}">
-                        <img class="img-fluid rounded" src="{{ product.image.url }}" alt="order item {{ product.product_name }} image"> 
+                        <img class="img-fluid rounded" src="{{ product.image.url }}" alt="order item {{ product.name }} image"> 
                     </a>
                     {% else %}
                     <a href="">
-                        <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.product_name }}">
+                        <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
                     </a>
                     {% endif %}
                 </div>
                 <!-- displays product name -->
                 <div class="col-sm-5 col-6 d-flex align-items-center">
                     <p class="small mb-0 text-dark fw-bold">
-                        {{ product.product_name }}
+                        {{ product.name }}
                     </p>
                 </div>
                 <!-- Edit and Delete buttons -->

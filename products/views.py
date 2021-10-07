@@ -72,7 +72,7 @@ def products_list(request):
         messages.error(request, 'Only authorised staff can perform this function')
         return redirect(reverse('home'))
 
-    products = Product.objects.all().order_by('product_name')
+    products = Product.objects.all().order_by('name')
 
     template = 'products/products_list.html'
     context = {

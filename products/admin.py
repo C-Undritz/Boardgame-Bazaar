@@ -7,14 +7,14 @@ from .models import Product, Genre, Category, Condition, GenreAssignment, Review
 class ProductAdmin(admin.ModelAdmin):
     list_display = (
         'sku',
-        'product_name',
+        'name',
         'condition',
         'price',
         'stock',
         'category',
         'release_date',
         'image',
-        'avg_rating',
+        'rating',
     )
 
     ordering = ('sku',)

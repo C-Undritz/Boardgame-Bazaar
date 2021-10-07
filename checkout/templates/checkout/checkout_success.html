@@ -38,11 +38,11 @@
                                 <!-- displays product image -->
                                 {% if item.product.image %}
                                 <a href="{% url 'product_detail' item.product.id %}">
-                                    <img class="img-fluid rounded" src="{{ item.product.image.url }}" alt="order item {{ item.product.product_name }} image"> 
+                                    <img class="img-fluid rounded" src="{{ item.product.image.url }}" alt="order item {{ item.product.name }} image"> 
                                 </a>
                                 {% else %}
                                 <a href="">
-                                    <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.product_name }}">
+                                    <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
                                 </a>
                                 {% endif %}
                             </div>
@@ -50,9 +50,9 @@
                             <div class="col-md-10 col d-flex align-items-center">
                                 <p class="small mb-0 text-dark fw-bold">
                                     {% if item.product.on_sale %}
-                                        {{ item.product.product_name }} x {{ item.quantity }} (@ £{{ item.product.sale_price }} each)
+                                        {{ item.product.name }} x {{ item.quantity }} (@ £{{ item.product.sale_price }} each)
                                     {% else %}
-                                        {{ item.product.product_name }} x {{ item.quantity }} (@ £{{ item.product.price }} each)
+                                        {{ item.product.name }} x {{ item.quantity }} (@ £{{ item.product.price }} each)
                                     {% endif %}
                                 </p>
                             </div>

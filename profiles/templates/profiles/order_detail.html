@@ -96,18 +96,18 @@
                                 <!-- displays product image -->
                                 {% if item.product.image %}
                                 <a href="{% url 'product_detail' item.product.id %}">
-                                    <img class="img-fluid rounded" src="{{ item.product.image.url }}" alt="order item {{ item.product.product_name }} image"> 
+                                    <img class="img-fluid rounded" src="{{ item.product.image.url }}" alt="order item {{ item.product.name }} image"> 
                                 </a>
                                 {% else %}
                                 <a href="">
-                                    <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.product_name }}">
+                                    <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
                                 </a>
                                 {% endif %}
                             </div>
                             <!-- Display of bought product name, bought quantity and the individual product price  -->
                             <div class="col-md-5 col d-flex align-items-center">
                                 <p class="small mb-0 text-dark fw-bold">
-                                    {{ item.product.product_name }} x {{ item.quantity }}
+                                    {{ item.product.name }} x {{ item.quantity }}
                                 </p>
                             </div>
                             <!-- Review button -->

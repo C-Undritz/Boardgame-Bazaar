@@ -12,18 +12,18 @@
                     <!-- displays product image -->
                     {% if product.image %}
                     <a href="{% url 'product_detail' product.id %}">
-                        <img class="img-fluid rounded" src="{{ product.image.url }}" alt="order item {{ product.product_name }} image"> 
+                        <img class="img-fluid rounded" src="{{ product.image.url }}" alt="order item {{ product.name }} image"> 
                     </a>
                     {% else %}
                     <a href="">
-                        <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.product_name }}">
+                        <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
                     </a>
                     {% endif %}
                 </div>
                 <!-- Display of bought product name, bought quantity and the individual product price  -->
                 <div class="col-md-5 col d-flex align-items-center">
                     <p class="small mb-0 text-dark fw-bold">
-                        {{ product.product_name }}
+                        {{ product.name }}
                     </p>
                 </div>
                 <!-- Remove button -->
