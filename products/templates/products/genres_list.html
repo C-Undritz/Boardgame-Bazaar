@@ -1,11 +1,39 @@
 {% extends "profiles/admin_menu.html" %}
 
 {% block profile_content %}
+<div class="row">
+    <!-- Pagination information -->
+    <div class="col-12">
+        <p class="text-center fs-4 mb-0">{{ page.paginator.count }} Genres | Page {{ page.number }} of {{ page.paginator.num_pages }}</p>
+    </div>
+    <!-- Pagination controls - top -->
+    <div class="col-12 d-flex justify-content-center d-inline-flex">
+        {% if page.has_previous %}
+        <a href="{% url 'genres_list' %}?page={{ page.previous_page_number }}" class="me-2"><i class="fas fa-angle-left"></i></a>
+        {% else %}
+        <p class="me-2 text-grey"><i class="fas fa-angle-left"></i></p>
+        {% endif %}
+        {% if page.paginator.count > per_page %}
+            {% for num in page.paginator.page_range %}
+                {% if page.number == num %}
+                    <a class="text-dark mx-2" href="?page={{ num }}">{{ num }}</a>
+                {% elif num > page.number|add:'-3' and num < page.number|add:'3' %}
+                    <a class="text-grey mx-2" href="?page={{ num }}">{{ num }}</a>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+        {% if page.has_next %}
+        <a href="{% url 'genres_list' %}?page={{ page.next_page_number }}" class="ms-2"><i class="fas fa-angle-right"></i></a>
+        {% else %}
+        <p class="me-2 text-grey"><i class="fas fa-angle-right"></i></p>
+        {% endif %}
+    </div>
+</div>
 <!-- Display of genres -->
 <div class="row">
     <div class="col-12">
         <div class="cart-heading-hr mb-2"></div>
-        {% for genre in genres %}
+        {% for genre in page.object_list %} 
             <div class="row">
                 <!-- displays genre name -->
                 <div class="col-6 d-flex align-items-center justify-content-start">
