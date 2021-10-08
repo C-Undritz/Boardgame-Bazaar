@@ -79,7 +79,7 @@
                                     <div class="d-inline-flex">
                                         <form class="form update-form" method="POST" action="{% url 'update_cart' item.item_id %}">
                                             {% csrf_token %}
-                                            <div class="input-group qty-select">
+                                            <div class="input-group qty-select cart-qty-select">
                                                 <button class="minus-btn btn bg-warning btn-outline-warning" data-item_id="{{ item.item_id }}" id="minus-qty_{{ item.item_id }}">
                                                     <i class="text-dark fas fa-minus fa-sm"></i>
                                                 </button>

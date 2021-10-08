@@ -16,7 +16,7 @@ input[type=number]::-webkit-outer-spin-button {
 	color: #FFC107;
 }
 
-.input-group>.form-control, .input-group>.form-select {
+.cart-qty-select>.form-control, .cart-qty-select>.form-select {
     flex: none !important;
     width: 30% !important;
 }
