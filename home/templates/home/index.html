@@ -21,9 +21,9 @@
         </div>
         <!-- Sort dropdown options -->
         <div class="row">          
-            <div class="col-12 d-flex justify-content-end">
-                <div class="sort-select-wrapper w-50">
-                    <select id="sort-selector" class="form-select form-select-sm border border-{% if current_sorting != 'None_None' %}info{% endif %}">
+            <div class="offset-1 col-10 d-flex justify-content-center justify-content-sm-end">
+                <div class="sort-select-wrapper">
+                    <select id="sort-selector" class="form-select form-select-sm border-dark border-{% if current_sorting != 'None_None' %}info{% endif %}">
                         <option value="reset" {% if current_sorting == 'None_None' %}selected{% endif %}>Sort by...</option>
                         <option value="price_asc" {% if current_sorting == 'price_asc' %}selected{% endif %}>Price (low to high)</option>
                         <option value="price_desc" {% if current_sorting == 'price_desc' %}selected{% endif %}>Price (high to low)</option>
