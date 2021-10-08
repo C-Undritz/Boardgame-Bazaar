@@ -20,32 +20,6 @@ class Genre(models.Model):
         return self.friendly_name
 
 
-class Category(models.Model):
-
-    class Meta:
-        verbose_name_plural = 'Categories'
-
-    name = models.CharField(max_length=254)
-    friendly_name = models.CharField(max_length=254)
-
-    def __str__(self):
-        return self.name
-
-    def get_friendly_name(self):
-        return self.friendly_name
-
-
-class Condition(models.Model):
-    name = models.CharField(max_length=254)
-    friendly_name = models.CharField(max_length=254)
-
-    def __str__(self):
-        return self.name
-
-    def get_friendly_name(self):
-        return self.friendly_name
-
-
 class Product(models.Model):
     sku = models.CharField(max_length=254, null=True, blank=True)
     name = models.CharField(max_length=254)
@@ -57,11 +31,7 @@ class Product(models.Model):
     genre = models.ManyToManyField(Genre, through="GenreAssignment")
     stock = models.IntegerField(null=False, blank=False, default=0)
     sold = models.IntegerField(null=False, blank=False, default=0)
-    category = models.ForeignKey('Category', on_delete=models.SET_DEFAULT, default=CATEGORY_DEFAULT)
-    condition = models.ForeignKey('Condition', on_delete=models.SET_DEFAULT, default=CONDITION_DEFAULT)
     image = models.ImageField(null=True, blank=True)
-    # Category fields rendered as boolean to try out queries
-    used = models.BooleanField(default=False)
     pre_order = models.BooleanField(default=False)
     new_release = models.BooleanField(default=False)
     rating = models.IntegerField(null=True, blank=False, default=0)
