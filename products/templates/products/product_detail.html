@@ -161,8 +161,8 @@
                     {% else %}
                     <p class="mt-2 mb-1 fs-5 fw-bold text-success">{{ product.stock }} in stock</p>
                     {% endif %}
-                    <input type="hidden" value="{{ stock }} " id="stock_{{ product.id }}">
                 {% endif %}
+                <input type="hidden" value="{{ stock }} " id="stock_{{ product.id }}">
                 <!-- Select quantity and add to cart form - Only displays if product in stock or a pre-order -->
                 {% if product.stock > 0 or product.pre_order %}
                 <form class="row mt-1" action="{% url 'add_to_cart' product.id %}" method="POST">
