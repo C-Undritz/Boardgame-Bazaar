@@ -32,6 +32,9 @@ def is_in_stock(request):
         product = Product.objects.get(id=item_id)
         if item_data <= product.stock:
             confirmed_okay += 1
+        elif product.pre_order:
+            # Allows for the purchase of pre-order items.
+            confirmed_okay += 1
         else:
             continue
 
