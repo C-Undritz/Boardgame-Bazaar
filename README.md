@@ -29,20 +29,16 @@
 ------
 
 > # **OVERVIEW**
-
-The board game industry has seen a resurgence in recent years and it is expected to carry on growing further.  Industry forecasters predict the global board game market will be worth more than £9bn by 2023.
-
-For many gamers, the enjoyment of playing board and card games among friends, family members, and fellow enthusiasts is invaluable. And they are willing to pay for the experience, with the majority of gamers (41%) purchasing five to ten new games or expansions a year.
-
-Consequently recent survey data found that 43% of of board gamers may typically have between 26 to 100+ games and so, often, space becomes an issue.  This has led to a large scene for selling on games that are no longer played enough or just did not click with a gamer or gaming group.  You can now find popular and relatively recent releases available on ebay and there is a 2nd hand games facility available on boardgamegeek and many facebook groups where gamers can sell or trade games.
+Boardgame Bazaar is a dedicated online board game store, where customers can easily navigate to view games organised and presented within a number of categories.  Categories are assigned by admin users or are determined through functions based on the saved product data.  Controls exist to preserve stock levels during purchasing so customers are aware as to what is available and are prevented from buying a product that is out of stock.  This combined with an intuitive interface aims to deliver a smooth and enjoyable customer experience to maximise repeat visits to the site
 
 ------
 
 > # **STRATEGY**
+The board game industry has seen a resurgence in recent years and it is expected to carry on growing further.  Industry forecasters predict the global board game market will be worth more than £9bn by 2023.  For many gamers, the enjoyment of playing board and card games among friends, family members, and fellow enthusiasts is invaluable. And they are willing to pay for the experience, with the majority of gamers (41%) purchasing five to ten new games or expansions a year.
 
-Research has revealed that there is no current dedicated online board game store that will allow users to sell games in exchange for store credit.  Boardgame Bazaar uniquely offers this facility to registered site users and manages the end to end sale process through the users account and admin interface.  This allows users to build up credit to spend in store and will also provide Boardgame Bazaar with quality 2nd hand stock to sell longside new stock of the latest games and well known titles.
+Consequently whilst there are plenty of online board game stores, there is still room in the market for a new store to thrive and succeed.  The goal of this project is to produce an e-commerce store dedicated to the sale of new table top board games.   Whilst other stores offer board games and associated paraphernalia, the focus of boardgame Bazaar will be the sale of the core experience: Games and associated expansions.
 
-The goal of this project is to produce a MVP of an e-commerce store dedicated to the sale of new and second hand table top board games.
+
 <div align="right"><a href="#top">Contents Table</a></div>
 
 
@@ -54,9 +50,8 @@ The goal of this project is to produce a MVP of an e-commerce store dedicated to
 |               |             |                                                              |                                                              |
 | 01-01         | Customer    | View all of the products available from the store            | Select a product to purchase                                 |
 | 01-02         | Customer    | View a list of products that are on sale, just released and available for preorder | Take advantage of savings, and purchase a new product early  |
-| 01-03         | Customer    | View second hand board games available to buy                | Have the option to buy quality approved second hand board games |
-| 01-04         | Customer    | Select individual products to view                           | Read additional product details to confirm that this is the item I am looking for and add to my shopping cart (nth: view reviews and ratings on the product) |
-| 01-05         | Customer    | Access my shopping cart at any time                          | Check added items and view the purchase total to ensure that I am not spending too much |
+| 01-03         | Customer    | Select individual products to view                           | Read additional product details to confirm that this is the item I am looking for and add to my shopping cart (nth: view reviews and ratings on the product) |
+| 01-04         | Customer    | Access my shopping cart at any time                          | Check added items and view the purchase total to ensure that I am not spending too much |
 |               |             |                                                              |                                                              |
 | 02-01         | Customer    | View the products available by board game genres             | More easily find games that match my board game preferences  |
 | 02-02         | Customer    | Sort the returned list of board games                        | Easily identify the cheapest/most expensive board games and most highly rated |
@@ -75,13 +70,13 @@ The goal of this project is to produce a MVP of an e-commerce store dedicated to
 | 04-02         | Site User   | Easily log in or log out                                     | Access my personal account and streamline the checkout       |
 | 04-03         | Site User   | Easily recover my password in case I forget it               | Recover access to my account                                 |
 | 04-04         | Site User   | Receive an email confirmation after registering              | Be sure that my account is created and verify that it is myself that set it up |
-| 04-05         | Site User   | Sell board games I no longer want to get store credit        | Use that credit to buy new or used board game and therefore reduce the amount of money I spend |
-| 04-06         | Site User   | Have a personalised account page                             | View order history, save, view and update contact and delivery information and view my current credit and trade progress / history |
+| 04-05         | Site User   | Have a personalised account page                             | View order history, save, view and update contact and delivery information and view my current credit and trade progress / history |
 |               |             |                                                              |                                                              |
 | 05-01         | Store Owner | Add a product                                                | Add new items to the store through streamlined interface     |
 | 05-02         | Store Owner | Edit and Update a product details                            | Change product prices, descriptions, images, and other product criteria |
 | 05-03         | Store Owner | Delete a product                                             | Remove items that are no longer available to buy             |
-| 05-04         | Store Owner | Manage customer sale of games to the store                   | Reject sales, make offers, dispatch pickup, and add the games to stock when they arrive |
+|               |             |                                                              |                                                              |
+
 
 <div align="right"><a href="#top">Contents Table</a></div>
 
@@ -99,10 +94,9 @@ The goal of this project is to produce a MVP of an e-commerce store dedicated to
 3. A contact function/form that will allow the sending of feedback to an existing email.
 4. Clear and obvious links to social media platforms.
 5. Feedback animations to provide players with clear interaction cues.
-6. Nice to have: Interactive functions for user to provide feedback on a recipe and to view feedback provided by others.
+6. Interactive functions for user to rate and review a game, and to view feedback provided by others.
 
 <div align="right"><a href="#top">Contents Table</a></div>
-
 
 ------
 
@@ -123,19 +117,20 @@ The Navbar is displayed at all resolutions and is a permanet navigation feature.
 
 ### Social Icons
 - Social icons link to there respective sites and open the social network site within a new browser tab.  
-- Displayed in navbar on desktop screens only.
+- Displayed permanently within the foot and in the navbar on desktop screens only.
 
 ### Account Buttons
-- Conditional display of icons and type to login, register, access account, admin functions and logout.  Each navigates to the appropriate page.  
-- Displayed in navbar at all resolutions though type is not shown on mobile screens; only the icons.
+- Conditional display of icons and text to login, register, access account, and logout.  Each navigates to the appropriate page.  
+- Displayed in navbar at all resolutions though text is not shown on mobile screens; only the icons.
+- Admin functions are available within a user account if the user has admin status.
 
 ### Shopping Cart
-- Shopping cart that opens the cart (bootstrap implemented feature here).  From the (bootstrap implemented feature here) a 'checkout button takes the user to the checkout page.
-- The Shopping cart is displayed at all resolutions.
+- The shopping cart can be accessed at any point by clicking on the shopping cart symbol in the top right of navbar which will take the user to the shopping cart page.
+- Whilst shopping, a preview of the shopping cart is displayed upon the addition an item to the cart.  This is done via a bootstrap5 Offcanvas component.  From within the Offcanvas the user can select to view the shopping cart page or continue shopping.  The Offcanvas is displayed at all resolutions.
 
 ### Navigation Menu
 - Navigation menu displaying 'home' icon to navigate the user to the landing pages from any page within the site.  
-- Shop Front displays a drop-down menu that displays the available boardgames by 'bestsellers', 'new releases', 'pre-orders', 'on sale' and 'used'.  
+- Shop Front displays a drop-down menu that displays the available boardgames by 'bestsellers', 'new releases', 'pre-orders' and 'on sale'.  
 - Shop by Genre displays a drop-down menu that displays the available boardgames by genres that have been assigned to each game.
 - The navigation menu is responsive and so content collapses behind a button on tablet and mobile screens
 
@@ -171,7 +166,7 @@ The Navbar is displayed at all resolutions and is a permanet navigation feature.
 
 # Database Schema
 
-![database_schema v0.1](assets/readme/boardgame_bazaar-database_design_v0.1.png)
+![database_schema](assets/readme/boardgame_bazaar-database_design.png)
 
 # Searching
 
