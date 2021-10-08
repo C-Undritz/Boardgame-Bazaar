@@ -148,11 +148,16 @@
                 </div>
                 <!-- Determines message to display if no product stock -->
                 {% if product.stock <= 0%}
+                <div>
                     {% if product.pre_order %}
-                    <p class="mt-2 mb-1 fs-5 fw-bold text-success">Available for pre-order<i class="ms-2 fas fa-check"></i></p>
+                    <div class="d-inline-flex">
+                        <p class="fs-5 fw-bold text-success">Available for pre-order<i class="ms-2 fas fa-check"></i></p>
+                        <p class="fs-6 text-muted ms-1 mt-1">(One per purchase)</p>
+                    </div>
                     {% else %}
                     <p class="mt-2 fs-5 fw-bold text-danger">Sorry, currently out of stock</i></p>
                     {% endif %}
+                </div>
                 {% endif %}
                 <!-- Determines the message to display if product in stock -->
                 {% if product.stock > 0 %}
