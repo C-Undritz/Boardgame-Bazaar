@@ -35,12 +35,6 @@ hr {
     font-family: 'Love Ya Like A Sister', cursive;
 }
 
-#strap-line {
-    font-family: 'Amatic SC', cursive;
-    margin-top: -20px;
-    margin-left: 30px;
-}
-
 #nav-search {
     width: 75%;
 }
@@ -214,20 +208,24 @@ div > div.form-check > .form-check-label {
 
 /* From Boutique Ado */
 /* Fixed top navbar only on medium screens and above  */
-@media (min-width: 992px) {
+@media (min-width: 993px) {
     .header-container {
         padding-top: 150px;
     }
 }
 
 /* Fixed top navbar only on medium screens and below  */
-@media (max-width: 991px) {
+@media (max-width: 992px) {
     .header-container {
         padding-top: 143px;
     }
 
     body {
         height: calc(100vh - 143px);
+    }
+
+    #store-logo {
+        font-size: 2.70rem;
     }
 }
 
@@ -242,14 +240,8 @@ div > div.form-check > .form-check-label {
 }
 
 @media (max-width: 576px) {
-    #store-logo {
-        font-size: 1.70rem;
-    }
-
-    #strap-line {
-        font-size: 1.5rem;
-        margin-top: -17px;
-        margin-left: 40px;
+    .header-container {
+        padding-top: 180px;
     }
 }
 
@@ -260,10 +252,6 @@ div > div.form-check > .form-check-label {
 }
 
 @media (max-width: 375px) {
-    #strap-line {
-        display: none;
-    }
-
     /* Added to make BS toasts responsive. */
     .toast {
         width: 95%;
