@@ -63,6 +63,10 @@ hr {
     margin-top: 12px;
 }
 
+#responsive-logo {
+    margin-bottom: -8px !important;
+}
+
 /* Styles to colour of the search box */
 /* input[name='q']::placeholder {
     color: #aab7c4;
@@ -123,8 +127,8 @@ hr {
 
 .messages-container {
     position: fixed;
-    top: 160px;
-    right: 15px;
+    top: 140px;
+    right: 10px;
     z-index: 99999999999;
 }
 
@@ -255,6 +259,10 @@ div > div.form-check > .form-check-label {
     /* Added to make BS toasts responsive. */
     .toast {
         width: 95%;
+    }
+
+    #store-logo {
+        font-size: 2.1rem;
     }
 }
 
