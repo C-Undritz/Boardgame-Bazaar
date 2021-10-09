@@ -1,12 +1,51 @@
 from django.db import models
 from django.db.models import Avg
 from django.shortcuts import get_object_or_404
-
 from django.contrib.auth.models import User
 
+import datetime
 
-CATEGORY_DEFAULT = 'none'
-CONDITION_DEFAULT = 'undetermined'
+
+class CustomManager(models.Manager):
+
+    def determine_new_or_preorder(self, products):
+        """
+        Determines whether product is a new release or pre-order by running
+        queries against the recorded product release_date and the present
+        date and updates the product boolean values accordingly.
+        """
+        new_release_time_period = 90
+        today = datetime.date.today()
+        delta = datetime.timedelta(days=new_release_time_period)
+        past_date = today - delta
+
+        for product in products:
+            if (product.release_date > past_date) and (product.release_date < today):
+                this_product = product
+                this_product.new_release = True
+                this_product.save()
+                print('true 1')
+            else:
+                this_product = product
+                this_product.new_release = False
+                this_product.save()
+                print('false 1')
+            if product.release_date > today:
+                this_product = product
+                this_product.pre_order = True
+                this_product.save()
+                print("true 2")
+            else:
+                this_product = product
+                this_product.pre_order = False
+                this_product.save()
+                print("false 2")
+        return products
+
+    def all(self):
+        products = super().all()
+        products = self.determine_new_or_preorder(products)
+        return products
 
 
 class Genre(models.Model):
@@ -36,6 +75,7 @@ class Product(models.Model):
     new_release = models.BooleanField(default=False)
     rating = models.IntegerField(null=True, blank=False, default=0)
 
+    objects = CustomManager()
 
     def __str__(self):
         return self.name
@@ -59,7 +99,6 @@ class Product(models.Model):
 
 
 class GenreAssignment(models.Model):
-    # genre = models.ForeignKey('Genre', null=True, blank=True, on_delete=models.SET_NULL)
     genre = models.ForeignKey('Genre', null=True, blank=True, on_delete=models.CASCADE)
     product = models.ForeignKey('Product', on_delete=models.CASCADE)
 
