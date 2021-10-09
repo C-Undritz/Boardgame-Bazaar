@@ -399,7 +399,6 @@ The application can now be run locally by typing in a terminal window:
 ```
 
 # Heroku Deployment
-***!IMPORTANT*: comment out line 72 (main()) within the home app 'views' python file.  Failure to do this will stop the migrations to the Heroku database.  Once deployment is fully complete un-comment this line.**
 
 ## Heroku Variables
 The following environment variables (in CAPS) must be set within the ‘Config Vars’ section in Heroku for the deployed site to function correctly.   The config variables are added within the Heroku app by selecting the Settings tab, and under the heading 'Config Vars' clicking the button 'Reveal Config Vars' to show the key / value input boxes for the variables.  Instructions to obtain the variables are featured within below sections.
@@ -617,6 +616,7 @@ Within the Heroku Config variables add the 16 character password as the value to
 
 # Code
 - Thanks to the Code Institute Boutique Ado commercial online store full-stack django project; which was a great introduction to django framework. 
+- The use of python datetime in the product models custom manager was referenced from this [listendata.com article](https://www.listendata.com/2019/07/how-to-use-datetime-in-python.html#Calculate-future-or-past-dates)
 - Technique for positioning text over an image from [w3schools](https://www.w3schools.com/howto/howto_css_image_text.asp)
 - For rendering the game genres as checkboxes: [Django Forms for Many-to-Many Fields](https://medium.com/swlh/django-forms-for-many-to-many-fields-d977dec4b024)
 - To get a calender box to show up to pick a date for the 'release date' field in the add products page: [How to use Datepicker in Django?](https://webpedia.net/how-to-use-datepicker-in-django)
@@ -625,6 +625,7 @@ Within the Heroku Config variables add the 16 character password as the value to
 - This Youtube tutorial video from [Onthir](https://www.youtube.com/watch?v=lSX8nzu9ozg) was used as a guide when implementing the review and rate features
 - This Youtube tutorial video from [Very Academy](https://www.youtube.com/watch?v=H4QPHLmsZMU) was used as a guide when implementing the add to wishlist feature
 - The Youtube tutorial videos from [Corey Schafer](https://www.youtube.com/watch?v=acOktTcTVEQ) and [Pretty Printed](https://www.youtube.com/watch?v=wmYSKVWOOTM) were used to learn about the implementation of pagination.
+- The jQuery solution to disabling the mousewheel for input elements was found on this [stackoverflow](https://stackoverflow.com/questions/9712295/disable-scrolling-on-input-type-number) post
 - For keeping the footer positioned at the bottom of the page at all times, the section called 'There is a flexbox' was used from [this css-tricks.com](https://css-tricks.com/couple-takes-sticky-footer/) page.
 
 # Images and Content
@@ -640,8 +641,9 @@ Within the Heroku Config variables add the 16 character password as the value to
   - [Board Game Industry Statistics](https://printninja.com/board-game-industry-statistics/)
 
 # Acknowledgments
-- Thanks to the slack community for support and help throughout the course and this project.  Honourable mentions for this project go to Ed B_alum, Gaff Alumnus, Daisy_mentor
+- Thanks to the slack community for support and help throughout the course and this project.  Honourable mentions for this project go to Ed B_alum, Gaff Alumnus, Daisy_mentor, @ckz8780, Harry and BenKav_Alumni
 - Thanks to @ckz8780 for the support on slack and helping with getting the stock check against purchase quantity working!
+- Thanks to BenKav_Alumni for the help in setting up the product model custom manager.
 - Thanks to tutor support for all the help throughout this project
 - Thanks to Code Institute for the encouragement and great course material. 
 
