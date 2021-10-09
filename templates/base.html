@@ -126,6 +126,16 @@
                 </a>
             </div>
         </div>
+        <!-- responsive logo displays on mobile screens only (575px and below)-->
+        <div class="row bg-dark">
+            <div class="col-12 my-auto d-block d-sm-none" id="responsive-logo">
+                <a href="{% url 'home' %}" class="nav-link">
+                    <div class="text-center text-light">
+                        <h1 id="store-logo" class="text-warning mb-0">Boardgame Bazaar</h1>
+                    </div>
+                </a>
+            </div>
+        </div>
         <!-- bottom row of the navbar (black) -->
         <div id="bottom-topnav" class="row bg-dark">
             <!-- Navigation menu-->
@@ -165,13 +175,15 @@
                     </div>
                 </nav>
             </div>
-            <!-- Store Logo -->
+            <!-- Store Logo displays on tablet and desktop screens only (576px and above)-->
             <div class="col-8 col-lg-4 my-lg-auto">
-                <a href="{% url 'home' %}" class="nav-link">
-                    <div class="text-center text-light">
-                        <h1 id="store-logo" class="text-warning">Boardgame Bazaar</h1>
-                    </div>
-                </a>
+                <div class="d-none d-sm-block">
+                    <a href="{% url 'home' %}" class="nav-link">
+                        <div class="text-center text-light">
+                            <h1 id="store-logo" class="text-warning">Boardgame Bazaar</h1>
+                        </div>
+                    </a>
+                </div>
             </div>
             <!-- Search Function -->
             <!--displays on large screens (992px and above) -->
@@ -184,9 +196,9 @@
                 </form>
             </div>
             <!-- displays on tablet and mobile screens (991px and below) -->
-            <div class="col-2 d-flex justify-content-end align-items-center d-block d-lg-none">
-                <div id="mobile-search-btn mb-1">
-                    <a role="button">
+            <div class="col-2 d-flex justify-content-end d-block d-lg-none">
+                <div id="mobile-search-btn">
+                    <a href="#" role="button">
                         <div class="border border-warning rounded-1 text-warning">
                             <i class="px-2 py-2 fas fa-search"></i>
                         </div>
