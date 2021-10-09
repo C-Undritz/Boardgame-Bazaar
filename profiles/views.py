@@ -104,9 +104,10 @@ def wishlist_toggle(request, product_id, nav):
 
     if profile.wishlist.filter(id=product_id).exists():
         profile.wishlist.remove(product_id)
+        messages.success(request, 'Removed from favourites')
     else:
         profile.wishlist.add(product_id)
-
+        messages.success(request, 'Added to favourites')
     if nav:
         return redirect(reverse('product_detail', args=[product_id]))
     else:
@@ -120,8 +121,6 @@ def wishlist(request):
     """
     profile = get_object_or_404(UserProfile, user=request.user)
     wishlist = profile.wishlist.filter()
-
-    print(f'the wishlist is: {wishlist}')
 
     template = 'profiles/profile_wishlist.html'
     context = {
