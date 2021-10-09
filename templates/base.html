@@ -114,13 +114,11 @@
             </div>
             <!-- shopping cart -->
             <div class="col-lg-1 col-md-2 col-3 bg-warning d-flex justify-content-center">
-                <a class="{% if item_total %}font-weight-bold{% else %}text-black{% endif %} px-0 py-0" href="{% url 'view_cart' %}">
+                <a class="{% if item_total %}font-weight-bold{% else %}text-black{% endif %} px-0 py-0 no-decoration" href="{% url 'view_cart' %}">
                     <ul class="list-inline list-unstyled my-1">
                         <li class="list-inline-item"><i class="fas fa-shopping-cart"></i></li>
                         <li class="list-inline-item">
-                            <p class="my-0">
-                                {{ product_count }}
-                            </p>
+                            {{ product_count }}
                         </li>
                     </ul>
                 </a>
@@ -297,6 +295,12 @@
     <script src="{% static 'js/display_search_input.js' %}"></script>
     <script src="{% static 'js/required_bootstrap.js' %}"></script>
     <script src="{% static 'js/go_back_script.js' %}"></script>
+
+    <script>
+        $(document).on("wheel", "input[type=number]", function (e) {
+            $(this).blur();
+        });
+    </script>
     {% endblock %}
 
 </body>

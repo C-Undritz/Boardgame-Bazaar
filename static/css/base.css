@@ -22,6 +22,9 @@ hr {
     margin: 0.5rem 0;
 }
 
+a.no-decoration {
+    text-decoration: none !important;
+}
 /* ------------------ Navbar ------------------- */
 .nav-link {
     padding: 0;
