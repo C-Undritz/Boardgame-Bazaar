@@ -156,30 +156,31 @@ The below details how the website meets the requirements of each user story.
 **Issue**: When deleting orders within the admin the error "'>=' not supported between instances of 'NoneType' and 'int'" was returned.  
 ***Solution**: It was found that this was an issue with the def update_total(self) function within the Order Model.  Upon delete the variable 'quantity_total' was 'None'.  It was understood to be due to the fact that the save function on the OrderLineItem model executes first which initiates the update_total function on the Order model and therefore there would be no line items to iterate through as they would have been deleted and the value therefore 'None'.  To solve this and allow a delete to occur, an if statement was added (line 58) before the discount is determined (lines 59 to 64) to determine if quanity_total has a value and the discount determined only if this is true.*
 
-## 2. Migrating data to Postgres database
-**Issue**: When completing the initial migrations of the database to the postgres database setup on Heroku, the error below was returned and the database would not migrate.  
-```
-"psycopg2.errors.UndefinedTable: relation "products_product" does not exist"
-"LINE 1: ...pre_order", "products_product"."new_release" FROM "products_..."
-```
-***Solution**: The functions determine_new_releases() and determine_preorders() with the home app 'views.py' file run when the app is started and require the database is in place.  As the database was not in place at that point, the error resulted.  Quoting out 'main()' on line 72 of the home app `views.py` file disabled these functions running at startup and the migration was then completed without issue.  This has been added to the deployment instructions.*
-
-## 3. Displaying rating stars 
+## 2. Displaying rating stars 
 **Issue**: The code for the rating stars was the same custom code from my other project 'Community Treats'.  However here when the stars were rendered, the radio buttons were also showing:  
 ![Ratings stars display issue](assets/readme/rating_stars_issue.png)  
 ***Solution**: a similar question was asked on [stackoverflow](https://stackoverflow.com/questions/29346385/hide-radio-button-while-keeping-its-functionality/29346555) and one of the answers featured on the page detailed the below css fix which, when applied, solved the issue:*
 ```
 .radio_item {
-    position:fixed; 
-    opacity:0;
+    position: fixed; 
+    opacity: 0;
 }
-```  
+```
 ![Ratings stars display issue](assets/readme/rating_stars_fix.png)  
+
+## 4. Restricting interaction with the quantity select input box
+**Issue**: Within the product detail page and the cart page, it was found that the customer could use the keyboard to enter any number above the stock limit of the input max figure of 10.  it was also found that the built in increment and decrement mouse functions could be used to select a figure above the stock level (should it be less than 10), to the max of 10.  
+***Solution**: To limit how the customer can interact with the quantity selector inputs, the ability to use the built in increment and decrement functions and the keyboard was limited (see code section in credit and thanks).  This will then direct the customer to use the custom mobile friendly increment and decrement functions.*
+
+## 5. Form input elements affected by mouse wheel
+**Issue**: It was found when entering a number value into any form input element and then scrolling the mouse wheel to navigate the form changed the input value (up or down depending on the scroll wheel direction) whilst the cursor was briefly still within the input box.  Therefore when making a price entry of 69.99 it would be very easy to make it then appear as 69.97 or 69.98.  
+***Solution**: This was solved by disabling the mousewheel for all input elements throughout the site.  The jQuery solution was found [here](https://stackoverflow.com/questions/9712295/disable-scrolling-on-input-type-number)*
+
+
 
 ---
 ># **REMAINING ISSUES**
-## 1. Deleting number in quantity select input box
-Within the product detail page and the cart page, it was found that the customer could use the keyboard to enter any number above the stock limit of the input max figure of 10.  it was also found that the built in increment and decrement mouse functions could be used to select a figure above the stock level (should it be less than 10), to the max of 10.  So in the effort to limit how the customer can interact with the quantity selector inputs, the ability to use the built in increment and decrement functions and the keyboard was limited (see code section in credit and thanks).  This will then direct the customer to use the custom mobile friendly increment and decrement functions.  However it was found that the customer could use the 'backspace' key to delete any value with the input box and once this was done, the page would have to be reloaded to allow the input of a quantity value again.  This remains unresolved. 
+
 
 
 ># **REMAINING BUGS**
