@@ -273,24 +273,15 @@ Testing completed is detailed in the [TESTING.md](https://github.com/C-Undritz/C
 
 # Data Management and Use
 ## Product attributes:
-### New Releases.
-Determined during site startup and when ‘new releases’ selected from the shop front menu through the function ‘determine_new_releases()’ In home app views.py.   
+### New Releases and Pre-orders
+Whether a product is to be considered a 'new-release' or 'pre order' is determined automatically and recorded as a boolean value for each against the product.  This is performed within the products models CustomManager class which completes two checks using the current date and the release date recorded agains the product.
 
-#### Mechanism:
-Function checks the recorded release date mandatory field against the date 90 days in the past from the current date.  If the release of the game occurred within the past 90 days then it is checked as being a ‘new release’.
+* New release: checks the recorded release date mandatory field against the date 90 days in the past from the current date.  If the release of the game occurred within the past 90 days then it is set as a ‘new release’.
+* Pre-order: checks the recorded release date mandatory field against the current date.  If the release date of the game is in the future then it is set as a ‘pre-order’.
 
-#### Display:
-Only games that were released within the last 90 days will be checked as a new release and therefore displayed as such on the website with a banner over the image.
+The result of this is that products will with a flash over the product image advertising a game as pre-order or new release if either of these are true.
 
-### Pre-orders.
-Determined during site startup and when ‘pre-orders’ selected from the shop front menu through the function ‘determine_preorders()’ In home app views.py.   
-
-#### Mechanism: 
-function checks the recorded release date mandatory field against the current date.  If the release date of the game is in the future then it is checked as being a ‘pre-order’.
-
-#### Display:
-Only games that have a release date recorded in the database that is in the future will be checked as a preorder and therefore displayed as such on the website with a banner over the image.
-
+These functions were previously run within the home `view.py` file, however this approached had issues and did not run as expected.  Moving them to a custom manager solved these and is suitable for this project with no discernable impact on performance with the small number of products stored within the database.  However such a function would need to setup as a cron job for serious commercial use of the site and/or a significant increase in the amount of products stored on the database.
 
 ### Stock.
 The stock figure is updated when an item is purchased to reflect the amount purchased.  There are no controls to stop the 'stock' count becoming a minus figure as this should be allowed to highlight if more stock has been sold than is in place.  However there are a number of measures in place to prevent this from happening.
