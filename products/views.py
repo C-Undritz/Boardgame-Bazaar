@@ -291,6 +291,7 @@ def review_rate(request, order_number, product_id):
             data.user = request.user
             data.product = product
             data.save()
+            messages.success(request, 'Review saved.  Thank you!')
             return redirect(reverse('order_detail', args=[order_number]))
         else:
             messages.error(request, 'Failed to add rating and review. Please check that you have correctly filled out all required information.')
@@ -330,6 +331,7 @@ def edit_review(request, order_number, product_id):
             data.user = request.user
             data.product = product
             data.save()
+            messages.success(request, 'Review successfully updated.')
             return redirect(reverse('order_detail', args=[order_number]))
         else:
             messages.error(request, 'Failed to add rating and review. Please check that you have correctly filled out all required information.')
