@@ -15,7 +15,7 @@ def add_to_cart(request, item_id):
     is used to display the cart updates to the customer whilst shopping.
     Adapted from the CI Boutique Ado project
     """
-    quantity = int(request.POST.get('quantity'))
+    quantity = int(request.POST.get('quantity') or 1)
     redirect_url = request.POST.get('redirect_url')
     cart = request.session.get('cart', {})
 
