@@ -7,17 +7,19 @@ The order summary is below:
 Order Number: {{ order.order_number }}
 Order Date: {{ order.date }}
 
-Order Total: £{{ order.order_total }}
-Discount: -£{{ order.discount }}
+Order Total: £{{ order.order_total|floatformat:2 }}
+Discount: -£{{ order.discount|floatformat:2 }}
 Delivery: £{{ order.delivery_cost }}.00
-Grand Total: £{{ order.grand_total }}
+Grand Total: £{{ order.grand_total|floatformat:2 }}
 
 Your items:
 {% for item in order.lineitems.all %}
     {% if item.product.on_sale %}
         {{ item.product.name }} x {{ item.quantity }} (@ £{{ item.product.sale_price }} each)
+        {% if item.product.pre_order %}This item is a preorder; we will send you a further email once the item is in stock and ready to be shipped.{% endif %}
     {% else %}
         {{ item.product.name }} x {{ item.quantity }} (@ £{{ item.product.price }} each)
+        {% if item.product.pre_order %}This item is a preorder; we will send you a further email once the item is in stock and ready to be shipped.{% endif %}
     {% endif %}
 {% endfor %}
 
