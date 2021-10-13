@@ -297,7 +297,8 @@ The stock figure is updated when an item is purchased to reflect the amount purc
 ------
 
 > # **FURTHER DEVELOPMENT**
-* The price per item is not shown on the order details; only the order totals are shown, the item(s) bought and quantity of each.  The bought price per item cannot be shown as this is not saved.  Further development will look to save and therefore show the bought price of an item so as to provide more details on each entry within the customer orders history. 
+* The price per item is not shown on the order details; only the order totals are shown, the item(s) bought and quantity of each.  The bought price per item cannot be shown as this is not saved.  Further development will look to save and therefore show the bought price of an item so as to provide more details on each entry within the customer orders history.
+* The site allows a registered customer to save only one address, with the option to add and save others not currently a feature.  Further development will look into allowing users to add and save mulitple addresses and mark one as primary that will show up as default when checking out. 
 
 ------
 
