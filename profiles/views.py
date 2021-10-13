@@ -104,10 +104,10 @@ def wishlist_toggle(request, product_id, nav):
 
     if profile.wishlist.filter(id=product_id).exists():
         profile.wishlist.remove(product_id)
-        messages.success(request, 'Removed from favourites')
+        messages.success(request, 'Removed from wishlist')
     else:
         profile.wishlist.add(product_id)
-        messages.success(request, 'Added to favourites')
+        messages.success(request, 'Added to wishlist')
     if nav:
         return redirect(reverse('product_detail', args=[product_id]))
     else:
