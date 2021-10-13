@@ -619,6 +619,7 @@ Within the Heroku Config variables add the 16 character password as the value to
 - The Youtube tutorial videos from [Corey Schafer](https://www.youtube.com/watch?v=acOktTcTVEQ) and [Pretty Printed](https://www.youtube.com/watch?v=wmYSKVWOOTM) were used to learn about the implementation of pagination.
 - The jQuery solution to disabling the mousewheel for input elements was found on this [stackoverflow](https://stackoverflow.com/questions/9712295/disable-scrolling-on-input-type-number) post
 - For keeping the footer positioned at the bottom of the page at all times, the section called 'There is a flexbox' was used from [this css-tricks.com](https://css-tricks.com/couple-takes-sticky-footer/) page.
+- For styling scroll bars this article by [css-tricks.com](https://css-tricks.com/almanac/properties/s/scrollbar/) was referenced
 
 # Images and Content
 
