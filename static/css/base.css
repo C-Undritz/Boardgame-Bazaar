@@ -248,6 +248,11 @@ div > div.form-check > .form-check-label {
     .container {
         max-width: 80%;
     }
+
+    #error-image img {
+        height: 60%;
+    }
+    
 }
 
 /* From Boutique Ado */
@@ -296,6 +301,10 @@ div > div.form-check > .form-check-label {
 @media (max-width: 425px) {
     div > div.form-check {
         width: 95%;
+    }
+
+    #error-image img {
+        height: 70%;
     }
 }
 
