@@ -248,11 +248,12 @@ div > div.form-check > .form-check-label {
     .container {
         max-width: 80%;
     }
+}
 
+@media (max-width: 1200px) {
     #error-image img {
         height: 60%;
     }
-    
 }
 
 /* From Boutique Ado */
