@@ -1,0 +1,48 @@
+.container-fluid {
+    padding: 0;
+}
+
+#home-container{
+    width: 80%;
+    margin-left: 10%;
+}
+
+#allproducts-container {
+    height: 400px;
+    width: 101%;
+}
+
+#allproducts-img {
+    height: 100%;
+    width: 100%;
+    background: url("/media/allproducts_image.png") no-repeat center center; 
+    background-size: 110%;
+}
+
+.shopfront-img {
+    height: 325px;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#bestsellers-img {
+    background: url("/media/bestsellers_image.png") no-repeat center center; 
+    background-size: cover;
+}
+
+#newrelease-img {
+    background: url("/media/newrelease_image.png") no-repeat center center; 
+    background-size: cover;
+}
+
+#preorder-img {
+    background: url("/media/preorder_image.png") no-repeat center center; 
+    background-size: cover;
+}
+
+#onsale-img {
+    background: url("/media/bestsellers_image.png") no-repeat center center; 
+    background-size: cover;
+}
+

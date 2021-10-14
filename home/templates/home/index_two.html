@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'home/css/home.css' %}">
+{% endblock %}
+
+{% block page_header %}
+    <div class="container header-container">
+        <div class="row">
+            <div class="col"></div>
+        </div>
+    </div>
+{% endblock%}
+
+{% block content %}
+<div class="container-fluid" id="home-container">
+    <div class="row px-0" id="allproducts-container">
+        <div class="col-12 px-0">
+            <div id="allproducts-img"></div>
+        </div>
+    </div>
+    <div class="row px-0">
+        <div class="col-xl-3 col-md-6 col-12 my-3">
+            <div class="shopfront-img" id="bestsellers-img"></div>
+        </div>
+        <div class="col-xl-3 col-md-6 col-12 my-3">
+            <div class="shopfront-img" id="newrelease-img"></div>
+        </div>
+        <div class="col-xl-3 col-md-6 col-12 my-3">
+            <div class="shopfront-img" id="preorder-img"></div>
+        </div>
+        <div class="col-xl-3 col-md-6 col-12 my-3">
+            <div class="shopfront-img" id="bestsellers-img"></div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+    

@@ -6,6 +6,12 @@ from django.db.models.functions import Lower
 from products.models import Product, Genre
 
 
+def index_two(request):
+    """ A view that renders the shopping cart page """
+
+    return render(request, 'home/index_two.html')
+
+
 def index(request):
     """
     Home page of site that shows the best selling products initially and
