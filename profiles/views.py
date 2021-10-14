@@ -86,6 +86,10 @@ def order_detail(request, order_number):
     profile = get_object_or_404(UserProfile, user=request.user)
     order = get_object_or_404(Order, order_number=order_number)
 
+    if str(order.user_profile) != str(request.user):
+        messages.warning(request, 'You are not allowed to perform this action.')
+        return redirect(reverse('home'))
+
     template = 'profiles/order_detail.html'
     context = {
         'profile': profile,

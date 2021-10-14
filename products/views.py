@@ -3,6 +3,7 @@ from django.core.paginator import Paginator
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .models import Product, Genre, GenreAssignment, Review
+from checkout.models import Order
 from .forms import ProductForm, UpdateStockForm, ReviewRateForm, GenreForm
 from profiles.models import UserProfile
 
@@ -32,6 +33,7 @@ def product_detail(request, product_id):
     }
 
     return render(request, 'products/product_detail.html', context)
+
 
 @login_required
 def add_product(request):
@@ -120,6 +122,7 @@ def edit_product(request, product_id, nav):
     }
 
     return render(request, template, context)
+
 
 @login_required
 def delete_product(request, product_id, nav):
@@ -279,6 +282,11 @@ def review_rate(request, order_number, product_id):
     """
     Saves user reviews and ratings for a bought product. 
     """
+    order = get_object_or_404(Order, order_number=order_number)
+    if str(order.user_profile) != str(request.user):
+        messages.warning(request, 'You are not allowed to perform this action.')
+        return redirect(reverse('home'))
+
     product = get_object_or_404(Product, pk=product_id)
     if request.method == 'POST':
         form_data = {
@@ -316,6 +324,11 @@ def review_rate(request, order_number, product_id):
 
 @login_required
 def edit_review(request, order_number, product_id):
+    order = get_object_or_404(Order, order_number=order_number)
+    if str(order.user_profile) != str(request.user):
+        messages.warning(request, 'You are not allowed to perform this action.')
+        return redirect(reverse('home'))
+
     product = get_object_or_404(Product, pk=product_id)
     review = get_object_or_404(Review, user=request.user, product=product_id)
     reviewed = True
@@ -355,6 +368,11 @@ def delete_review(request, order_number, review_id):
     """
     Delete a genre from the database
     """
+    order = get_object_or_404(Order, order_number=order_number)
+    if str(order.user_profile) != str(request.user):
+        messages.warning(request, 'You are not allowed to perform this action.')
+        return redirect(reverse('home'))
+
     review = get_object_or_404(Review, pk=review_id)
     review.delete()
     messages.success(request, 'Review deleted')
