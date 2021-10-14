@@ -236,6 +236,10 @@ div > div.form-check > .form-check-label {
     width: 100vw; 
 }
 
+#error-image img {
+    height: 25%;
+}
+
 /* ------------------ Media Queries ------------------- */
 
 /* From Boutique Ado */
