@@ -270,10 +270,6 @@ div > div.form-check > .form-check-label {
         padding-top: 143px;
     }
 
-    body {
-        height: calc(100vh - 143px);
-    }
-
     #store-logo {
         font-size: 2.70rem;
     }
