@@ -94,7 +94,7 @@
                     {% for display_genre in display_genres %}
                         <li class="list-inline-item">
                             <p class="small my-0">
-                                <a class="text-muted" href="{% url 'home' %}?genre={{ display_genre.genre.name }}">
+                                <a class="text-muted" href="{% url 'all_products' %}?genre={{ display_genre.genre.name }}">
                                     {{ display_genre.genre.friendly_name }}
                                 </a>
                             </p>
@@ -196,7 +196,7 @@
                 <p class="mt-3 fs-5">{{ product.description }}</p>
                 <!-- Keep shopping button -->
                 <div class="col-12">
-                    <a href="{% url 'home' %}" class="btn btn-outline-dark btn-lg my-3">
+                    <a href="{% url 'all_products' %}" class="btn btn-outline-dark btn-lg my-3">
                         <span>
                             <i class="fas fa-chevron-left"></i>
                         </span>
