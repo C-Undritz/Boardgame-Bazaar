@@ -1,9 +1,10 @@
-
 #home-container{
     width: 90%;
     margin-left: 5%;
     margin-top: 10px;
 }
+
+/* ----------- home page shop front images ----------- */
 
 #allproducts-img {
     height: 400px;
@@ -62,4 +63,11 @@
     background: url("/media/onsale_image.png") no-repeat center center; 
     background-size: cover;
 }
+
+/* ----------- mailing list invite ----------- */
+
+#mailinglist-invite {
+    height: 250px;
+}
+
 
