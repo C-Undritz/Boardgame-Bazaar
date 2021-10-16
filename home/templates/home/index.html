@@ -14,7 +14,7 @@
 {% endblock%}
 
 {% block content %}
-<div class="container-fluid" id="home-container">
+<div class="container-fluid mb-5" id="home-container">
     <div id="allproducts-container">
         <div id="allproducts-img"></div>
         <div class="allproducts-overlay text-center">
@@ -79,7 +79,7 @@
             <p class="fs-2 my-0 fw-bold text-dark">Huge Savings!</p>
         </div>
     </div>
-    {% include 'mailing_list/new_email.html' %}
 </div>
+{% include 'mailing_list/save_email.html' %}
 {% endblock %}
     
