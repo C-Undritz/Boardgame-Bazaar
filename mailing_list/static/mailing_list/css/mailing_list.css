@@ -1,3 +1,19 @@
-#mailinglist-invite {
-    height: 250px;
+#mailinglist-container {
+    margin-bottom: -24px;
+}
+
+#email {
+    width: 375px;
+}
+
+@media (max-width: 576px) {
+    #email {
+        width: 325px;
+    }
+}
+
+@media (max-width: 425px) {
+    #email {
+        width: 225px;
+    }
 }
