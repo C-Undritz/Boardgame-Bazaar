@@ -79,19 +79,7 @@
             <p class="fs-2 my-0 fw-bold text-dark">Huge Savings!</p>
         </div>
     </div>
-    <div class="row">
-        <div class="col">
-            <div id="mailinglist-invite" class="bg-secondary">
-                <form method="POST" action="{% url 'home' %}">
-                    {% csrf_token %}
-                    <div class="d-inline-flex">
-                        <input type="text" name="email" id="email" id="radio5">
-                        <button class="btn btn-warning btn-lg text-uppercase fw-bold pt-2 ms-1" type="submit">Submit</button>  
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
+    {% include 'mailing_list/new_email.html' %}
 </div>
 {% endblock %}
     
