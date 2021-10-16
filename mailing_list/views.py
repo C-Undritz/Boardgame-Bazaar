@@ -1,27 +1,27 @@
-# from django.shortcuts import render, redirect, reverse
-# from .models import MailingList
-# from django.contrib import messages
-# from .forms import AddToMailingList
+from django.shortcuts import render, redirect, reverse
+from .models import MailingList
+from django.contrib import messages
+from .forms import AddToMailingList
 
 
-# def save_email(request):
-#     """
+def save_email(request):
+    """
     
-#     """
-#     if request.method == 'POST':
-#         mailing_list = MailingList.objects.all()
-#         print(f'mailing list is: {mailing_list}')
-#         form_data = {
-#             'email': request.POST['email'],
-#         }
-#         print(f'the email sudmitted is: {form_data}')
-#         form = AddToMailingList(form_data)
-#         if form.is_valid():
-#             form.save()
-#             messages.success(request, 'Email address added to mailing list')
-#             return redirect(reverse('home'))
-#         else:
-#             messages.error(request, 'Failed to add email. Please check that you have correctly filled out all required information.')
-#             return redirect(reverse('home'))
+    """
+    if request.method == 'POST':
+        mailing_list = MailingList.objects.all()
+        print(f'mailing list is: {mailing_list}')
+        form_data = {
+            'email': request.POST['email'],
+        }
+        print(f'the email sudmitted is: {form_data}')
+        form = AddToMailingList(form_data)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Email address added to mailing list')
+            return redirect(reverse('home'))
+        else:
+            messages.error(request, 'Failed to add email. Please check that you have correctly filled out all required information.')
+            return redirect(reverse('home'))
 
-#     return render(request, 'mailing_list/save_email.html')
+    return render(request, 'mailing_list/save_email.html')

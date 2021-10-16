@@ -1,6 +1,6 @@
 from django.urls import path
-# from . import views
+from . import views
 
-# urlpatterns = [
-#     path('', views.save_email, name="save_email"),
-# ]
+urlpatterns = [
+    path('', views.save_email, name="save_email"),
+]
