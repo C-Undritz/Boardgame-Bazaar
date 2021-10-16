@@ -5,8 +5,30 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from products.models import Product, Genre
 from checkout.models import Order
+from mailing_list.models import MailingList
 from .models import UserProfile
 from .forms import UserAddressForm, UserForm
+
+
+@login_required
+def profile_mailinglist(request):
+    """
+    Checks whether customers email address is already in database
+    and returns appropriate response and actions.
+    """
+    profile = get_object_or_404(User, username=request.user)
+    mailinglist_status = MailingList.objects.all().filter(email=profile.email).exists()
+
+    if request.method == 'POST':
+        if mailinglist_status:
+            email = get_object_or_404(MailingList, email=profile.email)
+            email.delete()
+            messages.success(request, 'Removed from mailing list')
+            return redirect(reverse('profile'))
+        else:
+            email = MailingList.objects.create(email=profile.email)
+            messages.success(request, 'Added to mailing list')
+            return redirect(reverse('profile'))
 
 
 @login_required
@@ -15,6 +37,7 @@ def profile(request):
     Displays the user account delivery and contact information.
     """
     profile = get_object_or_404(User, username=request.user)
+    mailinglist_status = MailingList.objects.all().filter(email=profile.email).exists()
 
     if request.method == 'POST':
         form = UserForm(request.POST, instance=profile)
@@ -30,6 +53,7 @@ def profile(request):
     context = {
         'profile': profile,
         'form': form,
+        'mailinglist_status': mailinglist_status,
     }
 
     return render(request, template, context)
