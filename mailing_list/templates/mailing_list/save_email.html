@@ -1,0 +1,20 @@
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'mailing_list/css/mailing_list.css' %}">
+{% endblock %}
+
+<div class="row">
+    <div class="col">
+        <div id="mailinglist-invite" class="bg-secondary">
+            <h2>Hello</h2>
+            <!-- <form method="POST" action="{% url 'home' %}">
+                {% csrf_token %}
+                <div class="d-inline-flex">
+                    <input type="text" name="email" id="email" id="radio5">
+                    <button class="btn btn-warning btn-lg text-uppercase fw-bold pt-2 ms-1" type="submit">Submit</button>  
+                </div>
+            </form> -->
+        </div>
+    </div>
+</div>
