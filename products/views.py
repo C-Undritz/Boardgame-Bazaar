@@ -261,21 +261,33 @@ def delete_product(request, product_id, nav):
 @login_required
 def add_genre(request):
     """
-    Add additional genre category
+    Add additional genre category  Performs checks on the genre name and
+    friendly name to ensure duplicate genres cannot be added.
     """
     profile = get_object_or_404(UserProfile, user=request.user)
     if not request.user.is_superuser:
-        messages.error(request, 'Only authorised staff can perform this function')
+        messages.error(
+            request, 'Only authorised staff can perform this function')
         return redirect(reverse('home'))
 
     if request.method == 'POST':
-        form = GenreForm(request.POST)
-        if form.is_valid():
-            form.save()
-            messages.success(request, 'New genre added to database')
+        genre_name = request.POST['friendly_name'].lower()
+        genre_status = Genre.objects.all().filter(
+            friendly_name=genre_name).exists()
+        if genre_status:
+            messages.info(
+                request, 'Genre with that name already exists in database')
             return redirect(reverse('add_genre'))
         else:
-            messages.error(request, 'Failed to add genre. Please check that you have correctly filled out all required information.')
+            form = GenreForm(request.POST)
+            if form.is_valid():
+                form.save()
+                messages.success(request, 'New genre added to database')
+                return redirect(reverse('add_genre'))
+            else:
+                messages.error(request, 'Failed to add genre. Please check \
+                    that you have correctly filled out all required \
+                        information.')
     else:
         form = GenreForm()
 
