@@ -12,7 +12,7 @@ class ProductForm(forms.ModelForm):
 
     class Meta:
         model = Product
-        exclude = ('sold', 'stock', 'new_release', 'pre_order', 'rating')
+        exclude = ('sold', 'new_release', 'pre_order', 'rating')
         # fields = '__all__'
         widgets = {'release_date': DateInput}
 
