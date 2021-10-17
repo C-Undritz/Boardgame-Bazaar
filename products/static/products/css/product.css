@@ -1,3 +1,17 @@
+/* ---------- all products view back to top button ---------- */
+.btt-button {
+    height: 42px;
+    width: 42px;
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    border-radius: 10px;
+}
+
+.btt-button a {
+    text-decoration: none;
+}
+
 /* ---------- Rating & review input ---------- */
 #star-panel {
     padding: 5px;

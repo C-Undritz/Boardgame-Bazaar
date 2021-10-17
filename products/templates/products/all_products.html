@@ -1,6 +1,10 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'products/css/product.css' %}">
+{% endblock %}
+
 {% block page_header %}
     <div class="container header-container">
         <div class="row">
@@ -162,12 +166,21 @@
                 </div>
             </div>
         </div>
-    </div>  
+    </div>
+    <div class="btt-link">
+        <a class="d-flex h-100">
+            <div class="btt-button btn btn-outline-dark shadow">
+                <i class="fas fa-arrow-up text-dark mx-auto my-auto"></i>
+            </div>  
+        </a>	
+    </div>
+
 {% endblock %}
 
 {% block postloadjs %}
 {{ block.super }}
 
+<script src="{% static 'products/js/back_to_top.js' %}"></script>
 <script src="{% static 'products/js/sort_selector.js' %}"></script>
 
 {% endblock %}
