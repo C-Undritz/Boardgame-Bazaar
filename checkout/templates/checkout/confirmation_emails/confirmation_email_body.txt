@@ -15,10 +15,10 @@ Grand Total: £{{ order.grand_total|floatformat:2 }}
 Your items:
 {% for item in order.lineitems.all %}
     {% if item.product.on_sale %}
-        {{ item.product.name }} x {{ item.quantity }} (@ £{{ item.product.sale_price }} each)
+        {{ item.product.name|capfirst }} x {{ item.quantity }} (@ £{{ item.product.sale_price }} each)
         {% if item.product.pre_order %}This item is a preorder; we will send you a further email once the item is in stock and ready to be shipped.{% endif %}
     {% else %}
-        {{ item.product.name }} x {{ item.quantity }} (@ £{{ item.product.price }} each)
+        {{ item.product.name|capfirst }} x {{ item.quantity }} (@ £{{ item.product.price }} each)
         {% if item.product.pre_order %}This item is a preorder; we will send you a further email once the item is in stock and ready to be shipped.{% endif %}
     {% endif %}
 {% endfor %}

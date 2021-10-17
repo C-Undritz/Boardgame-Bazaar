@@ -21,7 +21,7 @@
                 {% endif %}
             </div>
             <div class="col-9">
-                <p class="my-0"><strong>{{ item.product.name }}</strong></p>
+                <p class="my-0"><strong><span class="text-capitalize">{{ item.product.name }}</span></strong></p>
                 <div>
                     {% if item.product.on_sale %}
                         <p class="my-0 small text-muted d-inline">Price: {{ item.product.sale_price }}</p>

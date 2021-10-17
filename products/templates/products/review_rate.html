@@ -38,10 +38,10 @@
             <div class="row">
                 <div class="col-lg-8 offset-lg-2 col-12">
                     {% if reviewed %}
-                        <h4 class="mt-2">Your review and rating of <strong>{{ product.name }}</strong>:</h4>
+                        <h4 class="mt-2">Your review and rating of <span class="text-capitalize"><strong>{{ product.name }}</strong></span>:</h4>
                         <form method="POST" action="{% url 'edit_review' order_number product.id %}">
                     {% else %}
-                        <h4 class="mt-2">Review and rate your purchase of <strong>{{ product.name }}</strong>:</h4>
+                        <h4 class="mt-2">Review and rate your purchase of <span class="text-capitalize"><strong>{{ product.name }}</strong></span>:</h4>
                         <form method="POST" action="{% url 'review_rate' order_number product.id %}">
                     {% endif %}
                         {% csrf_token %}
