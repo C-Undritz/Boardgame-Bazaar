@@ -125,13 +125,19 @@ def add_product(request):
         return redirect(reverse('home'))
 
     if request.method == 'POST':
-        form = ProductForm(request.POST, request.FILES)
-        if form.is_valid():
-            product = form.save()
-            messages.success(request, 'Product added to database')
-            return redirect(reverse('product_detail', args=[product.id]))
+        product_name = request.POST['name'].lower()
+        product_status = Product.objects.all().filter(name=product_name).exists()
+        if product_status:
+            messages.info(request, 'Product already exists in database')
+            return redirect(reverse('add_product'))
         else:
-            messages.error(request, 'Failed to add product. Please check that you have correctly filled out all required information.')
+            form = ProductForm(request.POST, request.FILES)
+            if form.is_valid():
+                product = form.save()
+                messages.success(request, 'Product added to database')
+                return redirect(reverse('product_detail', args=[product.id]))
+            else:
+                messages.error(request, 'Failed to add product. Please check that you have correctly filled out all required information.')
     else:
         form = ProductForm()
 
