@@ -621,6 +621,7 @@ Within the Heroku Config variables add the 16 character password as the value to
 - The jQuery solution to disabling the mousewheel for input elements was found on this [stackoverflow](https://stackoverflow.com/questions/9712295/disable-scrolling-on-input-type-number) post
 - For keeping the footer positioned at the bottom of the page at all times, the section called 'There is a flexbox' was used from [this css-tricks.com](https://css-tricks.com/couple-takes-sticky-footer/) page.
 - For styling scroll bars this article by [css-tricks.com](https://css-tricks.com/almanac/properties/s/scrollbar/) was referenced
+- The override of the Product model save method to ensure that the name values were saved as lowercase was referenced from this [stackoverflow post](https://stackoverflow.com/questions/36330677/django-model-set-default-charfield-in-lowercase)
 
 # Images and Content
 
