@@ -117,8 +117,8 @@ def product_detail(request, product_id):
 @login_required
 def add_product(request):
     """
-    Add a product to the store. Performs checks on the product name to ensure
-    duplicate products cannot be added.
+    Add a product to the store. Performs checks on the product name to ensure that
+    products with the same name cannot be added.
     """
     profile = get_object_or_404(UserProfile, user=request.user)
     if not request.user.is_superuser:
@@ -183,10 +183,10 @@ def products_list(request):
 def edit_product(request, product_id, nav):
     """
     Edit the details of an existing product. Performs checks on the product
-    name to ensure duplicate products cannot be added through the editing
-    process.  If the name is the same as the queried product name then the
-    save is permitted, so as to allow changes to all product details, aside
-    from the name.
+    name to ensure products with the same name cannot be added through the
+    editing process.  If the name is the same as the queried product name
+    then the save is permitted, so as to allow changes to all product details,
+    aside from the name.
     """
     if not request.user.is_superuser:
         messages.error(request, 'Only authorised staff can perform this function')
@@ -329,24 +329,45 @@ def genres_list(request):
 @login_required
 def edit_genre(request, genre_id):
     """
-    Edit the details of an existing genre
+    Edit the details of an existing genre. Performs checks on the genre
+    friendly name to ensure duplicate genres cannot be added through the
+    editing process.  If the name is the same as the queried product name
+    then the save is permitted, so as to allow changes to the other genre
+    details, aside from the friendly name.
     """
     if not request.user.is_superuser:
-        messages.error(request, 'Only authorised staff can perform this function')
+        messages.error(request, 'Only authorised staff can perform this \
+            function')
         return redirect(reverse('home'))
 
     genre = get_object_or_404(Genre, pk=genre_id)
+
     if request.method == 'POST':
-        form = GenreForm(request.POST, instance=genre)
-        if form.is_valid():
-            form.save()
-            messages.success(request, 'Genre successfully updated')
-            return redirect(reverse('genres_list'))
+        genre_fname = request.POST['friendly_name'].lower()
+        genre_status = Genre.objects.all().filter(
+            friendly_name=genre_fname).exists()
+        if genre_status:
+            if genre_fname == genre.friendly_name:
+                form = GenreForm(request.POST, instance=genre)
+                if form.is_valid():
+                    form.save()
+                    messages.success(request, 'Genre successfully updated')
+                    return redirect(reverse('genres_list'))
+            else:
+                messages.info(request, 'Genre already exists in database.  You \
+                     must have changed the name to another existing genre')
+                return redirect(reverse(edit_genre, args=[genre_id]))
         else:
-            messages.error(request, 'Failed to edit genre. Please check that you have correctly filled out all required information.')
+            form = GenreForm(request.POST, instance=genre)
+            if form.is_valid():
+                form.save()
+                messages.success(request, 'Genre successfully updated')
+                return redirect(reverse('genres_list'))
+            else:
+                messages.error(request, 'Failed to edit genre. Please check that \
+                    you have correctly filled out all required information.')
     else:
         form = GenreForm(instance=genre)
-
 
     template = 'products/edit_genre.html'
     context = {
