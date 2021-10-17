@@ -24,22 +24,18 @@ class CustomManager(models.Manager):
                 this_product = product
                 this_product.new_release = True
                 this_product.save()
-                print('true 1')
             else:
                 this_product = product
                 this_product.new_release = False
                 this_product.save()
-                print('false 1')
             if product.release_date > today:
                 this_product = product
                 this_product.pre_order = True
                 this_product.save()
-                print("true 2")
             else:
                 this_product = product
                 this_product.pre_order = False
                 this_product.save()
-                print("false 2")
         return products
 
     def all(self):
@@ -80,6 +76,10 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
+    def save(self, *args, **kwargs):
+        self.name = self.name.lower()
+        return super(Product, self).save(*args, **kwargs)
+        
     def update_stock_sold(self, instance):
         """
         Uses the sold quantities of products into to update the stock and sold
