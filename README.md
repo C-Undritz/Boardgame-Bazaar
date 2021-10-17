@@ -168,6 +168,9 @@ The Navbar is displayed at all resolutions and is a permanet navigation feature.
 
 ![database_schema](assets/readme/boardgame_bazaar-database_design.png)
 
+* A through table was implemented for the product genre assignment so that this could be viewed, edited and controlled vis the admin interfade if required.
+* A wishlist through table was not implemented and Django was left to control this as this would be customer personal data and so the relationships should not be viewed by any admin users.
+
 # Searching
 
 ------
