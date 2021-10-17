@@ -94,7 +94,7 @@
                     {% for display_genre in display_genres %}
                         <li class="list-inline-item">
                             <p class="small my-0">
-                                <a class="text-muted" href="{% url 'all_products' %}?genre={{ display_genre.genre.name }}">
+                                <a class="text-muted text-capitalize" href="{% url 'all_products' %}?genre={{ display_genre.genre.name }}">
                                     {{ display_genre.genre.friendly_name }}
                                 </a>
                             </p>

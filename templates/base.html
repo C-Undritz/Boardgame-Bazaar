@@ -166,7 +166,7 @@
                                 </a>
                                 <ul class="dropdown-menu bg-dark fs-5" id="genre-dropdown" aria-labelledby="genreDropdown">
                                     {% for genre in genres %}
-                                        <li><a class="dropdown-item text-light" href="{% url 'all_products' %}?genre={{ genre.name }}">{{ genre.friendly_name }}</a>
+                                        <li><a class="dropdown-item text-light text-capitalize" href="{% url 'all_products' %}?genre={{ genre.name }}">{{ genre.friendly_name }}</a>
                                     {% endfor %}
                                 </ul>
                             </li>
