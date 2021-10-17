@@ -117,7 +117,8 @@ def product_detail(request, product_id):
 @login_required
 def add_product(request):
     """
-    Add a product to the store
+    Add a product to the store. Performs checks on the product name to ensure
+    duplicate products cannot be added.
     """
     profile = get_object_or_404(UserProfile, user=request.user)
     if not request.user.is_superuser:
@@ -126,10 +127,13 @@ def add_product(request):
 
     if request.method == 'POST':
         product_name = request.POST['name'].lower()
+        # Checks whether there is already a product with this name
         product_status = Product.objects.all().filter(name=product_name).exists()
+        # creation of product rejected if there is a duplicate name 
         if product_status:
             messages.info(request, 'Product already exists in database')
             return redirect(reverse('add_product'))
+        # If there is no duplicate name the creation is permitted
         else:
             form = ProductForm(request.POST, request.FILES)
             if form.is_valid():
@@ -178,24 +182,50 @@ def products_list(request):
 @login_required
 def edit_product(request, product_id, nav):
     """
-    Edit the details of an existing product
+    Edit the details of an existing product. Performs checks on the product
+    name to ensure duplicate products cannot be added through the editing
+    process.  If the name is the same as the queried product name then the
+    save is permitted, so as to allow changes to all product details, aside
+    from the name.
     """
     if not request.user.is_superuser:
         messages.error(request, 'Only authorised staff can perform this function')
         return redirect(reverse('home'))
 
     product = get_object_or_404(Product, pk=product_id)
+
     if request.method == 'POST':
-        form = ProductForm(request.POST, request.FILES, instance=product)
-        if form.is_valid():
-            form.save()
-            messages.success(request, 'Product successfully updated')
-            if nav:
-                return redirect(reverse('product_detail', args=[product.id]))
+        product_name = request.POST['name'].lower()
+        # Checks whether there is already a product with this name
+        product_status = Product.objects.all().filter(name=product_name).exists()
+        # If there is a duplicate product name
+        if product_status:
+            # If the name is the same as the product name then the update is permitted
+            if product_name == product.name: 
+                form = ProductForm(request.POST, request.FILES, instance=product)
+                if form.is_valid():
+                    form.save()
+                    messages.success(request, 'Product successfully updated')
+                    if nav:
+                        return redirect(reverse('product_detail', args=[product.id]))
+                    else:
+                        return redirect(reverse('products_list'))
+            # update rejected if edited name is the same as another existing product
             else:
-                return redirect(reverse('products_list'))
+                messages.info(request, 'Product already exists in database.  You must have changed the name to another existing product')
+                return redirect(reverse(edit_product, args=[product_id, nav]))
+        # If there is no duplicate name the update is permitted
         else:
-            messages.error(request, 'Failed to edit product. Please check that you have correctly filled out all required information.')
+            form = ProductForm(request.POST, request.FILES, instance=product)
+            if form.is_valid():
+                form.save()
+                messages.success(request, 'Product successfully updated')
+                if nav:
+                    return redirect(reverse('product_detail', args=[product.id]))
+                else:
+                    return redirect(reverse('products_list'))
+            else:
+                messages.error(request, 'Failed to edit product. Please check that you have correctly filled out all required information.')
     else:
         form = ProductForm(instance=product)
 
