@@ -88,7 +88,7 @@ class OrderLineItem(models.Model):
 
     def save(self, *args, **kwargs):
         """
-        Override the original save method to set the lineitem total using 
+        Override the original save method to set the lineitem total using
         the line item quantity.  From Boutique Ado walkthrough project.
         """
         print(f'from OrderLineItem - sale price: {self.product.on_sale} - {self.product.sale_price}')
@@ -102,4 +102,4 @@ class OrderLineItem(models.Model):
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return f'SKU {self.product.sku} on order {self.order.order_number}'
+        return f'Product ID {self.product.id} on order {self.order.order_number}'
