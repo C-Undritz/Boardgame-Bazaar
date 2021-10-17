@@ -4,7 +4,7 @@ from .models import Product, Genre, GenreAssignment, Review
 
 class ProductAdmin(admin.ModelAdmin):
     list_display = (
-        'sku',
+        'id',
         'name',
         'price',
         'stock',
@@ -14,7 +14,7 @@ class ProductAdmin(admin.ModelAdmin):
         'rating',
     )
 
-    ordering = ('sku',)
+    ordering = ('id',)
 
 
 class ReviewAdmin(admin.ModelAdmin):
