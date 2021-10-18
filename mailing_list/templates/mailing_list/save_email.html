@@ -3,20 +3,21 @@
 {% block extra_css %}
     <link rel="stylesheet" href="{% static 'mailing_list/css/mailing_list.css' %}">
 {% endblock %}
-
-<div class="row" id="mailinglist-container">
-    <div class="col-12 bg-dark d-flex justify-content-center align-items-center">
-        <div id="mailinglist-invite" class="my-3 d-flex flex-column align-items-center text-center">
-            <h2 class="text-light">Subscribe to our newsletter</h2> 
-            <h4 class="text-light">Enter your email address below to keep up to date with the latest news, releases and promotions</h4>
-            <form method="POST" action="{% url 'save_email' %}" id="mailinglist-form">
-                {% csrf_token %}
-                <div class="input-group">
-                    <input class="" type="text" name="email" id="email">
-                    <button class="btn btn-warning btn-lg text-uppercase fw-bold pt-2 ms-1" type="submit"><i class="fas fa-paper-plane"></i></button>  
-                </div>
-            </form>
-            <h6 class="text-light mt-1">We will not share your details with anyone.  Please see our Privacy Policy for more details</h6>
+<div class="container-fluid">
+    <div class="row no-gutter" id="mailinglist-container">
+        <div class="col-12 bg-dark d-flex justify-content-center align-items-center">
+            <div id="mailinglist-invite" class="my-3 d-flex flex-column align-items-center text-center">
+                <h2 class="text-light">Subscribe to our newsletter</h2> 
+                <h4 class="text-light">Enter your email address below to keep up to date with the latest news, releases and promotions</h4>
+                <form method="POST" action="{% url 'save_email' %}" id="mailinglist-form">
+                    {% csrf_token %}
+                    <div class="input-group">
+                        <input class="" type="text" name="email" id="email">
+                        <button class="btn btn-warning btn-lg text-uppercase fw-bold pt-2 ms-1" type="submit"><i class="fas fa-paper-plane"></i></button>  
+                    </div>
+                </form>
+                <h6 class="text-light mt-1">We will not share your details with anyone.  Please see our Privacy Policy for more details</h6>
+            </div>
         </div>
     </div>
 </div>
