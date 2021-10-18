@@ -16,7 +16,13 @@
                         <button class="btn btn-warning btn-lg text-uppercase fw-bold pt-2 ms-1" type="submit"><i class="fas fa-paper-plane"></i></button>  
                     </div>
                 </form>
-                <h6 class="text-light mt-1">We will not share your details with anyone.  Please see our Privacy Policy for more details</h6>
+                <h6 class="text-light mt-1">
+                    We will not share your details with anyone.  Please see our 
+                    <a href="{% url 'information' %}#privacy-policy">
+                        Privacy Policy
+                    </a>   
+                    for more details
+                </h6>
             </div>
         </div>
     </div>
