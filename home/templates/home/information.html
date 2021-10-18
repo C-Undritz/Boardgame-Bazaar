@@ -1,0 +1,442 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'home/css/home.css' %}">
+{% endblock %}
+
+{% block page_header %}
+<a id="about-us"></a>
+    <div class="container header-container">
+        <div class="row">
+            <div class="col"></div>
+        </div>
+    </div>
+{% endblock%}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="offset-lg-3 col-lg-6 offset-md-1 col-md-10 col-12 legal-text">
+            <h1 class="section-heading">About Us</h1>
+            <p>
+                Established in 2018 by two board game enthusiasts, Boardgame Bazaar has gone from strength to strength.  What was just an idea born from an exuberant 
+                gaming session in the Dice Box gaming café in Agricola has grown into one of the fastest growing businesses in Brasshire.
+            </p>
+            <p>
+                We stock all sorts of games for the enthusiast, from niche complex games to family-friendly games to introduce the whole family to this great hobby.
+            </p>
+            <p>
+                You can be sure of a great shopping experience with Boardgame Bazaar and we are certain with great prices we will become your number one stop for latest 
+                and greatest in table top entertainment. Be sure to check back often as we expand our customer experience 
+            </p>
+            <p>UK shipping costs start and end at £4.00 per order, regardless of how many items you have ordered.</p>
+            <p>If you are in the area, you can always visit our warehouse and chat with the team; you never know, we may have time for a quick game!</p>
+            <p>We accept payments by credit or debit cards.</p>
+            <p><strong>Our details:</strong></p>
+            <p class="mb-0">Boardgame Bazaar,</p>
+            <p class="mb-0">113 Great Western Avenue,</p>
+            <p class="mb-0">Agricola,</p> 
+            <a id="shipping-policy"></a>
+            <p class="mb-0">Brasshire</p> 
+            <p>ME3 9LE</p>
+            <p class="mb-0">Phone: 01342 453276 76</p>
+            <p>Email: boardgame-bazaar@gmail.com</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="offset-lg-3 col-lg-6 offset-md-1 col-md-10 col-12 legal-text">
+            <h1 class="section-heading">Shipping Policy</h1>
+            <p>
+                Thank you for visiting and shopping at 
+                <a href="https://boardgame-bazaar.herokuapp.com/" rel="external nofollow noopener" target="_blank">boardgame-bazaar</a>. 
+                The following are the terms and conditions that constitute our Shipping Policy.
+            </p>
+            <h1>Domestic Shipping Policy</h1>
+            <h2>Shipment processing time</h2>
+            <p>All orders are processed within 2-3 business days. Orders are not shipped or delivered on weekends or holidays.</p>
+            <p>
+                If we are experiencing a high volume of orders, shipments may be delayed by a few days. Please allow additional days in transit for delivery. 
+                If there will be a significant delay in shipment of your order, we will contact you via email or telephone.
+            </p>
+            <h2>Shipping rates & delivery estimates</h2>
+            <p>Shipping charges for every order are a standard flat fee of £4.00 which is displayed at checkout.</p>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Shipment method</th>
+                        <th scope="col">Estimated delivery time</th>
+                        <th scope="col">Shipment cost</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Royal Mail standard</td>
+                        <td>2-3 business days</td>
+                        <td>£4</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>Delivery delays can occasionally occur.</p>
+            <h2>Shipment confirmation & Order tracking</h2>
+            <p>
+                You will receive a Shipment Confirmation email once your order has shipped containing your tracking number(s). The tracking number will be active 
+                within 24 hours
+            </p>
+            <h2>Customs, Duties and Taxes</h2>
+            <p>
+                Boardgame Bazaar is not responsible for any customs and taxes applied to your order. All fees imposed during or after shipping are the responsibility 
+                of the customer (tariffs, taxes, etc.).
+            </p>
+            <h2>Damages</h2>
+            <p>
+                Boardgame Bazaar is not liable for any products damaged or lost during shipping. If you received your order damaged, please contact the shipment 
+                carrier to file a claim. Please save all packaging materials and damaged goods before filing a claim.
+            </p>
+            <h1>International Shipping Policy</h1>
+            <a id="return-policy"></a>
+            <p>We currently do not ship outside the U.K.</p>
+            <h1>Returns Policy</h1>
+            <p>Our Return & Refund Policy provides detailed information about options and procedures for returning your order.</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="offset-lg-3 col-lg-6 offset-md-1 col-md-10 col-12 legal-text">
+            <h1 class="section-heading">Return and Refund Policy</h1>
+            <p>Last updated: October 18, 2021</p>
+            <p>
+                Thank you for shopping at boardgame bazaar. If, for any reason, You are not completely satisfied with a purchase We invite You to 
+                review our policy on refunds and returns. The following terms are applicable for any products that You purchased with Us.
+            </p>
+            <h1>Interpretation and Definitions</h1>
+            <h2>Interpretation</h2>
+            <p>
+                The words of which the initial letter is capitalized have meanings defined under the following conditions. The following definitions 
+                shall have the same meaning regardless of whether they appear in singular or in plural.
+            </p>
+            <h2>Definitions</h2>
+            <p>For the purposes of this Return and Refund Policy:</p>
+            <ul>
+            <li>
+            <p><strong>Company</strong> 
+                (referred to as either &quot;the Company&quot;, &quot;We&quot;, &quot;Us&quot; or &quot;Our&quot; in this Agreement) refers to 
+                boardgame bazaar.
+            </p>
+            </li>
+            <li>
+            <p><strong>Goods</strong> 
+                refer to the items offered for sale on the Service.
+            </p>
+            </li>
+            <li>
+            <p><strong>Orders</strong> 
+                mean a request by You to purchase Goods from Us.
+            </p>
+            </li>
+            <li>
+            <p><strong>Service</strong> 
+                refers to the Website.
+            </p>
+            </li>
+            <li>
+            <p><strong>Website</strong> 
+                refers to boardgame bazaar, accessible from 
+                <a href="https://boardgame-bazaar.herokuapp.com/" rel="external nofollow noopener" target="_blank">boardgame-bazaar</a>
+            </p>
+            </li>
+            <li>
+            <p><strong>You</strong> 
+                means the individual accessing or using the Service, or the company, or other legal entity on behalf of which such individual is 
+                accessing or using the Service, as applicable.
+            </p>
+            </li>
+            </ul>
+            <h1>Your Order Cancellation Rights</h1>
+            <p>You are entitled to cancel Your Order within 30 days without giving any reason for doing so.</p>
+            <p>
+                The deadline for cancelling an Order is 30 days from the date on which You received the Goods or on which a third party you have 
+                appointed, who is not the carrier, takes possession of the product delivered.
+            </p>
+            <p>
+                In order to exercise Your right of cancellation, You must inform Us of your decision by means of a clear statement. You can inform 
+                us of your decision by:
+            </p>
+            <ul>
+            <li>By email: boardgame-bazaar@gmail.com</li>
+            </ul>
+            <p>
+                We will reimburse You no later than 14 days from the day on which We receive the returned Goods. We will use the same means of payment 
+                as You used for the Order, and You will not incur any fees for such reimbursement.
+            </p>
+            <h1>Conditions for Returns</h1>
+            <p>In order for the Goods to be eligible for a return, please make sure that:</p>
+            <ul>
+            <li>The Goods were purchased in the last 30 days</li>
+            <li>The Goods are in the original packaging</li>
+            </ul>
+            <p>The following Goods cannot be returned:</p>
+            <ul>
+            <li>The supply of Goods made to Your specifications or clearly personalized.</li>
+            <li>The supply of Goods which according to their nature are not suitable to be returned, deteriorate rapidly or where the date of expiry is over.</li>
+            <li>The supply of Goods which are not suitable for return due to health protection or hygiene reasons and were unsealed after delivery.</li>
+            <li>The supply of Goods which are, after delivery, according to their nature, inseparably mixed with other items.</li>
+            </ul>
+            <p>We reserve the right to refuse returns of any merchandise that does not meet the above return conditions in our sole discretion.</p>
+            <p>
+                Only regular priced Goods may be refunded. Unfortunately, Goods on sale cannot be refunded. This exclusion may not apply to You if it is not 
+                permitted by applicable law.
+            </p>
+            <h1>Returning Goods</h1>
+            <p>You are responsible for the cost and risk of returning the Goods to Us. You should send the Goods at the following address:</p>
+            <p>Boardgame Bazaar, 113 Great Western Avenue, Agricola, Brasshire ME3 9LE</p>
+            <p>
+                We cannot be held responsible for Goods damaged or lost in return shipment. Therefore, We recommend an insured and trackable mail service. We are 
+                unable to issue a refund without actual receipt of the Goods or proof of received return delivery.
+            </p>
+            <h1>Gifts</h1>
+            <p>
+                If the Goods were marked as a gift when purchased and then shipped directly to you, You'll receive a gift credit for the value of your return. Once 
+                the returned product is received, a gift certificate will be mailed to You.
+            </p>
+            <p>
+                If the Goods weren't marked as a gift when purchased, or the gift giver had the Order shipped to themselves to give it to You later, We will send the 
+                refund to the gift giver.
+            </p>
+            <a id="terms-conditions"></a>
+            <h2>Contact Us</h2>
+            <p>If you have any questions about our Returns and Refunds Policy, please contact us:</p>
+            <ul>
+            <li>By email: boardgame-bazaar@gmail.com</li>
+            </ul>
+        </div>
+    </div>
+    <div class="row">
+        <div class="offset-lg-3 col-lg-6 offset-md-1 col-md-10 col-12 legal-text">
+            <h1 class="section-heading">Terms & Conditions</h1>
+            <p>Last updated: October 18, 2021</p>
+            <h2>Agreement to Terms</h2>
+            <p>
+                These Terms and Conditions constitute a legally binding agreement made between you, whether personally or on behalf of an entity (“you”) and 
+                [business entity name] (“we,” “us” or “our”), concerning your access to and use of the https://boardgame-bazaar.herokuapp.com/ website as 
+                well as any other media form, media channel, mobile website or mobile application related, linked, or otherwise connected thereto (collectively, 
+                the “Site”). 
+            </p>
+            <p>
+                You agree that by accessing the Site, you have read, understood, and agree to be bound by all of these Terms and Conditions. If you do not agree 
+                with all of these Terms and Conditions, then you are expressly prohibited from using the Site and you must discontinue use immediately.
+            </p>
+            <p>
+                Supplemental terms and conditions or documents that may be posted on the Site from time to time are hereby expressly incorporated herein by 
+                reference. We reserve the right, in our sole discretion, to make changes or modifications to these Terms and Conditions at any time and for any 
+                reason. 
+            </p>
+            <p>
+                We will alert you about any changes by updating the “Last updated” date of these Terms and Conditions, and you waive any right to receive specific 
+                notice of each such change. 
+            </p>
+            <p>
+                It is your responsibility to periodically review these Terms and Conditions to stay informed of updates. You will be subject to, and will be deemed 
+                to have been made aware of and to have accepted, the changes in any revised Terms and Conditions by your continued use of the Site after the date 
+                such revised Terms and Conditions are posted. 
+            </p>
+            <p>
+                The information provided on the Site is not intended for distribution to or use by any person or entity in any jurisdiction or country where such 
+                distribution or use would be contrary to law or regulation or which would subject us to any registration requirement within such jurisdiction or 
+                country. 
+            </p>
+            <p>
+                Accordingly, those persons who choose to access the Site from other locations do so on their own initiative and are solely responsible for compliance 
+                with local laws, if and to the extent local laws are applicable. 
+            </p>
+            <p>
+                These terms and conditions were created using Termly.
+            </p>
+            <p>
+                The Site is intended for users who are at least 18 years old. Persons under the age of 18 are not permitted to register for the Site. 
+            </p>
+            <h2>Intellectual Property Rights</h2>
+            <p>
+                Unless otherwise indicated, the Site is our proprietary property and all source code, databases, functionality, software, website designs, audio, video, 
+                text, photographs, and graphics on the Site (collectively, the “Content”) and the trademarks, service marks, and logos contained therein (the “Marks”) 
+                are owned or controlled by us or licensed to us, and are protected by copyright and trademark laws and various other intellectual property rights and 
+                unfair competition laws of the United States, foreign jurisdictions, and international conventions. 
+            </p>
+            <p>
+                The Content and the Marks are provided on the Site “AS IS” for your information and personal use only. Except as expressly provided in these Terms and 
+                Conditions, no part of the Site and no Content or Marks may be copied, reproduced, aggregated, republished, uploaded, posted, publicly displayed, encoded, 
+                translated, transmitted, distributed, sold, licensed, or otherwise exploited for any commercial purpose whatsoever, without our express prior written 
+                permission.
+            </p>
+            <p>
+                Provided that you are eligible to use the Site, you are granted a limited license to access and use the Site and to download or print a copy of any portion 
+                of the Content to which you have properly gained access solely for your personal, non-commercial use. We reserve all rights not expressly granted to you in 
+                and to the Site, the Content and the Marks.
+            </p>
+            <h2>User Registration</h2>
+            <p>
+                You may be required to register with the Site. You agree to keep your password confidential and will be responsible for all use of your account and password. 
+                We reserve the right to remove, reclaim, or change a username you select if we determine, in our sole discretion, that such username is inappropriate, 
+                obscene, or otherwise objectionable.
+            </p>
+            <h2>User Generated Contributions</h2>
+            <p>
+                The Site may invite you to chat, contribute to, or participate in blogs, message boards, online forums, and other functionality, and may provide you with
+                 the opportunity to create, submit, post, display, transmit, perform, publish, distribute, or broadcast content and materials to us or on the Site, including 
+                 but not limited to text, writings, video, audio, photographs, graphics, comments, suggestions, or personal information or other material (collectively, 
+                 "Contributions"). 
+            </p>
+            <p>
+                Contributions may be viewable by other users of the Site and through third-party websites. As such, any Contributions you transmit may be treated as 
+                non-confidential and non-proprietary.
+            </p>
+            <h2>Guidelines for Reviews</h2>
+            <p>We may provide you areas on the Site to leave reviews or ratings. When posting a review, you must comply with the following criteria: </p>
+            <ul>
+                <li>you should have firsthand experience with the person/entity being reviewed</li>
+                <li>your reviews should not contain offensive profanity, or abusive, racist, offensive, or hate language</li>
+                <li>your reviews should not contain discriminatory references based on religion, race, gender, national origin, 
+                    age, marital status, sexual orientation, or disability</li>
+                <li>your reviews should not contain references to illegal activity</li>
+                <li>you should not be affiliated with competitors if posting negative reviews</li>
+                <li>you should not make any conclusions as to the legality of conduct</li>
+                <li>you may not post any false or misleading statements</li>
+                <li>you may not organize a campaign encouraging others to post reviews, whether positive or negative</li>
+            </ul>
+            <p>
+                We may accept, reject, or remove reviews in our sole discretion. We have absolutely no obligation to screen reviews or to delete reviews, even if anyone 
+                considers reviews objectionable or inaccurate. Reviews are not endorsed by us, and do not necessarily represent our opinions or the views of any of our 
+                affiliates or partners. 
+            </p>
+            <p>
+                We do not assume liability for any review or for any claims, liabilities, or losses resulting from any review. By posting a review, you hereby grant to us 
+                a perpetual, non-exclusive, worldwide, royalty-free, fully-paid, assignable, and sublicensable right and license to reproduce, modify, translate, transmit 
+                by any means, display, perform, and/or distribute all content relating to reviews.
+            </p>
+            <h2>Privacy Policy</h2>
+            <p>
+                We care about data privacy and security. By using the Site, you agree to be bound by our Privacy Policy, which is incorporated into these Terms and Conditions.
+            </p>
+            <h2>Modifications and Interruptions</h2>
+            <p>
+                We reserve the right to change, modify, or remove the contents of the Site at any time or for any reason at our sole discretion without notice. However, 
+                we have no obligation to update any information on our Site. We also reserve the right to modify or discontinue all or part of the Site without notice at 
+                any time. 
+            </p>
+            <p>
+                We will not be liable to you or any third party for any modification, price change, suspension, or discontinuance of the Site. 
+            </p>
+            <p>
+                We cannot guarantee the Site will be available at all times. We may experience hardware, software, or other problems or need to perform maintenance related 
+                to the Site, resulting in interruptions, delays, or errors. 
+            </p>
+            <h2>Contact Us</h2>
+            <p>In order to resolve a complaint regarding the Site or to receive further information regarding use of the Site, please contact us at: </p>
+            <p class="mb-0">Boardgame Bazaar,</p> 
+            <a id="privacy-policy"></a>
+            <p class="mb-0">113 Great Western Avenue,</p> 
+            <p class="mb-0">Agricola,</p> 
+            <p class="mb-0">Brasshire</p>
+            <p class="mb-0">ME3 9LE</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="offset-lg-3 col-lg-6 offset-md-1 col-md-10 col-12 legal-text">
+            <h1 class="section-heading">Privacy Policy</h1>
+            <p>The privacy of our users is extremely important to us and therefore we encourage all users to read this policy carefully</p>
+            <p>
+                Boardgame Bazaar collect, use and are responsible for storing ertain personal information about you.  When we do so we are regulated under the 
+                General Data Protection Regulation which apply across the European Union and we are responsible as a 'controller' of that personal information 
+                for the purposes of those laws
+            </p>
+            <h2>The personal information we collect and use:</h2>
+            <p>a. Personal information you provide to us</p>
+            <p>We collect the following personal information that you provide us:</p>
+            <ul>
+                <li>Email address</li>
+                <li>Phone number</li>
+                <li>Postal Address</li>
+                <li>Boardgame Bazaar order history</li>
+            </ul>
+            <p>Some examples of when we collect this information include:</p>
+            <ul>
+                <li>When a purchase is made</li>
+                <li>Upon account sign up</li>
+                <li>Update of account details</li>
+                <li>Signing up to the mailing list</li>
+            </ul>
+            <p>We do not receive any other information about you from any other sources</p>
+            <h2>Sensitive Personal Information</h2>
+            <p>Sensitive personal information includes any information which relates to the following:</p>
+            <ul>
+                <li>your genetic data</li>
+                <li>your biometric data</li>
+                <li>your ethnic origin</li>
+                <li>your political opinions</li>
+                <li>your religious beliefs</li>
+                <li>whether you belong to a trade union</li>
+                <li>your physical and mental health condition</li>
+                <li>your sexual orientation, and</li>
+                <li>whether you have committed a criminal offence</li>
+            </ul>
+            <p>We will never request any of the above from you.</p>
+            <h2>How we use your personal information</h2>
+            <p>We collect information about our users for the following purposes</p>
+            <ul>
+                <li>Delivery or purchased goods</li>
+                <li>Communications</li>
+                <li>Mailing list for newsletter</li>
+            </ul>
+            <h2>Who your information may be shared with</h2>
+            <p>We may share your information with:</p>
+            <ul>
+                <li>Law enforcement agencies in connection with any investigation to prevent unlawful activity</li>
+                <li>Credit reference agents in accordance with our credit checking policy</li>
+            </ul>
+            <p>We do not share your personal data with any with 3rd parties</p>
+            <h2>Required personal information</h2>
+            <p>The provision of the following information is required from you:</p>
+            <ul>
+                <li>Email</li>
+                <li>Postal address</li>
+            </ul>
+            <p>This is to enable us to do the following:</p>
+            <ul>
+                <li>Complete an order of purchased goods</li>
+            </ul>
+            <p>We will inform you ay the point of collecting information from you, whether you are required to provide the information to us</p>
+            <h2>How long your personal information will be kept</h2>
+            <p>We will hold your personal information for the following periods</p>
+            <ul>
+                <li>While you have an active account with us</li>
+                <li>While there is an order in processing/transit</li>
+            </ul>
+            <h2>Keeping your information secure</h2>
+            <a id="careers"></a>
+            <p>
+                We use technological and organistional measures to keep information secure.  However in using the site you acknowledge that the use of the internet is 
+                is not entirely secure and for this reason we cannot guarentee the security and integrity of any personal data that are transferred from you.
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="offset-lg-3 col-lg-6 offset-md-1 col-md-10 col-12 legal-text">
+            <h1 class="section-heading"><a id="careers">Careers</a></h1>
+            <p>Would you like to work for one of the newest and fastest growing boardgame providers in the UK?  Look out for the latest opportunities posted below.</p>
+            <h1>Web Developer</h1>
+            <p>
+                We are looking to grow our web prescence and are therefore expanding our dynamic web team.  We currently have an opening for two junior web developers. 
+                Prior experience would be great, but if you are a recent graduate with knowledge of the technologies listed, a hunger to learn and play a key role in
+                developing a unique web experience, then we want to hear from you! 
+            </p>
+            <ul>
+                <li>HTML</li>
+                <li>CSS</li>
+                <li>JavaScript and/or Python</li>
+                <li>Knowledge of frameworks such as bootstrap, Flask and Django</li>
+            </ul>
+            <p>If you are interested please send a CV and cover letter to <strong>boardgame-bazaar-recruit@gmail.com</strong></p>
+        </div>
+    </div>
+</div>
+{% endblock %}
+    
