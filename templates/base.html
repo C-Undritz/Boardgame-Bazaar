@@ -125,16 +125,6 @@
                 </a>
             </div>
         </div>
-        <!-- responsive logo displays on mobile screens only (575px and below)-->
-        <div class="row bg-dark">
-            <div class="col-12 my-auto d-block d-sm-none" id="responsive-logo">
-                <a href="{% url 'home' %}" class="nav-link">
-                    <div class="text-center text-light">
-                        <h1 id="store-logo" class="text-warning mb-0">Boardgame Bazaar</h1>
-                    </div>
-                </a>
-            </div>
-        </div>
         <!-- bottom row of the navbar (black) -->
         <div id="bottom-topnav" class="row bg-dark">
             <!-- Navigation menu-->
@@ -174,15 +164,13 @@
                     </div>
                 </nav>
             </div>
-            <!-- Store Logo displays on tablet and desktop screens only (576px and above)-->
+            <!-- Store Logo -->
             <div class="col-8 col-lg-4 my-lg-auto">
-                <div class="d-none d-sm-block">
-                    <a href="{% url 'home' %}" class="nav-link">
-                        <div class="text-center text-light">
-                            <h1 id="store-logo" class="text-warning">Boardgame Bazaar</h1>
-                        </div>
-                    </a>
-                </div>
+                <a href="{% url 'home' %}" class="nav-link">
+                    <div class="text-center text-light">
+                        <h1 id="store-logo" class="text-warning">Boardgame Bazaar</h1>
+                    </div>
+                </a>
             </div>
             <!-- Search Function -->
             <!--displays on large screens (992px and above) -->

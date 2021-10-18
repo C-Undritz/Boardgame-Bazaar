@@ -293,6 +293,11 @@ div > div.form-check > .form-check-label {
     .header-container {
         padding-top: 180px;
     }
+
+    #store-logo {
+        font-size: 1.9rem;
+        padding-top: 8px;
+    }
 }
 
 @media (max-width: 425px) {
@@ -303,6 +308,11 @@ div > div.form-check > .form-check-label {
     #error-image img {
         height: 70%;
     }
+
+    #store-logo {
+        font-size: 1.6rem;
+        padding-top: 10px;
+    }
 }
 
 @media (max-width: 375px) {
@@ -312,7 +322,8 @@ div > div.form-check > .form-check-label {
     }
 
     #store-logo {
-        font-size: 2.1rem;
+        font-size: 1.3rem;
+        padding-top: 15px;
     }
 }
 
