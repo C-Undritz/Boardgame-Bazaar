@@ -638,13 +638,11 @@ Within the Heroku Config variables add the 16 character password as the value to
   - [Board games: Why are they becoming so popular?](https://www.bbc.co.uk/news/av/uk-wales-49859688)
   - [Board Game Industry Statistics](https://printninja.com/board-game-industry-statistics/)  
 
-* The information concerning delivery, returns, privacy policy and T&C's shown in the information.html template and linked from the website footer was taken and adapted from the resources linked below.  They are incomplete and therefore present as an example ONLY and in no way represent the legal position of the site or site creator.  They are in place here ONLY to present a more complete experience of a commercial site to the user and also so Lorum Ipsum is not needed. They ARE NOT in anyway intended to govern the sole use and purpose of this site, which is: an educational project created and submitted as part of the Code Institute Diploma in Software Engineering.  They SHOULD NOT be used or reproduced from this site for proper commercial use.  Please visit the links below for more information and how to use these resources:
+* The information concerning delivery, returns, privacy policy and T&C's shown in the information.html template and linked from the website footer was taken and adapted from the resources linked below.  They are incomplete and therefore present as an example ONLY and in no way represent the legal position of the site or site creator.  They are in place here ONLY to present a more complete experience of a commercial site to the user and also so Lorum Ipsum is not needed. They ARE NOT in anyway intended to govern the sole use and purpose of this site, which is: an educational project created and submitted as part of the Code Institute Diploma in Software Engineering.  They SHOULD NOT be used or reproduced from this site for proper commercial use.  The email referenced on these pages is not an established email address and so will not work.  Please visit the links below for more information and how to use these resources:
   - [Shipping Policy Template by termsfeed.com](https://www.termsfeed.com/blog/sample-shipping-policy-template/#Download_Shipping_Policy_Template)  
   - [Return & Refund Policy Generator by termsfeed.com](https://www.termsfeed.com/return-refund-policy-generator/)  
   - [Terms & Conditions by termly.io](https://termly.io/resources/templates/terms-and-conditions-template/)  
   - [Privacy Policy by wonder.legal](https://www.wonder.legal/uk/creation-modele/website-privacy-policy)
-
-
 
 # Acknowledgments
 - Thanks to the slack community for support and help throughout the course and this project.  Honourable mentions for this project go to Ed B_alum, Gaff Alumnus, Daisy_mentor, @ckz8780, Harry and BenKav_Alumni
