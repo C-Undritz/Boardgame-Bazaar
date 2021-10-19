@@ -12,15 +12,11 @@
     <div class="container-fluid" id="error-container">
         <div class="row">
             <div class="col text-center mt-3">
-                <h1 class="text-dark text-uppercase">Ooops! Something went wrong. You might want to re-roll!</h1>
+                <h1 class="text-dark text-uppercase">Ooops! Something went wrong.</h1>
+                <h1 class="text-dark text-uppercase">You might want to re-roll those dice!</h1>
                 <a class="btn btn-outline-dark btn-lg my-3 text-uppercase fw-bold" href="{% url 'home' %}">
                     <span class="text-uppercase fw-bold">Home</span>
                 </a>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col d-flex justify-content-center" id="error-image">
-                <img class="img-fluid" src="{{ MEDIA_URL }}white-dice.png" alt="drawing of two white dice">
             </div>
         </div>
     </div>
