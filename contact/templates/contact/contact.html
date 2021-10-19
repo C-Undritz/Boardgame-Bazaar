@@ -1,9 +1,4 @@
 {% extends "base.html" %}
-{% load static %}
-
-{% block extra_css %}
-    <link rel="stylesheet" href="{% static 'contact/css/contact.css' %}">
-{% endblock %}
 
 {% block page_header %}
     <div class="container header-container">
@@ -34,6 +29,11 @@
                     </div>
                     <div class="col-md-6 col-12 mb-3">
                         <input type="email" class="form-control" name="message-email" placeholder="Your email" required>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-12">
+                        <input type="text" class="form-control" name="message-subject" placeholder="Subject" required>
                     </div>
                 </div>
                 <div class="row mb-4">
