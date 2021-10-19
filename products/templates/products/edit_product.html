@@ -10,6 +10,7 @@
 
 {% block content %}
     <div class="container">
+        <!-- Page title -->
         <div class="row">
             <div class="col text-center mt-3">
                 <h2>Product Management</h2>
@@ -21,6 +22,7 @@
         </div>
         <div class="row">
             <div class="offset-lg-2 col-lg-8 offset-sm-1 col-sm-10">
+                <!-- This form can be accessed from two places.  Nav variable ensures user goes back to correct place when exiting form -->
                 {% if nav == 1 %}
                     <form method="POST" action="{% url 'edit_product' product.id 1 %}" class="form mb-2" enctype="multipart/form-data">
                 {% else %}
@@ -40,5 +42,4 @@
             </div>
         </div>
     </div>
-
 {% endblock %}

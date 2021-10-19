@@ -6,12 +6,12 @@
     <div class="col-12">
         <p class="text-center fs-4 mb-0">{{ page.paginator.count }} Genres | Page {{ page.number }} of {{ page.paginator.num_pages }}</p>
     </div>
-    <!-- Pagination controls - top -->
+    <!-- Pagination controls -->
     <div class="col-12 d-flex justify-content-center d-inline-flex">
         {% if page.has_previous %}
-        <a href="{% url 'genres_list' %}?page={{ page.previous_page_number }}" class="me-2"><i class="fas fa-angle-left"></i></a>
+            <a href="{% url 'genres_list' %}?page={{ page.previous_page_number }}" class="me-2"><i class="fas fa-angle-left"></i></a>
         {% else %}
-        <p class="me-2 text-grey"><i class="fas fa-angle-left"></i></p>
+            <p class="me-2 text-grey"><i class="fas fa-angle-left"></i></p>
         {% endif %}
         {% if page.paginator.count > per_page %}
             {% for num in page.paginator.page_range %}
@@ -23,9 +23,9 @@
             {% endfor %}
         {% endif %}
         {% if page.has_next %}
-        <a href="{% url 'genres_list' %}?page={{ page.next_page_number }}" class="ms-2"><i class="fas fa-angle-right"></i></a>
+            <a href="{% url 'genres_list' %}?page={{ page.next_page_number }}" class="ms-2"><i class="fas fa-angle-right"></i></a>
         {% else %}
-        <p class="ms-2 text-grey"><i class="fas fa-angle-right"></i></p>
+            <p class="ms-2 text-grey"><i class="fas fa-angle-right"></i></p>
         {% endif %}
     </div>
 </div>
@@ -80,5 +80,4 @@
         {% endfor %}
     </div>
 </div>
-
 {% endblock %}

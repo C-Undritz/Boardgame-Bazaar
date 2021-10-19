@@ -16,6 +16,7 @@
 
 {% block content %}
     <div class="container">
+        <!-- Page title -->
         <div class="row">
             <div class="col text-center mt-3">
                 <h2>Shopping Cart</h2>
@@ -49,13 +50,13 @@
                         <!-- Item image -->
                         <div class="col-2 d-flex justify-content-start d-none d-sm-block">
                             {% if item.product.image %}
-                            <a href="{% url 'product_detail' item.product.id %}">
-                                <img class="img-fluid rounded" src="{{ item.product.image.url }}" alt="Cart item {{ item.product.name }} image"> 
-                            </a>
+                                <a href="{% url 'product_detail' item.product.id %}">
+                                    <img class="img-fluid rounded" src="{{ item.product.image.url }}" alt="Cart item {{ item.product.name }} image"> 
+                                </a>
                             {% else %}
-                            <a href="{% url 'product_detail' item.product.id %}">
-                                <img class="img-fluid rounded" src="{{ MEDIA_URL }}noimage.png" alt="{{ item.product.name }}">
-                            </a>
+                                <a href="{% url 'product_detail' item.product.id %}">
+                                    <img class="img-fluid rounded" src="{{ MEDIA_URL }}noimage.png" alt="{{ item.product.name }}">
+                                </a>
                             {% endif %}
                         </div>
                         <!-- Product information, price, quantity input -->
@@ -68,9 +69,9 @@
                                 <!-- Product price -->
                                 <div class="col-lg-3 col-12 d-flex justify-content-start">
                                     {% if item.product.on_sale %}
-                                    <p class="my-0"><span class="d-inline d-lg-none">Price:</span> £{{ item.product.sale_price }}</p>
+                                        <p class="my-0"><span class="d-inline d-lg-none">Price:</span> £{{ item.product.sale_price }}</p>
                                     {% else %}
-                                    <p class="my-0"><span class="d-inline d-lg-none">Price:</span> £{{ item.product.price }}</p>
+                                        <p class="my-0"><span class="d-inline d-lg-none">Price:</span> £{{ item.product.price }}</p>
                                     {% endif %}
                                 </div>
                                 <!-- Product quantity select tool -->
@@ -177,13 +178,13 @@ if quantity is changed, and remove items from the cart if 'remove' is selected. 
 needs to remain in the HTML file so the value of the csrfToken can be read -->
 
 <script>
-    // Update quantity on click
+    // Update quantity on click of update button
     $('.update-link').click(function(e) {
         var form = $(this).prev('.update-form');
         form.submit();
     })
 
-    // Remove item and reload on click
+    // Remove item and reload on click of delete button
     $('.remove-item').click(function(e) {
         var csrfToken = "{{ csrf_token }}";
         var itemId = $(this).attr('id').split('remove_')[1];
