@@ -291,7 +291,7 @@ div > div.form-check > .form-check-label {
 
 @media (max-width: 576px) {
     .header-container {
-        padding-top: 180px;
+        padding-top: 130px;
     }
 
     #store-logo {
