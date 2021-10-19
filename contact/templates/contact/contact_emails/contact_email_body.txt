@@ -1,0 +1,5 @@
+Communication from {{ message_name }}
+
+{{ message }}
+
+{{ message_name }}'s email is: {{ message_email }}
