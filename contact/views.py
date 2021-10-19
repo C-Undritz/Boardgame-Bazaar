@@ -12,12 +12,13 @@ def contact(request):
     if request.method == 'POST':
         message_name = request.POST['message-name']
         message_email = request.POST['message-email']
+        message_subject = request.POST['message-subject']
         message = request.POST['message']
 
         send_mail(
-            message_name,
+            'Contact from' + " " + message_name,
+            'The customer message is:' + " " + message,
             message_email,
-            message,
             [settings.DEFAULT_FROM_EMAIL],
         )
 
