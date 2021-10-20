@@ -2,7 +2,8 @@
 Logic and instructions for the below can be found here:
 https://stripe.com/docs/payments/accept-a-payment?platform=web&ui=elements
 
-This closely follows the Boutique Ado Project stripe payments sections
+This closely follows the Boutique Ado Project stripe payments sections but adds 
+a stock check against purchase.
 */
 
 // Gets public key and client secret from the template.
@@ -39,32 +40,33 @@ card.on('change', function(event) {
     }
 });
 
-// Handle form submit.
-// includes form data for stripe payment intent succeeded webhook as it will be coming from stripe.
+// Handle checkout form submit.
+// Includes form data for stripe payment intent succeeded webhook
 var form = document.getElementById('payment-form');
 
 form.addEventListener('submit', function (ev) {
     ev.preventDefault();
-    card.update({'disabled': true}); // disables card element
-    $('#submit-button').attr('disabled', true); // disables submit button
-    $('#adjust-cart-btn').attr('disabled', true); // disables adjust cart button
+    card.update({'disabled': true});
+    $('#submit-button').attr('disabled', true);
+    $('#adjust-cart-btn').attr('disabled', true);
     $('#payment-form').fadeToggle(100);
     $('#loading-overlay').fadeToggle(100);
 
-    // get value of the save_info check box by looking at checked status
+    // Get value of the save_info check box by looking at checked status
     var saveInfo = Boolean($('#id-save-info').attr('checked'));
-    // gets csrf token from the {% csrf_token %} in the checkout.html payment-form
+    // Gets csrf token from the {% csrf_token %} in the checkout.html payment-form
     var csrfToken = $('input[name="csrfmiddlewaretoken"]').val();
-    // object to pass this information to the view 'cache_checkout_data'
+    // Object to pass this information to the view 'cache_checkout_data'
     var postData = {
         'csrfmiddlewaretoken': csrfToken,
         'save_info': saveInfo,
         'client_secret': clientSecret,
     };
 
+    // Checks if there is enough stock to fulfill order
     var in_stock_url = '/checkout/is_in_stock/';
     $.post(in_stock_url, postData).done(function(response) {
-        console.log(response);
+        // If sale quantity is equal to or less than stock amount:
         if (response.result === true) {
             var cache_data_url = '/checkout/cache_checkout_data/';
             $.post(cache_data_url, postData).done(function() {
@@ -102,12 +104,11 @@ form.addEventListener('submit', function (ev) {
                         displayError.textContent = result.error.message;
                         $('#payment-form').fadeToggle(100);
                         $('#loading-overlay').fadeToggle(100);
-                        card.update({'disabled': false}); // enables card element
-                        $('#submit-button').attr('disabled', false); // enables submit button
-                        $('#adjust-cart-btn').attr('disabled', false); // enables adjust cart button
+                        card.update({'disabled': false});
+                        $('#submit-button').attr('disabled', false); 
+                        $('#adjust-cart-btn').attr('disabled', false); 
                     } else {
                         if (result.paymentIntent.status === 'succeeded') {
-                            console.log('form-submitted?')
                             form.submit();
                         }
                     }
@@ -117,7 +118,7 @@ form.addEventListener('submit', function (ev) {
                 location.reload();
             });
         } else {
-            console.log('no sale')
+            // If sale quantity is more than stock amount:
             loc = window.location.href;
             path = window.location.pathname;
             newurl = loc.replace(path, '/checkout/no_sale/')

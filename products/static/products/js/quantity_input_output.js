@@ -3,10 +3,12 @@ $("[type='number']").keypress(function (evt) {
     evt.preventDefault();
 });
 
-/* Below is pure JS version of the Boutique Ado Jquery for the handling of the quantity select functionality.
+/* 
+Below is pure JS version of the Boutique Ado Jquery for the handling of the quantity select functionality.
 How to disable here: http://www.java2s.com/example/javascript/dom-html-element/disable-a-button-with-setattributedisabled-and-removeattributedi.html
+*/
 
-Handles enabling and disabling of the buttons based on the value of input that they are controlling */
+// Handles enabling and disabling of the buttons based on the value of input that they are controlling
 function handleEnabledDisabled(itemId) {
     let plusDisabled;
     let currentValue = parseInt(document.querySelector(`#id_qty_${itemId}`).value);

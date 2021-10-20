@@ -1,6 +1,9 @@
-// From the Boutique Ado project. Controls the color of the country drop downvalue to ensure
-// that if value is selected that is valid (a country) then the value is shown in Font
-// color Bootstrap 'dark', and shown as the placeholder grey if a country is not selected.
+/* 
+From the Boutique Ado project. Within the address form, controls the color of the country 
+drop downvalue to ensure that if value is selected that is valid (a country) then the value 
+is shown in Font color Bootstrap 'dark', and shown as the placeholder grey if a country is 
+not selected.
+*/
 
 let countrySelected = $('#id_default_country').val();
 if(!countrySelected) {

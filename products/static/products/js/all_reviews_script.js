@@ -1,7 +1,3 @@
-/* 
-<----------  Below functions are associated with the product_detail.html page ---------->
-*/
-
 let revealReviews = document.getElementById('reveal-all-reviews');
 let hideReviews = document.getElementById('hide-all-reviews');
 let allReviewsText  = document.getElementById('all-reviews');
