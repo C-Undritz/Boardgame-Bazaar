@@ -15,6 +15,7 @@
 
 {% block content %}
     <div class="container">
+        <!-- Page title -->
         <div class="row">
             <div class="col text-center mt-3">
                 <h2>Admin Functions</h2>
@@ -23,6 +24,7 @@
                 </div>
             </div>
         </div>
+        <!-- Back nav button -->
         <div class="row">
             <div class="offset-lg-2 col-lg-2 col-sm-4">
                 <div class="d-flex flex-column align-items-center">
@@ -37,6 +39,7 @@
                 </div>
             </div>
         </div>
+        <!-- Admin functions buttons -->
         <div class="row">
             <div class="offset-lg-2 col-lg-2 col-sm-4">
                 <div class="d-flex flex-column align-items-center">
@@ -74,15 +77,11 @@
                     </div>
                 </div>
             </div>
+            <!-- Admin function displayed here upon selection -->
             <div class="col-lg-6 col-sm-8">
                 {% block profile_content %}
                 {% endblock %}
             </div>
         </div>
     </div>
-
-{% endblock %}
-
-{% block postloadjs %}
-{{ block.super }}
 {% endblock %}

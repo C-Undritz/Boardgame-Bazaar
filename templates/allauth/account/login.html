@@ -25,7 +25,6 @@
     <ul class="socialaccount_providers">
         {% include "socialaccount/snippets/provider_list.html" with process="login" %}
     </ul>
-
     <div class="login-or">{% trans 'or' %}</div>
 
 </div>
@@ -41,7 +40,7 @@
     {% csrf_token %}
     {{ form|crispy }}
     {% if redirect_field_value %}
-    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
     {% endif %}
     <button class="primaryAction btn btn-warning btn-lg text-uppercase fw-bold pt-2"
         type="submit">{% trans "Sign In" %}</button>
@@ -58,5 +57,4 @@
         </a>
     </div>
 </div>
-
 {% endblock %}

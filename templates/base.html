@@ -18,14 +18,14 @@
     {% endblock %}
 
     {% block corejs %}
-    <!-- fontawesome -->
+    <!-- Fontawesome -->
     <script src="https://kit.fontawesome.com/94bf7b1778.js" crossorigin="anonymous"></script>
     <!-- JQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <!-- Bootstrap 5 -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
-    <!-- stripe -->
+    <!-- Stripe -->
     <script src="https://js.stripe.com/v3/"></script>
     {% endblock %}
 
@@ -37,9 +37,9 @@
 
 <body>
     <header class="container-fluid fixed-top">
-        <!-- top row of the navbar (grey) -->
+        <!-- Top row of the navbar (grey) -->
         <div id="top-topnav" class="row bg-secondary">
-            <!-- social media and contact icons (only display on large screens)-->
+            <!-- Social media icons and contact us icon (only display on large screens)-->
             <div class="col-6 d-none d-lg-flex">
                 <ul class="list-inline list-unstyled my-1">
                     <li class="list-inline-item">
@@ -69,7 +69,7 @@
                     </li>
                 </ul>
             </div>
-            <!-- login, register and account links -->
+            <!-- Login, register and account links -->
             <div class="col-lg-5 col-md-10 col-9 d-flex justify-content-lg-end justify-content-start">
                 <ul class="list-inline list-unstyled my-1">
                     {% if request.user.is_authenticated %}
@@ -113,7 +113,7 @@
                     {% endif %}
                 </ul>
             </div>
-            <!-- shopping cart -->
+            <!-- Shopping cart summary display -->
             <div class="col-lg-1 col-md-2 col-3 bg-warning d-flex justify-content-center">
                 <a class="{% if item_total %}font-weight-bold{% else %}text-black{% endif %} px-0 py-0 no-decoration" href="{% url 'view_cart' %}">
                     <ul class="list-inline list-unstyled my-1">
@@ -125,7 +125,7 @@
                 </a>
             </div>
         </div>
-        <!-- bottom row of the navbar (black) -->
+        <!-- Bottom row of the navbar (black) -->
         <div id="bottom-topnav" class="row bg-dark">
             <!-- Navigation menu-->
             <div class=" col-2 col-lg-4 flex justify-content-start my-auto">
@@ -138,6 +138,7 @@
                             <li class="nav-item mt-2">
                                 <a class="nav-link text-light" aria-current="page" href="{% url 'home' %}"><i class="fas fa-home"></i></a>
                             </li>
+                            <!-- Shop Front menu -->
                             <li class="nav-item mt-2 dropdown">
                                 <a class="nav-link text-light dropdown-toggle" href="#" id="frontDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     Shop Front
@@ -150,6 +151,7 @@
                                     <li><a class="dropdown-item text-light" href="{% url 'all_products' %}?on_sale">On Sale</a></li>
                                 </ul>
                             </li>
+                            <!-- Shop by Genre menu -->
                             <li class="nav-item mt-2 dropdown">
                                 <a class="nav-link text-light dropdown-toggle" href="#" id="genreDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     Shop by Genre
@@ -173,7 +175,7 @@
                 </a>
             </div>
             <!-- Search Function -->
-            <!--displays on large screens (992px and above) -->
+            <!-- Displays on large screens (992px and above) -->
             <div class="col-4 d-flex justify-content-end d-none d-lg-flex">
                 <form method="GET" action="{% url 'all_products' %}" class="my-auto" id="nav-search">
                     <div class="input-group">
@@ -182,7 +184,7 @@
                     </div>
                 </form>
             </div>
-            <!-- displays on tablet and mobile screens (991px and below) -->
+            <!-- Displays on tablet and mobile screens (991px and below) -->
             <div class="col-2 d-flex justify-content-end d-block d-lg-none">
                 <div id="mobile-search-btn">
                     <a href="#" role="button">
@@ -203,7 +205,7 @@
                 </div>
             </div>
         </div>
-        <!-- discount banner -->
+        <!-- Discount banner -->
         <div id="discount-banner" class="row text-center">
             <div class="col bg-warning text-dark">
                 <h4 class="my-1 fw-bold">
@@ -214,6 +216,7 @@
     </header>
 
     {% if messages %}
+    <!-- Messages container displays bootstrap toasts -->
     <div class="messages-container">
         {% for message in messages %}
             {% with message.level as level %}
@@ -236,12 +239,14 @@
     {% block page_header %}
     {% endblock %}
 
+    <!-- Display of page content -->
     <div class="content">
         {% block content %}
         {% endblock %}
     </div> 
 
     <footer class="py-3 mt-4 bg-secondary footer">
+        <!-- Links to company information -->
         <ul class="nav justify-content-center list-inline list-unstyled my-1">
             <li class="list-inline-item">
                 <a target="_blank" class="text-light mx-1 nav-link" href="https://twitter.com/" rel="noopener">
@@ -269,6 +274,7 @@
                 </a>
             </li>
         </ul>
+        <!-- Social media icons and contact us icon -->
         <ul class="nav justify-content-center border-bottom">
             <li class="nav-item"><a href="{% url 'information' %}#about-us" class="nav-link px-3 text-light fs-4">About Us</a></li>
             <li class="nav-item"><a href="{% url 'information' %}#shipping-policy" class="nav-link px-3 text-light fs-4">Shipping</a></li>
@@ -276,6 +282,7 @@
             <li class="nav-item"><a href="{% url 'information' %}#terms-conditions" class="nav-link px-3 text-light fs-4">T&C's</a></li>
             <li class="nav-item"><a href="{% url 'information' %}#careers" class="nav-link px-3 text-light fs-4">Careers</a></li>
         </ul>
+        <!-- Company address -->
         <p class="text-center fs-5 text-light">Boardgame Bazaar, 113 Great Western Avenue, Agricola, Brasshire ME3 9LE</p>
         <p class="text-center fs-6 text-light mb-0">&copy; 2021 Company, Inc</p>
     </footer>
@@ -284,12 +291,7 @@
     <script src="{% static 'js/display_search_input.js' %}"></script>
     <script src="{% static 'js/required_bootstrap.js' %}"></script>
     <script src="{% static 'js/go_back_script.js' %}"></script>
-
-    <script>
-        $(document).on("wheel", "input[type=number]", function (e) {
-            $(this).blur();
-        });
-    </script>
+    <script src="{% static 'js/disable_mousewheel.js' %}"></script>
     {% endblock %}
     
 </body>

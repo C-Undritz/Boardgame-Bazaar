@@ -1,6 +1,7 @@
 {% extends "profiles/profile_menu.html" %}
 
 {% block profile_content %}
+<!-- Form to add or update address information -->
 <p class="fs-4 mb-1">Default delivery information</p>
 <p class="text-muted fs-5">To update please change any of the information below and select 'update information'</p>
 <form class="mt-3" action="{% url 'profile_address' %}" method="POST" id="address-update-form">
@@ -10,5 +11,4 @@
         <button class="btn btn-warning btn-lg text-uppercase fw-bold pt-2">Update Information</button>
     </div>
 </form>
-
 {% endblock %}

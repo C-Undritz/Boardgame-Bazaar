@@ -10,6 +10,7 @@
 
 {% block content %}
     <div class="container">
+        <!-- Page title -->
         <div class="row">
             <div class="col text-center mt-3">
                 <h2><strong>Order number:</strong> {{ order.order_number }}</h2>
@@ -19,6 +20,7 @@
             </div>
         </div>
         <div class="my-0">
+            <!-- Back nav button -->
             <div class="row">
                 <div class="col offset-lg-2">
                     <a href="{% url 'profile_orders' %}" class="btn btn-outline-dark btn-lg pt-2">
@@ -86,7 +88,7 @@
                     </div>
                 </div>
             </div>
-            <!-- Display of products bought -->
+            <!-- Display of products bought in order -->
             <div class="row">
                 <div class="col-lg-8 offset-lg-2 col-12">
                     <div class="cart-heading-hr mb-2"></div>
@@ -95,16 +97,16 @@
                             <div class="col-2 d-none d-sm-block">
                                 <!-- displays product image -->
                                 {% if item.product.image %}
-                                <a href="{% url 'product_detail' item.product.id %}">
-                                    <img class="img-fluid rounded" src="{{ item.product.image.url }}" alt="order item {{ item.product.name }} image"> 
-                                </a>
+                                    <a href="{% url 'product_detail' item.product.id %}">
+                                        <img class="img-fluid rounded" src="{{ item.product.image.url }}" alt="Image of {{ item.product.name }}"> 
+                                    </a>
                                 {% else %}
-                                <a href="">
-                                    <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
-                                </a>
+                                    <a href="">
+                                        <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="No image of {{ product.name }}">
+                                    </a>
                                 {% endif %}
                             </div>
-                            <!-- Display of bought product name, bought quantity and the individual product price  -->
+                            <!-- Display of bought product name and bought quantity -->
                             <div class="col-md-5 col d-flex align-items-center">
                                 <p class="small mb-0 text-dark fw-bold">
                                     <span class="text-capitalize">{{ item.product.name }}</span> x {{ item.quantity }}

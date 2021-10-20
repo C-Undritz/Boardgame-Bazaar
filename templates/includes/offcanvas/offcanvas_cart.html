@@ -1,3 +1,4 @@
+<!-- Bootstrap offcanvas to display preview of cart when product added. -->
 <div class="offcanvas offcanvas-end bg-light" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
     <div class="offcanvas-header">
         <h3 id="offcanvasRightLabel">Your shopping cart ({{ product_count }} item{% if product_count > 1 %}s{% endif %})</h5>
@@ -6,44 +7,47 @@
     <div class="mb-1 mx-3 cart-heading-hr">
     </div>
     <div class="offcanvas-body">
+        <!-- Displays of items in the cart -->
         {% if cart_items %}
-        {% for item in cart_items %}
-        <div class="row my-4">
-            <div class="col-3">
-                {% if item.product.image %}
-                <a href="{% url 'product_detail' item.product.id %}">
-                    <img class="img-fluid rounded" src="{{ item.product.image.url }}" alt="Cart item {{ item.product.name }} image"> 
-                </a>
-                {% else %}
-                <a href="{% url 'product_detail' item.product.id %}">
-                    <img class="img-fluid rounded" src="{{ MEDIA_URL }}noimage.png" alt="{{ item.product.name }}">
-                </a>
-                {% endif %}
-            </div>
-            <div class="col-9">
-                <p class="my-0"><strong><span class="text-capitalize">{{ item.product.name }}</span></strong></p>
-                <div>
-                    {% if item.product.on_sale %}
-                        <p class="my-0 small text-muted d-inline">Price: {{ item.product.sale_price }}</p>
+            {% for item in cart_items %}
+            <div class="row my-4">
+                <div class="col-3">
+                    {% if item.product.image %}
+                        <a href="{% url 'product_detail' item.product.id %}">
+                            <img class="img-fluid rounded" src="{{ item.product.image.url }}" alt="Cart item {{ item.product.name }} image"> 
+                        </a>
                     {% else %}
-                        <p class="my-0 small text-muted d-inline">Price: {{ item.product.price }}</p>
+                        <a href="{% url 'product_detail' item.product.id %}">
+                            <img class="img-fluid rounded" src="{{ MEDIA_URL }}noimage.png" alt="{{ item.product.name }}">
+                        </a>
                     {% endif %}
-                    <p class="my-0 small text-muted d-inline mx-3">|</p>
-                    <p class="my-0 small text-muted d-inline">Qty: {{ item.quantity }}</p>
+                </div>
+                <div class="col-9">
+                    <p class="my-0"><strong><span class="text-capitalize">{{ item.product.name }}</span></strong></p>
+                    <div>
+                        {% if item.product.on_sale %}
+                            <p class="my-0 small text-muted d-inline">Price: {{ item.product.sale_price }}</p>
+                        {% else %}
+                            <p class="my-0 small text-muted d-inline">Price: {{ item.product.price }}</p>
+                        {% endif %}
+                        <p class="my-0 small text-muted d-inline mx-3">|</p>
+                        <p class="my-0 small text-muted d-inline">Qty: {{ item.quantity }}</p>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="mb-2 mx-1 cart-item-hr"></div>
-        {% endfor %}
+            <div class="mb-2 mx-1 cart-item-hr"></div>
+            {% endfor %}
         <div class="row mb-4">
+            <!-- Displays discount messge when applicable -->
             <div class="col w-100 d-flex justify-content-center">
                 {% if discount_rate == 0 %}
-                <p class="fw-bold">Buy {{ discount_count_delta }} more game{% if discount_count_delta > 1 %}s{% endif %} to receive a {{ multibuy_discount_one }}% discount</p>
+                    <p class="fw-bold">Buy {{ discount_count_delta }} more game{% if discount_count_delta > 1 %}s{% endif %} to receive a {{ multibuy_discount_one }}% discount</p>
                 {% elif discount_rate == 3 %}
-                <p class="fw-bold">Buy {{ discount_count_delta }} more game{% if discount_count_delta > 1 %}s{% endif %} to receive a {{ multibuy_discount_two }}% discount</p>
+                    <p class="fw-bold">Buy {{ discount_count_delta }} more game{% if discount_count_delta > 1 %}s{% endif %} to receive a {{ multibuy_discount_two }}% discount</p>
                 {% endif %}
             </div>
         </div>
+        <!-- Current cart totals -->
         <div class="row">
             <div class="col">
                 <h6 class="fs-4 float-end"><strong>Cart Total: £{{ total|floatformat:2 }}</strong></h6>
@@ -51,9 +55,9 @@
         </div>
         <div class="row">
             {% if discount_amount %}
-            <div class="col">
-                <h6 class="fs-4 float-end">Multibuy discount ({{ discount_rate }}%): -£{{ discount_amount|floatformat:2 }}</h6>
-            </div>
+                <div class="col">
+                    <h6 class="fs-4 float-end">Multibuy discount ({{ discount_rate }}%): -£{{ discount_amount|floatformat:2 }}</h6>
+                </div>
             {% endif %}
         </div>
         <div class="row">
@@ -65,7 +69,8 @@
             <div class="col">
                 <h4 class="fs-2 float-end"><strong>Grand Total: £{{ grand_total|floatformat:2 }}</strong></h4>
             </div>
-        </div>       
+        </div>    
+        <!-- Proceed to checkout and keep shopping buttons    -->
         <div class="row">
             <div class="col">
                 <a href="{% url 'view_cart' %}" class="w-100 btn btn-warning btn-lg pt-2">

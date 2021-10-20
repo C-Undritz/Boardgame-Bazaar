@@ -17,8 +17,9 @@
     <div class="container-fluid">
         <div class="row">
             <!-- Product image display -->
-            <div class="col-12 col-md-6 col-lg-4 offset-lg-2"> <!-- offset pushes the image towards centre of screen -->
+            <div class="col-12 col-md-6 col-lg-4 offset-lg-2">
                 <div class="image-container my-5">
+                    <!-- labels images with product status (if any) -->
                     <div class="overlay-image-topleft">
                         {% if product.pre_order %}
                             <p class="bg-danger text-light fs-3 px-3 mb-1">Hot Pre-order!</p>
@@ -32,11 +33,11 @@
                     </div>
                     {% if product.image %}
                         <a href="{{ product.image.url }}" target="_blank">
-                            <img class="card-img-top img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
+                            <img class="card-img-top img-fluid" src="{{ product.image.url }}" alt="Image of {{ product.name }}">
                         </a>
                     {% else %}
                         <a href="">
-                            <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
+                            <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="No image of {{ product.name }}">
                         </a>
                     {% endif %}
                 </div>
@@ -49,16 +50,17 @@
                 <div class="d-flex justify-content-between">
                     <div>
                         {% if product.on_sale %}
-                        <div class="d-inline-flex">
-                            <p class="mb-0 me-3 text-muted"><s>£{{ product.price }}</s></p> 
-                            <p class="mb-0"><strong>£{{ product.sale_price }}</strong></p> 
-                        </div>
+                            <div class="d-inline-flex">
+                                <p class="mb-0 me-3 text-muted"><s>£{{ product.price }}</s></p> 
+                                <p class="mb-0"><strong>£{{ product.sale_price }}</strong></p> 
+                            </div>
                         {% else %}
-                        <div>
-                            <p class="mb-0 text-left">£{{ product.price }}</p>
-                        </div>
+                            <div>
+                                <p class="mb-0 text-left">£{{ product.price }}</p>
+                            </div>
                         {% endif %}
                     </div>
+                    <!-- Wishlist interactive icon -->
                     <div>
                         {% if request.user.is_authenticated %}
                             {% if in_wishlist %}
@@ -102,6 +104,7 @@
                     {% endfor %}
                     </ul>
                 </div>
+                <!--  Overall product rating display -->
                 <div class="d-inline-flex">
                     <div>
                         {% if product.rating == 1 %}
@@ -138,6 +141,7 @@
                             <p class="text-muted fs-5">No ratings yet</p>
                         {% endif %}
                     </div>
+                    <!-- Number of review display and link to reviews -->
                     <div id="number-ratings">
                         {% if product.reviews.all|length == 1 %}
                             <a href="#reviews-section"><p class="text-primary fs-5 ms-2">{{ product.reviews.all|length }} review</p></a>
@@ -148,23 +152,23 @@
                 </div>
                 <!-- Determines message to display if no product stock -->
                 {% if product.stock <= 0%}
-                <div>
-                    {% if product.pre_order %}
-                    <div class="d-inline-flex">
-                        <p class="fs-5 fw-bold text-success">Available for pre-order<i class="ms-2 fas fa-check"></i></p>
-                        <p class="fs-6 text-muted ms-1 mt-1">(One per purchase)</p>
+                    <div>
+                        {% if product.pre_order %}
+                            <div class="d-inline-flex">
+                                <p class="fs-5 fw-bold text-success">Available for pre-order<i class="ms-2 fas fa-check"></i></p>
+                                <p class="fs-6 text-muted ms-1 mt-1">(One per purchase)</p>
+                            </div>
+                        {% else %}
+                            <p class="mt-2 fs-5 fw-bold text-danger">Sorry, currently out of stock</i></p>
+                        {% endif %}
                     </div>
-                    {% else %}
-                    <p class="mt-2 fs-5 fw-bold text-danger">Sorry, currently out of stock</i></p>
-                    {% endif %}
-                </div>
                 {% endif %}
                 <!-- Determines the message to display if product in stock -->
                 {% if product.stock > 0 %}
                     {% if product.stock > 10 %}
-                    <p class="mt-2 mb-1 fs-5 text-success">10+ in stock</p> 
+                        <p class="mt-2 mb-1 fs-5 text-success">10+ in stock</p> 
                     {% else %}
-                    <p class="mt-2 mb-1 fs-5 fw-bold text-success">{{ product.stock }} in stock</p>
+                        <p class="mt-2 mb-1 fs-5 fw-bold text-success">{{ product.stock }} in stock</p>
                     {% endif %}
                 {% endif %}
                 <input type="hidden" value="{{ stock }} " id="stock_{{ product.id }}">
@@ -174,7 +178,7 @@
                     {% csrf_token %}
                     <div class="col-12 d-flex flex-row">
                         <p class="mt-1 me-2"><strong>Qty:</strong></p>
-                        <!-- Quantity select box mobile friendly -->
+                        <!-- Mobile friendly quantity select box -->
                         <div class="input-group qty-select">
                             <button class="minus-btn btn bg-warning btn-outline-warning" data-item_id="{{ product.id }}" id="minus-qty_{{ product.id }}">
                                 <i class="text-dark fas fa-minus"></i>
@@ -203,6 +207,7 @@
                         <span class="text-uppercase fw-bold">Keep Shopping</span>
                     </a>
                 </div>
+                <!-- Admin functions for the product -->
                 {% if request.user.is_superuser %}
                     <div>
                         <button id="admin-reveal" class="text-primary">Admin ></button>
@@ -215,6 +220,7 @@
                 {% endif %}
             </div>
         </div>
+        <!-- Reviews section -->
         {% if product.reviews.all|length > 0 %}
         <div class="row">
             <div class="col-12 col-lg-8 offset-lg-2" id="reviews-section">
@@ -278,54 +284,54 @@
                     <div id="all-reviews">
                     {% for review in product.reviews.all %}
                         {% if forloop.counter > 3 %}
-                        <div class="bg-secondary review-box-rating">
-                            <div class="d-inline-flex pt-2 ps-2">
-                                <p class="text-light mb-1">
-                                    <i class="fas fa-user-edit"></i> 
-                                    {{ review.user }}
-                                </p>
-                                <div class="d-inline-flex ms-3">
-                                    <div>
-                                        {%  if review.rating == 0 %}
-                                            <p class="text-muted fs-5">No ratings yet</p>
-                                        {% elif review.rating == 1 %}
-                                            <i class="fas fa-star star-outline star-filled"></i>
-                                            <i class="fas fa-star star-outline star-empty"></i>
-                                            <i class="fas fa-star star-outline star-empty"></i>
-                                            <i class="fas fa-star star-outline star-empty"></i>
-                                            <i class="fas fa-star star-outline star-empty"></i>
-                                        {% elif review.rating == 2 %}
-                                            <i class="fas fa-star star-outline star-filled"></i>
-                                            <i class="fas fa-star star-outline star-filled"></i>
-                                            <i class="fas fa-star star-outline star-empty"></i>
-                                            <i class="fas fa-star star-outline star-empty"></i>
-                                            <i class="fas fa-star star-outline star-empty"></i>
-                                        {% elif review.rating == 3 %}
-                                            <i class="fas fa-star star-outline star-filled"></i>
-                                            <i class="fas fa-star star-outline star-filled"></i>
-                                            <i class="fas fa-star star-outline star-filled"></i>
-                                            <i class="fas fa-star star-outline star-empty"></i>
-                                            <i class="fas fa-star star-outline star-empty"></i>
-                                        {% elif review.rating == 4 %}
-                                            <i class="fas fa-star star-outline star-filled"></i>
-                                            <i class="fas fa-star star-outline star-filled"></i>
-                                            <i class="fas fa-star star-outline star-filled"></i>
-                                            <i class="fas fa-star star-outline star-filled"></i>
-                                            <i class="fas fa-star star-outline star-empty"></i>
-                                        {% else %}
-                                            <i class="fas fa-star star-outline star-filled"></i>
-                                            <i class="fas fa-star star-outline star-filled"></i>
-                                            <i class="fas fa-star star-outline star-filled"></i>
-                                            <i class="fas fa-star star-outline star-filled"></i>
-                                            <i class="fas fa-star star-outline star-filled"></i>
-                                        {% endif %}
+                            <div class="bg-secondary review-box-rating">
+                                <div class="d-inline-flex pt-2 ps-2">
+                                    <p class="text-light mb-1">
+                                        <i class="fas fa-user-edit"></i> 
+                                        {{ review.user }}
+                                    </p>
+                                    <div class="d-inline-flex ms-3">
+                                        <div>
+                                            {%  if review.rating == 0 %}
+                                                <p class="text-muted fs-5">No ratings yet</p>
+                                            {% elif review.rating == 1 %}
+                                                <i class="fas fa-star star-outline star-filled"></i>
+                                                <i class="fas fa-star star-outline star-empty"></i>
+                                                <i class="fas fa-star star-outline star-empty"></i>
+                                                <i class="fas fa-star star-outline star-empty"></i>
+                                                <i class="fas fa-star star-outline star-empty"></i>
+                                            {% elif review.rating == 2 %}
+                                                <i class="fas fa-star star-outline star-filled"></i>
+                                                <i class="fas fa-star star-outline star-filled"></i>
+                                                <i class="fas fa-star star-outline star-empty"></i>
+                                                <i class="fas fa-star star-outline star-empty"></i>
+                                                <i class="fas fa-star star-outline star-empty"></i>
+                                            {% elif review.rating == 3 %}
+                                                <i class="fas fa-star star-outline star-filled"></i>
+                                                <i class="fas fa-star star-outline star-filled"></i>
+                                                <i class="fas fa-star star-outline star-filled"></i>
+                                                <i class="fas fa-star star-outline star-empty"></i>
+                                                <i class="fas fa-star star-outline star-empty"></i>
+                                            {% elif review.rating == 4 %}
+                                                <i class="fas fa-star star-outline star-filled"></i>
+                                                <i class="fas fa-star star-outline star-filled"></i>
+                                                <i class="fas fa-star star-outline star-filled"></i>
+                                                <i class="fas fa-star star-outline star-filled"></i>
+                                                <i class="fas fa-star star-outline star-empty"></i>
+                                            {% else %}
+                                                <i class="fas fa-star star-outline star-filled"></i>
+                                                <i class="fas fa-star star-outline star-filled"></i>
+                                                <i class="fas fa-star star-outline star-filled"></i>
+                                                <i class="fas fa-star star-outline star-filled"></i>
+                                                <i class="fas fa-star star-outline star-filled"></i>
+                                            {% endif %}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="bg-white review-box-review">
-                            <p class="mb-3 px-3 pb-3">{{ review.review }}</p>
-                        </div>
+                            <div class="bg-white review-box-review">
+                                <p class="mb-3 px-3 pb-3">{{ review.review }}</p>
+                            </div>
                         {% endif %}
                     {% endfor %}
                     </div>

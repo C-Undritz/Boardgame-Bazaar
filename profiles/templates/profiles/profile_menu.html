@@ -15,14 +15,16 @@
 
 {% block content %}
     <div class="container">
+        <!-- Page title -->
         <div class="row">
             <div class="col text-center mt-3">
-                <h2>Account Details</h2>
+                <h2>Account Management</h2>
                 <div class="d-flex justify-content-center">
                     <hr class="w-75 mb-1"> 
                 </div>
             </div>
         </div>
+        <!-- Account functions buttons -->
         <div class="row">
             <div class="offset-lg-2 col-lg-2 col-sm-4">
                 <div class="d-flex flex-column align-items-center">
@@ -61,15 +63,16 @@
                             <span class="fw-bold">Wishlist</span>
                         </a>
                     </div>
+                    <!-- Admin functions access (superuser only) -->
                     {% if request.user.is_superuser %}
-                    <div>
-                        <a href="{% url 'add_product' %}" class="btn btn-warning btn-lg profile-menu-btn pt-2 my-2">
-                            <span>
-                                <i class="fas fa-user-cog"></i>
-                            </span>
-                            <span class="fw-bold">Admin</span>
-                        </a>
-                    </div>
+                        <div>
+                            <a href="{% url 'add_product' %}" class="btn btn-warning btn-lg profile-menu-btn pt-2 my-2">
+                                <span>
+                                    <i class="fas fa-user-cog"></i>
+                                </span>
+                                <span class="fw-bold">Admin</span>
+                            </a>
+                        </div>
                     {% endif %}
                     <div>
                         <a href="{% url 'account_logout' %}" class="btn btn-warning btn-lg profile-menu-btn pt-2 mt-2 mb-4">
@@ -81,13 +84,13 @@
                     </div>
                 </div>
             </div>
+            <!-- Account functions displayed here upon selection -->
             <div class="col-lg-6 col-sm-8">
                 {% block profile_content %}
                 {% endblock %}
             </div>
         </div>
     </div>
-
 {% endblock %}
 
 {% block postloadjs %}

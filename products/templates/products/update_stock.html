@@ -10,6 +10,7 @@
 
 {% block content %}
     <div class="container">
+        <!-- Page title -->
         <div class="row">
             <div class="col text-center mt-3">
                 <h2>Update Stock</h2>
@@ -19,7 +20,7 @@
                 <h5 class="text-muted">You are Updating the stock for <strong><span class="text-capitalize">{{ product.name }}</span></strong></h5>
             </div>
         </div>
-
+        <!-- Update stock form -->
         <div class="row">
             <div class="offset-lg-2 col-lg-8 offset-sm-1 col-sm-10">
                 <form method="POST" action="{% url 'update_stock' product.id %}" class="form mb-2" enctype="multipart/form-data">
@@ -33,5 +34,4 @@
             </div>
         </div>
     </div>
-
 {% endblock %}
