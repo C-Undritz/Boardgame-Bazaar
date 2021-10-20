@@ -98,7 +98,7 @@ The following quality checks were completed on each of JavaScript files:
 * Manual review to ensure all quoted-out code was removed.
 * Manual check to ensure that all console.log entries were removed.
 * Manual check of the spacing between code lines.
-* Code checked on [JSHint](https://jshint.com/) using direct input.  Note that '//jshint esversion: 6' was entered at the top of the code window prior to pasting in JS code. This ensures that the feedback received from JSHint takes into account that the JS code uses ECMAScript 6 specific syntax.
+* Code checked on [JSHint](https://jshint.com/) using direct input.  Note that '//jshint esversion: 6' was entered at the top of the code window prior to pasting in JS code. This ensures that the feedback received from JSHint takes into account that the JS code uses ECMAScript 6 specific syntax.  '/*globals $:false */' was also added when using JSHint to check jQuery.
 
 ## Python:
 The following quality checks were completed on the app.py file:
