@@ -121,8 +121,8 @@ form.addEventListener('submit', function (ev) {
             // If sale quantity is more than stock amount:
             loc = window.location.href;
             path = window.location.pathname;
-            newurl = loc.replace(path, '/checkout/no_sale/')
+            newurl = loc.replace(path, '/checkout/no_sale/');
             location.replace(newurl);
-        };
+        }
     });
 });

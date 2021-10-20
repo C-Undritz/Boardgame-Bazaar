@@ -4,5 +4,5 @@ for the back to top button that exists on the all products views.
 */
 
 $('.btt-link').click(function(e) {
-    window.scrollTo(0,0)
-})
+    window.scrollTo(0,0);
+});

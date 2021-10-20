@@ -5,7 +5,7 @@ let adminFunctions = document.querySelector('#admin-functions');
 document.addEventListener("DOMContentLoaded", function () {
     if (adminFunctions) {
         adminFunctions.style.display = "none";
-    };
+    }
 });
 
 if (adminReveal) {
@@ -14,6 +14,6 @@ if (adminReveal) {
             adminFunctions.style.display = "block";
         } else if (adminFunctions.style.display === "block")  {
             adminFunctions.style.display = "none";
-        };
+        }
     });
-};
+}

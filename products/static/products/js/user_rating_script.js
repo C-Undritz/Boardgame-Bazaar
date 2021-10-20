@@ -13,8 +13,6 @@ let threeStars = document.getElementById('star3');
 let fourStars = document.getElementById('star4');
 let fiveStars = document.getElementById('star5');
 let starPanel = document.getElementById('star-panel');
-let rate = document.getElementById('rating-text');
-let ratingArea = document.getElementById('rating-area');
 let ratingSelected = false;
 
 document.addEventListener("DOMContentLoaded", function () {

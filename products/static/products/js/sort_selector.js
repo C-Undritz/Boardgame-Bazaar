@@ -14,7 +14,7 @@ $('#sort-selector').change(function() {
         var direction = selectedVal.split("_")[1];
 
         currentUrl.searchParams.set("sort", sort);
-        currentUrl.searchParams.set("direction", direction)
+        currentUrl.searchParams.set("direction", direction);
 
         window.location.replace(currentUrl);
     } else {
@@ -23,4 +23,4 @@ $('#sort-selector').change(function() {
 
         window.location.replace(currentUrl);
     }
-})
+});

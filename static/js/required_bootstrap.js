@@ -3,17 +3,17 @@
 let option = {
     autohide: true,
     delay: 12000,
-}
+};
 
-var toastElList = [].slice.call(document.querySelectorAll('.toast'))
+var toastElList = [].slice.call(document.querySelectorAll('.toast'));
 var toastList = toastElList.map(function (toastEl) {
-    return new bootstrap.Toast(toastEl, option)
-})
+    return new bootstrap.Toast(toastEl, option);
+});
 toastList.forEach(toast => toast.show());
 
 // Required Javascript to display bootstrap offcanvas
-var offcanvasElementList = [].slice.call(document.querySelectorAll('.offcanvas'))
+var offcanvasElementList = [].slice.call(document.querySelectorAll('.offcanvas'));
 var offcanvasList = offcanvasElementList.map(function (offcanvasEl) {
-    return new bootstrap.Offcanvas(offcanvasEl)
-})
+    return new bootstrap.Offcanvas(offcanvasEl);
+});
 offcanvasList.forEach(offcanvas => offcanvas.show());

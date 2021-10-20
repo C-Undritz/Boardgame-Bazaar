@@ -19,10 +19,10 @@ function handleEnabledDisabled(itemId) {
     } else {
         plusDisabled = currentValue > 9;
     }
-    let minusBtn = document.querySelector(`#minus-qty_${itemId}`)
-    let plusBtn = document.querySelector(`#plus-qty_${itemId}`)
-    minusBtn.removeAttribute("disabled")
-    plusBtn.removeAttribute("disabled")
+    let minusBtn = document.querySelector(`#minus-qty_${itemId}`);
+    let plusBtn = document.querySelector(`#plus-qty_${itemId}`);
+    minusBtn.removeAttribute("disabled");
+    plusBtn.removeAttribute("disabled");
     if (minusDisabled) {
         minusBtn.setAttribute("disabled", "disabled");
     }
@@ -48,7 +48,7 @@ document.querySelectorAll('.plus-btn').forEach(item => {
         let closestInput = item.closest('.input-group').querySelectorAll('.qty-input')[0];
         let currentValue = parseInt(closestInput.value);
         closestInput.value = currentValue + 1;
-        let itemId = item.dataset.item_id
+        let itemId = item.dataset.item_id;
         handleEnabledDisabled(itemId);
     });
 });
@@ -60,7 +60,7 @@ document.querySelectorAll('.minus-btn').forEach(item => {
         let closestInput = item.closest('.input-group').querySelectorAll('.qty-input')[0];
         let currentValue = parseInt(closestInput.value);
         closestInput.value = currentValue - 1;
-        let itemId = item.dataset.item_id
+        let itemId = item.dataset.item_id;
         handleEnabledDisabled(itemId);
     });
 });
