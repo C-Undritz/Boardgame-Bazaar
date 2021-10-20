@@ -1,19 +1,25 @@
+"""
+Boardgame Bazaar: products App - Views
+"""
+
+
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.core.paginator import Paginator
 from django.contrib import messages
 from django.db.models import Q
 from django.db.models.functions import Lower
 from django.contrib.auth.decorators import login_required
-from .models import Product, Genre, GenreAssignment, Review
-from checkout.models import Order
-from .forms import ProductForm, UpdateStockForm, ReviewRateForm, GenreForm
 from profiles.models import UserProfile
+from checkout.models import Order
+from .models import Product, Genre, GenreAssignment, Review
+from .forms import ProductForm, UpdateStockForm, ReviewRateForm, GenreForm
 
 
 def all_products(request):
     """
-    Home page of site that shows the best selling products initially and
-    includes sorting a searching queries.
+    Products display page of site that shows all of the products initially but
+    returns various restricted views of the products through filters and
+    queries.  Includes sorting by and searching queries.
     """
     products = Product.objects.all()
 
@@ -71,7 +77,8 @@ def all_products(request):
                 messages.error(request, "You need to enter a search value.")
                 return redirect(reverse('all_products'))
 
-            queries = Q(name__icontains=search_query) | Q(description__icontains=search_query)
+            queries = Q(name__icontains=search_query) | Q(
+                description__icontains=search_query)
             products = products.filter(queries)
 
     current_sorting = f'{sort}_{direction}'
@@ -89,7 +96,8 @@ def all_products(request):
 
 def product_detail(request, product_id):
     """
-    View to show individual product details
+    View to show individual product details where the customer can add the
+    product to the shopping cart.
     """
     product = get_object_or_404(Product, pk=product_id)
     display_genres = GenreAssignment.objects.filter(product=product)
@@ -117,23 +125,22 @@ def product_detail(request, product_id):
 @login_required
 def add_product(request):
     """
-    Add a product to the store. Performs checks on the product name to ensure that
-    products with the same name cannot be added.
+    Create a new product record in the database. Performs checks on the
+    product name to ensure that products with the same name cannot be added.
     """
     profile = get_object_or_404(UserProfile, user=request.user)
     if not request.user.is_superuser:
-        messages.error(request, 'Only authorised staff can perform this function')
+        messages.error(request, 'Only authorised staff can perform this \
+            function')
         return redirect(reverse('home'))
 
     if request.method == 'POST':
         product_name = request.POST['name'].lower()
         # Checks whether there is already a product with this name
-        product_status = Product.objects.all().filter(name=product_name).exists()
-        # creation of product rejected if there is a duplicate name 
-        if product_status:
+        if Product.objects.all().filter(name=product_name).exists():
             messages.info(request, 'Product already exists in database')
             return redirect(reverse('add_product'))
-        # If there is no duplicate name the creation is permitted
+        # If there is no duplicate name the new record is permitted
         else:
             form = ProductForm(request.POST, request.FILES)
             if form.is_valid():
@@ -141,7 +148,9 @@ def add_product(request):
                 messages.success(request, 'Product added to database')
                 return redirect(reverse('product_detail', args=[product.id]))
             else:
-                messages.error(request, 'Failed to add product. Please check that you have correctly filled out all required information.')
+                messages.error(request, 'Failed to add product. Please check \
+                    that you have correctly filled out all required \
+                        information.')
     else:
         form = ProductForm()
 
@@ -161,7 +170,8 @@ def products_list(request):
     selected to be deleted or edited from the admin menu.
     """
     if not request.user.is_superuser:
-        messages.error(request, 'Only authorised staff can perform this function')
+        messages.error(request, 'Only authorised staff can perform this \
+            function')
         return redirect(reverse('home'))
 
     products = Product.objects.all().order_by('name')
@@ -189,7 +199,8 @@ def edit_product(request, product_id, nav):
     aside from the name.
     """
     if not request.user.is_superuser:
-        messages.error(request, 'Only authorised staff can perform this function')
+        messages.error(request, 'Only authorised staff can perform this \
+            function')
         return redirect(reverse('home'))
 
     product = get_object_or_404(Product, pk=product_id)
@@ -197,35 +208,41 @@ def edit_product(request, product_id, nav):
     if request.method == 'POST':
         product_name = request.POST['name'].lower()
         # Checks whether there is already a product with this name
-        product_status = Product.objects.all().filter(name=product_name).exists()
-        # If there is a duplicate product name
-        if product_status:
-            # If the name is the same as the product name then the update is permitted
-            if product_name == product.name: 
-                form = ProductForm(request.POST, request.FILES, instance=product)
-                if form.is_valid():
+        if Product.objects.all().filter(name=product_name).exists():
+            # If the name is the same as product name then update permitted
+            if product_name == product.name:
+                form = ProductForm(
+                    request.POST, request.FILES, instance=product)
+                if form.is_valid() and nav:
                     form.save()
                     messages.success(request, 'Product successfully updated')
-                    if nav:
-                        return redirect(reverse('product_detail', args=[product.id]))
-                    else:
-                        return redirect(reverse('products_list'))
-            # update rejected if edited name is the same as another existing product
+                    return redirect(reverse(
+                        'product_detail', args=[product.id]))
+                elif form.is_valid():
+                    form.save()
+                    messages.success(request, 'Product successfully updated')
+                    return redirect(reverse('products_list'))
+            # update rejected if edited name is same as an existing product
             else:
-                messages.info(request, 'Product already exists in database.  You must have changed the name to another existing product')
+                messages.info(request, 'Product already exists in database.  \
+                    You must have changed the name to another existing \
+                        product')
                 return redirect(reverse(edit_product, args=[product_id, nav]))
         # If there is no duplicate name the update is permitted
         else:
             form = ProductForm(request.POST, request.FILES, instance=product)
-            if form.is_valid():
+            if form.is_valid() and nav:
                 form.save()
                 messages.success(request, 'Product successfully updated')
-                if nav:
-                    return redirect(reverse('product_detail', args=[product.id]))
-                else:
-                    return redirect(reverse('products_list'))
+                return redirect(reverse('product_detail', args=[product.id]))
+            elif form.is_valid():
+                form.save()
+                messages.success(request, 'Product successfully updated')
+                return redirect(reverse('products_list'))
             else:
-                messages.error(request, 'Failed to edit product. Please check that you have correctly filled out all required information.')
+                messages.error(request, 'Failed to edit product. Please check \
+                    that you have correctly filled out all required \
+                        information.')
     else:
         form = ProductForm(instance=product)
 
@@ -242,10 +259,12 @@ def edit_product(request, product_id, nav):
 @login_required
 def delete_product(request, product_id, nav):
     """
-    Delete a product from the store
+    Delete a product from the store.  This function can be accessed from
+    the product detail view and also the admin menu.
     """
     if not request.user.is_superuser:
-        messages.error(request, 'Only authorised staff can perform this function')
+        messages.error(request, 'Only authorised staff can perform this \
+            function')
         return redirect(reverse('home'))
 
     product = get_object_or_404(Product, pk=product_id)
@@ -261,8 +280,8 @@ def delete_product(request, product_id, nav):
 @login_required
 def add_genre(request):
     """
-    Add additional genre category  Performs checks on the genre name and
-    friendly name to ensure duplicate genres cannot be added.
+    Add additional genre category  Performs checks on the genre friendly
+    name to ensure duplicate genres cannot be added.
     """
     profile = get_object_or_404(UserProfile, user=request.user)
     if not request.user.is_superuser:
@@ -272,9 +291,7 @@ def add_genre(request):
 
     if request.method == 'POST':
         genre_name = request.POST['friendly_name'].lower()
-        genre_status = Genre.objects.all().filter(
-            friendly_name=genre_name).exists()
-        if genre_status:
+        if Genre.objects.all().filter(friendly_name=genre_name).exists():
             messages.info(
                 request, 'Genre with that name already exists in database')
             return redirect(reverse('add_genre'))
@@ -304,11 +321,11 @@ def add_genre(request):
 def genres_list(request):
     """
     Returns a list of all of the genres within the admin view so they can be
-    selected to be deleted or edited.  Uses products > contexts.py to populate
-    list.
+    selected to be deleted or edited.
     """
     if not request.user.is_superuser:
-        messages.error(request, 'Only authorised staff can perform this function')
+        messages.error(request, 'Only authorised staff can perform this \
+            function')
         return redirect(reverse('home'))
 
     genres = Genre.objects.all().order_by('friendly_name')
@@ -344,9 +361,7 @@ def edit_genre(request, genre_id):
 
     if request.method == 'POST':
         genre_fname = request.POST['friendly_name'].lower()
-        genre_status = Genre.objects.all().filter(
-            friendly_name=genre_fname).exists()
-        if genre_status:
+        if Genre.objects.all().filter(friendly_name=genre_fname).exists():
             if genre_fname == genre.friendly_name:
                 form = GenreForm(request.POST, instance=genre)
                 if form.is_valid():
@@ -383,9 +398,9 @@ def delete_genre(request, genre_id):
     """
     Delete a genre from the database
     """
-    print(f'genre id is: {genre_id}')
     if not request.user.is_superuser:
-        messages.error(request, 'Only authorised staff can perform this function')
+        messages.error(request, 'Only authorised staff can perform this \
+            function')
         return redirect(reverse('home'))
 
     genre = get_object_or_404(Genre, pk=genre_id)
@@ -398,10 +413,11 @@ def delete_genre(request, genre_id):
 @login_required
 def update_stock(request, product_id):
     """
-    Update product stock function
+    Update product stock function.
     """
     if not request.user.is_superuser:
-        messages.error(request, 'Only authorised staff can perform this function')
+        messages.error(request, 'Only authorised staff can perform this \
+            function')
         return redirect(reverse('home'))
 
     product = get_object_or_404(Product, pk=product_id)
@@ -412,7 +428,8 @@ def update_stock(request, product_id):
             messages.success(request, 'Product stock successfully updated')
             return redirect(reverse('update_stock', args=[product.id]))
         else:
-            messages.error(request, 'Failed to update stock.  Please check that you have correctly filled out the correct information.')
+            messages.error(request, 'Failed to update stock.  Please check \
+                that you have correctly filled out the correct information.')
     else:
         form = UpdateStockForm(instance=product)
 
@@ -428,14 +445,19 @@ def update_stock(request, product_id):
 @login_required
 def review_rate(request, order_number, product_id):
     """
-    Saves user reviews and ratings for a bought product. 
+    Saves user reviews and ratings for a bought product. Checks if user has
+    reviewed the product already and if so directs to the edit review function.
     """
     order = get_object_or_404(Order, order_number=order_number)
+    # Checks that the user reviewing the product matches order record
     if str(order.user_profile) != str(request.user):
-        messages.warning(request, 'You are not allowed to perform this action.')
+        messages.warning(request, 'You are not allowed to perform this \
+            action.')
         return redirect(reverse('home'))
 
     product = get_object_or_404(Product, pk=product_id)
+
+    # Saves the review
     if request.method == 'POST':
         form_data = {
             'rating': request.POST['rating'],
@@ -450,15 +472,19 @@ def review_rate(request, order_number, product_id):
             messages.success(request, 'Review saved.  Thank you!')
             return redirect(reverse('order_detail', args=[order_number]))
         else:
-            messages.error(request, 'Failed to add rating and review. Please check that you have correctly filled out all required information.')
+            messages.error(request, 'Failed to add rating and review. Please \
+                check that you have correctly filled out all required \
+                    information.')
     else:
         reviews = product.reviews.all()
+        # Checks if the logged in user has already reviewed the product
         if reviews.filter(user=request.user).exists():
-            messages.info(request, 'You have already reviewed this product.  You can update or delete your review and rating on this page.')
-            return redirect(reverse('edit_review', args=[order_number, product_id]))
+            messages.info(request, 'You have already reviewed this product. \
+                You can update or delete your review and rating on this page.')
+            return redirect(reverse(
+                'edit_review', args=[order_number, product_id]))
         else:
             form = ReviewRateForm()
-            print('new review')
 
         template = 'products/review_rate.html'
         context = {
@@ -472,9 +498,14 @@ def review_rate(request, order_number, product_id):
 
 @login_required
 def edit_review(request, order_number, product_id):
+    """
+    Returns the review rate form pre-populated with review data for user to \
+    edit or delete.
+    """
     order = get_object_or_404(Order, order_number=order_number)
     if str(order.user_profile) != str(request.user):
-        messages.warning(request, 'You are not allowed to perform this action.')
+        messages.warning(request, 'You are not allowed to perform this \
+            action.')
         return redirect(reverse('home'))
 
     product = get_object_or_404(Product, pk=product_id)
@@ -495,7 +526,9 @@ def edit_review(request, order_number, product_id):
             messages.success(request, 'Review successfully updated.')
             return redirect(reverse('order_detail', args=[order_number]))
         else:
-            messages.error(request, 'Failed to add rating and review. Please check that you have correctly filled out all required information.')
+            messages.error(request, 'Failed to add rating and review. Please \
+                check that you have correctly filled out all required \
+                    information.')
     else:
         form = ReviewRateForm()
 
@@ -514,11 +547,12 @@ def edit_review(request, order_number, product_id):
 @login_required
 def delete_review(request, order_number, review_id):
     """
-    Delete a genre from the database
+    Deletes a review.
     """
     order = get_object_or_404(Order, order_number=order_number)
     if str(order.user_profile) != str(request.user):
-        messages.warning(request, 'You are not allowed to perform this action.')
+        messages.warning(request, 'You are not allowed to perform this \
+            action.')
         return redirect(reverse('home'))
 
     review = get_object_or_404(Review, pk=review_id)
