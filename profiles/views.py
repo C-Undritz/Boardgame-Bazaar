@@ -1,9 +1,12 @@
+"""
+Boardgame Bazaar: products App - Views
+"""
+
+
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-
 from django.contrib.auth.models import User
-from products.models import Product, Genre
 from checkout.models import Order
 from mailing_list.models import MailingList
 from .models import UserProfile
@@ -17,10 +20,9 @@ def profile_mailinglist(request):
     and returns appropriate response and actions.
     """
     profile = get_object_or_404(User, username=request.user)
-    mailinglist_status = MailingList.objects.all().filter(email=profile.email).exists()
 
     if request.method == 'POST':
-        if mailinglist_status:
+        if MailingList.objects.all().filter(email=profile.email).exists():
             email = get_object_or_404(MailingList, email=profile.email)
             email.delete()
             messages.success(request, 'Removed from mailing list')
@@ -34,18 +36,22 @@ def profile_mailinglist(request):
 @login_required
 def profile(request):
     """
-    Displays the user account delivery and contact information.
+    Returns the User data and mailing list status for display. Processes
+    any changes the customer makes to User data.
     """
     profile = get_object_or_404(User, username=request.user)
-    mailinglist_status = MailingList.objects.all().filter(email=profile.email).exists()
+    mailinglist_status = MailingList.objects.all().filter(
+        email=profile.email).exists()
 
     if request.method == 'POST':
         form = UserForm(request.POST, instance=profile)
         if form.is_valid:
             form.save()
-            messages.success(request, 'Account information updated successfully')
+            messages.success(request, 'Account information updated \
+                successfully')
         else:
-            messages.error(request, 'Update failed. Please check that you have filled out all required information')
+            messages.error(request, 'Update failed. Please check that you have \
+                filled out all required information')
     else:
         form = UserForm(instance=profile)
 
@@ -62,7 +68,8 @@ def profile(request):
 @login_required
 def profile_address(request):
     """
-    Displays the user account delivery address information and phone number.
+    Returns the UserProfile data for display. Processes any changes
+    the customer makes to UserProfile data.
     """
     profile = get_object_or_404(UserProfile, user=request.user)
 
@@ -70,9 +77,11 @@ def profile_address(request):
         form = UserAddressForm(request.POST, instance=profile)
         if form.is_valid:
             form.save()
-            messages.success(request, 'Account information updated successfully')
+            messages.success(request, 'Account information updated \
+                successfully')
         else:
-            messages.error(request, 'Update failed. Please check that you have filled out all required information')
+            messages.error(request, 'Update failed. Please check that you have \
+                filled out all required information')
     else:
         form = UserAddressForm(instance=profile)
 
@@ -88,7 +97,7 @@ def profile_address(request):
 @login_required
 def profile_orders(request):
     """
-    Displays the user account order history.
+    Returns the customer account order history.
     """
     profile = get_object_or_404(UserProfile, user=request.user)
     orders = profile.orders.all()
@@ -101,17 +110,19 @@ def profile_orders(request):
 
     return render(request, template, context)
 
+
 @login_required
 def order_detail(request, order_number):
     """
-    Displays information for the selected order from the order history
-    page
+    Returns the order history information for the selected order from the
+    order history page.
     """
     profile = get_object_or_404(UserProfile, user=request.user)
     order = get_object_or_404(Order, order_number=order_number)
 
     if str(order.user_profile) != str(request.user):
-        messages.warning(request, 'You are not allowed to perform this action.')
+        messages.warning(request, 'You are not allowed to perform this \
+            action.')
         return redirect(reverse('home'))
 
     template = 'profiles/order_detail.html'
@@ -122,11 +133,11 @@ def order_detail(request, order_number):
 
     return render(request, template, context)
 
+
 @login_required
 def wishlist_toggle(request, product_id, nav):
     """
-    Allows the customer to add a product to a wishlist list and
-    remove it if required.
+    Allows the customer to add and removed a product to their wishlist list
     """
     profile = get_object_or_404(UserProfile, user=request.user)
 

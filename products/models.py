@@ -1,9 +1,13 @@
-from django.db import models
-from django.db.models import Avg
-from django.shortcuts import get_object_or_404
-from django.contrib.auth.models import User
+"""
+Boardgame Bazaar: product App - Models
+"""
+
 
 import datetime
+
+from django.db import models
+from django.db.models import Avg
+from django.contrib.auth.models import User
 
 
 class CustomManager(models.Manager):
@@ -20,7 +24,8 @@ class CustomManager(models.Manager):
         past_date = today - delta
 
         for product in products:
-            if (product.release_date > past_date) and (product.release_date < today):
+            if (product.release_date > past_date) and (
+                    product.release_date < today):
                 this_product = product
                 this_product.new_release = True
                 this_product.save()
@@ -45,6 +50,11 @@ class CustomManager(models.Manager):
 
 
 class Genre(models.Model):
+    """
+    The genre model for genres to be assigned to products.  This is to aid
+    navigation between products (genre tags) and also for the shop by genre
+    drop down navbar menu.
+    """
     name = models.CharField(max_length=254)
     friendly_name = models.CharField(max_length=254)
 
@@ -61,12 +71,18 @@ class Genre(models.Model):
 
 
 class Product(models.Model):
+    """
+    The product model.  Also saves and tracks stock, amount sold, whether the
+    product is for sale, a pre-order and new release, and saves the overall
+    rating of the product as average of all of its reviews.
+    """
     name = models.CharField(max_length=254)
     description = models.TextField()
     release_date = models.DateField()
     price = models.DecimalField(max_digits=6, decimal_places=2)
     on_sale = models.BooleanField(default=False)
-    sale_price = models.DecimalField(null=True, blank=True, max_digits=6, decimal_places=2)
+    sale_price = models.DecimalField(
+        null=True, blank=True, max_digits=6, decimal_places=2)
     genre = models.ManyToManyField(Genre, through="GenreAssignment")
     stock = models.IntegerField(null=False, blank=False, default=0)
     sold = models.IntegerField(null=False, blank=False, default=0)
@@ -83,7 +99,7 @@ class Product(models.Model):
     def save(self, *args, **kwargs):
         self.name = self.name.lower()
         return super(Product, self).save(*args, **kwargs)
-        
+
     def update_stock_sold(self, instance):
         """
         Uses the sold quantities of products into to update the stock and sold
@@ -98,12 +114,18 @@ class Product(models.Model):
         Determines each products average rating from all user ratings for that
         product.
         """
-        self.rating = self.reviews.all().aggregate(Avg('rating'))['rating__avg']
+        self.rating = self.reviews.all().aggregate(
+            Avg('rating'))['rating__avg']
         self.save()
 
 
 class GenreAssignment(models.Model):
-    genre = models.ForeignKey('Genre', null=True, blank=True, on_delete=models.CASCADE)
+    """
+    Through table for the many to many relationship between products and
+    genres.
+    """
+    genre = models.ForeignKey(
+        'Genre', null=True, blank=True, on_delete=models.CASCADE)
     product = models.ForeignKey('Product', on_delete=models.CASCADE)
 
     class Meta:
@@ -111,8 +133,10 @@ class GenreAssignment(models.Model):
 
 
 class Review(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='reviews')
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='reviews')
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name='reviews')
+    product = models.ForeignKey(
+        Product, on_delete=models.CASCADE, related_name='reviews')
     review = models.TextField(max_length=500, blank=False)
     rating = models.IntegerField(null=True, blank=True, default=0)
     created = models.DateTimeField(auto_now_add=True)

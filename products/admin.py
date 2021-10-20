@@ -1,8 +1,16 @@
+"""
+Boardgame Bazaar: products App - Admin
+"""
+
+
 from django.contrib import admin
 from .models import Product, Genre, GenreAssignment, Review
 
 
 class ProductAdmin(admin.ModelAdmin):
+    """
+    Sets out the database fields from the Product model visible in admin.
+    """
     list_display = (
         'id',
         'name',
@@ -18,6 +26,9 @@ class ProductAdmin(admin.ModelAdmin):
 
 
 class ReviewAdmin(admin.ModelAdmin):
+    """
+    Sets out the database fields from the Review model visible in admin.
+    """
     list_display = (
         'id',
         'product',
@@ -30,6 +41,9 @@ class ReviewAdmin(admin.ModelAdmin):
 
 
 class GenreAdmin(admin.ModelAdmin):
+    """
+    Sets out the database fields from the Genre model visible in admin.
+    """
     list_display = (
         'friendly_name',
         'name',
@@ -37,6 +51,10 @@ class GenreAdmin(admin.ModelAdmin):
 
 
 class GenreAssignmentAdmin(admin.ModelAdmin):
+    """
+    Sets out the database fields from the GenreAssignment model visible in
+    admin.
+    """
     list_display = (
         'product',
         'genre',

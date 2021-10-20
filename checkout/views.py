@@ -1,21 +1,26 @@
+"""
+Boardgame Bazaar: checkout App - Views
+"""
+
 # Logic and instructions for the stripe elements below can be found here:
 # https://stripe.com/docs/payments/accept-a-payment?platform=web&ui=elements
 
-from django.shortcuts import render, redirect, reverse, get_object_or_404, HttpResponse
+import json
+import stripe
+
+from django.shortcuts import (
+    render, redirect, reverse,
+    get_object_or_404, HttpResponse)
 from django.views.decorators.http import require_POST
 from django.contrib import messages
 from django.conf import settings
 from django.http import JsonResponse
-
-from .forms import OrderForm
-from .models import Order, OrderLineItem
 from products.models import Product
 from profiles.forms import UserAddressForm
 from profiles.models import UserProfile
 from cart.contexts import cart_contents
-
-import stripe
-import json
+from .forms import OrderForm
+from .models import Order, OrderLineItem
 
 
 @require_POST
@@ -84,11 +89,11 @@ def cache_checkout_data(request):
         return HttpResponse(status=400)
 
 
-def checkout(request):
+def checkout(request):  # pylint: disable-msg=too-many-locals
     """
-    Returns to return the checkout page.  Includes if statement to protect
-    against. URL abuse a button to checkout only appears in item(s) in cart.
-    Learnt and adapted from Boutique Ado project.
+    Uses data in the order form to create an order in the database. Includes if
+    statement to protect against URL abuse a button to checkout only appears in
+    item(s) in cart.  Learnt and adapted from Boutique Ado project.
     """
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
@@ -133,7 +138,8 @@ def checkout(request):
                     return redirect(reverse('view_cart'))
             # checking whether the user wants to save their profile information
             request.session['save_info'] = 'save-info' in request.POST
-            return redirect(reverse('checkout_success', args=[order.order_number]))
+            return redirect(reverse(
+                'checkout_success', args=[order.order_number]))
         else:
             messages.error(request, 'There was an error with your form. \
                 Please retry and double check the information entered')
@@ -145,7 +151,6 @@ def checkout(request):
 
         current_cart = cart_contents(request)
         total = current_cart['grand_total']
-        # Multiplied and rounded to zero decimal places as Stripe needs charge amount to be integer.
         stripe_total = round(total * 100)
         stripe.api_key = stripe_secret_key
         intent = stripe.PaymentIntent.create(
@@ -170,7 +175,7 @@ def checkout(request):
                     'country': profile.default_country,
                     'phone_number': profile.default_phone_number,
                 })
-                # if user not authenticated an empty form is rendered
+            # if user not authenticated an empty form is rendered
             except UserProfile.DoesNotExist:
                 order_form = OrderForm()
         else:
@@ -209,7 +214,7 @@ def checkout_success(request, order_number):
                 'default_street_address1': order.street_address1,
                 'default_street_address2': order.street_address2,
                 'default_town_or_city': order.town_or_city,
-                'default_county': order.county, 
+                'default_county': order.county,
                 'default_postcode': order.postcode,
                 'default_country': order.country,
                 'default_phone_number': order.phone_number,

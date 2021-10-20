@@ -1,3 +1,8 @@
+"""
+Boardgame Bazaar: cart App - Contexts
+"""
+
+
 from decimal import Decimal
 from django.conf import settings
 from django.shortcuts import get_object_or_404
@@ -6,8 +11,9 @@ from products.models import Product
 
 def cart_contents(request):
     """
-    Returns the context dictionary and makes it available to all templates
-    across the whole application
+    Returns the context dictionary to display the cart contents and makes it
+    available to all templates across the application.  Works out and applies
+    discount based on total quantity bought.
     """
     cart_items = []
     total = 0
@@ -15,8 +21,10 @@ def cart_contents(request):
     delivery = 4
     cart = request.session.get('cart', {})
 
+    # Adds item and/or quantity increase, to the cart.
     for item_id, quantity in cart.items():
         product = get_object_or_404(Product, pk=item_id)
+        # Checks sale status to get advertised price.
         if product.sale_price:
             total += quantity * product.sale_price
         else:
@@ -28,14 +36,17 @@ def cart_contents(request):
             'product': product,
         })
 
+    # Updates the discount figures and the final total to display in cart views
     if product_count >= settings.MULTIBUY_DISCOUNT_TWO:
         discount_rate = 5
-        discount_amount = Decimal(total * Decimal(settings.MULTIBUY_DISCOUNT_TWO / 100))
+        discount_amount = Decimal(total * Decimal(
+            settings.MULTIBUY_DISCOUNT_TWO / 100))
         final_total = total - discount_amount
         discount_count_delta = 0
     elif product_count >= settings.MULTIBUY_DISCOUNT_ONE:
         discount_rate = 3
-        discount_amount = Decimal(total * Decimal(settings.MULTIBUY_DISCOUNT_ONE / 100))
+        discount_amount = Decimal(total * Decimal(
+            settings.MULTIBUY_DISCOUNT_ONE / 100))
         final_total = total - discount_amount
         discount_count_delta = settings.MULTIBUY_DISCOUNT_TWO - product_count
     else:

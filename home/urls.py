@@ -1,3 +1,8 @@
+"""
+Boardgame Bazaar: home App - Urls
+"""
+
+
 from django.urls import path
 from . import views
 

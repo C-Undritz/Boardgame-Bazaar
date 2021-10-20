@@ -1,3 +1,8 @@
+"""
+Boardgame Bazaar: home App - Views
+"""
+
+
 from django.shortcuts import render
 
 

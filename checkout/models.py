@@ -1,17 +1,23 @@
+"""
+Boardgame Bazaar: checkout App - Models
+"""
+
+
 import uuid
 
+from decimal import Decimal
 from django.db import models
 from django.db.models import Sum
 from django.conf import settings
-from decimal import Decimal
-
 from django_countries.fields import CountryField
-
 from products.models import Product
 from profiles.models import UserProfile
 
 
 class Order(models.Model):
+    """
+    Order model to record a purchase by any customer
+    """
     order_number = models.CharField(max_length=32, null=False, editable=False)
     user_profile = models.ForeignKey(UserProfile, on_delete=models.SET_NULL,
                                      null=True, blank=True,
@@ -35,8 +41,8 @@ class Order(models.Model):
         max_digits=10, decimal_places=2, null=False, default=0)
     # below two entries added to ensure order record is unique.
     original_cart = models.TextField(null=False, blank=False, default='')
-    stripe_pid = models.CharField(max_length=254, null=False, blank=False, 
-                                  default='')
+    stripe_pid = models.CharField(
+        max_length=254, null=False, blank=False, default='')
 
     def _generate_order_number(self):
         """
@@ -51,20 +57,24 @@ class Order(models.Model):
         total quantity of the items bought to calculate discount and then
         use that to calculate the grand total.
         """
-        print(f'order number is: {self.order_number}')
-        self.order_total = self.lineitems.aggregate(Sum('lineitem_total'))['lineitem_total__sum'] or 0
-        quantity_total = self.lineitems.aggregate(Sum('quantity'))['quantity__sum']
+        self.order_total = self.lineitems.aggregate(
+            Sum('lineitem_total'))['lineitem_total__sum'] or 0
+        quantity_total = self.lineitems.aggregate(
+            Sum('quantity'))['quantity__sum']
         self.delivery_cost = 4
 
         if quantity_total:
             if quantity_total >= settings.MULTIBUY_DISCOUNT_TWO:
-                self.discount = Decimal(self.order_total * Decimal(settings.MULTIBUY_DISCOUNT_TWO / 100))
+                self.discount = Decimal(self.order_total * Decimal(
+                    settings.MULTIBUY_DISCOUNT_TWO / 100))
             elif quantity_total >= settings.MULTIBUY_DISCOUNT_ONE:
-                self.discount = Decimal(self.order_total * Decimal(settings.MULTIBUY_DISCOUNT_ONE / 100))
+                self.discount = Decimal(self.order_total * Decimal(
+                    settings.MULTIBUY_DISCOUNT_ONE / 100))
             else:
                 self.discount = 0
 
-        self.grand_total = (self.order_total - self.discount) + self.delivery_cost
+        self.grand_total = (
+            self.order_total - self.discount) + self.delivery_cost
         self.save()
 
     def save(self, *args, **kwargs):
@@ -81,25 +91,31 @@ class Order(models.Model):
 
 
 class OrderLineItem(models.Model):
-    order = models.ForeignKey(Order, null=False, blank=False, on_delete=models.CASCADE, related_name='lineitems')
-    product = models.ForeignKey(Product, null=False, blank=False, on_delete=models.CASCADE)
+    """
+    Order line model for each line item of the order.  Stores product, quantity
+    and total for each line
+    """
+    order = models.ForeignKey(
+        Order, null=False, blank=False,
+        on_delete=models.CASCADE, related_name='lineitems')
+    product = models.ForeignKey(
+        Product, null=False, blank=False, on_delete=models.CASCADE)
     quantity = models.IntegerField(null=False, blank=False, default=0)
-    lineitem_total = models.DecimalField(max_digits=6, decimal_places=2, null=False, blank=False, editable=False)
+    lineitem_total = models.DecimalField(
+        max_digits=6, decimal_places=2,
+        null=False, blank=False, editable=False)
 
     def save(self, *args, **kwargs):
         """
         Override the original save method to set the lineitem total using
         the line item quantity.  From Boutique Ado walkthrough project.
         """
-        print(f'from OrderLineItem - sale price: {self.product.on_sale} - {self.product.sale_price}')
-        print(f'the product normal price: {self.product.price}')
         if self.product.on_sale:
             self.lineitem_total = self.product.sale_price * self.quantity
-            print('orderlineitem - on sale line called')
         else:
             self.lineitem_total = self.product.price * self.quantity
-            print('orderlineitem - normal price line item called')
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return f'Product ID {self.product.id} on order {self.order.order_number}'
+        return f'Product ID {self.product.id} on order \
+            {self.order.order_number}'
