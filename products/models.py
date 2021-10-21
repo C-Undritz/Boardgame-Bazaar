@@ -131,8 +131,15 @@ class GenreAssignment(models.Model):
     class Meta:
         unique_together = [['genre', 'product']]
 
+    def __str__(self):
+        return str(self.product)
+
 
 class Review(models.Model):
+    """
+    Saves customer reviews and ratings for a product.  User and product
+    information saved with database record.
+    """
     user = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name='reviews')
     product = models.ForeignKey(
@@ -142,4 +149,4 @@ class Review(models.Model):
     created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return str(self.id)
+        return str(self.review)
