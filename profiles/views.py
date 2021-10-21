@@ -1,5 +1,5 @@
 """
-Boardgame Bazaar: products App - Views
+Boardgame Bazaar: profiles App - Views
 """
 
 
@@ -45,7 +45,7 @@ def profile(request):
 
     if request.method == 'POST':
         form = UserForm(request.POST, instance=profile)
-        if form.is_valid:
+        if form.is_valid():
             form.save()
             messages.success(request, 'Account information updated \
                 successfully')
@@ -75,7 +75,7 @@ def profile_address(request):
 
     if request.method == 'POST':
         form = UserAddressForm(request.POST, instance=profile)
-        if form.is_valid:
+        if form.is_valid():
             form.save()
             messages.success(request, 'Account information updated \
                 successfully')
