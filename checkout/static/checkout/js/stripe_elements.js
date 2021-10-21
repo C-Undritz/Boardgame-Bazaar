@@ -119,9 +119,9 @@ form.addEventListener('submit', function (ev) {
             });
         } else {
             // If sale quantity is more than stock amount:
-            loc = window.location.href;
-            path = window.location.pathname;
-            newurl = loc.replace(path, '/checkout/no_sale/');
+            const loc = window.location.href;
+            const path = window.location.pathname;
+            const newurl = loc.replace(path, '/checkout/no_sale/');
             location.replace(newurl);
         }
     });
