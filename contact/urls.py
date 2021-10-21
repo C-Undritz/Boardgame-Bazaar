@@ -1,3 +1,8 @@
+"""
+Boardgame Bazaar: contact App - Urls
+"""
+
+
 from django.urls import path
 from . import views
 
