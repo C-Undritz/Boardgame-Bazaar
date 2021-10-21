@@ -12,6 +12,3 @@ class MailingList(models.Model):
     """
     email = models.EmailField(null=False, blank=False)
     date_added = models.DateField(auto_now_add=True)
-
-    def __str__(self):
-        return self.email
