@@ -16,19 +16,20 @@ from .forms import UserAddressForm, UserForm
 @login_required
 def profile_mailinglist(request):
     """
-    Checks whether customers email address is already in database
-    and returns appropriate response and actions.
+    Adds to/removes from the mailing list database, the customer email address
+    Initiated by the mailing list subscribe/un-subscribe button within Account
+    Management.
     """
-    profile = get_object_or_404(User, username=request.user)
+    user_profile = get_object_or_404(User, username=request.user)
 
     if request.method == 'POST':
-        if MailingList.objects.all().filter(email=profile.email).exists():
-            email = get_object_or_404(MailingList, email=profile.email)
+        if MailingList.objects.all().filter(email=user_profile.email).exists():
+            email = get_object_or_404(MailingList, email=user_profile.email)
             email.delete()
             messages.success(request, 'Removed from mailing list')
             return redirect(reverse('profile'))
         else:
-            email = MailingList.objects.create(email=profile.email)
+            MailingList.objects.create(email=user_profile.email)
             messages.success(request, 'Added to mailing list')
             return redirect(reverse('profile'))
 
@@ -39,25 +40,34 @@ def profile(request):
     Returns the User data and mailing list status for display. Processes
     any changes the customer makes to User data.
     """
-    profile = get_object_or_404(User, username=request.user)
+    user_profile = get_object_or_404(User, username=request.user)
     mailinglist_status = MailingList.objects.all().filter(
-        email=profile.email).exists()
+        email=user_profile.email).exists()
+    previous_email = user_profile.email
 
     if request.method == 'POST':
-        form = UserForm(request.POST, instance=profile)
+        form = UserForm(request.POST, instance=user_profile)
         if form.is_valid():
             form.save()
-            messages.success(request, 'Account information updated \
-                successfully')
+            updated_profile = get_object_or_404(User, username=request.user)
+            if previous_email != updated_profile.email:
+                email = get_object_or_404(MailingList, email=previous_email)
+                email.delete()
+                MailingList.objects.create(email=updated_profile.email)
+                messages.success(request, 'Account information updated \
+                successfully and new email updated in mailing list')
+            else:
+                messages.success(request, 'Account information updated \
+                    successfully')
         else:
             messages.error(request, 'Update failed. Please check that you have \
                 filled out all required information')
     else:
-        form = UserForm(instance=profile)
+        form = UserForm(instance=user_profile)
 
     template = 'profiles/profile_information.html'
     context = {
-        'profile': profile,
+        'profile': user_profile,
         'form': form,
         'mailinglist_status': mailinglist_status,
     }
@@ -71,10 +81,10 @@ def profile_address(request):
     Returns the UserProfile data for display. Processes any changes
     the customer makes to UserProfile data.
     """
-    profile = get_object_or_404(UserProfile, user=request.user)
+    user_profile = get_object_or_404(UserProfile, user=request.user)
 
     if request.method == 'POST':
-        form = UserAddressForm(request.POST, instance=profile)
+        form = UserAddressForm(request.POST, instance=user_profile)
         if form.is_valid():
             form.save()
             messages.success(request, 'Account information updated \
@@ -83,11 +93,11 @@ def profile_address(request):
             messages.error(request, 'Update failed. Please check that you have \
                 filled out all required information')
     else:
-        form = UserAddressForm(instance=profile)
+        form = UserAddressForm(instance=user_profile)
 
     template = 'profiles/profile_address.html'
     context = {
-        'profile': profile,
+        'profile': user_profile,
         'form': form,
     }
 
@@ -99,12 +109,12 @@ def profile_orders(request):
     """
     Returns the customer account order history.
     """
-    profile = get_object_or_404(UserProfile, user=request.user)
-    orders = profile.orders.all()
+    user_profile = get_object_or_404(UserProfile, user=request.user)
+    orders = user_profile.orders.all()
 
     template = 'profiles/profile_orders.html'
     context = {
-        'profile': profile,
+        'profile': user_profile,
         'orders': orders
     }
 
@@ -117,7 +127,7 @@ def order_detail(request, order_number):
     Returns the order history information for the selected order from the
     order history page.
     """
-    profile = get_object_or_404(UserProfile, user=request.user)
+    user_profile = get_object_or_404(UserProfile, user=request.user)
     order = get_object_or_404(Order, order_number=order_number)
 
     if str(order.user_profile) != str(request.user):
@@ -127,7 +137,7 @@ def order_detail(request, order_number):
 
     template = 'profiles/order_detail.html'
     context = {
-        'profile': profile,
+        'profile': user_profile,
         'order': order
     }
 
@@ -139,13 +149,13 @@ def wishlist_toggle(request, product_id, nav):
     """
     Allows the customer to add and removed a product to their wishlist list
     """
-    profile = get_object_or_404(UserProfile, user=request.user)
+    user_profile = get_object_or_404(UserProfile, user=request.user)
 
-    if profile.wishlist.filter(id=product_id).exists():
-        profile.wishlist.remove(product_id)
+    if user_profile.wishlist.filter(id=product_id).exists():
+        user_profile.wishlist.remove(product_id)
         messages.success(request, 'Removed from wishlist')
     else:
-        profile.wishlist.add(product_id)
+        user_profile.wishlist.add(product_id)
         messages.success(request, 'Added to wishlist')
     if nav:
         return redirect(reverse('product_detail', args=[product_id]))
@@ -158,13 +168,13 @@ def wishlist(request):
     """
     Displays users current wishlist and allows the deletion
     """
-    profile = get_object_or_404(UserProfile, user=request.user)
-    wishlist = profile.wishlist.filter()
+    user_profile = get_object_or_404(UserProfile, user=request.user)
+    user_wishlist = user_profile.wishlist.filter()
 
     template = 'profiles/profile_wishlist.html'
     context = {
-        'profile': profile,
-        'wishlist': wishlist,
+        'profile': user_profile,
+        'wishlist': user_wishlist,
     }
 
     return render(request, template, context)
