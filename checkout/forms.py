@@ -8,7 +8,11 @@ from .models import Order
 
 
 class OrderForm(forms.ModelForm):
-
+    """
+    Displayed within the checkout page; form for customer to fill in contact
+    and delivery details for order.  Or is pre-filled from saved information
+    in customer account
+    """
     class Meta:
         model = Order
         fields = ('full_name', 'email', 'phone_number',
