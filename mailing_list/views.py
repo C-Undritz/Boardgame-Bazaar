@@ -1,6 +1,11 @@
-from django.shortcuts import render, redirect, reverse
-from .models import MailingList
+"""
+Boardgame Bazaar: mailing_list App - Views
+"""
+
+
+from django.shortcuts import redirect, reverse
 from django.contrib import messages
+from .models import MailingList
 from .forms import AddToMailingList
 
 
@@ -16,15 +21,17 @@ def save_email(request):
         }
         email = request.POST['email']
         form = AddToMailingList(form_data)
-        mailinglist_status = MailingList.objects.all().filter(email=email).exists()
-        if mailinglist_status:
+        if MailingList.objects.all().filter(email=email).exists():
             messages.info(request, 'Email already stored in mailing list')
             return redirect(reverse('home'))
         else:
             if form.is_valid():
                 form.save()
-                messages.success(request, 'Email address added to mailing list')
+                messages.success(request, 'Email address added to mailing \
+                    list')
                 return redirect(reverse('home'))
             else:
-                messages.error(request, 'Failed to add email. Please check that you have correctly filled out all required information.')
+                messages.error(request, 'Failed to add email. Please check \
+                    that you have correctly filled out all required \
+                        information.')
                 return redirect(reverse('home'))
