@@ -1,6 +1,4 @@
-#profile-update-form input::placeholder {
-    color: #aab7c4;
-}
+/* ----------------- Dropdown styles for the country select drop down ----------------- */
 
 /* makes the country drop down list font color Bootstrap 'dark' by default, except for the first option */
 #id_default_country,
@@ -13,11 +11,13 @@
     color: #aab7c4;
 }
 
-.order-history {
+/* ----------------- height and information display for order history list ----------------- */
+#order-history {
     max-height: 416px;
     overflow-y: auto;
 }
 
+/* ----------------- Button styles ----------------- */
 .profile-menu-btn,
 #admin-back-btn {
     width: 150px;
