@@ -8,22 +8,9 @@ html, body {
 body {
     display: flex;
     flex-direction: column;
-    /* height: calc(100vh - 141px); minus the height of the navbar */
     background-color: #F8F9FA;
     font-family: 'Economica', sans-serif;
     font-size: 1.35rem;
-}
-
-body::-webkit-scrollbar {
-    width: 0.55em;
-}
-
-body::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.3);
-  }
-   
-body::-webkit-scrollbar-thumb {
-    background-color: #6C757D;
 }
 
 .content {
@@ -34,9 +21,24 @@ hr {
     margin: 0.5rem 0;
 }
 
+/* Removes underscore from cart icon in navbar */
 a.no-decoration {
     text-decoration: none !important;
 }
+
+/* ------------------ scroll bar styles ------------------- */
+body::-webkit-scrollbar {
+    width: 0.55em;
+}
+
+body::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.3);
+}
+   
+body::-webkit-scrollbar-thumb {
+    background-color: #6C757D;
+}
+
 /* ------------------ Navbar ------------------- */
 .nav-link {
     padding: 0;
@@ -78,10 +80,6 @@ a.no-decoration {
     margin-top: 12px;
 }
 
-#responsive-logo {
-    margin-bottom: -8px !important;
-}
-
 #genre-dropdown {
   height: 60vh;
   max-height: 100vh;
@@ -89,48 +87,21 @@ a.no-decoration {
   overflow-y: scroll;
 }
 
+/* ----- Genre dropdown scroll bar styles ----- */
 #genre-dropdown::-webkit-scrollbar {
     width: 0.35em;
 }
 
 #genre-dropdown::-webkit-scrollbar-track {
     background-color: #212529;
-  }
+}
    
 #genre-dropdown::-webkit-scrollbar-thumb {
     background-color: #6C757D;
     border-radius: 5px;
-  }
-
-/* ------------------ Product display styles ------------------- */
-
-.image-container {
-    position: relative;
-}
-
-.overlay-image-topleft {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-}
-
-.overlay-image-topright {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-}
-
-.chart-position {
-    width: 40px;
-    text-align: center;
-}
-
-#product-detail-title {
-    margin-top: 45px;
 }
 
 /* ------------------ Button styles ------------------- */
-
 .btn {
     height: 44px;
     padding-top: 7px !important;
@@ -148,13 +119,7 @@ a.no-decoration {
     color: #FFC107 !important;
 }
 
-.update-link,
-.remove-item {
-    cursor: pointer;
-}
-
 /* ------------------ Messages ------------------- */
-
 .messages-container {
     position: fixed;
     top: 140px;
@@ -172,11 +137,6 @@ a.no-decoration {
 }
 
 /* ------------------ Form styles ------------------- */
-
-#qty-select {
-    width: 75px !important;
-}
-
 .qty-input {
     height: 44px;
 }
@@ -185,37 +145,23 @@ a.no-decoration {
     width: 200px;
 }
 
-/* ------------------ shopping cart and checkout styles ------------------- */
-
-.cart-heading-hr {
+/* ------------------ horizontal rule styles ------------------- */
+.global-heading-hr {
     height: 5px !important;
     background-color: #FFC107;
 }
 
-.cart-item-hr {
+.global-item-hr {
     height: 1px !important;
     background-color: lightgrey;
 }
 
 /* ------------------ Allauth form formatting ----------------------- */
-
 .allauth-form-inner-content label:not([for='id_remember']) {
     display: none;
 }
 
-/* ------------------ Product Detail view - admin link styles ------------------- */
-#admin-reveal {
-    border: 0;
-    background-color: #F8F9FA;
-    margin-bottom: 3px;
-}
-
-#admin-reveal:hover {
-    text-decoration: underline;
-}
-
-/* ------------------ add product form styles ------------------- */
-
+/* ------------------ add product form styles (see TESTING.md > problems and fixes > issue 6 ------------------- */
 div > div.form-check {
     display: inline-flex;
     width: 32%;
