@@ -222,10 +222,6 @@ div > div.form-check > .form-check-label {
 }
 
 @media (max-width: 767px) {
-    #product-detail-title {
-        margin-top: -40px;
-    }
-
     div > div.form-check {
         width: 45%;
     }
