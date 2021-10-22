@@ -13,7 +13,7 @@
                 <form method="POST" action="{% url 'save_email' %}" id="mailinglist-form">
                     {% csrf_token %}
                     <div class="input-group">
-                        <input class="" type="text" name="email" id="email">
+                        <input type="text" name="email" id="email">
                         <button class="btn btn-warning btn-lg text-uppercase fw-bold pt-2 ms-1" type="submit"><i class="fas fa-paper-plane"></i></button>  
                     </div>
                 </form>
