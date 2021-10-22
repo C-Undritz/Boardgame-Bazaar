@@ -7,17 +7,17 @@ a stock check against purchase.
 */
 
 // Gets public key and client secret from the template.
-var stripePublicKey = $('#id_stripe_public_key').text().slice(1, -1);
-var clientSecret = $('#id_client_secret').text().slice(1, -1);
+const stripePublicKey = $('#id_stripe_public_key').text().slice(1, -1);
+const clientSecret = $('#id_client_secret').text().slice(1, -1);
 
 // Variables required to set up stripe.
-var stripe = Stripe(stripePublicKey);
-var elements = stripe.elements();
-var style = {
+const stripe = Stripe(stripePublicKey);
+const elements = stripe.elements();
+const style = {
     base: {
       color: "#212529",
-      fontfamily: '"Amatic SC", cursive, Helvitica, sans-serif',
-      fontsmoothing: 'antialiased',
+      fontFamily: 'Economica, Helvitica, sans-serif',
+      fontSmoothing: 'antialiased',
       fontSize: '16px',
     },
     invalid: {
@@ -26,13 +26,13 @@ var style = {
     }
   };
   
-var card = elements.create('card', { style: style });
+const card = elements.create('card', { style: style });
 // Mounts card to the correct div element in template.
 card.mount('#card-element');
 
 // Handles realtime validation errors on the card element.
 card.on('change', function(event) {
-    var displayError = document.getElementById('card-errors');
+    let displayError = document.getElementById('card-errors');
     if (event.error) {
       displayError.textContent = event.error.message;
     } else {
@@ -42,7 +42,7 @@ card.on('change', function(event) {
 
 // Handle checkout form submit.
 // Includes form data for stripe payment intent succeeded webhook
-var form = document.getElementById('payment-form');
+const form = document.getElementById('payment-form');
 
 form.addEventListener('submit', function (ev) {
     ev.preventDefault();
@@ -53,22 +53,22 @@ form.addEventListener('submit', function (ev) {
     $('#loading-overlay').fadeToggle(100);
 
     // Get value of the save_info check box by looking at checked status
-    var saveInfo = Boolean($('#id-save-info').attr('checked'));
+    const saveInfo = Boolean($('#id-save-info').attr('checked'));
     // Gets csrf token from the {% csrf_token %} in the checkout.html payment-form
-    var csrfToken = $('input[name="csrfmiddlewaretoken"]').val();
+    const csrfToken = $('input[name="csrfmiddlewaretoken"]').val();
     // Object to pass this information to the view 'cache_checkout_data'
-    var postData = {
+    const postData = {
         'csrfmiddlewaretoken': csrfToken,
         'save_info': saveInfo,
         'client_secret': clientSecret,
     };
 
     // Checks if there is enough stock to fulfill order
-    var in_stock_url = '/checkout/is_in_stock/';
+    const in_stock_url = '/checkout/is_in_stock/';
     $.post(in_stock_url, postData).done(function(response) {
         // If sale quantity is equal to or less than stock amount:
         if (response.result === true) {
-            var cache_data_url = '/checkout/cache_checkout_data/';
+            const cache_data_url = '/checkout/cache_checkout_data/';
             $.post(cache_data_url, postData).done(function() {
                 stripe.confirmCardPayment(clientSecret, {
                     payment_method: {
@@ -100,7 +100,7 @@ form.addEventListener('submit', function (ev) {
                     }
                 }).then(function(result) {
                     if (result.error) {
-                        var displayError = document.getElementById('card-errors');
+                        let displayError = document.getElementById('card-errors');
                         displayError.textContent = result.error.message;
                         $('#payment-form').fadeToggle(100);
                         $('#loading-overlay').fadeToggle(100);
