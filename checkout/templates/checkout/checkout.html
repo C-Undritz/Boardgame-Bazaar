@@ -30,8 +30,8 @@
             <div class="col-12 col-lg-6 order-md-first order-lg-last mt-2 mb-4">
                 <p class="text-muted">Your Order Summary ({{ product_count }} items)</p>
                 <div class="row">
-                    <div class="col-7 offset-2">
-                        <p class="mb-1 mt-0 small text-muted">Item</p>
+                    <div class="col-9 col-sm-7 offset-sm-2">
+                        <p class="mb-1 mt-0 small text-muted float-start">Item</p>
                     </div>
                     <div class="col-3 text-right">
                         <p class="mb-1 mt-0 small text-muted">Subtotal</p>
@@ -41,7 +41,7 @@
                 <!-- Display for each cart item -->
                     <div class="row">
                         <!-- Item image -->
-                        <div class="col-2 mb-1">
+                        <div class="col-2 mb-1 d-none d-sm-block">
                             <a href="{% url 'product_detail' item.product.id %}">
                                 {% if item.product.image %}
                                     <img class="w-100" src="{{ item.product.image.url }}" alt="Image of {{ product.name }}">
@@ -50,8 +50,10 @@
                                 {% endif %}
                             </a>
                         </div>
-                        <div class="col-7">
-                            <p class="my-0"><strong><span class="text-capitalize">{{ item.product.name }}</span> x {{ item.quantity }}</strong></p>
+                        <div class="col-9 col-sm-7">
+                            <a href="{% url 'product_detail' item.product.id %}" class="no-decoration text-dark">
+                                <p class="my-0"><strong><span class="text-capitalize">{{ item.product.name }}</span> x {{ item.quantity }}</strong></p>
+                            </a>
                         </div>
                         <!-- Item price -->
                         <div class="col-3 text-right">

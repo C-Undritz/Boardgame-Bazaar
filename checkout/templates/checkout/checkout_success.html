@@ -50,11 +50,13 @@
                             <!-- Display of bought product name, bought quantity and the individual product price  -->
                             <div class="col-md-10 col d-flex align-items-center">
                                 <p class="small mb-0 text-dark fw-bold">
-                                    {% if item.product.on_sale %}
-                                        <span class="text-capitalize">{{ item.product.name }}</span> x {{ item.quantity }} (@ £{{ item.product.sale_price }} each)
-                                    {% else %}
-                                        <span class="text-capitalize">{{ item.product.name }}</span> x {{ item.quantity }} (@ £{{ item.product.price }} each)
-                                    {% endif %}
+                                    <a href="{% url 'product_detail' item.product.id %}" class="no-decoration text-dark">
+                                        {% if item.product.on_sale %}
+                                            <span class="text-capitalize">{{ item.product.name }}</span> x {{ item.quantity }} (@ £{{ item.product.sale_price }} each)
+                                        {% else %}
+                                            <span class="text-capitalize">{{ item.product.name }}</span> x {{ item.quantity }} (@ £{{ item.product.price }} each)
+                                        {% endif %}
+                                    </a>
                                 </p>
                             </div>
                         </div>

@@ -108,9 +108,11 @@
                             </div>
                             <!-- Display of bought product name and bought quantity -->
                             <div class="col-md-5 col d-flex align-items-center">
-                                <p class="small mb-0 text-dark fw-bold">
-                                    <span class="text-capitalize">{{ item.product.name }}</span> x {{ item.quantity }}
-                                </p>
+                                <a href="{% url 'product_detail' item.product.id %}" class="no-decoration text-dark">
+                                    <p class="small mb-0 text-dark fw-bold">
+                                        <span class="text-capitalize">{{ item.product.name }}</span> x {{ item.quantity }}
+                                    </p>
+                                </a>
                             </div>
                             <!-- Review button -->
                             <div class="col-md-5 col d-flex align-items-center justify-content-end">
