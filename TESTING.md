@@ -200,7 +200,7 @@ The below details how the website meets the requirements of each user story.
 ![Ratings stars display issue](assets/readme/rating_stars_issue.png)  
 ***Solution**: a similar question was asked on [stackoverflow](https://stackoverflow.com/questions/29346385/hide-radio-button-while-keeping-its-functionality/29346555) and one of the answers featured on the page detailed the below css fix which, when applied, solved the issue:*
 ```
-.radio_item {
+.radio-item {
     position: fixed; 
     opacity: 0;
 }
@@ -214,6 +214,16 @@ The below details how the website meets the requirements of each user story.
 ## 5. Form input elements affected by mouse wheel
 **Issue**: It was found when entering a number value into any form input element and then scrolling the mouse wheel to navigate the form changed the input value (up or down depending on the scroll wheel direction) whilst the cursor was briefly still within the input box.  Therefore when making a price entry of 69.99 it would be very easy to make it then appear as 69.97 or 69.98.  
 ***Solution**: This was solved by disabling the mousewheel for all input elements throughout the site.  The jQuery solution was found [here](https://stackoverflow.com/questions/9712295/disable-scrolling-on-input-type-number)*
+
+## 6. CSS styles for genre check boxes
+**Issue**: The css styles for the positioning of the genre select boxes with the add product and edit product form should be within the products app static css file. However it was found that when the static css file was referenced in the add_product file within the {% block extra_css %} tags it resulted in the admin and account menu buttons becoming mis-aligned.  It was found that this was the case even if the products.css file contained no code.  
+![screen grab of described issue 6 before and after](assets/readme/problems_fixes_issue6.png)
+***Solution**: The cause of this was not found. However it was found that the styles could still be applied to the edit and add product pages and not impact the alignment of the buttons by placing them within the base.css.  So this is what has been done.*
+
+## 7. Gaining iamresponsive screen grabs
+**Issue**: The live website would not show up within [http://ami.responsivedesign.is/](http://ami.responsivedesign.is/).
+***Solution**: Installed on the Chrome browser the extension 'Ignore X-Frame headers'.  This drops X-Frame-Options and Content-Security-Policy HTTP response headers, allowing all pages to be iframed.  Once this was installed, the website showed up in iamresponsive allowing for screen grabs to be taken. Thanks to @Harry for this solution.
+
 
 
 
