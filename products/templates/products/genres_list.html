@@ -44,11 +44,11 @@
                 <!-- Edit and Delete buttons -->
                 <div class="col-6 d-flex align-items-center justify-content-end">
                     <div class="d-inline-flex">
-                        <a class="btn btn-warning btn-lg fw-bold pt-2 ms-3 float-end" href="{% url 'edit_genre' genre.id %}">
-                            <span class="">Edit</span>
+                        <a class="btn btn-warning btn-lg pt-2 ms-3 float-end" href="{% url 'edit_genre' genre.id %}">
+                            <span class="fw-bold">Edit</span>
                         </a>
-                        <a class="btn btn-warning btn-lg fw-bold pt-2 ms-3 float-end" data-bs-toggle="modal" data-bs-target="" href="#deleteModal-{{ genre.id }}">
-                            <span class="">Delete</span>
+                        <a class="btn btn-warning btn-lg fw-bold pt-2 ms-3 float-end" data-bs-toggle="modal" href="#deleteModal-{{ genre.id }}">
+                            <span class="fw-bold">Delete</span>
                         </a>
                     </div>
                 </div>

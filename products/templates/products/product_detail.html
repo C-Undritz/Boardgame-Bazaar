@@ -36,7 +36,7 @@
                             <img class="card-img-top img-fluid" src="{{ product.image.url }}" alt="Image of {{ product.name }}">
                         </a>
                     {% else %}
-                        <a href="">
+                        <a>
                             <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="No image of {{ product.name }}">
                         </a>
                     {% endif %}
@@ -212,7 +212,7 @@
                     <div>
                         <button id="admin-reveal" class="text-primary">Admin ></button>
                     </div>
-                    <div id= "admin-functions" class="">
+                    <div id= "admin-functions">
                         <a class="btn btn-warning btn-lg text-uppercase fw-bold pt-2" href="{% url 'edit_product' product.id 1 %}">Edit</a>
                         <a class="btn btn-warning btn-lg text-uppercase fw-bold pt-2 ms-1" href="{% url 'update_stock' product.id %}">Update Stock</a>
                         <a class="btn btn-warning btn-lg text-uppercase fw-bold pt-2 ms-1" data-bs-toggle="modal" data-bs-target="#deleteModal">Delete</a>    

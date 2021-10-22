@@ -101,7 +101,7 @@
                                         <img class="img-fluid rounded" src="{{ item.product.image.url }}" alt="Image of {{ item.product.name }}"> 
                                     </a>
                                 {% else %}
-                                    <a href="">
+                                    <a href="{% url 'product_detail' item.product.id %}">
                                         <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="No image of {{ product.name }}">
                                     </a>
                                 {% endif %}
@@ -114,8 +114,8 @@
                             </div>
                             <!-- Review button -->
                             <div class="col-md-5 col d-flex align-items-center justify-content-end">
-                                <a href="{% url 'review_rate' order.order_number item.product.id %}" class="btn btn-warning btn-lg fw-bold pt-2 ms-3 float-end">
-                                    <span class="">Review</span>
+                                <a href="{% url 'review_rate' order.order_number item.product.id %}" class="btn btn-warning btn-lg pt-2 ms-3 float-end">
+                                    <span class="fw-bold">Review</span>
                                 </a>
                             </div>
                         </div>

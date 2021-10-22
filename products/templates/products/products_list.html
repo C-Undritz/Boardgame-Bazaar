@@ -42,7 +42,7 @@
                             <img class="img-fluid rounded" src="{{ product.image.url }}" alt="Image of {{ product.name }}"> 
                         </a>
                     {% else %}
-                        <a href="">
+                        <a href="{% url 'product_detail' product.id %}">
                             <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="No image of {{ product.name }}">
                         </a>
                     {% endif %}
@@ -56,11 +56,11 @@
                 <!-- Edit and Delete buttons -->
                 <div class="col-sm-5 col-6 d-flex align-items-center justify-content-end">
                     <div class="d-inline-flex">
-                        <a class="btn btn-warning btn-lg fw-bold pt-2 ms-3 float-end" href="{% url 'edit_product' product.id 0 %}" >
-                            <span class="">Edit</span>
+                        <a class="btn btn-warning btn-lg pt-2 ms-3 float-end" href="{% url 'edit_product' product.id 0 %}" >
+                            <span class="fw-bold">Edit</span>
                         </a>
-                        <a class="btn btn-warning btn-lg fw-bold pt-2 ms-3 float-end" data-bs-toggle="modal" data-bs-target="" href="#deleteModal-{{ product.id }}">
-                            <span class="">Delete</span>
+                        <a class="btn btn-warning btn-lg fw-bold pt-2 ms-3 float-end" data-bs-toggle="modal" href="#deleteModal-{{ product.id }}">
+                            <span class="fw-bold">Delete</span>
                         </a>
                     </div>
                 </div>
