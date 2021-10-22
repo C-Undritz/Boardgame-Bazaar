@@ -32,7 +32,7 @@
 <!-- Form to add or update account information -->
 <p class="fs-4 fw-bold mb-1 mt-3">Account information</p>
 <p class="text-muted fs-5">To update please change any of the information below and select 'update information'</p>
-<form class="mt-3" action="{% url 'profile' %}" method="POST" id="profile-update-form">
+<form class="mt-3" action="{% url 'profile' %}" method="POST">
     {% csrf_token %}
     {{ form|crispy }}
     <div class="float-end">
