@@ -51,11 +51,11 @@
                         <div class="col-2 d-flex justify-content-start d-none d-sm-block">
                             {% if item.product.image %}
                                 <a href="{% url 'product_detail' item.product.id %}">
-                                    <img class="img-fluid rounded" src="{{ item.product.image.url }}" alt="Cart item {{ item.product.name }} image"> 
+                                    <img class="img-fluid rounded" src="{{ item.product.image.url }}" alt="Image of {{ item.product.name }}"> 
                                 </a>
                             {% else %}
                                 <a href="{% url 'product_detail' item.product.id %}">
-                                    <img class="img-fluid rounded" src="{{ MEDIA_URL }}noimage.png" alt="{{ item.product.name }}">
+                                    <img class="img-fluid rounded" src="{{ MEDIA_URL }}noimage.png" alt="No image available of {{ item.product.name }}">
                                 </a>
                             {% endif %}
                         </div>
