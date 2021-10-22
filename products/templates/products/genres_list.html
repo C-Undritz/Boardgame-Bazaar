@@ -32,7 +32,7 @@
 <!-- Display of genres -->
 <div class="row">
     <div class="col-12">
-        <div class="cart-heading-hr mb-2"></div>
+        <div class="global-heading-hr mb-2"></div>
         {% for genre in page.object_list %} 
             <div class="row">
                 <!-- displays genre name -->
@@ -55,10 +55,10 @@
             </div>
             <!-- Generates the horizontal lines at the start, end and inbetween genres -->
             {% if forloop.revcounter0 > 0 %}
-                <div class="cart-item-hr my-2"></div>
+                <div class="global-item-hr my-2"></div>
             {% endif %}
             {% if forloop.revcounter0 == 0 %}
-                <div class="cart-heading-hr mt-2"></div>
+                <div class="global-heading-hr mt-2"></div>
             {% endif %}
             <!-- Modal shown to ask confirmation when superuser clicks on delete -->
             <div class="modal fade" id="deleteModal-{{ genre.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

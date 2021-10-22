@@ -5,7 +5,7 @@
 <p class="text-muted fs-5"></p>
 <div class="row">
     <div class="col-12">
-        <div class="cart-heading-hr mb-2"></div>
+        <div class="global-heading-hr mb-2"></div>
         {% for product in wishlist %}
             <div class="row">
                 <div class="col-2 d-none d-sm-block">
@@ -35,10 +35,10 @@
             </div>
             <!-- Generates the horizontal lines inbeween and at the of the products -->
             {% if forloop.revcounter0 > 0 %}
-                <div class="cart-item-hr my-2"></div>
+                <div class="global-item-hr my-2"></div>
             {% endif %}
             {% if forloop.revcounter0 == 0 %}
-                <div class="cart-heading-hr mt-2"></div>
+                <div class="global-heading-hr mt-2"></div>
             {% endif %}
         {% endfor %}
     </div>
