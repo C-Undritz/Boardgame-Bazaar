@@ -1,4 +1,4 @@
-/* ----------- home page shop front images ----------- */
+/* ----------- home page shop front images styles ----------- */
 #home-container {
     width: 90%;
     margin-left: 5%;
@@ -63,8 +63,7 @@
     background-size: cover;
 }
 
-/* ----------- Information page ----------- */
-
+/* ----------- Information page styles ----------- */
 .legal-text h1 {
     font-size: 1.75rem;
     font-weight: bold;
