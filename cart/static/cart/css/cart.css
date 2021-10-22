@@ -1,3 +1,10 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.3.6,
+* Autoprefixer: v10.3.1
+* Browsers: last 4 version
+*/
+
 /* --- Disables the built in increment/decrement functions in quantity selector input ---*/
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button { 
@@ -17,7 +24,9 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .cart-qty-select>.form-control, .cart-qty-select>.form-select {
-    flex: none !important;
+    -webkit-box-flex: 0 !important;
+        -ms-flex: none !important;
+            flex: none !important;
     width: 30% !important;
 }
 

@@ -1,3 +1,10 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.3.6,
+* Autoprefixer: v10.3.1
+* Browsers: last 4 version
+*/
+
 /* ----------- home page shop front images styles ----------- */
 #home-container {
     width: 90%;
@@ -13,12 +20,16 @@
 }
 
 #allproducts-container {
-    height: 400x;
+    height: 400px;
     width: 100%;
     overflow: hidden;
     position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
 }
 
 .allproducts-overlay {
