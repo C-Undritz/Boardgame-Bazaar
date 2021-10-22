@@ -20,3 +20,8 @@ input[type=number]::-webkit-outer-spin-button {
     flex: none !important;
     width: 30% !important;
 }
+
+.update-link,
+.remove-item {
+    cursor: pointer;
+}
