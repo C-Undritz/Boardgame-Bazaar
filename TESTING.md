@@ -126,6 +126,16 @@ N.B: Internet Explorer was not tested as the site uses ES6 so it's not fully com
 ---
 # Results
 ## W3C CSS Validation:
+* Errors: No errors found across all css files
+* Warnings: the only reported warnings were all related to the vendor extensions added by running the css through Autoprefixer. No action was taken to remove these.
+<p>
+<a href="http://jigsaw.w3.org/css-validator/check/referer">
+    <img style="border:0;width:88px;height:31px"
+        src="http://jigsaw.w3.org/css-validator/images/vcss-blue"
+        alt="Valid CSS!" />
+    </a>
+</p>
+
 
 ## W3C Markup Validation:
 
@@ -136,7 +146,7 @@ Only three files of the thirteen files reported back potential issues:
 One undefined variable
 16  Stripe
 ```
-This is the accessing of the Stripe function which is available and declared in the global sceop from a library function.  No action taken.
+This is the accessing of the Stripe function which is available and declared in the global scope from a library function.  No action taken.
 * go_back_script.js:
 ```
 One unused variable
