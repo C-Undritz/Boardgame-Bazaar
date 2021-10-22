@@ -1,3 +1,29 @@
+/* ------------------ Product display styles ------------------- */
+.image-container {
+    position: relative;
+}
+
+.overlay-image-topleft {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+
+.overlay-image-topright {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.chart-position {
+    width: 40px;
+    text-align: center;
+}
+
+#product-detail-title {
+    margin-top: 45px;
+}
+
 /* ---------- all products view back to top button ---------- */
 .btt-button {
     height: 42px;
@@ -17,7 +43,7 @@
     padding: 5px;
 }
 
-.radio_item {
+.radio-item {
     position:fixed; 
     opacity:0;
 }
@@ -25,6 +51,12 @@
 .rating-star {
     font-size: 1.6rem;
     cursor: pointer;
+}
+
+/* --- Disables the built in increment/decrement functions in quantity selector input ---*/
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button { 
+	-webkit-appearance: none;
 }
 
 /* ---------- Rating & review display ----------*/
@@ -62,8 +94,13 @@
     border-radius: 0px 0px 5px 5px;
 }
 
-/* --- Disables the built in increment/decrement functions in quantity selector input ---*/
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button { 
-	-webkit-appearance: none;
+/* ------------------ Product Detail view - admin link styles ------------------- */
+#admin-reveal {
+    border: 0;
+    background-color: #F8F9FA;
+    margin-bottom: 3px;
+}
+
+#admin-reveal:hover {
+    text-decoration: underline;
 }
