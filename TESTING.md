@@ -197,7 +197,7 @@ The below details how the website meets the requirements of each user story.
 ---
 ># **PROBLEMS AND FIXES**
 
-## 1. Pushing ecure information to GitHub
+## 1. Pushing secure information to GitHub
 **Issue**: By mistake the Django secret key and the Postgres Database URL were pushed to GitHub.  
 ***Solution**: In both instances the values were changed to new values straight away and added as environmental variables so as to not feature within any file within the repository.  The code was then pushed again.  Therefore whilst there are values for these within the Github repository version history, these values are no longer valid and cannot be used to compromise the security of the site.*
 
