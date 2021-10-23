@@ -258,7 +258,7 @@ All social icons change colour and size upon mouse hover
 
 > # **TESTING**
 
-Testing completed is detailed in the [TESTING.md](https://github.com/C-Undritz/Community-Treats/blob/master/TESTING.md) document
+Testing completed is detailed in the [TESTING.md](https://github.com/C-Undritz/Boardgame-Bazaar/blob/main/TESTING.md) document
 
 ------
 
