@@ -110,10 +110,10 @@
                                 <label class="form-check-label" for="id-save-info">Save this delivery information to my profile</label>
                                 <input class="form-check-input me-0" type="checkbox" id="id-save-info" name="save-info">
                             {% else %}
-                                <label class="form-check-label" for="id-save-info">
+                                <div>
                                     <a class="text-info" href="{% url 'account_signup' %}">Create an account</a> or
                                     <a class="text-info" href="{% url 'account_login' %}">login</a> to save this information
-                                </label>
+                                </div>
                             {% endif %}
                         </div>
                     </fieldset>
@@ -159,11 +159,11 @@
     </div>
     <!-- Loading overlap to display whilst payment being processed (from Boutique Ado Project) -->
     <div id="loading-overlay">
-        <h1 class="text-light loading-spinner">
+        <div class="loading-spinner">
             <span>
                 <i class="text-secondary fas fa-3x fas fa-spinner fa-pulse"></i>
             </span>
-        </h1>
+        </div>
     </div>
 {% endblock %}
 

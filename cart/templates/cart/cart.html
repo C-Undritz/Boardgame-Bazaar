@@ -120,7 +120,7 @@
                         <table class="table table-sm table-borderless">
                             <!-- Cart total, discounts, delivery charge and grand total display -->
                             <tr>
-                                <td colspan="5" class="pt-5 text-end">
+                                <td class="pt-5 text-end">
                                     {% if discount_rate == 0 %}
                                         <p>Buy {{ discount_count_delta }} more game{% if discount_count_delta > 1 %}s{% endif %} to receive a {{ multibuy_discount_one }}% discount</p>
                                     {% elif discount_rate == 3 %}
@@ -136,7 +136,7 @@
                             </tr>
                             <!-- Keep shopping and checkout buttons -->
                             <tr>
-                                <td colspan="5" class="text-end">
+                                <td class="text-end">
                                     <div class="d-grid gap-2 d-sm-block">
                                     <a href="{% url 'all_products' %}" class="btn btn-outline-dark btn-lg">
                                         <span>
