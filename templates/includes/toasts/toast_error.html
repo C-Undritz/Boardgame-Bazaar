@@ -1,10 +1,10 @@
-<div class="toast" role="status" aria-live="polite" aria-atomic="true">
+<div class="toast" role="status" aria-live="polite" aria-labelledby="toast-text" aria-atomic="true">
     <div class="w-100 toast-capper bg-secondary"></div>
     <div class="toast-header bg-light text-dark">
         <strong class="me-auto">Error!</strong>
         <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
     </div>
-    <div class="toast-body bg-light">
+    <div class="toast-body bg-light" id="toast-text">
         <p>{{ message }}</p>
     </div>
 </div>
