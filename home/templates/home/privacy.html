@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'home/css/home.css' %}">
+{% endblock %}
+
+{% block page_header %}
+    <div class="container header-container">
+        <div class="row">
+            <div class="col"></div>
+        </div>
+    </div>
+{% endblock%}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <!-- Privacy Policy section -->
+        <div class="offset-lg-3 col-lg-6 offset-md-1 col-md-10 col-12">
+            <h1 class="section-heading"><strong>Privacy Policy</strong></h1>
+            <article>
+                <p>The privacy of our users is extremely important to us and therefore we encourage all users to read this policy carefully</p>
+                <p>
+                    Boardgame Bazaar collect, use and are responsible for storing ertain personal information about you.  When we do so we are regulated under the 
+                    General Data Protection Regulation which apply across the European Union and we are responsible as a 'controller' of that personal information 
+                    for the purposes of those laws
+                </p>
+                <h2>The personal information we collect and use:</h2>
+                <p> - Only personal information you provide to us</p>
+                <p>We collect the following personal information that you provide us:</p>
+                <ul>
+                    <li>Email address</li>
+                    <li>Phone number</li>
+                    <li>Postal Address</li>
+                    <li>Boardgame Bazaar order history</li>
+                </ul>
+                <p>Some examples of when we collect this information include:</p>
+                <ul>
+                    <li>When a purchase is made</li>
+                    <li>Upon account sign up</li>
+                    <li>Update of account details</li>
+                    <li>Signing up to the mailing list</li>
+                </ul>
+                <p>We do not receive any other information about you from any other sources</p>
+                <h2>Sensitive Personal Information</h2>
+                <p>Sensitive personal information includes any information which relates to the following:</p>
+                <ul>
+                    <li>your genetic data</li>
+                    <li>your biometric data</li>
+                    <li>your ethnic origin</li>
+                    <li>your political opinions</li>
+                    <li>your religious beliefs</li>
+                    <li>whether you belong to a trade union</li>
+                    <li>your physical and mental health condition</li>
+                    <li>your sexual orientation, and</li>
+                    <li>whether you have committed a criminal offence</li>
+                </ul>
+                <p>We will never request any of the above from you.</p>
+                <h2>How we use your personal information</h2>
+                <p>We collect information about our users for the following purposes</p>
+                <ul>
+                    <li>Delivery or purchased goods</li>
+                    <li>Communications</li>
+                    <li>Mailing list for newsletter</li>
+                </ul>
+                <h2>Who your information may be shared with</h2>
+                <p>We may share your information with:</p>
+                <ul>
+                    <li>Law enforcement agencies in connection with any investigation to prevent unlawful activity</li>
+                    <li>Credit reference agents in accordance with our credit checking policy</li>
+                </ul>
+                <p>We do not share your personal data with any with 3rd parties</p>
+                <h2>Required personal information</h2>
+                <p>The provision of the following information is required from you:</p>
+                <ul>
+                    <li>Email</li>
+                    <li>Postal address</li>
+                </ul>
+                <p>This is to enable us to do the following:</p>
+                <ul>
+                    <li>Complete an order of purchased goods</li>
+                </ul>
+                <p>We will inform you ay the point of collecting information from you, whether you are required to provide the information to us</p>
+                <h2>How long your personal information will be kept</h2>
+                <p>We will hold your personal information for the following periods</p>
+                <ul>
+                    <li>While you have an active account with us</li>
+                    <li>While there is an order in processing/transit</li>
+                </ul>
+                <h2>Keeping your information secure</h2>
+                <p>
+                    We use technological and organistional measures to keep information secure.  However in using the site you acknowledge that the use of the internet is 
+                    is not entirely secure and for this reason we cannot guarentee the security and integrity of any personal data that are transferred from you.
+                </p>
+            </article>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'home/css/home.css' %}">
+{% endblock %}
+
+{% block page_header %}
+    <div class="container header-container">
+        <div class="row">
+            <div class="col"></div>
+        </div>
+    </div>
+{% endblock%}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <!-- About Us section -->
+        <div class="offset-lg-3 col-lg-6 offset-md-1 col-md-10 col-12">
+            <h1 class="section-heading"><strong>About Us</strong></h1>
+            <article>
+                <p>
+                    Established in 2018 by two board game enthusiasts, Boardgame Bazaar has gone from strength to strength.  What was just an idea born from an exuberant 
+                    gaming session in the Dice Box gaming café in Agricola has grown into one of the fastest growing businesses in Brasshire.
+                </p>
+                <p>
+                    We stock all sorts of games for the enthusiast, from niche complex games to family-friendly games to introduce the whole family to this great hobby.
+                </p>
+                <p>
+                    You can be sure of a great shopping experience with Boardgame Bazaar and we are certain with great prices we will become your number one stop for latest 
+                    and greatest in table top entertainment. Be sure to check back often as we expand our customer experience 
+                </p>
+                <p>UK shipping costs start and end at £4.00 per order, regardless of how many items you have ordered.</p>
+                <p>If you are in the area, you can always visit our warehouse and chat with the team; you never know, we may have time for a quick game!</p>
+                <p>We accept payments by credit or debit cards.</p>
+                <h2><strong>Our details:</strong></h2>
+                <p class="mb-0">Boardgame Bazaar,</p>
+                <p class="mb-0">113 Great Western Avenue,</p>
+                <p class="mb-0">Agricola,</p> 
+                <p class="mb-0">Brasshire</p> 
+                <p>ME3 9LE</p>
+                <p class="mb-0">Phone: 01342 453276 76</p>
+                <p>Email: boardgame-bazaar@gmail.com</p>
+            </article>
+        </div>
+    </div>
+</div>
+{% endblock %}
+    

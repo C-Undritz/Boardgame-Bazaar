@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'home/css/home.css' %}">
+{% endblock %}
+
+{% block page_header %}
+    <div class="container header-container">
+        <div class="row">
+            <div class="col"></div>
+        </div>
+    </div>
+{% endblock%}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <!-- Careers section -->
+        <div class="offset-lg-3 col-lg-6 offset-md-1 col-md-10 col-12">
+            <h1 class="section-heading"><strong>Careers</strong></h1>
+            <article>
+                <p>Would you like to work for one of the newest and fastest growing boardgame providers in the UK?  Look out for the latest opportunities posted below.</p>
+                <h2>Web Developer</h2>
+                <p>
+                    We are looking to grow our web prescence and are therefore expanding our dynamic web team.  We currently have an opening for two junior web developers. 
+                    Prior experience would be great, but if you are a recent graduate with knowledge of the technologies listed, a hunger to learn and play a key role in
+                    developing a unique web experience, then we want to hear from you! 
+                </p>
+                <ul>
+                    <li>HTML</li>
+                    <li>CSS</li>
+                    <li>JavaScript and/or Python</li>
+                    <li>Knowledge of frameworks such as bootstrap, Flask and Django</li>
+                </ul>
+                <p>If you are interested please send a CV and cover letter to <strong>boardgame-bazaar-recruit@gmail.com</strong></p>
+            </article>
+        </div>
+    </div>
+</div>
+{% endblock %}
+    
