@@ -49,37 +49,37 @@
                         {% csrf_token %}
                         <!-- interactive star rating display -->
                         <div class="d-inline-flex">
-                            <h3 class="pt-1">Rate:</h3>
+                            <h3 class="pt-1" id="rating-text">Your Rating:</h3>
                             <div id="rating-area" class="ms-2">
                                 <div id="star-panel">
                                     {% if review.rating == 1 %}
-                                        <input type="radio" checked="checked" class="radio-item" value="1" name="rating" id="radio1">
+                                        <input type="radio" aria-labelledby="rating-text" checked="checked" class="radio-item" value="1" name="rating" id="radio1">
                                     {% else %}
-                                        <input type="radio" class="radio-item" value="1" name="rating" id="radio1" required>
+                                        <input type="radio" aria-labelledby="rating-text" class="radio-item" value="1" name="rating" id="radio1" required>
                                     {% endif %}
                                     <label for="radio1" id="star1"></label>
                                     {% if review.rating == 2 %}
-                                        <input type="radio" checked="checked" class="radio-item" value="2" name="rating" id="radio2">
+                                        <input type="radio" aria-labelledby="rating-text" checked="checked" class="radio-item" value="2" name="rating" id="radio2">
                                     {% else %}
-                                        <input type="radio" class="radio-item" value="2" name="rating" id="radio2">
+                                        <input type="radio" aria-labelledby="rating-text" class="radio-item" value="2" name="rating" id="radio2">
                                     {% endif %}
                                     <label for="radio2" id="star2"></label>
                                     {% if review.rating == 3 %}
-                                        <input type="radio" checked="checked" class="radio-item" value="3" name="rating" id="radio3">
+                                        <input type="radio" aria-labelledby="rating-text" checked="checked" class="radio-item" value="3" name="rating" id="radio3">
                                     {% else %}
-                                        <input type="radio" class="radio-item" value="3" name="rating" id="radio3">
+                                        <input type="radio" aria-labelledby="rating-text" class="radio-item" value="3" name="rating" id="radio3">
                                     {% endif %}
                                     <label for="radio3" id="star3"></label>
                                     {% if review.rating == 4 %}
-                                        <input type="radio" checked="checked" class="radio-item" value="4" name="rating" id="radio4">
+                                        <input type="radio" aria-labelledby="rating-text" checked="checked" class="radio-item" value="4" name="rating" id="radio4">
                                     {% else %}
-                                        <input type="radio" class="radio-item" value="4" name="rating" id="radio4">
+                                        <input type="radio" aria-labelledby="rating-text" class="radio-item" value="4" name="rating" id="radio4">
                                     {% endif %}
                                     <label for="radio4" id="star4"></label>
                                     {% if review.rating == 5 %}
-                                        <input type="radio" checked="checked" class="radio-item" value="5" name="rating" id="radio5">
+                                        <input type="radio" aria-labelledby="rating-text" checked="checked" class="radio-item" value="5" name="rating" id="radio5">
                                     {% else %}
-                                        <input type="radio" class="radio-item" value="5" name="rating" id="radio5">
+                                        <input type="radio" aria-labelledby="rating-text" class="radio-item" value="5" name="rating" id="radio5">
                                     {% endif %}
                                     <label for="radio5" id="star5"></label>
                                 </div>
@@ -87,8 +87,8 @@
                         </div>
                         <div>
                             <!-- Review text panel -->
-                            <h3>Review:</h3>
-                            <textarea class="w-100" name="review" id="review" rows="5" required>{{ review.review }}</textarea>
+                            <h3 id="review-text">Your review:</h3>
+                            <textarea class="w-100" aria-labelledby="review-text" name="review" id="review" rows="5" required>{{ review.review }}</textarea>
                         </div>
                         <!-- Buttons -->
                         <div class="float-end d-inline-flex">
@@ -110,14 +110,14 @@
     </div>
     {% if reviewed %}
         <!-- Modal shown to ask confirmation when superuser clicks on delete -->
-        <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModal-text" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body text-center">
-                        <p>Are you sure you want to delete this review?</p>
+                        <p id="deleteModal-text">Are you sure you want to delete this review?</p>
                     </div>
                     <div class="modal-footer d-flex justify-content-center">
                         <button class="btn btn-outline-dark btn-lg my-3 text-uppercase fw-bold" data-bs-dismiss="modal">Cancel</button>
