@@ -32,10 +32,7 @@ class ProductForm(forms.ModelForm):
             genre.id, genre.get_friendly_name()) for genre in genres]
         genres = forms.ModelMultipleChoiceField(
             queryset=Genre.objects.all(), widget=forms.CheckboxSelectMultiple)
-
         self.fields['genre'].choices = friendly_names
-        for field_name, field in self.fields.items():
-            field.widget.attrs['class'] = 'border-grey rounded-1'
 
 
 class UpdateStockForm(forms.ModelForm):
