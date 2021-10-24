@@ -27,10 +27,6 @@
     text-align: center;
 }
 
-#product-detail-title {
-    margin-top: 45px;
-}
-
 /* ---------- all products view back to top button ---------- */
 .btt-button {
     height: 42px;
@@ -112,9 +108,8 @@ input[type=number]::-webkit-outer-spin-button {
     text-decoration: underline;
 }
 
-/* ------------------ Media queries ------------------- */
-@media (max-width: 767px) {
-    #product-detail-title {
-        margin-top: -40px;
-    }
+/* ------------------ Product Detail view specific btn styles ------------------- */
+#product-back-btn {
+    padding: 0px 15px 0px 13px;
+    border-radius: 25px;
 }
