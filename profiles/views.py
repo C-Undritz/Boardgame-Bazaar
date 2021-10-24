@@ -50,7 +50,7 @@ def profile(request):
         if form.is_valid():
             form.save()
             updated_profile = get_object_or_404(User, username=request.user)
-            if previous_email != updated_profile.email:
+            if previous_email != updated_profile.email and mailinglist_status:
                 email = get_object_or_404(MailingList, email=previous_email)
                 email.delete()
                 MailingList.objects.create(email=updated_profile.email)
