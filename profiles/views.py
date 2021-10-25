@@ -49,10 +49,18 @@ def profile(request):
         form = UserForm(request.POST, instance=user_profile)
         if form.is_valid():
             form.save()
-            updated_profile = get_object_or_404(User, username=request.user)
+            # Gets the username value from the form incase this has changed
+            form_username = request.POST.get('username')
+
+            # Gets an updated profile based on the username value in the form
+            updated_profile = get_object_or_404(User, username=form_username)
+
+            # Below will run if email has changed and customer on mailing list
             if previous_email != updated_profile.email and mailinglist_status:
+                # Old email deleted
                 email = get_object_or_404(MailingList, email=previous_email)
                 email.delete()
+                # New email added
                 MailingList.objects.create(email=updated_profile.email)
                 messages.success(request, 'Account information updated \
                 successfully and new email updated in mailing list')
