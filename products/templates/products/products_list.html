@@ -49,9 +49,11 @@
                 </div>
                 <!-- displays product name -->
                 <div class="col-sm-5 col-6 d-flex align-items-center">
-                    <p class="small mb-0 text-dark fw-bold text-capitalize">
-                        {{ product.name }}
-                    </p>
+                    <a href="{% url 'product_detail' product.id %}" class="no-decoration text-dark">
+                        <p class="small mb-0 fw-bold text-capitalize">
+                            {{ product.name }}
+                        </p>
+                    </a>
                 </div>
                 <!-- Edit and Delete buttons -->
                 <div class="col-sm-5 col-6 d-flex align-items-center justify-content-end">

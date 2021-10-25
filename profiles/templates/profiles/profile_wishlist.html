@@ -22,9 +22,11 @@
                 </div>
                 <!-- Display of bought product name, bought quantity and the individual product price  -->
                 <div class="col-md-5 col d-flex align-items-center">
-                    <p class="small mb-0 text-dark fw-bold">
-                        <span class="text-capitalize">{{ product.name }}</span>
-                    </p>
+                    <a href="{% url 'product_detail' product.id %}" class="no-decoration text-dark">
+                        <p class="small mb-0 fw-bold">
+                            <span class="text-capitalize">{{ product.name }}</span>
+                        </p>
+                    </a>
                 </div>
                 <!-- Remove button -->
                 <div class="col-md-5 col d-flex align-items-center justify-content-end">
