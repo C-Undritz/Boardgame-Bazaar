@@ -1,7 +1,8 @@
 {% extends "profiles/admin_menu.html" %}
 
 {% block profile_content %}
-<p class="fs-4 mb-1">Add a Genre</p>
+<p class="fs-4 mb-1 fw-bold">Add a Genre</p>
+<p>Within the 'name' field please use a single underscore(_) to ensure that there are no spaces between words.</p>
 <form class="mt-3" action="{% url 'add_genre' %}" method="POST">
     {% csrf_token %}
     {{ form|crispy }}
