@@ -1,7 +1,7 @@
 {% extends "profiles/admin_menu.html" %}
 
 {% block profile_content %}
-<p class="fs-4 mb-1">Add a Product</p>
+<p class="fs-4 mb-1 fw-bold">Add a Product</p>
 <form class="mt-3" action="{% url 'add_product' %}" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form|crispy }}
