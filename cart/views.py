@@ -52,11 +52,11 @@ def update_cart(request, item_id):
         cart[item_id] = quantity
         messages.success(
             request,
-            f'{product.name} quantity updated to {cart[item_id]}')
+            f'{product.name.title()} quantity updated to {cart[item_id]}')
     else:
         # Should not be needed; kept in incase scenario not perceived occurs.
         cart.pop(item_id)
-        messages.success(request, f'{product.name} removed from cart')
+        messages.success(request, f'{product.name.title()} removed from cart')
 
     request.session['cart'] = cart
     return redirect(reverse('view_cart'))
@@ -71,7 +71,7 @@ def remove_from_cart(request, item_id):
         product = get_object_or_404(Product, pk=item_id)
         cart = request.session.get('cart', {})
         cart.pop(item_id)
-        messages.success(request, f'{product.name} removed from cart')
+        messages.success(request, f'{product.name.title()} removed from cart')
 
         request.session['cart'] = cart
         return HttpResponse(status=200)
