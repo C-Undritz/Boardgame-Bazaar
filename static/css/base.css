@@ -194,12 +194,6 @@ div > div.form-check > .form-check-label {
         flex-shrink: 0;
 }
 
-/* ------------------ error pages (404 and 500) ------------------- */
-#error-container {
-    height: 65vh;
-    width: 100vw; 
-}
-
 /* ------------------ Media Queries ------------------- */
 
 /* From Boutique Ado */
