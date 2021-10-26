@@ -171,7 +171,7 @@ Remaining pylint warnings and reasons:
 * A number of flake8 warnings stating that the Django 'instance' parameter was unused.  These were ignored as it is understood that this was because instance was not mentioned explicitedly in the function however it is used, however it is required.
 * There were a number of flake8 warnings within the two signals files highlighting unused arguments.  These were ignored as these are a required by Django for signals to function.
 * checkout > `apps.py` and products > `apps.py`:  flake8 warning that 'signals' imported but not used: This is the method for enabling a required signals file within django and so ignored.
-checkout > webhook_handler.py: lines 79 and 80  - E501 line too long (80 > 79 characters): Both these lines are 80 characters long and so were recognised but not refactored or adjusted to ensure app functioned correctly.
+* checkout > webhook_handler.py: lines 79 and 80  - E501 line too long (80 > 79 characters): Both these lines are 80 characters long and so were recognised but not refactored or adjusted to ensure app functioned correctly.
 
 ## Lighthouse results:
 ### Chrome:
