@@ -27,7 +27,7 @@
                 {% csrf_token %}
                 <div class="row">
                     <div class="col-md-6 col-12 mb-3">
-                        <input type="text" class="form-control" name="message-name" placeholder="Your full name" required>
+                        <input type="text" class="form-control" name="message-name" placeholder="Your full name" maxlength="50" required>
                     </div>
                     <div class="col-md-6 col-12 mb-3">
                         <input type="email" class="form-control" name="message-email" placeholder="Your email address" required>
@@ -35,13 +35,13 @@
                 </div>
                 <div class="row mb-3">
                     <div class="col-12">
-                        <input type="text" class="form-control" name="message-subject" placeholder="Subject" required>
+                        <input type="text" class="form-control" name="message-subject" placeholder="Subject" maxlength="75" required>
                     </div>
                 </div>
                 <div class="row mb-4">
                     <div class="col-12">
-                        <label class="mb-0 text-secondary" for="contactform-message">Your message</label>
-                        <textarea id="contactform-message" class="form-control" name="message" rows="3" required></textarea>
+                        <label class="mb-0 text-secondary" for="contactform-message">Your message<span class="fs-6">&nbsp;(max 1500 characters)</span></label>
+                        <textarea id="contactform-message" class="form-control" name="message" maxlength="1500" rows="3" required></textarea>
                     </div>
                 </div>
                 <div class="d-grid gap-2 col-4 mx-auto">
