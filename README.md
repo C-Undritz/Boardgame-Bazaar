@@ -51,12 +51,13 @@ Consequently whilst there are plenty of online board game stores, there is still
 | 01-01         | Customer    | View all of the products available from the store            | Select a product to purchase                                 |
 | 01-02         | Customer    | View a list of products that are on sale, just released and available for preorder | Take advantage of savings, and purchase a new product early  |
 | 01-03         | Customer    | Select individual products to view                           | Read additional product details to confirm that this is the item I am looking for and add to my shopping cart (nth: view reviews and ratings on the product) |
-| 01-04         | Customer    | Access my shopping cart at any time                          | Check added items and view the purchase total to ensure that I am not spending too much |
+| 01-04         | Customer    | See what is popular                                          | See what other customers are buying and whether I want the same                |
+| 01-05         | Customer    | Access my shopping cart at any time                          | Check added items and view the purchase total to ensure that I am not spending too much |
 |               |             |                                                              |                                                              |
 | 02-01         | Customer    | View the products available by board game genres             | More easily find games that match my board game preferences  |
 | 02-02         | Customer    | Sort the returned list of board games                        | Easily identify the cheapest/most expensive board games and most highly rated |
 | 02-03         | Customer    | Be able to search for a board game by name or description    | Find a specific board game that I am looking to purchase     |
-| 02-04         | Customer    | Easily view the search results and number of results         | Quickly determine whether the product I want is available    |
+| 02-04         | Customer    | Easily view the search results                               | Quickly determine whether the product I want is available    |
 |               |             |                                                              |                                                              |
 | 03-01         | Customer    | Easily select the quantity of a board game I would like to buy | Buy multiples of one product in the same purchase            |
 | 03-02         | Customer    | View the items in the shopping cart that I have selected to purchase | Keep track of what I have added and the total cost           |
@@ -66,16 +67,26 @@ Consequently whilst there are plenty of online board game stores, there is still
 | 03-06         | Customer    | View an order after a purchase is made and checkout is complete | Verify that I have not made any mistakes in my order         |
 | 03-07         | Customer    | Receive an email confirmation after checkout is complete     | Have a record of what has been purchased should there be any issues |
 |               |             |                                                              |                                                              |
-| 04-01         | Site User   | Easily register for an account                               | Have a personal account, a profile to view and streamline the checkout |
-| 04-02         | Site User   | Easily log in or log out                                     | Access my personal account and streamline the checkout       |
-| 04-03         | Site User   | Easily recover my password in case I forget it               | Recover access to my account                                 |
-| 04-04         | Site User   | Receive an email confirmation after registering              | Be sure that my account is created and verify that it is myself that set it up |
-| 04-05         | Site User   | Have a personalised account page                             | View order history, save, view and update contact and delivery information and view my current credit and trade progress / history |
+| 04-01         | Customer    | Easily communicate with Boardgame Bazaar                     | Ask about an items availability or chase an order |
+| 04-02         | Customer    | Sign up for the newsletter                                   | Be kept up to date with the latest news and offers |
+| 04-03         | Customer    | Link to boardgame bazaar social media                        | Be kept up to date with the latest news and annoucements     | 
 |               |             |                                                              |                                                              |
-| 05-01         | Store Owner | Add a product                                                | Add new items to the store through streamlined interface     |
-| 05-02         | Store Owner | Edit and Update a product details                            | Change product prices, descriptions, images, and other product criteria |
-| 05-03         | Store Owner | Delete a product                                             | Remove items that are no longer available to buy             |
+| 05-01         | Site User   | Easily register for an account                               | Have a personal account, a profile to view and streamline the checkout |
+| 05-02         | Site User   | Receive an email confirmation after registering              | Be sure that my account is created and verify that it is myself that set it up |
+| 05-03         | Site User   | Easily log in or log out                                     | Access my personal account and streamline the checkout       |
+| 05-04         | Site User   | Easily recover my password in case I forget it               | Recover access to my account                                 |
+| 05-05         | Site User   | Have a personalised account page                             | View order history, wishlist, and save, view and update contact and delivery information |
+| 05-06         | Site User   | Add/remove games that I may purchase to a wishlist           | Easily find them should I wish to purchase them later |
+| 05-07         | Site User   | Manage whether I recieve a news letter                       | Decide not to receive it should I not find it useful/interesting |
+| 05-08         | Site User   | Add and edit a review of any item I purchase                 | Provide my opinion which may help other potential buyers of the product |
 |               |             |                                                              |                                                              |
+| 06-01         | Store Owner | Add a product                                                | Add new items to the store through streamlined interface     |
+| 06-02         | Store Owner | Edit and Update a product details                            | Change product prices, descriptions, images, and other product criteria |
+| 06-03         | Store Owner | Delete a product                                             | Remove items that are no longer available to buy             |
+| 06-04         | Store Owner | Manage the attributes assigned to a product                  | Display and categorise products                              |
+| 06-05         | Store Owner | Track and manage stock of each item                          | Know when I need to order more and track pre-order demand    |
+| 06-06         | Store Owner | Provide a secure shopping experience                         | Have customers confidently returning to the store                 |
+
 
 
 <div align="right"><a href="#top">Contents Table</a></div>
