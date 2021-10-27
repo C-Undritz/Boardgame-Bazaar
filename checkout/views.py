@@ -198,9 +198,15 @@ def checkout_success(request, order_number):
     """
     Handles successful checkouts
     """
-    # saves to a variable, the users choice to save form information to profile
+    # Saves to a variable, the users choice to save form information to profile
     save_info = request.session.get('save_info')
     order = get_object_or_404(Order, order_number=order_number)
+
+    # Security measure to check if order already has an attached user_profile
+    if order.user_profile:
+        messages.warning(request, 'You are not allowed to perform this \
+            action.')
+        return redirect(reverse('home'))
 
     if request.user.is_authenticated:
         profile = UserProfile.objects.get(user=request.user)
