@@ -300,7 +300,11 @@ Clicking 'edit product' displays a paginated list of all the products, each one 
 The attributes are a product are the assigned genres, and whether it can be considered a pre-order or new release and finally whether it is on sale or not.  The assignment of genres and on-sale status is determined manually.  One or more genres can be assigned to the product when it is created or updated.  To put a product on sale, the 'on sale' checkbox need to be checked and a sale price entered.  Weather a product is a 'new release' or 'pre-order' is determined by the software depending on the release date set when adding (or updating) the product.
 * A product will be considered a new release if the release date occured within the last 90 days
 * A product will be considered a pre-order if the product exists in the database and the release date is in the future.
-The date is constantly checked so these attributes are constantly checked and so when they no longer apply they will automatically be removed.  So requiring no manual intervention once they are set up. 
+The date is constantly checked so these attributes are constantly checked and so when they no longer apply they will automatically be removed.  So requiring no manual intervention once they are set up.  
+
+The genres can be added, edited or deleted at any time from within the admin functions.  The add genre button will return the form to complete and once added will feature in the 'shop by genre' drop down menu, and in the genre choices presented when adding or editing a product.  Clicking 'edit genre' will display a list of genres and the functionality to edit and delete them presented alongside them a buttons.  
+[<img src="assets/readme/0604_add-genre.png" width="850"/>](assets/readme/0604_add-genre.png)   
+[<img src="assets/readme/0604_edit-genre-list.png" width="850"/>](assets/readme/0604_edit-genre-list.png) 
 ## 06-05. Track and manage stock of each item
 The following features allow for the management and tracing of stock:
 * The stock level of an item can be set when the product is created or edited.  However, for convenience the ability to edit a product stock level can also be selected from the product details page.  When viewing a product whilst logged in as an admin user, admin functions are accessible below the product description and 'update stock' is one of those functions.  Selecting this will take the user to a simple form where the stock amount can be adjusted.
@@ -364,8 +368,26 @@ quantity = int(request.POST.get('quantity') or 1)
 ![screen grab of described issue 6 before and after](assets/readme/problems_fixes_issue6.png)
 ***Solution**: The cause of this was not found. However it was found that the styles could still be applied to the edit and add product pages and not impact the alignment of the buttons by placing them within the base.css.  So this is what has been done.*
 
-## 10. Gaining iamresponsive screen grabs
-**Issue**: The live website would not show up within [http://ami.responsivedesign.is/](http://ami.responsivedesign.is/).
+## 10. Checkout success page security vulnerability
+**Issue**: Security testing on the vulnerability of the site to url manipulation revealed that anyone could with access to an order reference could access a checkout success page for that order reference by entering `https://boardgame-bazaar.herokuapp.com/checkout/checkout_success/` followed by the order reference.  In this they would then have access to the other customers email, phone number and physical address.  Also, the order would then disappear from the hacked customers order history and become re-associated with the hackers account.  
+***Solution**: The vulnerability was found within the checkout_success function within the checkout app views file.  This function takes the newly created order and assigns a profile to it which is the 'request.user', which is why the order gets re-associated everytime the checkout_success page is accessed with an order reference.  Before this point, the order does not have a user profile attached.  Therefore the solution was to check, before a profile is attached, whether the order has a user_profile already associated with it.  If it has then it has clearly already been through a checkout process once already and should not go through it again.  If this is the case then the user is redirected to the home page and a message is displayed stating 'You are not allowed to perform this action'.  This will be the case even for the customer who's order it is.  However they should not need to access the checkout_success page again as the order will be within their order history.*
+
+## 11. Screen readers and the use of modals in the site
+**Issue**: The accessibility score for the site is high and an effort has been made to improve the screen reader compatibility where this noticeable.  A lot of this is taken care of by bootstrap components; however there was an issue with the use of 'aria-labelledby' when using the modal as confirmation box for the deletion of product and genres from the lists presented in the admin functions.  As the 'aria-labelledby' attribute uses an 'id' value, it could not be used for these as the list is populated by looping through the database objects and a modal is generated for each.  Therefore when validating the code with the W3C Markup validation service, it flagged the multiple use of id's for each instance of the modal.
+***Solution**: The aria-labelledby attribute was not used for the modals for the edit product and edit genre lists.  It is used on the modals for the review page and for the admin option to delete a product from the product detail page.  The screen readers do a good job even without using arialabelled-by, however for the 'looped' modals 'aria-hidden="true"' was applied to the close button as it can interrupt the text being read from the body of the modal.*
+
+## 12. Image size control in markdown
+**Issue**: A lot of images have been used in this TESTING document and more control over the size and placement was required.  The usually markdown way of displaying them was not working:
+```
+![Game genre navbar drop down list](assets/readme/0201_genre-navbar-menu.png)
+```
+***Solution**: This [stackoverflow article](https://stackoverflow.com/questions/14675913/changing-image-size-in-markdown) on the subject was referenced and while many techniques were mentioned the one below has been used in the user testig section where more control was required:*
+```
+[<img src="assets/readme/0201_genre-navbar-menu.png" width="100"/>](assets/readme/0201_genre-navbar-menu.png) 
+```
+
+## 13. Gaining iamresponsive screen grabs
+**Issue**: The live website would not show up within [http://ami.responsivedesign.is/](http://ami.responsivedesign.is/).  
 ***Solution**: Installed on the Chrome browser the extension 'Ignore X-Frame headers'.  This drops X-Frame-Options and Content-Security-Policy HTTP response headers, allowing all pages to be iframed.  Once this was installed, the website showed up in iamresponsive allowing for screen grabs to be taken. Thanks to @Harry for this solution.*
 
 ---
@@ -381,7 +403,19 @@ quantity = int(request.POST.get('quantity') or 1)
 ## 3. Unable to sort the top ten bestsellers so sorter removed for now.
 **Issue**: The products returned for the display of bestsellers are already sorted within the all_products view function in the products app.  The use of the drop down sort function refreshes the view and so when this happens the selected sort if not returned; the products returned by 'sold' order is.  A solution to this was not found during developement and so whilst this situation remains the drop down sort function is not displayed within the best sellers page.
 
-># **REMAINING BUGS**
-## 1.  HTML/XML character entity for an some special characters displaying in emails when using templates
+## 4. HTML/XML character entity for an some special characters displaying in emails when using templates
 **Issue**: The contact us function uses email txt templates to arrange the text sent in the contact us form into a more presentable and easy to read format.  However this has resulted in some special characters such as ' " and & being rendered in their HTML/XML character entity within the recieved email.  Whilst this does not prevent the message being read and understood, it is an issue that the developer will seek to fix in further development.
 
+## 5. Stripe 400 issues
+**Issue**: Noticed and noted in the testing document when creating an order, sometimes the console would display 400 issues that were related to Stripe.  This was intermittent and sometimes a number of purchases could be mode without seeing one.  It was noted that they tended to occur on the second or third time the checkout page was visited during one shopping session (when the checkout page was exited to continue shopping only to later return with the same cart).  However this was not always the case.  More investigation will be needed into this.  However at no point were any problems observed with the transaction process; all were successful during testing and the webhooks responded as expected.  
+
+## 6. Default increase/reduce arrows showing in quantity selecor input in a Firefox browser
+In order to encourage the customer to use the mobile friendly quantity select buttons, the default html increase/decrease buttons for the input have been disabled.  There is functionality attached to these buttons and so they should be used in all instances.  The below css has been used to do this:
+```
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+}
+```
+This works fine with Chrome, Edge and Opera, however in Firefox the default functions still remain.  This [mozilla page](https://developer.mozilla.org/en-US/docs/Web/CSS/appearance) advised that firefox does support '-webkit-appearance' however it did not work in this instance.  Also tried was '-moz-appearance: none;' and '-moz-opacity: 1; but this also did not work.  Therefore this remains unsolved and will need further investigation.  Whilst it does allow for a user to potentially add more stock than is available, the final check at purchase will prevent such a transaction taking place.
+![screen grab quantity selector within firefox browser](assets/readme/firefox-default-input-functions.png)
