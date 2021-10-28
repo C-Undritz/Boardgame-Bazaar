@@ -225,7 +225,7 @@ The customer can search for a game using the free text search function permanent
 [<img src="assets/readme/0203_search-input.png" width="500"/>](assets/readme/0203_search-input.png)  
 [<img src="assets/readme/0203_search-results.png" width="1000"/>](assets/readme/0203_search-results.png)  
 ## 03-01. Easily select the quantity of a board game I would like to buy
-Within each products details page, there is a mobile friendly quantity selector that allows the user to increase or reduce the amount of a product they would like to add to the cart.  The quantity selector will allow the user to add a maximum of 10 of one item, or the maximum stock that is available if that is 10 or less.  The same quantity selector is also featured within the cart for each item so final adjustments can be made there prior to checking out.
+Within each products details page, there is a mobile friendly quantity selector that allows the user to increase or reduce the amount of a product they would like to add to the cart.  The quantity selector will allow the user to add a maximum of 10 of one item, or the maximum stock that is available if that is 10 or less.  The same quantity selector is also featured within the cart for each item so final adjustments can be made there prior to checking out.  
 [<img src="assets/readme/0301_product-detail-qty-selector.png" width="700"/>](assets/readme/0301_product-detail-qty-selector.png)  
 [<img src="assets/readme/0301_cart-qty-selector.png" width="800"/>](assets/readme/0301_cart-qty-selector.png)  
 ## 03-02. View the items in the shopping cart that I have selected to purchase (answered below with 03-03)
@@ -259,7 +259,7 @@ The website displays all social media icons where boardgame bazaar have a presce
 # Site User
 ## 05-01. Easily register for an account (answered below with 05-02)
 ## 05-02. Receive an email confirmation after registering
-When the customer is not logged in, two options appear in the top right of the navbar: Login and register.  Clicking on register takes the customer to a small form where they are required to enter an email, username and password.  An email will then be sent to the address provided to ensure the creator is the owner of the email address.  The email has details and a link which will allow the customer to complete registration for their account.
+When the customer is not logged in, two options appear in the top right of the navbar: Login and register.  Clicking on register takes the customer to a small form where they are required to enter an email, username and password.  An email will then be sent to the address provided to ensure the creator is the owner of the email address.  The email has details and a link which will allow the customer to complete registration for their account.  
 [<img src="assets/readme/0501_sign-up.png" width="700"/>](assets/readme/0501_sign-up.png)  
 [<img src="assets/readme/0501_register-email.png" width="700"/>](assets/readme/0501_register-email.png) 
 ## 05-03. Easily log in or log out
