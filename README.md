@@ -312,9 +312,12 @@ The stock figure is updated when an item is purchased to reflect the amount purc
 
 > # **FURTHER DEVELOPMENT**
 * It was originally planned to implement a feature that would allow the customers to sell their games to the store in exchange for store credit.  This functionality would be enabled through the customer account menu where the customer would select to sell an item, fill in a form and upload pictures.  This would then start a process of exchange between the customer and the business facilitated by the account and admin interfaces. For the business used stock would then be available to buy on the website. This feature was not implemented due to time constraints, but is a planned feature for a future release.
+* Currently a customer is prevented from buying to much of one item with a default ceiling value of 10 which reduces to match the stock of an item if it goes below 10.  There is also a final check at the point of purchase.  Whilst their is the control on the quantity selector, a check will need to be added to the add_to_cart function to see if the quantity of an item already in the cart is already the maximum allowed value. This is a planned feature for a future release.
+* A 'goBack' navigation button was added at the top of the product detail page to aid navigation due to the amount ways that this screen can be navigated to.   Also because of this the 'window.history.back()' method was used.  This generally works well, however if the user interacts with any features on the product detail page (add to favourites, reviews) then the go back button needs to be clicked more than once to get back to the desired page.  Further development will need to be completed to improve this.
 * The price per item is not shown on the order details; only the order totals are shown, the item(s) bought and quantity of each.  The bought price per item cannot be shown as this is not saved.  Further development will look to save and therefore show the bought price of an item so as to provide more details on each entry within the customer orders history.
 * The site allows a registered customer to save only one address, with the option to add and save others not currently a feature.  Further development will look into allowing users to add and save mulitple addresses and mark one as primary that will show up as default when checking out. 
 * There is currently no facility for customers to login via social media accounts.  This will be implemented in the future.
+* Investigation and work will take place to improve the performance score returned for the site across all browsers.
 
 ------
 
@@ -628,7 +631,7 @@ Within the Heroku Config variables add the 16 character password as the value to
 - Technique for positioning text over an image from [w3schools](https://www.w3schools.com/howto/howto_css_image_text.asp)
 - For rendering the game genres as checkboxes: [Django Forms for Many-to-Many Fields](https://medium.com/swlh/django-forms-for-many-to-many-fields-d977dec4b024)
 - To get a calender box to show up to pick a date for the 'release date' field in the add products page: [How to use Datepicker in Django?](https://webpedia.net/how-to-use-datepicker-in-django)
-- To remove the default increment and decrement mouse selectable controls for the quantity selector input fields the css in this [codegrepper](https://www.codegrepper.com/code-examples/whatever/how+to+disable+html+defualt+increment+decrement+in+number+type) page was used.
+- To remove the default increment and decrement mouse selectable controls for the quantity selector input fields the css in this [css tricks](https://css-tricks.com/snippets/css/turn-off-number-input-spinners/) page was used.
 - To remove the ability for the customer to type in the number within the quantity selector input fields the jQuery in this [stackoverflow](https://stackoverflow.com/questions/17164278/disable-writing-in-input-type-number-html5) page was used.
 - This Youtube tutorial video from [Onthir](https://www.youtube.com/watch?v=lSX8nzu9ozg) was used as a guide when implementing the review and rate features
 - This Youtube tutorial video from [Very Academy](https://www.youtube.com/watch?v=H4QPHLmsZMU) was used as a guide when implementing the add to wishlist feature
@@ -638,6 +641,7 @@ Within the Heroku Config variables add the 16 character password as the value to
 - For styling scroll bars this article by [css-tricks.com](https://css-tricks.com/almanac/properties/s/scrollbar/) was referenced
 - The override of the Product model save method to ensure that the name values were saved as lowercase was referenced from this [stackoverflow post](https://stackoverflow.com/questions/36330677/django-model-set-default-charfield-in-lowercase)
 - The Youtube tutorial on [How to send email with Django](https://www.youtube.com/watch?v=xNqnHmXIuzU) by Codemy.com was used as a guide to get the contact us form set up.
+- For the size control of images in markdown [this](https://stackoverflow.com/questions/14675913/changing-image-size-in-markdown) stackoverflow article was referenced
 
 # Images and Content
 
