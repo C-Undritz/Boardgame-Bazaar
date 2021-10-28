@@ -60,7 +60,7 @@ Functionality testing of all of the implemented CRUD functionality was completed
 *Note - The test sheets are linked below and are stored as google docs sheet.  Most of these files have mulitple tabs for each function so please do check to see the full range of tests completed.  Some of these also have images and are therefore best viewed in Google Sheets once open.*
 
 The CRUD functionality test sheets and results can be viewed using the below links:
-* [CREATE](https://docs.google.com/spreadsheets/d/1PTsEDMkDdj7AsgLVcpOCKGByoNymHInR/edit?usp=sharing&ouid=104452068766757437495&rtpof=true&sd=true)
+* [CREATE](https://docs.google.com/spreadsheets/d/1vBtjgKawIBmlHiEU9Mo8o-5VF3Qn8kf5/edit?usp=sharing&ouid=104452068766757437495&rtpof=true&sd=true)
 * [READ](https://docs.google.com/spreadsheets/d/1fq-Ap5ay2DRbzeDHemwrHQIVtluevx2Y/edit?usp=sharing&ouid=104452068766757437495&rtpof=true&sd=true)
 * [UPDATE](https://docs.google.com/spreadsheets/d/103pHT4M92T0ZFfyGxakC4zGg8oGG5MuH/edit?usp=sharing&ouid=104452068766757437495&rtpof=true&sd=true)
 * [DELETE](https://docs.google.com/spreadsheets/d/1-xNDZeJE4uR0e2nzMVvYhAG6uyje94Mg/edit?usp=sharing&ouid=104452068766757437495&rtpof=true&sd=true)
@@ -176,13 +176,13 @@ Remaining pylint warnings and reasons:
 
 ## Lighthouse results:
 ### Chrome:
-![Chrome Lighthouse results]()
+![Chrome Lighthouse results](assets/readme/chrome_lighthouse.png)
 ### Opera:
-![Opera Lighthouse results]()
+![Opera Lighthouse results](assets/readme/opera_lighthouse.png)
 ### Microsoft Edge:
-![Edge Lighthouse results]()
+![Edge Lighthouse results](assets/readme/edge_lighthouse.png)
 ### Firefox:
-![Firefox Lighthouse results]()
+![Firefox Lighthouse results](assets/readme/firefox_lighthouse.png)
 
 Brief testing on Safari browser was conducted by using the website on a relatives iPad.  The website functioned as expected and no problems observed.
 
@@ -193,77 +193,109 @@ The below details how the website meets the requirements of each user story.
 # Customer and first time user of the software
 ## 01-01. View all of the products available from the store
 The customer is greeted with the home/landing page which features a central CTA button which takes the user to a screen which shows all products available in the store.  The all product screen can also be accessed at any time from the 'Shop front' drop down menu in the navbar.  Any view that displays multiple products, shows the game rating (if any) price and sale price (if on sale), stock information and whether the product is a new release, pre-order or on sale by displaying a flash in the top right of the image.
-![Home/landing page](assets/readme/0101_landing-page.png)
-![All Products page](assets/readme/0101_all-products.png)
+[<img src="assets/readme/0101_landing-page.png" width="1000"/>](assets/readme/0101_landing-page.png)  
+[<img src="assets/readme/0101_all-products.png" width="500"/>](assets/readme/0101_all-products.png)
 ## 01-02. View a list of products that are on sale, just released and available for preorder
 On the home/landing page below the top banner, three images with buttons represent three categories that the products can be assigned: New releases, pre-orders and on sale.  clicking/tapping on the buttons or images will take the customer to a page that will display only products that currently are assigned these categories. If they are, it is displayed with a flash in the top right of the product image. These pages can also be access at any time from the 'Shop front' drop down menu in the navbar. 
-![Home/landing page showing the New releases, pre-orders and on sale interactive nav elements](assets/readme/0102_landing-page.png)
-![New releases page](assets/readme/0102_products-new-releases.png)
-![Pre-orders page](assets/readme/0102_products-pre-orders.png)
-![On-sale page](assets/readme/0102_products-on-sale.png)
+[<img src="assets/readme/0102_landing-page.png" width="1000"/>](assets/readme/0102_landing-page.png)  
+[<img src="assets/readme/0102_products-new-releases.png" width="1000"/>](assets/readme/0102_products-new-releases.png)  
+[<img src="assets/readme/0102_products-pre-orders.png" width="1000"/>](assets/readme/0102_products-pre-orders.png)  
+[<img src="assets/readme/0102_products-on-sale.png" width="1000"/>](assets/readme/0102_products-on-sale.png)  
 ## 01-03. Select individual products to view
-From any of the views showing mulitple products or any search results, the product image can be clicked/tapped on to display more details of the product.  This includes the ability to add to the wish list, view the stock level, add it to the cart and see the product description, ratings and reviews (if any).
-![Product details age](assets/readme/0103_product-detail.png)
+From any of the views showing mulitple products or any search results, the product image can be clicked/tapped on to display more details of the product.  This includes the ability to add to the wish list, view the stock level, add it to the cart and see the product description, ratings and reviews (if any).  
+[<img src="assets/readme/0103_product-detail.png" width="1000"/>](assets/readme/0103_product-detail.png) 
 ## 01-04. See what is popular
 On the home/landing page below the top banner, the first image on the right with a button allows the customer to view the best sellers.  Clicking/tapping on the button or image will take the customer to a page that will display the current top 10 best sellers.
-![Home/landing page showing the best sellers interactive nav element](assets/readme/0104_landing-page.png)
-![Best sellers page](assets/readme/0104_products-best-sellers.png)
+[<img src="assets/readme/0104_landing-page.png" width="450"/>](assets/readme/0104_landing-page.png)  
+[<img src="assets/readme/0104_products-best-sellers.png" width="1000"/>](assets/readme/0104_products-best-sellers.png) 
 ## 01-05. Access my shopping cart at any time
-The shopping cart preview displays whenever a product is added to the cart and shows the totals for the items currently within it.  The customer can then choose to continue shopping or checkout from there where they will be taken to an interactive cart page.  From any page within the site though the user can click/tap on the cart icon in the top right of the navbar to view the current cart.  The cart icon also displays the amount of items in the cart at all times.
-![off-canvas cart preview](assets/readme/0105_offcanvas-cart.png)
-![cart navbar icon](assets/readme/0105_cart-navbar-icon.png)
+The shopping cart preview displays whenever a product is added to the cart and shows the totals for the items currently within it.  The customer can then choose to continue shopping or checkout from there where they will be taken to an interactive cart page.  From any page within the site though the user can click/tap on the cart icon in the top right of the navbar to view the current cart.  The cart icon also displays the amount of items in the cart at all times.  
+[<img src="assets/readme/0105_cart-navbar-icon.png" width="200"/>](assets/readme/0105_cart-navbar-icon.png)  
+[<img src="assets/readme/0105_offcanvas-cart.png" width="350"/>](assets/readme/0105_offcanvas-cart.png)  
 ## 02-01. View the products available by board game genres
-All of the board games can be assigned mulitple genres and therefore can be displayed in these genres.  To do this the chosen genre is selected from the 'Shop by genre' drop down menu in the navbar.  This will then display all products that have that genre assigned.  The product details page also displays the genres tags associated with that product.  Any of these tags can be clicked/tapped to display all products that have that genre assigned. 
-![Game genre navbar drop down list](assets/readme/0201_genre-navbar-menu.png)
-![Product detail page highlighting the genre tags](assets/readme/0201_product-detail-genre-tags.png)
+All of the board games can be assigned mulitple genres and therefore can be displayed in these genres.  To do this the chosen genre is selected from the 'Shop by genre' drop down menu in the navbar.  This will then display all products that have that genre assigned.  The product details page also displays the genres tags associated with that product.  Any of these tags can be clicked/tapped to display all products that have that genre assigned.  
+[<img src="assets/readme/0201_genre-navbar-menu.png" width="1000"/>](assets/readme/0201_genre-navbar-menu.png)   
+[<img src="assets/readme/0201_product-detail-genre-tags.png" width="1000"/>](assets/readme/0201_product-detail-genre-tags.png)
 ## 02-02. Sort the returned list of board games
 All screens that display mulitple products (apart from best sellers) all have a drop down sort function that allows the customer to sort by: Price (low to high and high to low), rating (low to high and high to low), and name (A-Z and Z-A).  
-![drop down sort function](assets/readme/0202_all-products-sort.png)
-## 02-03. Be able to search for a board game by name or description
+[<img src="assets/readme/0202_all-products-sort.png" width="1000"/>](assets/readme/0202_all-products-sort.png)
+## 02-03. Be able to search for a board game by name or description (answered below with 02-04)
 ## 02-04. Easily view the search results 
-The customer can search for a game using the free text search function permanently available within the navbar.  The website will return any games that contain the search word or term in the games name or description once the user clicks/taps the magnifying glass icon on the right of the search input.  The games can then be selected to view their product details page.
-![search input search for 'castles'](assets/readme/0203_search-input.png)
-![search result for 'castles' search](assets/readme/0203_search-results.png)
+The customer can search for a game using the free text search function permanently available within the navbar.  The website will return any games that contain the search word or term in the games name or description once the user clicks/taps the magnifying glass icon on the right of the search input.  The games can then be selected to view their product details page.  
+[<img src="assets/readme/0203_search-input.png" width="500"/>](assets/readme/0203_search-input.png)  
+[<img src="assets/readme/0203_search-results.png" width="1000"/>](assets/readme/0203_search-results.png)  
 ## 03-01. Easily select the quantity of a board game I would like to buy
 Within each products details page, there is a mobile friendly quantity selector that allows the user to increase or reduce the amount of a product they would like to add to the cart.  The quantity selector will allow the user to add a maximum of 10 of one item, or the maximum stock that is available if that is 10 or less.  The same quantity selector is also featured within the cart for each item so final adjustments can be made there prior to checking out.
-## 03-02. View the items in the shopping cart that I have selected to purchase
+[<img src="assets/readme/0301_product-detail-qty-selector.png" width="700"/>](assets/readme/0301_product-detail-qty-selector.png)  
+[<img src="assets/readme/0301_cart-qty-selector.png" width="800"/>](assets/readme/0301_cart-qty-selector.png)  
+## 03-02. View the items in the shopping cart that I have selected to purchase (answered below with 03-03)
 ## 03-03. Adjust the quantity of the individual items in my shopping cart and remove them if I wish
-The shopping cart preview displays whenever a product is added to the cart and shows the totals for the items currently within it.  The cart page is accessed from this or the cart icon in the top right of the navbar.  The cart page displays each added product as one line item.  On each line the product image and name displays, the price, and the sub total for each line. Also displayed on each line is a quantity selector and a bin icon.  To adjust the quantity the customer can use the quatity selector and then click the refresh button next to it.  To remove an item from the cart, the customer can use the bin icon which, once clicked/tapped, will remove the associated item.  To complete the purchase the customer then clicks/taps the secure checkout button at the foot of the cart page.
+The shopping cart preview displays whenever a product is added to the cart and shows the totals for the items currently within it.  The cart page is accessed from this or the cart icon in the top right of the navbar.  The cart page displays each added product as one line item.  On each line the product image and name displays (though only the name at lower resolutions), the price, and the sub total for each line. Also displayed on each line is a quantity selector and a bin icon.  To adjust the quantity the customer can use the quatity selector and then click the refresh button next to it.  To remove an item from the cart, the customer can use the bin icon which, once clicked/tapped, will remove the associated item.  To complete the purchase the customer then clicks/taps the secure checkout button at the foot of the cart page.  
+[<img src="assets/readme/0302_cart-desktop-page.png" width="1000"/>](assets/readme/0302_cart-desktop-page.png)  
+[<img src="assets/readme/0302_cart-tablet-page.png" width="500"/>](assets/readme/0302_cart-tablet-page.png)
+[<img src="assets/readme/0302_cart-mobile-page.png" width="350"/>](assets/readme/0302_cart-mobile-page.png)  
 ## 03-04. Easily enter delivery and payment information
-In order to complete the purchase the customer needs to provide name, address and contacts details and these are requested from a simple form where mandatory details are clearly marked with an '*'.  payment is required by card and, for ease, all details required are requested within one single Stripe powered input element. 
+In order to complete the purchase the customer needs to provide name, address and contacts details and these are requested from a simple form where mandatory details are clearly marked with an '*'.  payment is required by card and, for ease, all details required are requested within one single Stripe powered input element.  
+[<img src="assets/readme/0304_checkout-form.png" width="750"/>](assets/readme/0304_checkout-form.png)  
 ## 03-05. Feel that my personal and payment information is safe and secure
-The secure transaction via the site is powered by Stripe whish is clearly stated at the foot of the page below the form buttons.  This icon is linked to the Stripe webpage so the customer can click on this and read about the technology that Stripe utlise to make payments secure.
-## 03-06. View an order after a purchase is made and checkout is complete
+The secure transaction via the site is powered by Stripe whish is clearly stated at the foot of the page below the form buttons.  This icon is linked to the Stripe webpage so the customer can click on this and read about the technology that Stripe utlise to make payments secure.  
+[<img src="assets/readme/0305_stripe-payment.png" width="750"/>](assets/readme/0305_stripe-payment.png) 
+## 03-06. View an order after a purchase is made and checkout is complete (answered below with 03-07)
 ## 03-07. Receive an email confirmation after checkout is complete
 Following a successful purchase, the customer is presented with a checkout success page detailing every aspect of the transaction.  An email is also sent to the provided email with the same information as a record of the transaction.
+[<img src="assets/readme/0306_checkout-success.png" width="1000"/>](assets/readme/0306_checkout-success.png) 
+[<img src="assets/readme/0306_order-confirmation-email.png" width="750"/>](assets/readme/0306_order-confirmation-email.png) 
 ## 04-01. Easily communicate with Boardgame Bazaar
-The website provides a 'contact' form that can be accessed from the footer at all times and the navbar (at desktop resolutions) that display a simple form for the customer to fill out.  This will then send an email to the boardgame bazaar email account displaying clearly who it is from, the details of the enquiry and the email for boardgame bazaar to respond. 
+The website provides a 'contact' form that can be accessed from the footer at all times and the navbar (at desktop resolutions) that display a simple form for the customer to fill out.  This will then send an email to the boardgame bazaar email account displaying clearly who it is from, the details of the enquiry and the email for boardgame bazaar to respond.  
+[<img src="assets/readme/0401_contact-page.png" width="1000"/>](assets/readme/0401_contact-page.png) 
+[<img src="assets/readme/0401_recieved-email.png" width="1000"/>](assets/readme/0401_recieved-email.png) 
 ## 04-02. Sign up for the newsletter
-At the foot of the landing/home page above the footer, there is the opportunity for any customer whether registered or not, to subscribe to the boardgame bazaar newsletter.  A check ensures that identical emails cannot added to the mailing list.  Additionally, if a customer subscribes to the mailing list and later registers with the same email address, then their account page will display this and the subscription stays in place.   
+At the foot of the landing/home page above the footer, there is the opportunity for any customer whether registered or not, to subscribe to the boardgame bazaar newsletter.  A check ensures that identical emails cannot added to the mailing list.  Additionally, if a customer subscribes to the mailing list and later registers with the same email address, then their account page will display this and the subscription stays in place.  
+[<img src="assets/readme/0402_mailing-list-signup.png" width="700"/>](assets/readme/0402_mailing-list-signup.png)  
+[<img src="assets/readme/0402_mailing-list-status.png" width="700"/>](assets/readme/0402_mailing-list-status.png) 
 ## 04-03. Link to boardgame bazaar social media
 The website displays all social media icons where boardgame bazaar have a prescence (or plan to in the future) in the footer at all times and the navbar (at desktop resolutions).  When clicked/tapped the social media site selected opens in a different browser tab/window.
 
 # Site User
-## 05-01. Easily register for an account
+## 05-01. Easily register for an account (answered below with 05-02)
 ## 05-02. Receive an email confirmation after registering
 When the customer is not logged in, two options appear in the top right of the navbar: Login and register.  Clicking on register takes the customer to a small form where they are required to enter an email, username and password.  An email will then be sent to the address provided to ensure the creator is the owner of the email address.  The email has details and a link which will allow the customer to complete registration for their account.
+[<img src="assets/readme/0501_sign-up.png" width="700"/>](assets/readme/0501_sign-up.png)  
+[<img src="assets/readme/0501_register-email.png" width="700"/>](assets/readme/0501_register-email.png) 
 ## 05-03. Easily log in or log out
 To login the customer selects 'login' from the top right of the navbar.  They will then be required to enter their username and password.  Once logged in a logout link is permanently displayed in the top right of the navbar.  A logout button is also permanently displayed in the account pages.  
+[<img src="assets/readme/0503_logout-options.png" width="1000"/>](assets/readme/0503_logout-options.png) 
 ## 05-04. Easily recover my password in case I forget it
 Should the password be forgotten then the customer can click on the 'forgot password?' link on the login page.  This will then take the customer to the Password reset page where they can enter their email address to have a link sent to allow them to reset their password.
-## 05-05. Have a personalised account page 
+## 05-05. Have a personalised account page
+The account pages allows the customer to fill in their first name and surname, and default address information.  This is not required, but it makes checkout easier as this information will automatically populate the checkout form.  They can also update any of this information. An order history is displayed in a summary list but each the details of each order can be viewed by clicking on the order reference link.  
+[<img src="assets/readme/0505_account-information.png" width="500"/>](assets/readme/0505_account-information.png)
+[<img src="assets/readme/0505_account-address.png" width="500"/>](assets/readme/0505_account-address.png)  
+[<img src="assets/readme/0505_order-history.png" width="500"/>](assets/readme/0505_order-history.png)  
+[<img src="assets/readme/0505_order-detail.png" width="500"/>](assets/readme/0505_order-detail.png) 
 ## 05-06. Add/remove games that I may purchase to a wishlist
+Any products added to their wishlist (using the button within the product detail form) will be displayed on the wishlist page where the customer can remove any if the products listed by clicking on the remove button.  
+[<img src="assets/readme/0506_account-wishlist.png" width="500"/>](assets/readme/0506_account-wishlist.png) 
 ## 05-07. Manage whether I recieve a news letter 
+Within the account information page, the user can update username and email address information and manage their subscription to the mailing list.  If the email is changed whilst subscribed to the mailing list, the email address within the mailing list database will be automatically updated and subscription status will remain.  
+[<img src="assets/readme/0507_subscription-status.png" width="700"/>](assets/readme/0507_subscription-status.png)   
+[<img src="assets/readme/0507_subscription-status-email-update.png" width="850"/>](assets/readme/0507_subscription-status-email-update.png)
 ## 05-08. Add and edit a review of any item I purchase 
-The account pages allows the customer to fill in their first name and surname, and default address information.  This is not required, but it makes checkout easier as this information will automatically populate the checkout form.  The user can also update username and email address information from here and manage their subscription to the mailing list.  An order history is displayed in a summary list but each orders details can be viewed by clicking on the order reference link.  From here each product ordered is displayed alongside a review button which will allow the customer to rate and review that product, or, if they have already provided a rating and review, then edit or delete it.  Finally, any products added to their wishlist (using the button within the product detail form) will be displayed here where they can remove any if the products listed by clicking on the remove button.
+Within the order history page each product ordered is displayed alongside a review button which will allow the customer to rate and review that product, or, if they have already provided a rating and review, then edit or delete it.  
+[<img src="assets/readme/0508_review-page.png" width="350"/>](assets/readme/0508_review-page.png)  
 
 # Store Owner
 ## 06-01. Add a product
-The admin functions are available from a button within the account page if the user logged in.  Clicking on this button then displays 'add product', 'edit product', 'add genre' and 'edit genre'.  Clicking 'add product' takes the user to the add product form where required information is displayed with an '*'.  The product is added to the database upon the user clicking on the 'add product' button at the foot of the form.  A case-insensitive check occurs on the name of the product to ensure that a duplicate is not added to the database.
+The admin functions are available from a button within the account page if the user logged in has admin privileges.  Clicking on this button then displays 'add product', 'edit product', 'add genre' and 'edit genre'.  The add product form appears by default, but clicking 'add product' takes the user to the add product form where required information is displayed with an '*'.  The product is added to the database upon the user clicking on the 'add product' button at the foot of the form.  A case-insensitive check occurs on the name of the product to ensure that a duplicate is not added to the database.  
+[<img src="assets/readme/0601_add-product-page.png" width="1000"/>](assets/readme/0601_add-product-page.png)  
 ## 06-02. Edit and Update a product details
-Clicking 'edit product' displays a paginated list of all the products, each one listed with an edit and delete button.  Selecting the edit button next to the product requiring edit opens the edit product form which is pre-filled with the product details to be changed/updated.  Editing any details and selecting update product will update the product database record.  For convenience the ability to edit a product can also be selected from the product details page.  When viewing a product whilst logged in as an admin user, admin functions are accessible below the product description.
+Clicking 'edit product' displays a paginated list of all the products, each one listed with an edit and delete button.  Selecting the edit button next to the product requiring edit opens the edit product form which is pre-filled with the product details to be changed/updated.  Editing any details and selecting update product will update the product database record.  For convenience the ability to edit a product can also be selected from the product details page.  When viewing a product whilst logged in as an admin user, admin functions are accessible below the product description.  
+[<img src="assets/readme/0602_products-list.png" width="1000"/>](assets/readme/0602_products-list.png)  
+[<img src="assets/readme/0602_edit-product-page.png" width="1000"/>](assets/readme/0602_edit-product-page.png)  
+[<img src="assets/readme/0602_product-detail-admin-functions.png" width="300"/>](assets/readme/0602_product-detail-admin-functions.png)  
 ## 06-03. Delete a product
-Clicking 'edit product' displays a paginated list of all the products, each one listed with an edit and delete button.  Selecting the delete button next to the product that requires removal opens a confirmation window asking to confirm the requirement to delete the product.  Selecting delete will remove the product from the database.  For convenience the ability to delete a product can also be selected from the product details page.  When viewing a product whilst logged in as an admin user, admin functions are accessible below the product description.
+Clicking 'edit product' displays a paginated list of all the products, each one listed with an edit and delete button.  Selecting the delete button next to the product that requires removal opens a confirmation window asking to confirm the requirement to delete the product.  Selecting delete will remove the product from the database.  For convenience the ability to delete a product can also be selected from the product details page.  When viewing a product whilst logged in as an admin user, admin functions are accessible below the product description.  
+[<img src="assets/readme/0603_delete-product.png" width="1000"/>](assets/readme/0603_delete-product.png)  
 ## 06-04. Manage the attributes assigned to a product
 The attributes are a product are the assigned genres, and whether it can be considered a pre-order or new release and finally whether it is on sale or not.  The assignment of genres and on-sale status is determined manually.  One or more genres can be assigned to the product when it is created or updated.  To put a product on sale, the 'on sale' checkbox need to be checked and a sale price entered.  Weather a product is a 'new release' or 'pre-order' is determined by the software depending on the release date set when adding (or updating) the product.
 * A product will be considered a new release if the release date occured within the last 90 days
@@ -272,9 +304,11 @@ The date is constantly checked so these attributes are constantly checked and so
 ## 06-05. Track and manage stock of each item
 The following features allow for the management and tracing of stock:
 * The stock level of an item can be set when the product is created or edited.  However, for convenience the ability to edit a product stock level can also be selected from the product details page.  When viewing a product whilst logged in as an admin user, admin functions are accessible below the product description and 'update stock' is one of those functions.  Selecting this will take the user to a simple form where the stock amount can be adjusted.
-* Upon completion of a purchase the stock level of bought items is updated within the database.
-* Customers cannot select more stock than there is available to add to their cart.
-* A final check is completed at the point of purchase that prevents a sale completing if any quantity of item within the cart is more than there is stock available.  Note that the purchase of pre-orders is allowed and the minus figure will indicate the require stock to fulfill the pre-orders.
+[<img src="assets/readme/0605_update-stock.png" width="850"/>](assets/readme/0605_update-stock.png)  
+* Upon completion of a purchase the stock level of bought items is updated within the database.  The stock level will display alongside the product on the site as 10+ if stock is more than 10.  If the stock figure is below 10 then the actual stock will display to the customer.
+* Customers cannot select more stock than there is available to add to their cart using the quantity selector.
+* A final check is completed at the point of purchase that prevents a sale completing if any quantity of item within the cart is more than there is stock available.  Note that the purchase of pre-orders is allowed and the minus figure will indicate the require stock to fulfill the pre-orders.  
+[<img src="assets/readme/0605_purchase-stock-check-message.png" width="350"/>](assets/readme/0605_purchase-stock-check-message.png)  
 ## 06-06. Provide a secure shopping experience
 The site has been throughly tested so as to ensure that customer details cannot be accessed by other customers and any attempt to do so through url manipulation results in an appropriate message displayed and the blocking of further navigation. 
 
@@ -336,17 +370,18 @@ quantity = int(request.POST.get('quantity') or 1)
 
 ---
 ># **REMAINING ISSUES**
-## 1. Stripe card payment font display
+## 1. Product delete resulting in deletion of product from orderlineitem of an order
+**Issue**: During testing it was found that the deletion of a product also caused any instance of that product as an orderline item was deleted.  This creates problems for the order history records.  This was not fixed during development due to insufficient time.  However likely fixes that could be explored within the current database structure are: 
+1. Keep the delete product function so that a record can be deleted if added in error.  However introduce another option where a product record is not deleted, but can be 'retired' from the store so that it is no longer available to purchase.  This means it will persist as a record within the database to maintain the intergrity of the order histories.
+2. Explore the on_delete options offered by Django.  At the moment the on_delete is set to cascade to maintain database integrity.  The removal of CASCADE would cause issues with the current site functionality which would need to be addressed and tested and insufficient time remains at the time of writing.
+
+## 2. Stripe card payment font display
 **Issue**: The font family for the Stripe card display element is set within style variable in the stripe_elements js file.  It has been set of the main chosen font throughout the site 'Economica'.  However, the font is not displayed.  During development it was not determined why this was the case.
 
-## 2. Unable to sort the top ten bestsellers so sorter removed from now.
+## 3. Unable to sort the top ten bestsellers so sorter removed for now.
 **Issue**: The products returned for the display of bestsellers are already sorted within the all_products view function in the products app.  The use of the drop down sort function refreshes the view and so when this happens the selected sort if not returned; the products returned by 'sold' order is.  A solution to this was not found during developement and so whilst this situation remains the drop down sort function is not displayed within the best sellers page.
 
 ># **REMAINING BUGS**
 ## 1.  HTML/XML character entity for an some special characters displaying in emails when using templates
 **Issue**: The contact us function uses email txt templates to arrange the text sent in the contact us form into a more presentable and easy to read format.  However this has resulted in some special characters such as ' " and & being rendered in their HTML/XML character entity within the recieved email.  Whilst this does not prevent the message being read and understood, it is an issue that the developer will seek to fix in further development.
 
-## 2.  Product delete resulting in deletion of product from orderlineitem of an order
-**Issue**: During testing it was found that the deletion of a product also caused any instance of that product as an orderline item was deleted.  This creates problems for the order history records.  This was not fixed during developement due to insufficent time.  However likely fixes that could be explored within the current database structure are: 
-1. Refactoring the delete product function so that the record is not deleted, but 'retired' from the store so that it is no longer available to purchase.  However it will persist as a record within the database to maintain the intergrity of the order histories
-2. Not fully explored but a solution could be utilising signals and using a pre-delete signal receiver to convert the to be deleted product information to strings to be stored in place of the deleted item.
