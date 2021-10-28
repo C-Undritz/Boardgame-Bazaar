@@ -15,12 +15,12 @@
 
 @media (max-width: 576px) {
     #email {
-        width: 325px;
+        width: 300px;
     }
 }
 
 @media (max-width: 425px) {
     #email {
-        width: 225px;
+        width: 180px;
     }
 }
