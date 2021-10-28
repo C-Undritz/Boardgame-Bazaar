@@ -43,27 +43,27 @@
             <div class="col-6 d-none d-lg-flex">
                 <ul class="list-inline list-unstyled my-1">
                     <li class="list-inline-item">
-                        <a target="_blank" class="text-light mx-1 nav-link" href="https://twitter.com/" rel="noopener">
+                        <a target="_blank" class="text-white mx-1 nav-link" href="https://twitter.com/" rel="noopener">
                             <i class="fab fa-twitter"></i>
                         </a>
                     </li>
                     <li class="list-inline-item">
-                        <a target="_blank" class="text-light mx-1 nav-link" href="https://www.facebook.com/" rel="noopener">
+                        <a target="_blank" class="text-white mx-1 nav-link" href="https://www.facebook.com/" rel="noopener">
                             <i class="fab fa-facebook-f"></i>
                         </a>
                     </li>
                     <li class="list-inline-item">
-                        <a target="_blank" class="text-light mx-1 nav-link" href="http://www.Instagram.com/" rel="noopener">
+                        <a target="_blank" class="text-white mx-1 nav-link" href="http://www.Instagram.com/" rel="noopener">
                             <i class="fab fa-instagram"></i>
                         </a>
                     </li>
                     <li class="list-inline-item">
-                        <a target="_blank" class="text-light mx-1 nav-link" href="https://www.youtube.com/" rel="noopener">
+                        <a target="_blank" class="text-white mx-1 nav-link" href="https://www.youtube.com/" rel="noopener">
                             <i class="fab fa-youtube"></i>
                         </a>
                     </li>
                     <li class="list-inline-item">
-                        <a class="text-light mx-1 nav-link" href="{% url 'contact' %}">
+                        <a class="text-white mx-1 nav-link" href="{% url 'contact' %}">
                             <i class="fas fa-envelope"></i>
                         </a>
                     </li>
@@ -74,7 +74,7 @@
                 <ul class="list-inline list-unstyled my-1">
                     {% if request.user.is_authenticated %}
                         <li class="list-inline-item">
-                            <a class="text-light mx-1 nav-link" href="{% url 'account_logout' %}">
+                            <a class="text-white mx-1 nav-link" href="{% url 'account_logout' %}">
                                 <!-- Responsive behaviour - visible on all screens >575px -->
                                 <div class="d-none d-sm-block">
                                     <i class="fas fa-sign-out-alt"></i>
@@ -87,7 +87,7 @@
                             </a>
                         </li>
                         <li class="list-inline-item">
-                            <a class="text-light mx-1 nav-link" href="{% url 'profile' %}">
+                            <a class="text-white mx-1 nav-link" href="{% url 'profile' %}">
                                 <!-- Responsive behaviour - visible on all screens over >575px -->
                                 <div class="d-none d-sm-block">
                                     <i class="fas fa-user-alt"></i> 
@@ -101,12 +101,12 @@
                         </li>
                     {% else %}
                         <li class="list-inline-item">
-                            <a class="text-light mx-1 nav-link" href="{% url 'account_login' %}">
+                            <a class="text-white mx-1 nav-link" href="{% url 'account_login' %}">
                                 Login
                             </a>
                         </li>
                         <li class="list-inline-item">
-                            <a class="text-light mx-1 nav-link" href="{% url 'account_signup' %}">
+                            <a class="text-white mx-1 nav-link" href="{% url 'account_signup' %}">
                                 Register
                             </a>
                         </li>
@@ -249,42 +249,42 @@
         <!-- Links to company information -->
         <ul class="nav justify-content-center list-inline list-unstyled my-1">
             <li class="list-inline-item">
-                <a target="_blank" class="text-light mx-1 nav-link" href="https://twitter.com/" rel="noopener">
+                <a target="_blank" class="text-white mx-1 nav-link" href="https://twitter.com/" rel="noopener">
                     <i class="fab fa-twitter"></i>
                 </a>
             </li>
             <li class="list-inline-item">
-                <a target="_blank" class="text-light mx-1 nav-link" href="https://www.facebook.com/" rel="noopener">
+                <a target="_blank" class="text-white mx-1 nav-link" href="https://www.facebook.com/" rel="noopener">
                     <i class="fab fa-facebook-f"></i>
                 </a>
             </li>
             <li class="list-inline-item">
-                <a target="_blank" class="text-light mx-1 nav-link" href="http://www.Instagram.com/" rel="noopener">
+                <a target="_blank" class="text-white mx-1 nav-link" href="http://www.Instagram.com/" rel="noopener">
                     <i class="fab fa-instagram"></i>
                 </a>
             </li>
             <li class="list-inline-item">
-                <a target="_blank" class="text-light mx-1 nav-link" href="https://www.youtube.com/" rel="noopener">
+                <a target="_blank" class="text-white mx-1 nav-link" href="https://www.youtube.com/" rel="noopener">
                     <i class="fab fa-youtube"></i>
                 </a>
             </li>
             <li class="list-inline-item">
-                <a class="text-light mx-1 nav-link" href="{% url 'contact' %}">
+                <a class="text-white mx-1 nav-link" href="{% url 'contact' %}">
                     <i class="fas fa-envelope"></i>
                 </a>
             </li>
         </ul>
         <!-- Social media icons and contact us icon -->
         <ul class="nav justify-content-center border-bottom">
-            <li class="nav-item"><a href="{% url 'aboutus' %}" class="nav-link px-3 text-light fs-4">About Us</a></li>
-            <li class="nav-item"><a href="{% url 'shipping' %}" class="nav-link px-3 text-light fs-4">Shipping</a></li>
-            <li class="nav-item"><a href="{% url 'returns' %}" class="nav-link px-3 text-light fs-4">Returns</a></li>
-            <li class="nav-item"><a href="{% url 'tandcs' %}" class="nav-link px-3 text-light fs-4">T&C's</a></li>
-            <li class="nav-item"><a href="{% url 'careers' %}" class="nav-link px-3 text-light fs-4">Careers</a></li>
+            <li class="nav-item"><a href="{% url 'aboutus' %}" class="nav-link px-3 text-white fs-4">About Us</a></li>
+            <li class="nav-item"><a href="{% url 'shipping' %}" class="nav-link px-3 text-white fs-4">Shipping</a></li>
+            <li class="nav-item"><a href="{% url 'returns' %}" class="nav-link px-3 text-white fs-4">Returns</a></li>
+            <li class="nav-item"><a href="{% url 'tandcs' %}" class="nav-link px-3 text-white fs-4">T&C's</a></li>
+            <li class="nav-item"><a href="{% url 'careers' %}" class="nav-link px-3 text-white fs-4">Careers</a></li>
         </ul>
         <!-- Company address -->
-        <p class="text-center fs-5 text-light">Boardgame Bazaar, 113 Great Western Avenue, Agricola, Brasshire ME3 9LE</p>
-        <p class="text-center fs-6 text-light mb-0">&copy; 2021 Company, Inc</p>
+        <p class="text-center fs-5 text-white">Boardgame Bazaar, 113 Great Western Avenue, Agricola, Brasshire ME3 9LE</p>
+        <p class="text-center fs-6 text-white mb-0">&copy; 2021 Company, Inc</p>
     </footer>
 
     {% block postloadjs %}
