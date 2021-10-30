@@ -444,4 +444,9 @@ input[type=number]::-webkit-outer-spin-button {
 This works fine with Chrome, Edge and Opera, however in Firefox the default functions still remain.  This [Mozilla page](https://developer.mozilla.org/en-US/docs/Web/CSS/appearance) advised that Firefox does support '-webkit-appearance' however it did not work in this instance.  Also tried was '-moz-appearance: none;' and '-moz-opacity: 1; but this also did not work.  Therefore this remains unsolved and will need further investigation.  Whilst it does allow for a user to potentially add more stock than is available, the final check at purchase will prevent such a transaction taking place.  
 ![screen grab quantity selector within Firefox browser](assets/readme/firefox-default-input-functions.png)
 
+## 7. Pagination for the display of products
+Pagination has been implemented to show the products and genre lists in the admin functions.  It was also implemented within the all products views but was later removed.  This was because when the drop down sort selector was subsequently implemented, the required sort was not maintained between the pages.  Therefore it was removed in favour of keeping the drop down sort selector in place.
+
+This issue is intended to be researched with the hope of implementing it later and having the sort preserved between pages.
+
 <div align="right"><a href="#top">Contents Table</a></div>
