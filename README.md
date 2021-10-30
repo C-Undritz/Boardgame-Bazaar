@@ -257,10 +257,10 @@ There are some notable design changes against the original plan for the project.
 The archived wireframes created at the start of the project can be accessed [here](assets/readme/boardgame-bazaar_desktop-wireframes_v0.1.pdf)
 
 # Noted Design Changes
-### Removed
+## Removed
 * Selling 2nd hand games to the store to obtain store credit was not implemented due to time constraints and complexity of the full implementation of this
 
-# Additional features
+## Additional features
 * More intuitive account and admin page presentation and navigation
 * Admin functions on product detail page
 * flash across product images (The tags across images stating 'new release', 'pre-order' and 'on sale')
@@ -351,6 +351,8 @@ All change colour from white, or Bootstrap light, to Bootstrap warning upon mous
 ------
 
 > # **TESTING**
+
+Unfortuanately time did not allow for any thorough automated testing.  Writing automated tests using Django's unit tests will form part of the intended future work for this project and be completed before any futher development on the site is started.
 
 Testing completed is detailed in the [TESTING.md](https://github.com/C-Undritz/Boardgame-Bazaar/blob/main/TESTING.md) document
 
@@ -805,7 +807,7 @@ Within the Heroku Config variables add the 16 character password as the value to
   - [Shipping Policy Template by termsfeed.com](https://www.termsfeed.com/blog/sample-shipping-policy-template/#Download_Shipping_Policy_Template)  
   - [Return & Refund Policy Generator by termsfeed.com](https://www.termsfeed.com/return-refund-policy-generator/)  
   - [Terms & Conditions by termly.io](https://termly.io/resources/templates/terms-and-conditions-template/)  
-  - [Privacy Policy by wonder.legal](https://www.wonder.legal/uk/creation-modele/website-privacy-policy)
+  - [Privacy Policy by wonder.legal](https://www.wonder.legal/uk/creation-modele/website-privacy-policy) - Note: this link has been checked prior to submission and the document used is no longer available.
 
 ## Board game products images and content
 The product images and content for the product descriptions were sourced from various locations which can be viewed on this [linked file](https://docs.google.com/spreadsheets/d/1ZMFR84wT01EX5agxx1gZO4flq6YK2l-u/edit?usp=sharing&ouid=104452068766757437495&rtpof=true&sd=true)  
@@ -821,6 +823,3 @@ The images and content used in the display of the board game products have been 
 - Thanks to Code Institute for the encouragement and great course material. 
 
 <div align="right"><a href="#top">Contents Table</a></div>
-
-# Disclaimer
-This site was developed for educational purposes only.
