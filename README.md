@@ -250,22 +250,22 @@ A relational database has been used to deliver the expected functionality.  SQLi
 > # **SKELETON**
 
 # Wireframes
-There are some notable design changes against the original plan for the project and therefore the wireframes.  These are detailed below and the wireframes updated during the project to reflect the design changes and for the implementation of new features are linked below.
+There are some notable design changes against the original plan for the project.  Therefore the wireframes were updated during the project development to help guide the implementation of these.  The final wireframes are linked below.
 
 [wireframes_v1.0](assets/readme/boardgame-bazaar_desktop-wireframes_v1.0.pdf)
 
-## Noted Design Changes
+The archived wireframes created at the start of the project can be accessed [here](assets/readme/boardgame-bazaar_desktop-wireframes_v0.1.pdf)
+
+# Noted Design Changes
 ### Removed
 * Selling 2nd hand games to the store to obtain store credit was not implemented due to time constraints and complexity of the full implementation of this
 
-### Additional features
-* More attractive landing/home page
+# Additional features
 * More intuitive account and admin page presentation and navigation
-* Mailing list function
 * Admin functions on product detail page
 * flash across product images (The tags across images stating 'new release', 'pre-order' and 'on sale')
-
-The archived wireframes created at the start of the project can be accessed [here](assets/readme/boardgame-bazaar_desktop-wireframes_v0.1.pdf)
+* More attractive landing/home page
+* Mailing list function
 
 <div align="right"><a href="#top">Contents Table</a></div>
 
@@ -459,6 +459,8 @@ A duplicate check is performed on the friendly name field when adding or editing
 * The price per item is not shown on the order details; only the order totals are shown, the item(s) bought and quantity of each.  The bought price per item cannot be shown as this is not saved.  Further development will look to save and therefore show the bought price of an item so as to provide more details on each entry within the customer orders history.
 
 * The site allows a registered customer to save only one address, with the option to add and save others not currently a feature.  Further development will look into allowing users to add and save multiple addresses and mark one as primary that will show up as default when checking out.
+
+* Look into implementing pagination for the all product views.  This was immplemented, but issues occurred once the drop down sort selector was added (see remaining issue 7 in TESTING.md)
 
 * There is currently no facility for customers to login via social media accounts.  This will be implemented in the future.
 
@@ -819,3 +821,6 @@ The images and content used in the display of the board game products have been 
 - Thanks to Code Institute for the encouragement and great course material. 
 
 <div align="right"><a href="#top">Contents Table</a></div>
+
+# Disclaimer
+This site was developed for educational purposes only.
