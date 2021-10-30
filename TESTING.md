@@ -1,16 +1,17 @@
-# Community Treats - Testing document
+# Boardgame Bazaar - Testing document
 
 ## [Associated Readme document](README.md)
 
 ---
+<span id="top"></span> 
 # Table of Contents
 * [RESPONSIVE DESIGN TESTING](#responsive-design-testing)
 * [FUNCTIONALITY TESTING](#functionality-testing)
+* [SECURITY TESTING](#security-testing)
 * [QUALITY CHECKS](#quality-checks)
 * [USER STORIES TESTING](#user-stories-testing)
 * [PROBLEMS AND FIXES](#problems-and-fixes)
 * [REMAINING ISSUES](#remaining-issues)
-* [REMAINING BUGS](#remaining-bugs)
 
 ---
 ># **RESPONSIVE DESIGN TESTING**
@@ -53,6 +54,8 @@ Also successfully tested the live site on the following devices:
 * Amazon Fire HD 8 tablet
 * Apple iPad 7th Generation
 
+<div align="right"><a href="#top">Contents Table</a></div>
+
 ---
 ># **FUNCTIONALITY TESTING**
 Functionality testing of all of the implemented CRUD functionality was completed.  This was conducted on a desktop PC using Google Chrome dev tools.
@@ -68,6 +71,8 @@ The CRUD functionality test sheets and results can be viewed using the below lin
 Additional functionality testing of features that could not strictly be classified into CRUD functionality were tested fully and can be view using the link below:
 * [Additional functionality tests](https://docs.google.com/spreadsheets/d/1R0qM85r1GzNTEXL3IEHTt0vUtM-IzWkp/edit?usp=sharing&ouid=104452068766757437495&rtpof=true&sd=true)
 
+<div align="right"><a href="#top">Contents Table</a></div>
+
 ># **SECURITY TESTING**
 Security testing was conducted to test that any areas of the website that require a login or admin privileges cannot be accessed by manipulation of the URL. 
 
@@ -75,6 +80,8 @@ Security testing was conducted to test that any areas of the website that requir
 
 The security test sheet and results can be viewed using the below link:
 * [Security tests](https://docs.google.com/spreadsheets/d/1eIX7e0-M4NAjG7pzXSSe-55OYpr-q5RO/edit?usp=sharing&ouid=104452068766757437495&rtpof=true&sd=true)  
+
+<div align="right"><a href="#top">Contents Table</a></div>
 
 ---
 ># **QUALITY CHECKS**
@@ -123,6 +130,8 @@ The site performance was tested on the following browsers by using Lighthouse :
 * Firefox
 
 N.B: Internet Explorer was not tested as the site uses ES6 so it's not fully compatible with Internet Explorer builds.
+
+<div align="right"><a href="#top">Contents Table</a></div>
 
 ---
 # Results
@@ -184,7 +193,11 @@ Remaining pylint warnings and reasons:
 ### Firefox:
 ![Firefox Lighthouse results](assets/readme/firefox_lighthouse.png)
 
-Brief testing on Safari browser was conducted by using the website on a relatives iPad.  The website functioned as expected and no problems observed.
+The lower than expected performance results are partly due to the 3rd party JavaScript sources being placed in the `<head>` of the base.html file; particularly the Stripe.  However the Stripe documentation does guide users to [place it there](https://stripe.com/docs/payments/quickstart).  It is suspected that functionality will be unaffected by moving it to the end of the `<body>` element, however there was insufficient time to test this.  Therefore this will be done and fully tested as part of future development work.
+
+Brief testing on Safari browser was conducted by using the website on a relatives iPad and iMac.  The website functioned as expected and no problems observed.
+
+<div align="right"><a href="#top">Contents Table</a></div>
 
 ---
 ># **USER STORIES TESTING**
@@ -259,6 +272,8 @@ At the foot of the landing/home page above the footer, there is the opportunity 
 ## 04-03. Link to boardgame bazaar social media
 The website displays all social media icons where boardgame bazaar have a presence (or plan to in the future) in the footer at all times and the navbar (at desktop resolutions).  When clicked/tapped the social media site selected opens in a different browser tab/window.
 
+<div align="right"><a href="#top">Contents Table</a></div>
+
 # Site User
 ## 05-01. Easily register for an account (answered below with 05-02)
 ## 05-02. Receive an email confirmation after registering
@@ -286,6 +301,8 @@ Within the account information page, the user can update username and email addr
 ## 05-08. Add and edit a review of any item I purchase 
 Within the order history page each product ordered is displayed alongside a review button which will allow the customer to rate and review that product, or, if they have already provided a rating and review, then edit or delete it.  
 [<img src="assets/readme/0508_review-page.png" width="350"/>](assets/readme/0508_review-page.png)  
+
+<div align="right"><a href="#top">Contents Table</a></div>
 
 # Store Owner
 ## 06-01. Add a product
@@ -318,6 +335,8 @@ The following features allow for the management and tracing of stock:
 [<img src="assets/readme/0605_purchase-stock-check-message.png" width="350"/>](assets/readme/0605_purchase-stock-check-message.png)  
 ## 06-06. Provide a secure shopping experience
 The site has been thoroughly tested so as to ensure that customer details cannot be accessed by other customers and any attempt to do so through url manipulation results in an appropriate message displayed and the blocking of further navigation. 
+
+<div align="right"><a href="#top">Contents Table</a></div>
 
 ---
 ># **PROBLEMS AND FIXES**
@@ -393,6 +412,8 @@ quantity = int(request.POST.get('quantity') or 1)
 **Issue**: The live website would not show up within [http://ami.responsivedesign.is/](http://ami.responsivedesign.is/).  
 ***Solution**: Installed on the Chrome browser the extension 'Ignore X-Frame headers'.  This drops X-Frame-Options and Content-Security-Policy HTTP response headers, allowing all pages to be iframed.  Once this was installed, the website showed up in iamresponsive allowing for screen grabs to be taken. Thanks to @Harry for this solution.*
 
+<div align="right"><a href="#top">Contents Table</a></div>
+
 ---
 ># **REMAINING ISSUES**
 ## 1. Product delete resulting in deletion of product from orderlineitem of an order
@@ -420,5 +441,7 @@ input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none; 
 }
 ```
-This works fine with Chrome, Edge and Opera, however in Firefox the default functions still remain.  This [Mozilla page](https://developer.mozilla.org/en-US/docs/Web/CSS/appearance) advised that Firefox does support '-webkit-appearance' however it did not work in this instance.  Also tried was '-moz-appearance: none;' and '-moz-opacity: 1; but this also did not work.  Therefore this remains unsolved and will need further investigation.  Whilst it does allow for a user to potentially add more stock than is available, the final check at purchase will prevent such a transaction taking place.
+This works fine with Chrome, Edge and Opera, however in Firefox the default functions still remain.  This [Mozilla page](https://developer.mozilla.org/en-US/docs/Web/CSS/appearance) advised that Firefox does support '-webkit-appearance' however it did not work in this instance.  Also tried was '-moz-appearance: none;' and '-moz-opacity: 1; but this also did not work.  Therefore this remains unsolved and will need further investigation.  Whilst it does allow for a user to potentially add more stock than is available, the final check at purchase will prevent such a transaction taking place.  
 ![screen grab quantity selector within Firefox browser](assets/readme/firefox-default-input-functions.png)
+
+<div align="right"><a href="#top">Contents Table</a></div>
