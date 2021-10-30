@@ -13,13 +13,11 @@
 
 - [OVERVIEW](#overview)
 - [STRATEGY](#strategy)
-- [SCOPE](#scope)
 - [STRUCTURE](#structure)
 - [SKELETON](#skeleton)
 - [SURFACE](#surface)
 - [TECHNOLOGIES USED](#technologies-used)
 - [TESTING](#testing)
-- [NOTED DESIGN CHANGES](#noted-design-changes)
 - [FEATURES](#features)
 - [FURTHER DEVELOPMENT](#further-development)
 - [DEVELOPMENT AND DEPLOYMENT](#development-and-deployment)
@@ -164,6 +162,8 @@ The main site navigation is facilitated by the navbar.  However navigation optio
 - the admin menu displays buttons for add product, edit product, add genre and edit genre.
 - the edit buttons display a list of database records and alongside each the option to edit or delete that record.
 
+<div align="right"><a href="#top">Contents Table</a></div>
+
 # Communication
 There are several ways the site has been set up to communicate with the customer and facilitate customer communications with the business.
 
@@ -191,6 +191,8 @@ There are several ways the site has been set up to communicate with the customer
 - Links to the most popular social media platforms from the navbar or footer.
 - Allows customers to keep up to date with the latest news and announcements.
 
+<div align="right"><a href="#top">Contents Table</a></div>
+
 # Database Schema
 A relational database has been used to deliver the expected functionality.  SQLite was used in the development of the site and Postgres provided by the Heroku platform was used in production.  The diagram below shows the database models and relationships between each.
 
@@ -210,13 +212,13 @@ A relational database has been used to deliver the expected functionality.  SQLi
 ### Genre
 * An attribute of the product model only and displayed with product information
 * Many to many relationship to the Product model allows many Products to be assigned to a Genre.
-* name field offers a programmatic version of the name value; admin guided to provide this value without spaces (using underscores).  This is not programmatically enforced or checked.
+* name field offers a more 'code friendly' version of the name value.  Admin is guided to provide this value without spaces (using underscores).  This is however, not enforced or checked.
 * friendly_name is the value used to display the genre name within the site.
 * Values for both fields saved as lowercase values so duplicate checking can be performed, though duplicate checking only currently performed on the friendly name field
-* A through table (GenreAssignent) implemented for the product genre assignment so that this could be viewed, edited and controlled vis the admin interface if required.
+* A through table (GenreAssignent) implemented for the product genre assignment so that this could be viewed, edited and controlled via the admin interface if required.
 
 ### Review
-* Links together a review with the user and product which is then used to programmatically check if the user has reviewed a product before.  This determines whether a blank form is returned when selecting review or whether the form is displayed with the existing user review for the product in question.
+* Links together a review with the user and product which is then used to check if the user has already reviewed a product.  This determines whether a blank form is returned when selecting review or whether the form is displayed with the existing user review for the product in question.
 * review holds review text of a maximum of 500 characters.  
 * rating is a whole number value between 1 and 5.
 
@@ -232,8 +234,8 @@ A relational database has been used to deliver the expected functionality.  SQLi
 * A defined wishlist through table was not implemented and Django was left to control this as this would be customer personal data and so the relationships should not be viewed by any admin users.
 
 ### MailingList
-* Not linked to any other model as this contains only the email (and dated added) of any customer that visits the site; they do not have to be registered.
-* Checks against the saved email value in the User model are performed programmatically to check the presence of the User email value within the MailingList model to provide mailing list status within the account information page.
+* Not linked to any other model as this can contain the email (and dated added) of any customer that visits the site; they do not have to be registered.
+* Checks against the saved email value in the User model are performed to determine if the User email value is within the MailingList database to provide mailing list status within the account information page.
 * An alternative implementation of the same functionality could have required a Boolean value within the UserProfile model to check for mailing status.  However as the MailingList model can hold email addresses of none registered users, such an approach would offer little benefit over the implemented solution.
 
 ### Order
@@ -243,10 +245,12 @@ A relational database has been used to deliver the expected functionality.  SQLi
 ### OrderLineItem 
 * Contains the information of each product and quantity of that product associated with each Order.
 
+<div align="right"><a href="#top">Contents Table</a></div>
+
 > # **SKELETON**
 
 # Wireframes
-There are some notable design changes against the original plan for the project and therefore the wireframes.  These are discussed below and the wireframes updated during the project to reflect the design changes and for the implementation of new features are linked below.
+There are some notable design changes against the original plan for the project and therefore the wireframes.  These are detailed below and the wireframes updated during the project to reflect the design changes and for the implementation of new features are linked below.
 
 [wireframes_v1.0](assets/readme/boardgame-bazaar_desktop-wireframes_v1.0.pdf)
 
@@ -262,6 +266,8 @@ There are some notable design changes against the original plan for the project 
 * flash across product images (The tags across images stating 'new release', 'pre-order' and 'on sale')
 
 The archived wireframes created at the start of the project can be accessed [here](assets/readme/boardgame-bazaar_desktop-wireframes_v0.1.pdf)
+
+<div align="right"><a href="#top">Contents Table</a></div>
 
 ------
 > # **SURFACE**
@@ -296,10 +302,12 @@ These are only used as background to the flashes across images.
 
 # User interaction feedback
 ## Buttons
-All buttons change colour upon mouse hover
+All buttons change colour upon mouse hover using the main bootstrap colours detailed above
 
 ## Navbar and footer text and icons
-All change colour from white, or Bootstrap light, to bootstrap warning upon mouse hover
+All change colour from white, or Bootstrap light, to Bootstrap warning upon mouse hover
+
+<div align="right"><a href="#top">Contents Table</a></div>
 
 ------
 
@@ -329,6 +337,7 @@ All change colour from white, or Bootstrap light, to bootstrap warning upon mous
 - [Stripe](https://stripe.com/gb) - for processing of payments
 - [Gmail](https://www.google.com/) - service used for Django to send emails
 - [allauth](https://django-allauth.readthedocs.io/en/latest/index.html) - for site user login and logout of account
+- [Django Crispy Forms](https://django-crispy-forms.readthedocs.io/en/latest/) - for control of the rendering behavior on the Django forms
 - [Balsamiq](https://balsamiq.com/) - to create wireframes.
 - [Lucidchart](https://www.lucidchart.com/) - for DB design illustration.
 - [Tables Generator](https://www.tablesgenerator.com) - to generate the user stories table for this document.
@@ -345,6 +354,8 @@ All change colour from white, or Bootstrap light, to bootstrap warning upon mous
 
 Testing completed is detailed in the [TESTING.md](https://github.com/C-Undritz/Boardgame-Bazaar/blob/main/TESTING.md) document
 
+<div align="right"><a href="#top">Contents Table</a></div>
+
 ------
 
 > # **FEATURES**
@@ -353,7 +364,7 @@ Testing completed is detailed in the [TESTING.md](https://github.com/C-Undritz/B
 The site has been built using the powerful mobile-first flexbox based Bootstrap grid system and display property to ensure that the site looks good and responds well across multiple device sizes.
 
 # Security
-Programmatic queries have been utilised through the site backend functions to ensure that site features restricted to registered users and admin are only reachable through the site interface behind a login page, and not able to be reached via manipulation of the url.  This includes but not limited to:
+Validation queries against the database have been utilised through the site backend functions to ensure that site features restricted to registered users and admin are only reachable through the site interface behind a login page, and not able to be reached via manipulation of the url.  This includes but not limited to:
 * Login check for all functions that require a login
 * Once logged in only the logged in user's profile is retrieved and at all instances checking the requested records user profile matches the requesting user profile
 * Confirming for admin functions that the requesting user is a super user.
@@ -455,6 +466,8 @@ A duplicate check is performed on the friendly name field when adding or editing
 
 * Investigation and work will take place to improve the performance score returned for the site across all browsers.
 
+<div align="right"><a href="#top">Contents Table</a></div>
+
 ------
 
 > # **DEVELOPMENT AND DEPLOYMENT**
@@ -516,20 +529,19 @@ The following environment variables (in CAPS) must be set within your developmen
 
 Database migrations will need to be made by following the below commands:
 ```
-  python3 manage.py makemigrations --dry-run*
-
-  python3 manage.py makemigrations
-
   python3 manage.py migrate --plan*
 
   python3 manage.py migrate
 ```
+The 'makemigrations' command will not need to be run here before the 'migrate' command as all the migration files are within the repository.  Should further changes to the models be made however the below commands will need to be run prior to running migrate:
+```
+  python3 manage.py makemigrations --dry-run*
+
+  python3 manage.py makemigrations
+```
 *These commands do not have to be run, but it is best practice, so that the plan migrations can be viewed before completing them.
 
-The project repository comes with a ‘db.json’ file containing all data added during development which can be used to deploy by running this command within the terminal:  
-```
-  python3 manage.py loaddata db.json
-```
+
 
 The project should then be push to your repository using the below commands:
 ```
@@ -544,6 +556,7 @@ The application can now be run locally by typing in a terminal window:
 ```
   python3 manage.py runserver
 ```
+Data can then be added to the site when signed in with the superuser credentials.
 
 # Heroku Deployment
 
@@ -685,7 +698,7 @@ Once all the configuration variables have been added, the deployed app can then 
 
 ### Create User and add to group.
 * Within the AWS services menu open Iam and in the left hand menu click ‘Users’ and then select ‘Add users’
-* Provide a name for the user, check the tick box to give the user programmatic access and select next.
+* Provide a name for the user, check the tick box to grant the user access and select next.
 * Check the tick box next to the group just created to add the user to the group.  Click through the next few pages to create user.
 * **!IMPORTANT:** On the success page, click 'Download .csv file' which contains the user access key and secret access key needed to authenticate them from the Django app.
 
@@ -750,14 +763,16 @@ Within the Heroku Config variables add the 16 character password as the value to
 
 > # **DOCUMENTATION REFERENCED**
 
-[Django online documentation](https://docs.djangoproject.com/en/3.2/)
+* [Django](https://docs.djangoproject.com/en/3.2/)  
+* [Stripe](https://stripe.com/docs)  
+* [Bootstrap](https://getbootstrap.com/docs/5.1/getting-started/introduction/)
 
 ------
 
 > # **CREDITS AND THANKS**
 
 # Code
-- Thanks to the Code Institute Boutique Ado commercial online store full-stack Django project; which was a great introduction to Django framework. 
+- Thanks to the Code Institute Boutique Ado commercial online store full-stack Django project walkthrough. This was a great introduction to Django framework and the frame of reference for this project.
 - The use of python datetime in the product models custom manager was referenced from this [listendata.com article](https://www.listendata.com/2019/07/how-to-use-datetime-in-python.html#Calculate-future-or-past-dates)
 - Technique for positioning text over an image from [w3schools](https://www.w3schools.com/howto/howto_css_image_text.asp)
 - For rendering the game genres as checkboxes: [Django Forms for Many-to-Many Fields](https://medium.com/swlh/django-forms-for-many-to-many-fields-d977dec4b024)
@@ -799,6 +814,7 @@ The images and content used in the display of the board game products have been 
 - Thanks to the slack community for support and help throughout the course and this project.  Honourable mentions for this project go to Ed B_alum, Daisy_mentor, @ckz8780, Harry and BenKav_Alumni
 - Thanks to @ckz8780 for the support on slack and helping with getting the stock check against purchase quantity working!
 - Thanks to BenKav_Alumni for the help in setting up the product model custom manager.
+- Thanks to my mentor Adegbenga Adeye for the support, help and great feedback throughout the whole course and this project.
 - Thanks to tutor support for all the help throughout this project
 - Thanks to Code Institute for the encouragement and great course material. 
 
